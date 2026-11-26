@@ -151,8 +151,8 @@
     },
     {
       "path": "BOOK-STATE.yaml",
-      "bytes": 728,
-      "sha256": "12d4a172f95fa34911f253a5ec509036643dd7aa21c35ae17e2ed5f7cf26ae0a",
+      "bytes": 748,
+      "sha256": "c13b9a75002466ef52dedce21fc5d722fdea80e96ed9556c9f9141a4d3182bc7",
       "purpose": "public reader, supporting content, asset, or rebuild input"
     },
     {
@@ -1447,8 +1447,8 @@
     },
     {
       "path": "WORKFLOW.md",
-      "bytes": 3636,
-      "sha256": "5b2bba2de5787b99098a6652e1442c6df288e4861b5345f3523c28a2e0433572",
+      "bytes": 3687,
+      "sha256": "35559b833574db241d940e1000721e7150776b3bf98cad3a7058270b83d32cc2",
       "purpose": "public reader, supporting content, asset, or rebuild input"
     }
   ]

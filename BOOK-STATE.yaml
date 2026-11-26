@@ -3,7 +3,7 @@ phase: published-and-live-verified
 expected_chapters: 26
 expected_teaching_recordings: 60
 acquired_recordings_including_introduction: 61
-pilot_gate: passed
+pilot_gate: not-run-as-a-separate-gate
 review_policy: One independent current file-hash acceptance per manuscript, metadata, and lab; no self-review. Run limited to two agents.
 repository_slug: nptel-advanced-linear-algebra-notes
 durable_plan: plan/outline.md
