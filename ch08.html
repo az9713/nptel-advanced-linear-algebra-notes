@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>The algebra of linear transformations: sums, composition, invertibility, and isomorphism · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html" aria-current=page>08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=4DXAx2Qc3DM">Recording 14</a>, <a href="https://www.youtube.com/watch?v=QIt8CporAVU">Recording 15</a>, <a href="https://www.youtube.com/watch?v=PpvRhe2QpjA">Recording 16</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Prove that linear maps form a vector space of dimension mn</li><li>Compose linear maps and use the algebra structure of operators</li><li>Characterize invertible and nonsingular linear maps</li><li>Identify finite-dimensional spaces up to isomorphism</li></ul>
+<p><strong>Prerequisites:</strong> Chapters 4 and 7: bases, dimension, linear maps and rank-nullity.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch08.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-sums-and-scalar-multiples-0025">1. Sums and scalar multiples 00:25</a></li><li><a href="#2-the-space-of-linear-maps-0848">2. The space of linear maps 08:48</a></li><li><a href="#3-its-dimension-is-mathplaceholder000061end-1512">3. Its dimension is $mn$ 15:12</a></li><li><a href="#4-composition-0855">4. Composition 08:55</a></li><li><a href="#5-linear-operators-form-an-algebra-1507">5. Linear operators form an algebra 15:07</a></li><li><a href="#6-invertible-linear-maps-0025">6. Invertible linear maps 00:25</a></li><li><a href="#7-nonsingular-maps-1045">7. Nonsingular maps 10:45</a></li><li><a href="#8-isomorphisms-2135">8. Isomorphisms 21:35</a></li><li><a href="#9-executable-check">9. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Take the rational matrices</p>
+<p>$$
+A=\begin{pmatrix}1&amp;1&amp;0\\0&amp;1&amp;1\end{pmatrix},\quad B=\begin{pmatrix}2&amp;0&amp;1\\1&amp;-1&amp;0\end{pmatrix},\quad C=\begin{pmatrix}1&amp;2\\1&amp;3\end{pmatrix},
+$$</p>
+<p>and let $T,U:\mathbb{Q}^3\to\mathbb{Q}^2$ and $R:\mathbb{Q}^2\to\mathbb{Q}^2$ be the maps $X\mapsto AX$, $X\mapsto BX$ and $X\mapsto CX$. These maps are the running examples of the chapter (original constructions). We can add $T$ and $U$, rescale them, and follow $T$ by $R$. Which of these operations give linear maps again? Can $R$ be undone? Can $T$ be undone? And when are two vector spaces "the same" for the purposes of linear algebra? The answers organise the set of all linear maps into a vector space of its own, with a product on top, and they identify every $n$-dimensional space with $F^n$.</p>
+<p>Throughout, $F$ is a field, and $V,W,Z$ are vector spaces over $F$. A map $T:V\to W$ is <em>linear</em> if $T(c\alpha+\beta)=cT\alpha+T\beta$ (<a href="ch07.html">Chapter 7</a>); a linear map $V\to V$ is a <em>linear operator</em> on $V$. The <em>kernel</em> $\ker T$ is the set of vectors sent to zero, and the <em>range</em> $\operatorname{im}T$ is the set of images.</p>
+<h2 id="1-sums-and-scalar-multiples-0025">1. Sums and scalar multiples <a href="https://www.youtube.com/watch?v=4DXAx2Qc3DM&amp;t=25s">00:25</a></h2>
+<p><strong>Definition 1.1.</strong> For linear $T,U:V\to W$ and $c\in F$, define maps $T+U$ and $cT$ from $V$ to $W$ by</p>
+<p>$$
+(T+U)\alpha=T\alpha+U\alpha,\qquad(cT)\alpha=c\,(T\alpha).
+$$</p>
+<p><strong>Theorem 1.2.</strong> $T+U$ and $cT$ are linear.</p>
+<p><strong>Proof.</strong> For $\alpha,\beta\in V$ and $d\in F$,</p>
+<p>$$
+(T+U)(d\alpha+\beta)=dT\alpha+T\beta+dU\alpha+U\beta=d\,(T+U)\alpha+(T+U)\beta,
+$$</p>
+<p>where the first step uses linearity of $T$ and of $U$ and the second regroups in $W$. Likewise</p>
+<p>$$
+(cT)(d\alpha+\beta)=c(dT\alpha+T\beta)=d\,(cT)\alpha+(cT)\beta .
+$$</p>
+<p>The last step uses $cd=dc$ in $F$. $\square$</p>
+<p>Commutativity of the field is used: for scalars that do not commute, $cT$ need not be linear. For the running example, $T+U$ is $X\mapsto(A+B)X$ with $A+B=\begin{pmatrix}3&amp;1&amp;1\\1&amp;0&amp;1\end{pmatrix}$, and $2T$ has the matrix $2A$.</p>
+<h2 id="2-the-space-of-linear-maps-0848">2. The space of linear maps <a href="https://www.youtube.com/watch?v=4DXAx2Qc3DM&amp;t=528s">08:48</a></h2>
+<p>Write $\mathcal{L}(V,W)$ for the set of all linear maps $V\to W$.</p>
+<p><strong>Theorem 2.1.</strong> With the operations of Definition 1.1, $\mathcal{L}(V,W)$ is a vector space over $F$.</p>
+<p><strong>Proof.</strong> The set of all functions $V\to W$ is a vector space under pointwise operations: each axiom is checked at each $\alpha\in V$, where it is an axiom of $W$ (<a href="ch03.html">Chapter 3</a>). $\mathcal{L}(V,W)$ is a subset of it that contains the zero map and, by Theorem 1.2, is closed under sums and scalar multiples. So it is a subspace. $\square$</p>
+<p>The zero vector is the zero map, and the additive inverse of $T$ is $(-1)T$. Neither $V$ nor $W$ needs to be finite-dimensional here.</p>
+<h2 id="3-its-dimension-is-mathplaceholder000061end-1512">3. Its dimension is $mn$ <a href="https://www.youtube.com/watch?v=4DXAx2Qc3DM&amp;t=912s">15:12</a></h2>
+<p><strong>Theorem 3.1.</strong> Let $\dim V=n$ and $\dim W=m$. Then $\dim\mathcal{L}(V,W)=mn$.</p>
+<p><strong>Proof.</strong> Fix ordered bases $(\alpha_1,\dots,\alpha_n)$ of $V$ and $(\beta_1,\dots,\beta_m)$ of $W$. A linear map is determined by, and can be prescribed arbitrarily on, the basis of $V$ (<a href="ch07.html">Chapter 7</a>). So for $1\le p\le m$ and $1\le q\le n$ there is a unique linear map $E^{pq}$ with</p>
+<p>$$
+E^{pq}\alpha_j=\delta_{jq}\beta_p,
+$$</p>
+<p>where $\delta_{jq}$ is $1$ if $j=q$ and $0$ otherwise. So $E^{pq}$ sends $\alpha_q$ to $\beta_p$ and every other basis vector to zero. We show that the $mn$ maps $E^{pq}$ form a basis.</p>
+<p><em>Spanning.</em> Let $T\in\mathcal{L}(V,W)$. Write $T\alpha_j=\sum_{i=1}^mA_{ij}\beta_i$ with $A_{ij}\in F$, and let $S=\sum_{p,q}A_{pq}E^{pq}$. Then</p>
+<p>$$
+S\alpha_j=\sum_{p,q}A_{pq}\delta_{jq}\beta_p=\sum_pA_{pj}\beta_p=T\alpha_j .
+$$</p>
+<p>$S$ and $T$ agree on a basis, so $S=T$.</p>
+<p><em>Independence.</em> If $\sum_{p,q}A_{pq}E^{pq}=0$, apply both sides to $\alpha_j$: $\sum_pA_{pj}\beta_p=0$. Independence of the $\beta_p$ gives $A_{pj}=0$ for all $p$, and $j$ was arbitrary. $\square$</p>
+<p>The coefficient $A_{pq}$ of $T$ along $E^{pq}$ is entry $(p,q)$ of the table of coordinates of the images $T\alpha_q$. This is the matrix of $T$ of <a href="ch09.html">Chapter 9</a>.</p>
+<p><strong>The six maps $\mathbb{Q}^3\to\mathbb{Q}^2$</strong> <a href="https://www.youtube.com/watch?v=QIt8CporAVU&amp;t=25s">00:25</a>. With the standard bases of $\mathbb{Q}^3$ and $\mathbb{Q}^2$, the map $E^{pq}$ is $X\mapsto M_{pq}X$, where $M_{pq}$ is the $2\times3$ matrix with $1$ in position $(p,q)$ and $0$ elsewhere. For $T$ we get the coordinates $(1,1,0,0,1,1)$ along $E^{11},E^{12},E^{13},E^{21},E^{22},E^{23}$, which are the entries of $A$ read row by row. The basis depends on the chosen bases: with $\beta'=((1,0),(1,1))$ in $\mathbb{Q}^2$, the map $E^{21}$ built from $\beta'$ sends the first unit vector to $(1,1)$, not to $(0,1)$.</p>
+<h2 id="4-composition-0855">4. Composition <a href="https://www.youtube.com/watch?v=QIt8CporAVU&amp;t=535s">08:55</a></h2>
+<p>For $T:V\to W$ and $U:W\to Z$, the <em>composition</em> $UT:V\to Z$ is $(UT)\alpha=U(T\alpha)$.</p>
+<p><strong>Theorem 4.1.</strong> If $T$ and $U$ are linear, then $UT$ is linear.</p>
+<p><strong>Proof.</strong> $UT(c\alpha+\beta)=U(cT\alpha+T\beta)=cU(T\alpha)+U(T\beta)=c(UT)\alpha+(UT)\beta$. $\square$</p>
+<p>The order is forced by the domains. For $T:\mathbb{Q}^3\to\mathbb{Q}^2$ and $R:\mathbb{Q}^2\to\mathbb{Q}^2$ the composition $RT$ is defined, with matrix</p>
+<p>$$
+CA=\begin{pmatrix}1&amp;3&amp;2\\1&amp;4&amp;3\end{pmatrix},
+$$</p>
+<p>but $TR$ is not, since $R$ produces a vector in $\mathbb{Q}^2$ and $T$ needs one in $\mathbb{Q}^3$.</p>
+<h2 id="5-linear-operators-form-an-algebra-1507">5. Linear operators form an algebra <a href="https://www.youtube.com/watch?v=QIt8CporAVU&amp;t=907s">15:07</a></h2>
+<p>Let $\mathcal{L}(V)=\mathcal{L}(V,V)$ be the space of linear operators on $V$. If $\dim V=n$, then $\dim\mathcal{L}(V)=n^2$ by Theorem 3.1. In $\mathcal{L}(V)$ any two elements can be composed.</p>
+<p><strong>Theorem 5.1.</strong> For $U,T,T_1,T_2\in\mathcal{L}(V)$ and $c\in F$, with $I$ the identity operator:</p>
+<ol>
+<li>$IU=UI=U$;</li>
+<li>$U(T_1T_2)=(UT_1)T_2$;</li>
+<li>$U(T_1+T_2)=UT_1+UT_2$ and $(T_1+T_2)U=T_1U+T_2U$;</li>
+<li>$c(UT)=(cU)T=U(cT)$.</li>
+</ol>
+<p><strong>Proof.</strong> Each identity is checked on a vector $\alpha$. Part 1 and part 2 hold for any functions. For part 3, $U(T_1+T_2)\alpha=U(T_1\alpha+T_2\alpha)=UT_1\alpha+UT_2\alpha$ by linearity of $U$, whereas $(T_1+T_2)U\alpha=T_1U\alpha+T_2U\alpha$ is the definition of the sum. For part 4, both $c(UT)\alpha$ and $(cU)T\alpha$ equal $cU(T\alpha)$, and $U(cT\alpha)=cU(T\alpha)$ by linearity of $U$. $\square$</p>
+<p>Note that only the first identity of part 3 uses linearity of the outer map. A vector space with a bilinear, associative multiplication satisfying these identities is called a <em>linear algebra</em> over $F$ (with identity, here). So $\mathcal{L}(V)$ is a linear algebra.</p>
+<p>Composition differs from multiplication of numbers in two ways. It is not commutative: with $N$ the operator with matrix $\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix}$,</p>
+<p>$$
+CN=\begin{pmatrix}0&amp;1\\0&amp;1\end{pmatrix},\qquad NC=\begin{pmatrix}1&amp;3\\0&amp;0\end{pmatrix}.
+$$</p>
+<p>And there are <em>zero divisors</em>: $N\neq0$ but $N^2=0$.</p>
+<h2 id="6-invertible-linear-maps-0025">6. Invertible linear maps <a href="https://www.youtube.com/watch?v=PpvRhe2QpjA&amp;t=25s">00:25</a></h2>
+<p><strong>Definition 6.1.</strong> A function $T:V\to W$ is <em>invertible</em> if there is a function $S:W\to V$ with $ST=I_V$ and $TS=I_W$, where $I_V,I_W$ are the identity maps. Then $S$ is unique and written $T^{-1}$.</p>
+<p>Uniqueness: if $S$ and $S'$ both work, $S=S(TS')=(ST)S'=S'$. A function is invertible exactly when it is <em>injective</em> (one-to-one) and <em>surjective</em> (onto). The two identities involve different identity maps, and both are needed.</p>
+<p><strong>Theorem 6.2.</strong> If $T:V\to W$ is linear and invertible, then $T^{-1}:W\to V$ is linear.</p>
+<p><strong>Proof.</strong> Take $\beta_1,\beta_2\in W$ and $c\in F$, and let $\alpha_i=T^{-1}\beta_i$. Then $T(c\alpha_1+\alpha_2)=c\beta_1+\beta_2$ by linearity. Apply $T^{-1}$ to both sides: $c\alpha_1+\alpha_2=T^{-1}(c\beta_1+\beta_2)$. So $T^{-1}(c\beta_1+\beta_2)=cT^{-1}\beta_1+T^{-1}\beta_2$. $\square$</p>
+<p><strong>One-sided inverses.</strong> The map $T$ of the running example is surjective but not injective: $\ker T$ is spanned by $(1,-1,1)$. Take</p>
+<p>$$
+G=\frac13\begin{pmatrix}2&amp;-1\\1&amp;1\\-1&amp;2\end{pmatrix}.
+$$</p>
+<p>Then $AG=I_2$, so $TG=I$ with $G$ viewed as the map $X\mapsto GX$. But $GA$ has rank $2$, so $GT\neq I_3$. Thus $T$ has a right inverse and no left inverse. In infinite dimension the same can happen for operators: on $\mathbb{Q}[x]$, differentiation $D$ and integration $J$ from $0$ satisfy $DJ=I$, while $JDp=p-p(0)$.</p>
+<h2 id="7-nonsingular-maps-1045">7. Nonsingular maps <a href="https://www.youtube.com/watch?v=PpvRhe2QpjA&amp;t=645s">10:45</a></h2>
+<p><strong>Definition 7.1.</strong> A linear $T:V\to W$ is <em>nonsingular</em> if $T\alpha=0$ implies $\alpha=0$, that is, $\ker T=\{0\}$.</p>
+<p>Since $T\alpha_1=T\alpha_2$ means $T(\alpha_1-\alpha_2)=0$, nonsingular is the same as injective.</p>
+<p><strong>Theorem 7.2.</strong> A linear $T:V\to W$ is nonsingular if and only if it maps every linearly independent set to a linearly independent set, with distinct vectors having distinct images.</p>
+<p><strong>Proof.</strong> Let $T$ be nonsingular and $\alpha_1,\dots,\alpha_k$ independent. Suppose $\sum c_iT\alpha_i=0$. By linearity $T\big(\sum c_i\alpha_i\big)=0$, so $\sum c_i\alpha_i=0$ by nonsingularity, so all $c_i=0$ by independence. Hence the images are independent, in particular distinct. For infinite independent sets, apply this to each finite subset. Conversely, if $\alpha\neq0$, then $\{\alpha\}$ is independent, so $\{T\alpha\}$ is independent, which means $T\alpha\neq0$. So $\ker T=\{0\}$. $\square$</p>
+<p>For $T$ above, the independent set $\{(1,-1,1)\}$ is mapped to $\{0\}$, which is dependent.</p>
+<p><strong>Theorem 7.3.</strong> Let $\dim V=\dim W=n$ and $T:V\to W$ linear. The following are equivalent: (a) $T$ is invertible; (b) $T$ is nonsingular; (c) $T$ is surjective; (d) $T$ maps a basis of $V$ to a basis of $W$.</p>
+<p><strong>Proof.</strong> (a) implies (b) since invertible maps are injective. (b) implies (d): the images of a basis are $n$ independent vectors in the $n$-dimensional space $W$, hence a basis. (d) implies (c): the range contains a basis of $W$. (c) implies (a): by rank-nullity (<a href="ch07.html">Chapter 7</a>), $\operatorname{nullity}T=n-\operatorname{rank}T=0$, so $T$ is injective and surjective. $\square$</p>
+<p><strong>Invertibility from a polynomial.</strong> For $R$, a direct computation gives $C^2=4C-I$. So $R^2-4R+I=0$, that is, $R(4I-R)=I=(4I-R)R$. Hence $R$ is invertible with $R^{-1}=4I-R$, whose matrix is $\begin{pmatrix}3&amp;-2\\-1&amp;1\end{pmatrix}$. Such a relation always exists in finite dimension, because the $n^2+1$ powers $I,R,\dots,R^{n^2}$ lie in the $n^2$-dimensional space $\mathcal{L}(V)$ and are therefore dependent. <a href="ch13.html">Chapter 13</a> uses this fact.</p>
+<p>Invertible operators do not form a subspace: $I$ and $-I$ are invertible, and their sum $0$ is not.</p>
+<h2 id="8-isomorphisms-2135">8. Isomorphisms <a href="https://www.youtube.com/watch?v=PpvRhe2QpjA&amp;t=1295s">21:35</a></h2>
+<p><strong>Definition 8.1.</strong> An <em>isomorphism</em> from $V$ onto $W$ is a linear, invertible map $T:V\to W$. If one exists, $V$ is <em>isomorphic</em> to $W$.</p>
+<p>By Theorem 6.2, $T^{-1}$ is an isomorphism from $W$ onto $V$, so the relation is symmetric; it is reflexive (identity) and transitive (composition of isomorphisms is an isomorphism, with inverse $T^{-1}U^{-1}$).</p>
+<p><strong>Theorem 8.2.</strong> Every $n$-dimensional vector space over $F$ is isomorphic to $F^n$.</p>
+<p><strong>Proof.</strong> Fix an ordered basis $(\alpha_1,\dots,\alpha_n)$ and define $\psi:V\to F^n$ by $\psi(\alpha)=(x_1,\dots,x_n)$, where $\alpha=\sum x_i\alpha_i$. Coordinates exist and are unique, so $\psi$ is well defined. If $\beta=\sum y_i\alpha_i$, then $c\alpha+\beta=\sum(cx_i+y_i)\alpha_i$, so $\psi(c\alpha+\beta)=c\psi(\alpha)+\psi(\beta)$. $\psi$ is injective since $\psi(\alpha)=0$ forces $\alpha=\sum0\cdot\alpha_i=0$, and surjective since $(x_1,\dots,x_n)$ is the image of $\sum x_i\alpha_i$. $\square$</p>
+<p><strong>Corollary 8.3.</strong> Finite-dimensional spaces over $F$ are isomorphic if and only if they have the same dimension.</p>
+<p><strong>Proof.</strong> If $\dim V=\dim W=n$, both are isomorphic to $F^n$, and the relation is symmetric and transitive. Conversely an isomorphism maps a basis to an independent set (Theorem 7.2) that spans, since it is surjective. So the dimensions agree. $\square$</p>
+<p>An isomorphism preserves every statement formulated with sums and scalar multiples: independence, spanning, subspaces and dimension. So a question about an abstract $n$-dimensional space can be moved to $F^n$, where row reduction answers it. For example, the polynomials $1+x$, $x+x^2$, $1+x^2$ form a basis of the space of polynomials of degree at most $2$ over $\mathbb{Q}$: their coordinate columns $(1,1,0)$, $(0,1,1)$, $(1,0,1)$ have determinant $2\neq0$. Over $\mathbb{F}_2$ the three add to zero. The isomorphism depends on the basis; no basis is forced by the space itself. Also, the field matters: $\mathbb{C}$ is isomorphic to $\mathbb{R}^2$ as a real space, but not to $\mathbb{C}^2$ as a complex space.</p>
+<h2 id="9-executable-check">9. Executable check</h2>
+<p><a href="labs/ch08.py">The chapter laboratory</a> uses exact fractions. It checks the sums, the six basis maps and their dependence on the bases, the composition $CA$, the products $CN$, $NC$ and $N^2$, the identities of Theorem 5.1 on fixed matrices, $C^2=4C-I$ with the inverse, the one-sided inverse $G$, the polynomial basis over $\mathbb{Q}$ and $\mathbb{F}_2$, and $DJ=I$. It counts $6$ isomorphisms $\mathbb{F}_2^2\to\mathbb{F}_2^2$ among $16$ maps and $48$ among $81$ over $\mathbb{F}_3$. These are instances only; the theorems are proved above.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) Find the inverse of the operator on $\mathbb{Q}^3$ given by $x\mapsto(x_1+x_2,\;x_2+x_3,\;x_3)$.</li>
+<li>(Composition.) If $T:V\to W$ and $U:W\to Z$ are linear, prove that $\ker T\subseteq\ker UT$ and $\operatorname{im}UT\subseteq\operatorname{im}U$. When $UT$ is invertible and $V,W,Z$ have the same finite dimension, show that $T$ and $U$ are invertible.</li>
+<li>(Counting.) How many linear maps $\mathbb{F}_p^2\to\mathbb{F}_p^3$ are there, and how many are nonsingular?</li>
+<li>(Annihilating relation.) Let $S$ on $\mathbb{Q}^3$ have matrix with rows $(2,0,0),(0,2,0),(0,0,3)$. Find a relation $S^2=aS+bI$ and use it to find $S^{-1}$.</li>
+<li>(Commutator.) Let $V=\mathbb{Q}[x]$, $D$ differentiation and $M$ multiplication by $x$. Show that $DM-MD=I$, and prove that no operators on a finite-dimensional rational space satisfy $ST-TS=I$.</li>
+<li>(Isomorphism.) Exhibit an isomorphism between the space of $2\times2$ symmetric rational matrices and $\mathbb{Q}^3$, and give the image of $\begin{pmatrix}1&amp;2\\2&amp;5\end{pmatrix}$.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>Solve $y=(x_1+x_2,x_2+x_3,x_3)$ from the bottom: $x_3=y_3$, $x_2=y_2-y_3$, $x_1=y_1-y_2+y_3$. So $T^{-1}y=(y_1-y_2+y_3,\;y_2-y_3,\;y_3)$. Since a solution exists and is unique for every $y$, $T$ is invertible. Check on $y=(1,0,0)$: $T(1,0,0)=(1,0,0)$.</p>
+</li>
+<li>
+<p>If $T\alpha=0$ then $UT\alpha=U0=0$, so $\ker T\subseteq\ker UT$. Every $UT\alpha$ is $U$ of something, so $\operatorname{im}UT\subseteq\operatorname{im}U$. If $UT$ is invertible, $\ker UT=\{0\}$, so $\ker T=\{0\}$ and $T$ is invertible by Theorem 7.3. Also $\operatorname{im}UT=Z$, so $\operatorname{im}U=Z$ and $U$ is surjective, hence invertible by Theorem 7.3 applied to $U:W\to Z$.</p>
+</li>
+<li>
+<p>A linear map is fixed by the images of the two basis vectors, each any of $p^3$ vectors: $p^6$ maps, in agreement with $\dim\mathcal{L}=6$. It is nonsingular exactly when the two images are independent (Theorem 7.2 and its converse on the basis: if $T\alpha_1,T\alpha_2$ are independent then $T(c_1\alpha_1+c_2\alpha_2)=0$ forces $c_i=0$). The first image is any nonzero vector, $p^3-1$ choices; the second avoids the line spanned by the first, $p^3-p$ choices. So there are $(p^3-1)(p^3-p)$ nonsingular maps.</p>
+</li>
+<li>
+<p>The diagonal entries are the roots $2,3$ of $(x-2)(x-3)=x^2-5x+6$. So $S^2=5S-6I$: check the entries $4=10-6$ and $9=15-6$. Then $S(5I-S)=6I$, so $S^{-1}=\frac16(5I-S)$, which is diagonal with entries $\frac12,\frac12,\frac13$.</p>
+</li>
+<li>
+<p>For a polynomial $p$, $DMp=(xp)'=p+xp'$ and $MDp=xp'$, so $(DM-MD)p=p$. Suppose $S,T$ are operators on an $n$-dimensional rational space, with $n\ge1$, and $ST-TS=I$. Choose a basis and let $P,Q$ be their matrices; composition corresponds to matrix multiplication (<a href="ch09.html">Chapter 9</a>). The trace $\operatorname{tr}$ (sum of diagonal entries) satisfies $\operatorname{tr}(PQ)=\sum_{i,j}P_{ij}Q_{ji}=\operatorname{tr}(QP)$. So $\operatorname{tr}(PQ-QP)=0$, while $\operatorname{tr}I=n\neq0$ in $\mathbb{Q}$. Contradiction. In characteristic $p$ with $p$ dividing $n$ this argument fails.</p>
+</li>
+<li>
+<p>The map $\psi\begin{pmatrix}a&amp;b\\b&amp;c\end{pmatrix}=(a,b,c)$ is linear, since it reads entries, injective, since $(a,b,c)=0$ forces the matrix to be zero, and surjective. So it is an isomorphism, matching Corollary 8.3: both spaces have dimension $3$. The matrix with entries $a=1$, $b=2$, $c=5$ maps to $(1,2,5)$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, Chapter 3 (linear transformations).</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., Springer, 2024, open access at https://linear.axler.net/, Chapter 3.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch08.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 8 laboratory: the algebra of linear maps.
+
+Exact arithmetic over Q (fractions.Fraction).  A linear map F^n -&gt; F^m is
+stored as its m x n matrix (a list of rows) acting on column vectors.
+Everything is checked on the chapter&#x27;s running example:
+
+    A = [[1, 1, 0], [0, 1, 1]]     T : Q^3 -&gt; Q^2
+    B = [[2, 0, 1], [1, -1, 0]]    U : Q^3 -&gt; Q^2
+    C = [[1, 2], [1, 3]]           R : Q^2 -&gt; Q^2 (invertible)
+    N = [[0, 1], [0, 0]]           nilpotent operator on Q^2
+&quot;&quot;&quot;
+from fractions import Fraction
+from itertools import product
+
+
+def Q(rows):
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def show(M):
+    &quot;&quot;&quot;Compact text for a matrix or vector of Fractions.&quot;&quot;&quot;
+    if M and isinstance(M[0], list):
+        return &#x27;[&#x27; + &#x27;; &#x27;.join(show(r) for r in M) + &#x27;]&#x27;
+    return &#x27;(&#x27; + &#x27;, &#x27;.join(str(x) for x in M) + &#x27;)&#x27;
+
+
+def shape(M):
+    return len(M), len(M[0])
+
+
+def add(M, N):
+    assert shape(M) == shape(N), &#x27;sum needs maps with one domain and codomain&#x27;
+    return [[a + b for a, b in zip(r, s)] for r, s in zip(M, N)]
+
+
+def scale(c, M):
+    return [[c * a for a in row] for row in M]
+
+
+def matmul(M, N):
+    &quot;&quot;&quot;Matrix of the composite M after N (apply N first).&quot;&quot;&quot;
+    assert shape(N)[0] == shape(M)[1], &#x27;composite is not defined&#x27;
+    return [[sum(M[i][k] * N[k][j] for k in range(len(N)))
+             for j in range(len(N[0]))] for i in range(len(M))]
+
+
+def identity(n):
+    return [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def apply(M, x):
+    return [sum(a * b for a, b in zip(row, x)) for row in M]
+
+
+def rref(M):
+    &quot;&quot;&quot;Reduced row echelon form and pivot columns.&quot;&quot;&quot;
+    R = [row[:] for row in M]
+    pivots, r = [], 0
+    for c in range(len(R[0])):
+        p = next((i for i in range(r, len(R)) if R[i][c] != 0), None)
+        if p is None:
+            continue
+        R[r], R[p] = R[p], R[r]
+        R[r] = [a / R[r][c] for a in R[r]]
+        for i in range(len(R)):
+            if i != r and R[i][c] != 0:
+                R[i] = [a - R[i][c] * b for a, b in zip(R[i], R[r])]
+        pivots.append(c)
+        r += 1
+        if r == len(R):
+            break
+    return R, pivots
+
+
+def rank(M):
+    return len(rref(M)[1])
+
+
+def nullspace(M):
+    &quot;&quot;&quot;A basis of {x : Mx = 0} from the reduced form.&quot;&quot;&quot;
+    R, piv = rref(M)
+    n = len(M[0])
+    basis = []
+    for f in (c for c in range(n) if c not in piv):
+        v = [Fraction(0)] * n
+        v[f] = Fraction(1)
+        for i, c in enumerate(piv):
+            v[c] = -R[i][f]
+        basis.append(v)
+    return basis
+
+
+def det(M):
+    &quot;&quot;&quot;Determinant by Laplace expansion (small matrices only).&quot;&quot;&quot;
+    n = len(M)
+    if n == 1:
+        return M[0][0]
+    return sum((-1) ** j * M[0][j] * det([r[:j] + r[j + 1:] for r in M[1:]])
+               for j in range(n))
+
+
+def inverse(M):
+    n = len(M)
+    aug = [row + identity(n)[i] for i, row in enumerate(M)]
+    R, piv = rref(aug)
+    assert piv[:n] == list(range(n)), &#x27;matrix is not invertible&#x27;
+    return [row[n:] for row in R]
+
+
+def unit(p, q, m, n):
+    &quot;&quot;&quot;The matrix e_pq (1 at row p, column q), 1-based as in the text.&quot;&quot;&quot;
+    return [[Fraction(int(i == p - 1 and j == q - 1)) for j in range(n)]
+            for i in range(m)]
+
+
+def flat(M):
+    return [x for row in M for x in row]
+
+
+A = Q([[1, 1, 0], [0, 1, 1]])
+B = Q([[2, 0, 1], [1, -1, 0]])
+C = Q([[1, 2], [1, 3]])
+N = Q([[0, 1], [0, 0]])
+I2, I3 = identity(2), identity(3)
+
+# 1. Sums and scalar multiples act pointwise.
+S = add(A, B)
+assert S == Q([[3, 1, 1], [1, 0, 1]])
+assert scale(2, A) == Q([[2, 2, 0], [0, 2, 2]])
+for x in product(range(-2, 3), repeat=3):
+    assert apply(S, x) == [a + b for a, b in zip(apply(A, x), apply(B, x))]
+print(&#x27;T+U has matrix&#x27;, show(S), &#x27; 2T has matrix&#x27;, show(scale(2, A)))
+
+# 2. The set of invertible operators is not a subspace; I + (-I) = 0.
+assert add(I2, scale(-1, I2)) == [[0, 0], [0, 0]]
+assert rank(add(I2, scale(-1, I2))) == 0
+
+# 3. dim L(V, W) = mn: the six units e_pq are independent and span.
+units = [unit(p, q, 2, 3) for p in (1, 2) for q in (1, 2, 3)]
+assert rank([flat(E) for E in units]) == 6
+for M in (A, B, S):
+    rebuilt = [[Fraction(0)] * 3 for _ in range(2)]
+    for p in (1, 2):
+        for q in (1, 2, 3):
+            rebuilt = add(rebuilt, scale(M[p - 1][q - 1], unit(p, q, 2, 3)))
+    assert rebuilt == M
+# E^{pq}(alpha_j) = delta_{jq} beta_p for the standard bases.
+for p, q in product((1, 2), (1, 2, 3)):
+    for j in (1, 2, 3):
+        col = apply(unit(p, q, 2, 3), I3[j - 1])
+        assert col == [Fraction(int(j == q and i == p)) for i in (1, 2)]
+print(&#x27;dim L(Q^3, Q^2) = 6; coefficients of T:&#x27;, show(flat(A)),
+      &#x27;coefficients of U:&#x27;, show(flat(B)))
+n = 3
+assert rank([flat(unit(p, q, n, n)) for p in range(1, n + 1)
+             for q in range(1, n + 1)]) == n * n == 9
+
+# 4. Other bases change the E^{pq}: beta&#x27; = ((1,0), (1,1)) in W.
+# E&#x27;^{21} sends alpha_1 to beta&#x27;_2 = (1,1), not to (0,1).
+P = Q([[1, 1], [0, 1]])
+E21p = matmul(P, unit(2, 1, 2, 3))
+assert apply(E21p, I3[0]) == Q([[1, 1]])[0]
+assert apply(E21p, I3[1]) == Q([[0, 0]])[0]
+
+# 5. Composition: UT is defined for T: V -&gt; W, U: W -&gt; Z only.
+CA = matmul(C, A)
+assert CA == Q([[1, 3, 2], [1, 4, 3]])
+for x in product(range(-2, 3), repeat=3):
+    assert apply(CA, x) == apply(C, apply(A, x))
+try:
+    matmul(A, C)
+    raise SystemExit(&#x27;A after C must be undefined&#x27;)
+except AssertionError:
+    pass
+assert rank(CA) == 2 &lt;= min(rank(C), rank(A))
+print(&#x27;R after T has matrix&#x27;, show(CA), &#x27; rank&#x27;, rank(CA))
+CB = matmul(C, B)
+assert matmul(C, add(A, B)) == add(CA, CB) == Q([[5, 1, 3], [6, 1, 4]])
+assert matmul(add(A, B), I3) == add(A, B)
+# Right distributivity (U1+U2)T = U1T + U2T with a second map into Z.
+D2 = Q([[1, 0], [2, 5]])
+assert matmul(add(C, D2), A) == add(matmul(C, A), matmul(D2, A))
+
+# 6. Operators: non-commutativity and zero divisors in L(V).
+CN, NC = matmul(C, N), matmul(N, C)
+assert CN == Q([[0, 1], [0, 1]]) and NC == Q([[1, 3], [0, 0]]) and CN != NC
+assert matmul(N, N) == [[0, 0], [0, 0]] and N != [[0, 0], [0, 0]]
+e11, e12 = unit(1, 1, 2, 2), unit(1, 2, 2, 2)
+assert matmul(e11, e12) == e12
+assert matmul(e12, e11) == [[0, 0], [0, 0]]
+print(&#x27;CN =&#x27;, show(CN), &#x27; NC =&#x27;, show(NC), &#x27; N^2 = 0&#x27;)
+
+# 7. L(V) is an algebra with identity (spot check with fixed matrices).
+X = Q([[1, -1], [2, 3]])
+Y = Q([[0, 4], [1, 1]])
+Z = Q([[2, 0], [-1, 5]])
+c = Fraction(7, 3)
+assert matmul(X, matmul(Y, Z)) == matmul(matmul(X, Y), Z)
+assert matmul(X, add(Y, Z)) == add(matmul(X, Y), matmul(X, Z))
+assert matmul(add(Y, Z), X) == add(matmul(Y, X), matmul(Z, X))
+assert scale(c, matmul(X, Y)) == matmul(scale(c, X), Y)
+assert scale(c, matmul(X, Y)) == matmul(X, scale(c, Y))
+assert matmul(X, I2) == X == matmul(I2, X)
+
+# 8. n^2 + 1 powers of an operator are dependent; for C one finds
+# C^2 = 4C - I, hence C^{-1} = 4I - C.
+C2 = matmul(C, C)
+assert C2 == add(scale(4, C), scale(-1, I2)) == Q([[3, 8], [4, 11]])
+Cinv = add(scale(4, I2), scale(-1, C))
+assert Cinv == Q([[3, -2], [-1, 1]]) == inverse(C)
+assert matmul(C, Cinv) == I2 == matmul(Cinv, C)
+assert det(C) == 1
+print(&#x27;C^2 = 4C - I;  C^{-1} =&#x27;, show(Cinv))
+powers = [flat(identity(2))]
+M = identity(2)
+for _ in range(4):
+    M = matmul(M, C)
+    powers.append(flat(M))
+assert rank(powers) == 2 &lt; 5
+
+# 9. One-sided inverses for T = L_A: right inverse exists, left does not.
+G = scale(Fraction(1, 3), Q([[2, -1], [1, 1], [-1, 2]]))
+assert matmul(A, G) == I2
+GT = matmul(G, A)
+assert GT == scale(Fraction(1, 3), Q([[2, 1, -1], [1, 2, 1], [-1, 1, 2]]))
+assert GT != I3 and matmul(GT, GT) == GT and rank(GT) == 2
+ker = nullspace(A)
+assert ker == [Q([[1, -1, 1]])[0]] and apply(A, ker[0]) == [0, 0]
+print(&#x27;T G = I_2 but G T has rank&#x27;, rank(GT), &#x27;; ker T spanned by&#x27;,
+      show(ker[0]))
+print(&#x27;3 x 3 G T =&#x27;, show(GT))
+
+# 10. Nonsingular maps preserve independence; singular ones may not.
+assert nullspace(C) == []
+assert rank([apply(C, I2[0]), apply(C, I2[1])]) == 2
+assert rank([apply(A, ker[0])]) == 0          # {(1,-1,1)} -&gt; {0}
+assert rank(Q([[1, -1, 1]])) == 1             # the source set is independent
+
+# 11. Coordinates give an isomorphism P_2(Q) -&gt; Q^3.
+# p = a + b x + c x^2 is the triple (a, b, c).
+S3 = Q([[1, 1, 0], [0, 1, 1], [1, 0, 1]])     # 1+x, x+x^2, 1+x^2
+assert det(S3) == 2 and rank(S3) == 3
+for p in (2, 3, 5):
+    assert (int(det(S3)) % p == 0) == (p == 2)
+rows_mod2 = [[int(x) % 2 for x in row] for row in S3]
+assert [sum(col) % 2 for col in zip(*rows_mod2)] == [0, 0, 0]
+print(&#x27;{1+x, x+x^2, 1+x^2}: det over Q =&#x27;, det(S3),
+      &#x27;; over F_2 the sum of the three is 0&#x27;)
+
+# 12. Infinite dimension: Q[x] with D (derivative) and J (integral).
+# A polynomial is a list of coefficients [a0, a1, ...].
+
+
+def D(p):
+    return [k * a for k, a in enumerate(p)][1:] or [Fraction(0)]
+
+
+def J(p):
+    return [Fraction(0)] + [a / (k + 1) for k, a in enumerate(p)]
+
+
+def trim(p):
+    p = list(p)
+    while len(p) &gt; 1 and p[-1] == 0:
+        p.pop()
+    return p
+
+
+p = Q([[3, 2, 1]])[0]
+assert trim(D(J(p))) == p                      # D J = I
+assert trim(J(D(p))) == Q([[0, 2, 1]])[0]      # J D p = p - p(0)
+assert trim(J(D(p))) != p                      # J D != I
+assert trim(J(Q([[1]])[0])) == Q([[0, 1]])[0]  # J is injective on samples
+print(&#x27;D J = I but J D p = p - p(0); J injective, not onto Q[x]&#x27;)
+
+# 13. Counting maps and isomorphisms over F_q: |L| = q^(mn) and
+# |GL_2(F_q)| = (q^2 - 1)(q^2 - q).
+for q in (2, 3):
+    mats = list(product(range(q), repeat=4))
+    assert len(mats) == q ** 4
+    inv = [m for m in mats if (m[0] * m[3] - m[1] * m[2]) % q != 0]
+    assert len(inv) == (q ** 2 - 1) * (q ** 2 - q)
+    print(f&#x27;F_{q}: {len(mats)} maps F^2 -&gt; F^2, {len(inv)} isomorphisms&#x27;)
+assert len(list(product(range(2), repeat=6))) == 2 ** 6   # L(F_2^3, F_2^2)
+
+# 14. Exercise 2: matrix of 2T - U.
+assert add(scale(2, A), scale(-1, B)) == Q([[0, 2, -1], [-1, 3, 2]])
+print(&#x27;all checks passed&#x27;)
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch07.html">Previous: Linear transformations, null space, range, and the rank-nullity theorem</a><a rel="next" href="ch09.html">Next: Matrix representation of linear transformations and similarity</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

@@ -1,0 +1,12 @@
+{
+  "title": "Linear functionals, dual spaces, and dual bases",
+  "lectures": [19, 20, 21],
+  "objectives": [
+    "Recognize and compute linear functionals",
+    "Construct the dual basis and use it to read coordinates",
+    "Prove the dimension formula for annihilators",
+    "Describe subspaces as intersections of hyperspaces"
+  ],
+  "prerequisites": "Chapters 4, 6, 7 and 8: bases, row reduction, linear maps and L(V,W).",
+  "source_scope": "The captions of Lectures 18, 19 and 20 were read in full; the numerical examples, the lower bound on hyperspaces and the exercises are original."
+}

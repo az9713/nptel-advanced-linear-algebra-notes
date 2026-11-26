@@ -1,0 +1,50 @@
+{
+  "author": "author_b",
+  "chapter": "ch22",
+  "recordings": [
+    {
+      "position": 47,
+      "video_id": "x-NoTbaUUr4",
+      "normalized_text_sha256": "4dbb117aeb767b2bf7d4442b5edd5cf90f9c95ba67f585c348c409559de24f3d",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "best approximation",
+        "characterization by orthogonality, uniqueness, formula in an orthogonal basis",
+        "projection onto a line example",
+        "caution about infinite dimension"
+      ],
+      "clarifications": [
+        "The necessity proof uses a complex coefficient"
+      ],
+      "original_constructions": [
+        "running plane",
+        "normal equations"
+      ]
+    },
+    {
+      "position": 46,
+      "video_id": "wjR4wDkAnG4",
+      "normalized_text_sha256": "710b5ca048c7b3879a5809e4a09f3118b90f4cb72cbf7deb62f36971bb42273a",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "orthogonal complement",
+        "orthogonal projection map",
+        "projection onto the complement",
+        "idempotence, kernel and direct sum",
+        "Bessel inequality"
+      ],
+      "clarifications": [
+        "Equality in Bessel for one vector means it lies in the span",
+        "Linearity of the projection is proved"
+      ],
+      "original_constructions": [
+        "finitely supported sequence counterexample",
+        "exercises"
+      ]
+    }
+  ]
+}

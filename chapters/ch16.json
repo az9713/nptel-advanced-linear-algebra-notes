@@ -1,0 +1,15 @@
+{
+  "title": "Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation",
+  "lectures": [
+    32,
+    33
+  ],
+  "objectives": [
+    "Prove that an operator is triangulable exactly when its minimal polynomial splits",
+    "Prove the distinct-linear-factor criterion for diagonalizability",
+    "Construct triangularizing bases and test the criteria on examples",
+    "Triangularize a commuting family with one basis"
+  ],
+  "prerequisites": "Invariant subspaces and conductors (Chapter 15), the minimal polynomial and eigenvalues (Chapters 12 to 14).",
+  "source_scope": "The captions of the two recordings (positions 32 and 33) were read in full. The running matrix and the integral-operator example come from them; the commuting-family section, the extended proofs, the laboratory and the exercises are additions."
+}

@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Linear functionals, dual spaces, and dual bases · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html" aria-current=page>10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>10. Linear functionals, dual spaces, and dual bases</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=PocfxH03Dgs">Recording 19</a>, <a href="https://www.youtube.com/watch?v=k7t7UkJ4z5g">Recording 20</a>, <a href="https://www.youtube.com/watch?v=Y6dbBjO73IQ">Recording 21</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Recognize and compute linear functionals</li><li>Construct the dual basis and use it to read coordinates</li><li>Prove the dimension formula for annihilators</li><li>Describe subspaces as intersections of hyperspaces</li></ul>
+<p><strong>Prerequisites:</strong> Chapters 4, 6, 7 and 8: bases, row reduction, linear maps and L(V,W).</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch10.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-linear-functionals-0025">1. Linear functionals 00:25</a></li><li><a href="#2-further-examples-1114">2. Further examples 11:14</a></li><li><a href="#3-the-dual-space-1734">3. The dual space 17:34</a></li><li><a href="#4-the-dual-basis-2146">4. The dual basis 21:46</a></li><li><a href="#5-evaluation-functionals-and-interpolation-0025">5. Evaluation functionals and interpolation 00:25</a></li><li><a href="#6-null-spaces-of-functionals-hyperspaces-1925">6. Null spaces of functionals: hyperspaces 19:25</a></li><li><a href="#7-annihilators-2402">7. Annihilators 24:02</a></li><li><a href="#8-every-subspace-is-an-intersection-of-hyperspaces-0025">8. Every subspace is an intersection of hyperspaces 00:25</a></li><li><a href="#9-from-functionals-back-to-subspaces-1512">9. From functionals back to subspaces 15:12</a></li><li><a href="#10-executable-check">10. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Given the three vectors</p>
+<p>$$
+\alpha_1=(1,0,1),\qquad\alpha_2=(1,1,0),\qquad\alpha_3=(0,1,1)
+$$</p>
+<p>of $\mathbb{Q}^3$, how can we find the coordinates of an arbitrary vector $v$ in the basis $(\alpha_1,\alpha_2,\alpha_3)$ without solving a new system for each $v$? Each coordinate is a number that depends linearly on $v$. So the answer should be three linear rules $f_1,f_2,f_3$, each taking a vector to a number. For $v=(x,y,z)$ they turn out to be</p>
+<p>$$
+f_1(v)=\tfrac12(x-y+z),\quad f_2(v)=\tfrac12(x+y-z),\quad f_3(v)=\tfrac12(-x+y+z).
+$$</p>
+<p>For $v=(3,1,2)$ they give $2,1,0$, and indeed $2\alpha_1+\alpha_2=(3,1,2)$. These three rules are the running example of the chapter (an original construction). Linear rules with values in the field are called linear functionals. They form a vector space of their own, the <em>dual space</em>; the rules above form its basis dual to $(\alpha_1,\alpha_2,\alpha_3)$. The same language describes evaluation of polynomials, integrals, traces, and the equations that cut out a subspace.</p>
+<p>Throughout, $F$ is a field and $V$ a vector space over $F$. Finite dimension is stated where used. A subspace, basis, dimension and linear map are as in <a href="ch04.html">Chapter 4</a> and <a href="ch07.html">Chapter 7</a>.</p>
+<h2 id="1-linear-functionals-0025">1. Linear functionals <a href="https://www.youtube.com/watch?v=PocfxH03Dgs&amp;t=25s">00:25</a></h2>
+<p><strong>Definition 1.1.</strong> A <em>linear functional</em> on $V$ is a linear map $f:V\to F$, where $F$ is regarded as a one-dimensional vector space over itself:</p>
+<p>$$
+f(c\alpha+\beta)=cf(\alpha)+f(\beta)\qquad(\alpha,\beta\in V,\ c\in F).
+$$</p>
+<p><strong>Coordinate formulas.</strong> Fix scalars $c_1,\dots,c_n$ and define $f:F^n\to F$ by $f(x)=c_1x_1+\cdots+c_nx_n$. This is linear by distributivity. Every linear functional on $F^n$ has this form: with $e_i$ the unit vectors, $x=\sum x_ie_i$, so $f(x)=\sum x_if(e_i)$. The coefficient $c_i$ is the value $f(e_i)$.</p>
+<h2 id="2-further-examples-1114">2. Further examples <a href="https://www.youtube.com/watch?v=PocfxH03Dgs&amp;t=674s">11:14</a></h2>
+<p><strong>Trace.</strong> On the space $F^{n\times n}$ of square matrices, $\operatorname{tr}A=\sum_{i=1}^nA_{ii}$ is linear, since $\operatorname{tr}(cA+B)=c\operatorname{tr}A+\operatorname{tr}B$.</p>
+<p><strong>Evaluation.</strong> Let $V$ be the space of all polynomials over $F$ (infinite-dimensional) and $t\in F$. The map $\mathrm{ev}_t(p)=p(t)$ is linear.</p>
+<p><strong>Integration.</strong> Let $V=C[a,b]$ be the real vector space of continuous functions on $[a,b]$. Then $L(g)=\int_a^bg(t)\,dt$ is a linear functional, by linearity of the integral.</p>
+<p>A non-example: $g\mapsto\int_a^bg(t)^2\,dt$ is not linear, since scaling $g$ by $2$ multiplies the value by $4$.</p>
+<h2 id="3-the-dual-space-1734">3. The dual space <a href="https://www.youtube.com/watch?v=PocfxH03Dgs&amp;t=1054s">17:34</a></h2>
+<p><strong>Definition 3.1.</strong> The <em>dual space</em> of $V$ is $V^*=\mathcal{L}(V,F)$, the space of all linear functionals on $V$, with pointwise addition and scalar multiplication (<a href="ch08.html">Chapter 8</a>).</p>
+<p>If $\dim V=n$, then $\dim V^*=n\cdot1=n$ by the dimension formula for $\mathcal{L}(V,W)$. A concrete basis comes next.</p>
+<h2 id="4-the-dual-basis-2146">4. The dual basis <a href="https://www.youtube.com/watch?v=PocfxH03Dgs&amp;t=1306s">21:46</a></h2>
+<p>Let $\delta_{ij}$ denote $1$ if $i=j$ and $0$ otherwise.</p>
+<p><strong>Theorem 4.1.</strong> Let $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ be an ordered basis of $V$.</p>
+<ol>
+<li>There is a unique list $\mathcal{B}^*=(f_1,\dots,f_n)$ in $V^*$ with $f_i(\alpha_j)=\delta_{ij}$, and it is an ordered basis of $V^*$, the <em>dual basis</em> of $\mathcal{B}$.</li>
+<li>For every $f\in V^*$, $f=\sum_{i=1}^nf(\alpha_i)f_i$.</li>
+<li>For every $\alpha\in V$, $\alpha=\sum_{i=1}^nf_i(\alpha)\alpha_i$.</li>
+</ol>
+<p><strong>Proof.</strong> A linear map is determined by its values on a basis, and these may be chosen freely (<a href="ch07.html">Chapter 7</a>). So for each $i$ there is exactly one $f_i$ with $f_i(\alpha_j)=\delta_{ij}$. For independence suppose $\sum c_if_i=0$, the zero functional. Evaluate at $\alpha_j$: $\sum_ic_i\delta_{ij}=c_j=0$. So $f_1,\dots,f_n$ are $n$ independent elements of the $n$-dimensional space $V^*$, hence a basis. For part 2, evaluate the right side at $\alpha_j$: $\sum_if(\alpha_i)\delta_{ij}=f(\alpha_j)$. Both sides are linear and agree on a basis, so they are equal. For part 3, write $\alpha=\sum x_j\alpha_j$ and apply $f_i$: $f_i(\alpha)=\sum_jx_j\delta_{ij}=x_i$. $\square$</p>
+<p>So the dual basis is precisely the list of coordinate functions: the $i$th coordinate of $\alpha$ is $f_i(\alpha)$ and, dually, the $i$th coordinate of $f$ in $\mathcal{B}^*$ is $f(\alpha_i)$:</p>
+<p>$$
+[\alpha]_{\mathcal{B}}=\big(f_1(\alpha),\dots,f_n(\alpha)\big)^{\mathsf T},\qquad[f]_{\mathcal{B}^*}=\big(f(\alpha_1),\dots,f(\alpha_n)\big)^{\mathsf T}.
+$$</p>
+<p>Here the superscript $\mathsf T$ turns a row into a column.</p>
+<p><strong>Running example.</strong> To find $f_i$, we need $f_i(\alpha_j)=\delta_{ij}$. Writing the $\alpha_j$ as columns of a matrix $M$ and the coefficient rows of the $f_i$ as rows of a matrix $N$, the condition reads $NM=I$. So the rows of $M^{-1}$ are the coefficients of the dual basis, which gives the formulas of the opening. For $f(x,y,z)=2x-y+3z$ the coordinates in $\mathcal{B}^*$ are the values $f(\alpha_1)=5$, $f(\alpha_2)=1$, $f(\alpha_3)=2$; so $f=5f_1+f_2+2f_3$.</p>
+<p><strong>The standard basis</strong> is dual to itself in coefficient form: the dual basis of $(e_1,\dots,e_n)$ is the list of coordinate functionals $x\mapsto x_i$.</p>
+<p><strong>Boundary: infinite dimension.</strong> On the space $F[x]$ of all polynomials, let $f_j(p)$ be the coefficient of $x^j$. Then $f_j(x^k)=\delta_{jk}$, but the $f_j$ do not span the dual space. A finite combination of $f_0,\dots,f_N$ vanishes on $x^{N+1}$, while $\mathrm{ev}_1(x^{N+1})=1$. So $\mathrm{ev}_1$ is not a finite combination of them, for any $N$. Theorem 4.1 needs finite dimension.</p>
+<h2 id="5-evaluation-functionals-and-interpolation-0025">5. Evaluation functionals and interpolation <a href="https://www.youtube.com/watch?v=k7t7UkJ4z5g&amp;t=25s">00:25</a></h2>
+<p>Let $P_2$ be the space of polynomials of degree at most $2$ over $F$, and let $t_1,t_2,t_3\in F$ be distinct. Define $L_i(p)=p(t_i)$. We show that $(L_1,L_2,L_3)$ is a basis of $P_2^*$. Since $\dim P_2^*=3$, independence suffices. Suppose $c_1L_1+c_2L_2+c_3L_3=0$. Applying this to $1,x,x^2$ gives</p>
+<p>$$
+\begin{pmatrix}1&amp;1&amp;1\\t_1&amp;t_2&amp;t_3\\t_1^2&amp;t_2^2&amp;t_3^2\end{pmatrix}\begin{pmatrix}c_1\\c_2\\c_3\end{pmatrix}=0 .
+$$</p>
+<p>Row operations turn this matrix into an upper triangular one with diagonal $1$, $t_2-t_1$ and $(t_3-t_1)(t_3-t_2)$. All are nonzero since the $t_i$ are distinct, so the matrix is invertible and $c_1=c_2=c_3=0$.</p>
+<p><strong>The basis of $P_2$ to which $(L_1,L_2,L_3)$ is dual</strong> <a href="https://www.youtube.com/watch?v=k7t7UkJ4z5g&amp;t=667s">11:07</a>. We want polynomials $p_1,p_2,p_3\in P_2$ with $L_i(p_j)=\delta_{ij}$. Write $p_j=a_0+a_1x+a_2x^2$; the three conditions are a linear system with the transpose of the matrix above, which is invertible, so $p_j$ exists and is unique. We can also write it down:</p>
+<p>$$
+p_j(x)=\prod_{k\neq j}\frac{x-t_k}{t_j-t_k},
+$$</p>
+<p>the <em>Lagrange polynomial</em>: it equals $1$ at $t_j$ and $0$ at the other nodes. Theorem 4.1(3), applied to the basis $(p_1,p_2,p_3)$, now reads</p>
+<p>$$
+p=p(t_1)\,p_1+p(t_2)\,p_2+p(t_3)\,p_3\qquad(p\in P_2).\tag{5.1}
+$$</p>
+<p>A polynomial of degree at most $2$ is recovered from its values at three points. For $t=(0,1,3)$ over $\mathbb{Q}$,</p>
+<p>$$
+p_1=1-\tfrac43x+\tfrac13x^2,\qquad p_2=\tfrac32x-\tfrac12x^2,\qquad p_3=-\tfrac16x+\tfrac16x^2,
+$$</p>
+<p>and for $p=2-x+4x^2$ the values are $2,5,35$, so $p=2p_1+5p_2+35p_3$. The determinant of the matrix is $(t_2-t_1)(t_3-t_1)(t_3-t_2)=6$.</p>
+<p>The argument extends to $n+1$ distinct points and $P_n$, using the same product formula. It needs $F$ to have at least $n+1$ elements: over $\mathbb{F}_2$ there are only two points, and the functions $x$ and $x^2$ coincide. If two nodes coincide, the functionals are equal and cannot be independent.</p>
+<h2 id="6-null-spaces-of-functionals-hyperspaces-1925">6. Null spaces of functionals: hyperspaces <a href="https://www.youtube.com/watch?v=k7t7UkJ4z5g&amp;t=1165s">19:25</a></h2>
+<p>Let $f\in V^*$ with $\dim V=n$. The range of $f$ is a subspace of the one-dimensional space $F$. So either $f=0$, with null space $V$, or $f$ has rank $1$ and, by rank-nullity, $\dim\ker f=n-1$.</p>
+<p><strong>Definition 6.1.</strong> A subspace of dimension $n-1$ of an $n$-dimensional space is a <em>hyperspace</em> (also called a hyperplane).</p>
+<p>So the kernel of a nonzero functional is a hyperspace. Conversely every hyperspace $H$ is such a kernel: extend a basis $(\alpha_1,\dots,\alpha_{n-1})$ of $H$ by $\alpha_n$ and take the dual basis; then $\ker f_n=H$. In the running example, $\ker f_3$ is the plane spanned by $\alpha_1$ and $\alpha_2$.</p>
+<h2 id="7-annihilators-2402">7. Annihilators <a href="https://www.youtube.com/watch?v=k7t7UkJ4z5g&amp;t=1442s">24:02</a></h2>
+<p><strong>Definition 7.1.</strong> For a subset $S\subseteq V$, the <em>annihilator</em> of $S$ is</p>
+<p>$$
+S^0=\{f\in V^*: f(\alpha)=0\text{ for all }\alpha\in S\}.
+$$</p>
+<p>$S^0$ is a subspace of $V^*$ (not of $V$), even if $S$ is only a set: if $f,g$ vanish on $S$, so does $cf+g$. Also $S^0=(\operatorname{span}S)^0$, because a functional that vanishes on $S$ vanishes on every combination of elements of $S$.</p>
+<p><strong>Theorem 7.2</strong> <a href="https://www.youtube.com/watch?v=k7t7UkJ4z5g&amp;t=1706s">28:26</a>. Let $\dim V=n$ and let $W$ be a subspace of $V$. Then $\dim W+\dim W^0=n$.</p>
+<p><strong>Proof.</strong> Let $(\alpha_1,\dots,\alpha_k)$ be a basis of $W$, extend it to a basis $(\alpha_1,\dots,\alpha_n)$ of $V$, and let $(f_1,\dots,f_n)$ be the dual basis. We show that $(f_{k+1},\dots,f_n)$ is a basis of $W^0$. Each $f_j$ with $j\gt k$ vanishes on $\alpha_1,\dots,\alpha_k$, hence on $W$. They are independent, being part of a basis. For spanning, let $f\in W^0$. By Theorem 4.1(2), $f=\sum_{i=1}^nf(\alpha_i)f_i$, and $f(\alpha_i)=0$ for $i\le k$. So $f=\sum_{i\gt k}f(\alpha_i)f_i$. Hence $\dim W^0=n-k$. $\square$</p>
+<p>The hinge is Theorem 4.1(2): the coefficients of $f$ are its values, so vanishing on $W$ kills exactly the first $k$ coefficients. For a set $S$ that is not a subspace, the formula is applied to its span.</p>
+<h2 id="8-every-subspace-is-an-intersection-of-hyperspaces-0025">8. Every subspace is an intersection of hyperspaces <a href="https://www.youtube.com/watch?v=Y6dbBjO73IQ&amp;t=25s">00:25</a></h2>
+<p><strong>Theorem 8.1.</strong> Let $\dim V=n$ and $\dim W=k$. Then $W$ is the intersection of $n-k$ hyperspaces, and it is not an intersection of fewer.</p>
+<p><strong>Proof.</strong> With the dual basis of the proof of Theorem 7.2, put $H_j=\ker f_j$ for $j\gt k$. Then $W\subseteq\bigcap H_j$. Conversely, let $\alpha\in\bigcap H_j$. By Theorem 4.1(3), $\alpha=\sum f_i(\alpha)\alpha_i$, and $f_i(\alpha)=0$ for $i\gt k$, so $\alpha$ is a combination of $\alpha_1,\dots,\alpha_k$, that is, $\alpha\in W$. (For $k=n$ the empty intersection is $V$.) For the second claim, take hyperspaces $\ker g_1,\dots,\ker g_r$. The linear map $\alpha\mapsto(g_1\alpha,\dots,g_r\alpha)$ from $V$ to $F^r$ has rank at most $r$, so its kernel $\bigcap\ker g_i$ has dimension at least $n-r$. If the intersection is $W$, then $k\ge n-r$, so $r\ge n-k$. $\square$</p>
+<p><strong>A worked example</strong> <a href="https://www.youtube.com/watch?v=Y6dbBjO73IQ&amp;t=152s">02:32</a>. Let $W\subseteq\mathbb{Q}^5$ be spanned by</p>
+<p>$$
+(1,2,0,1,1),\quad(0,1,1,-1,2),\quad(0,0,1,1,-1),\quad(1,4,1,-2,6).
+$$</p>
+<p>Row reduction of these as rows gives the nonzero rows $(1,0,0,5,-5)$, $(0,1,0,-2,3)$, $(0,0,1,1,-1)$, so $\dim W=3$ and $W$ is an intersection of $5-3=2$ hyperspaces. A functional $g(x)=c_1x_1+\cdots+c_5x_5$ annihilates $W$ exactly when it vanishes on these three rows:</p>
+<p>$$
+c_1+5c_4-5c_5=0,\quad c_2-2c_4+3c_5=0,\quad c_3+c_4-c_5=0 .
+$$</p>
+<p>Taking $(c_4,c_5)=(1,0)$ and $(0,1)$ gives the basis of $W^0$:</p>
+<p>$$
+g_1=-5x_1+2x_2-x_3+x_4,\qquad g_2=5x_1-3x_2+x_3+x_5 .
+$$</p>
+<p>So $W=\ker g_1\cap\ker g_2$. Check on the fourth spanning vector: $g_1=-5+8-1-2=0$ and $g_2=5-12+1+6=0$. A single hyperspace has dimension $4$, so one equation is not enough.</p>
+<h2 id="9-from-functionals-back-to-subspaces-1512">9. From functionals back to subspaces <a href="https://www.youtube.com/watch?v=Y6dbBjO73IQ&amp;t=912s">15:12</a></h2>
+<p>Conversely, given functionals $g_1,\dots,g_m$ on $F^n$, $g_i(x)=\sum_jA_{ij}x_j$, the subspace annihilated by all of them is the solution space of $AX=0$. Row reduction tells how many are independent: if $A$ has rank $r$, the span of the $g_i$ has dimension $r$ and the solution space has dimension $n-r$. For</p>
+<p>$$
+A=\begin{pmatrix}1&amp;2&amp;0&amp;1\\0&amp;1&amp;1&amp;-1\\1&amp;3&amp;1&amp;0\end{pmatrix}
+$$</p>
+<p>the third row is the sum of the first two, so $r=2$ and the subspace has dimension $4-2=2$, spanned by $(2,-1,1,0)$ and $(-3,1,0,1)$. The third functional adds no condition.</p>
+<h2 id="10-executable-check">10. Executable check</h2>
+<p><a href="labs/ch10.py">The chapter laboratory</a> uses exact fractions. It computes the dual basis of the opening and checks parts 2 and 3 of Theorem 4.1, the kernel of the trace, the Lagrange polynomials for the nodes $0,1,3$ and the Vandermonde determinant $6$, the failure with a repeated node and over $\mathbb{F}_2$, the separation of $\mathrm{ev}_1$ from $f_0,\dots,f_N$ for $N\le20$, the reduction, $W^0$ and the intersection property for the example of Section 8, and the example of Section 9. These are instances; the proofs above give the general statements.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) Find the dual basis of $\big((1,1),(1,-1)\big)$ in $\mathbb{Q}^2$. Where does the answer need $2\neq0$?</li>
+<li>(Quadrature.) On $P_2(\mathbb{Q})$, express the functional $I(p)=\int_0^1p(t)\,dt$ in the basis $L_1,L_2,L_3$ of evaluations at $0,\tfrac12,1$.</li>
+<li>(Representation.) Show that every linear functional $f$ on $F^{n\times n}$ has the form $f(A)=\operatorname{tr}(BA)$ for exactly one $B\in F^{n\times n}$.</li>
+<li>(Proof.) Let $f,g\in V^*$ with $f\neq0$ and $\ker f\subseteq\ker g$. Show that $g=cf$ for some $c\in F$.</li>
+<li>(Counting.) How many hyperspaces does $\mathbb{F}_p^n$ have?</li>
+<li>(Annihilator.) Find a basis of the annihilator of $W=\operatorname{span}\{(1,1,0,0),(0,1,1,0)\}$ in $\mathbb{Q}^4$, and check Theorem 7.2.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>Let $M$ have the columns $(1,1)$ and $(1,-1)$. Its inverse is $\frac12\begin{pmatrix}1&amp;1\\1&amp;-1\end{pmatrix}$. So $f_1(x,y)=(x+y)/2$ and $f_2(x,y)=(x-y)/2$. Check: $f_1(1,1)=1$, $f_1(1,-1)=0$, $f_2(1,1)=0$, $f_2(1,-1)=1$. The division by $2$ needs $2\neq0$. Over $\mathbb{F}_2$ the two vectors are equal, so they are not a basis at all.</p>
+</li>
+<li>
+<p>By Theorem 4.1(2) applied to the basis $(p_1,p_2,p_3)$ of $P_2$ dual to $(L_1,L_2,L_3)$, the coefficients are $I(p_j)$. With nodes $0,\tfrac12,1$: $p_1=(2x-1)(x-1)=2x^2-3x+1$, $p_2=4x(1-x)=4x-4x^2$, $p_3=x(2x-1)=2x^2-x$. Their integrals over $[0,1]$ are $\frac23-\frac32+1=\frac16$, $2-\frac43=\frac23$, and $\frac23-\frac12=\frac16$. So $I=\frac16L_1+\frac23L_2+\frac16L_3$, which is Simpson's rule, exact on $P_2$.</p>
+</li>
+<li>
+<p>Let $E_{ij}$ be the matrix units. $\operatorname{tr}(BE_{ij})=B_{ji}$. So if $f(A)=\operatorname{tr}(BA)$ for all $A$, then necessarily $B_{ji}=f(E_{ij})$; this gives uniqueness. For existence define $B$ by this formula. Then $A\mapsto\operatorname{tr}(BA)$ and $f$ are linear and agree on the basis $\{E_{ij}\}$, so they are equal.</p>
+</li>
+<li>
+<p>Choose $v$ with $f(v)=1$, which exists since $f\neq0$ (scale a vector on which $f$ is nonzero). For any $\alpha\in V$, $\alpha-f(\alpha)v$ lies in $\ker f$, since $f$ of it is $f(\alpha)-f(\alpha)=0$. So it lies in $\ker g$: $g(\alpha)=f(\alpha)g(v)$. Hence $g=cf$ with $c=g(v)$. No finite dimension is needed.</p>
+</li>
+<li>
+<p>Each hyperspace is the kernel of a nonzero functional, and by Exercise 4 two nonzero functionals have the same kernel exactly when one is a nonzero multiple of the other (if $\ker f=\ker g$ then $g=cf$, and $c\neq0$ since $g\neq0$). There are $p^n-1$ nonzero functionals and each kernel arises from $p-1$ of them. So there are $(p^n-1)/(p-1)$ hyperspaces; for $p=2$, $n=2$ there are $3$ lines.</p>
+</li>
+<li>
+<p>A functional $c_1x_1+\cdots+c_4x_4$ annihilates $W$ when $c_1+c_2=0$ and $c_2+c_3=0$, with $c_4$ free. Taking $c_2=-1$, $c_4=0$ gives $(1,-1,1,0)$, and $c_2=0$, $c_4=1$ gives $(0,0,0,1)$. So $\dim W^0=2$, and $\dim W+\dim W^0=2+2=4$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, Chapter 3 (linear functionals).</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., Springer, 2024, open access at https://linear.axler.net/, Chapter 3.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch10.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 10 laboratory: linear functionals, dual bases, annihilators.
+
+Exact arithmetic over Q with fractions.Fraction.  A vector in Q^n is a
+list of n Fractions.  A linear functional on Q^n is stored by its row of
+coefficients, so f(x) = sum_i c_i x_i.  A matrix is a list of rows.  Every
+routine returns new objects and never changes its input.
+
+The laboratory checks, in exact arithmetic and on one fixed example each:
+  1. the dual basis of a basis of Q^3 is given by the rows of P^{-1};
+  2. coordinates and functional expansions (Theorem 10.2);
+  3. the trace functional and its dual basis on 2x2 matrices;
+  4. evaluation functionals on polynomials of degree at most 2, and the
+     dual basis they induce (the Lagrange polynomials);
+  5. the boundary cases: repeated nodes, F_2, infinite dimension;
+  6. dim W + dim W^0 = dim V and W as an intersection of hyperspaces;
+  7. the converse problem: the common null space of given functionals.
+It does not prove anything for general fields or dimensions.
+&quot;&quot;&quot;
+from fractions import Fraction
+
+
+def Q(rows):
+    &quot;&quot;&quot;Matrix over Q from integer or Fraction entries.&quot;&quot;&quot;
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def matmul(A, B):
+    return [[sum((A[i][k] * B[k][j] for k in range(len(B))), Fraction(0))
+             for j in range(len(B[0]))] for i in range(len(A))]
+
+
+def transpose(A):
+    return [list(col) for col in zip(*A)]
+
+
+def identity(n):
+    return [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def rref(A):
+    &quot;&quot;&quot;Return (R, pivots): reduced row echelon form and pivot columns.&quot;&quot;&quot;
+    R = [row[:] for row in A]
+    m, n = len(R), len(R[0])
+    pivots = []
+    r = 0
+    for c in range(n):
+        if r == m:
+            break
+        p = next((i for i in range(r, m) if R[i][c] != 0), None)
+        if p is None:
+            continue
+        R[r], R[p] = R[p], R[r]
+        piv = R[r][c]
+        R[r] = [x / piv for x in R[r]]
+        for i in range(m):
+            if i != r and R[i][c] != 0:
+                f = R[i][c]
+                R[i] = [a - f * b for a, b in zip(R[i], R[r])]
+        pivots.append(c)
+        r += 1
+    return R, pivots
+
+
+def rank(A):
+    return len(rref(A)[1])
+
+
+def nullspace(A):
+    &quot;&quot;&quot;Basis of {x : A x = 0} as a list of vectors.&quot;&quot;&quot;
+    R, pivots = rref(A)
+    n = len(A[0])
+    free = [c for c in range(n) if c not in pivots]
+    basis = []
+    for f in free:
+        x = [Fraction(0)] * n
+        x[f] = Fraction(1)
+        for row, p in zip(R, pivots):
+            x[p] = -row[f]
+        basis.append(x)
+    return basis
+
+
+def inverse(P):
+    &quot;&quot;&quot;Inverse of a square matrix; raises ValueError if singular.&quot;&quot;&quot;
+    n = len(P)
+    aug = [P[i][:] + identity(n)[i] for i in range(n)]
+    R, pivots = rref(aug)
+    if pivots[:n] != list(range(n)):
+        raise ValueError(&#x27;matrix is singular&#x27;)
+    return [row[n:] for row in R]
+
+
+def apply(f, x):
+    &quot;&quot;&quot;Value of the functional with coefficient row f at the vector x.&quot;&quot;&quot;
+    return sum((a * b for a, b in zip(f, x)), Fraction(0))
+
+
+def dual_basis(basis):
+    &quot;&quot;&quot;Coefficient rows (f_1, ..., f_n) with f_i(basis_j) = delta_ij.
+
+    The basis vectors are the columns of P; the rows of P^{-1} are the
+    functionals, because P^{-1} P = I.
+    &quot;&quot;&quot;
+    P = transpose(basis)
+    return inverse(P)
+
+
+def coords(basis, x):
+    &quot;&quot;&quot;Coordinates of x relative to the ordered basis, via the dual basis.&quot;&quot;&quot;
+    return [apply(f, x) for f in dual_basis(basis)]
+
+
+def poly_eval(p, t):
+    &quot;&quot;&quot;Value at t of the polynomial with coefficient list p = (p0, p1, ...).&quot;&quot;&quot;
+    return sum((c * t ** k for k, c in enumerate(p)), Fraction(0))
+
+
+def check_dual_basis_q3():
+    alpha = Q([[1, 0, 1], [1, 1, 0], [0, 1, 1]])
+    duals = dual_basis(alpha)
+    print(&#x27;dual basis of B in Q^3 (rows):&#x27;)
+    for row in duals:
+        print(&#x27;  &#x27;, [str(c) for c in row])
+    for i, f in enumerate(duals):
+        for j, a in enumerate(alpha):
+            assert apply(f, a) == (1 if i == j else 0)
+    v = Q([[3, 1, 2]])[0]
+    c = coords(alpha, v)
+    print(&#x27;coordinates of (3,1,2):&#x27;, [str(x) for x in c])
+    assert c == [2, 1, 0]
+    rebuilt = [sum(c[j] * alpha[j][k] for j in range(3)) for k in range(3)]
+    assert rebuilt == v
+    # Theorem 10.2: f = sum f(alpha_j) f_j for f(x, y, z) = 2x - y + 3z
+    f = Q([[2, -1, 3]])[0]
+    comp = [apply(f, a) for a in alpha]
+    print(&#x27;f = 2x - y + 3z has coordinates in B*:&#x27;, [str(x) for x in comp])
+    assert comp == [5, 1, 2]
+    combo = [sum(comp[i] * duals[i][k] for i in range(3)) for k in range(3)]
+    assert combo == f
+    # The standard basis is its own dual basis: c_i = f(e_i).
+    e = identity(3)
+    assert dual_basis(e) == e
+    assert [apply(f, ei) for ei in e] == f
+    # Annihilator of W = span(alpha_1, alpha_2) is spanned by f_3.
+    W = [alpha[0], alpha[1]]
+    ann = nullspace(W)
+    print(&#x27;annihilator of span(alpha1, alpha2):&#x27;,
+          [[str(x) for x in r] for r in ann])
+    assert len(ann) == 1
+    assert ann[0] == [c * ann[0][0] / duals[2][0] for c in duals[2]]
+    # A hyperplane is the kernel of one nonzero functional (rank 1).
+    assert rank([duals[2]]) == 1 and len(nullspace([duals[2]])) == 2
+
+
+def check_trace():
+    # tr on 2x2 matrices, coordinates (a11, a12, a21, a22).
+    tr = Q([[1, 0, 0, 1]])[0]
+    A = Q([[1, 2, 3, 4]])[0]
+    B = Q([[5, -1, 0, 7]])[0]
+    c = Fraction(3)
+    lin = [c * a + b for a, b in zip(A, B)]
+    assert apply(tr, lin) == c * apply(tr, A) + apply(tr, B)
+    # AB and BA need not be equal, but tr(AB) = tr(BA): not a functional
+    # identity of one variable, so only the linear check is a claim here.
+    ker = nullspace([tr])
+    print(&#x27;trace on 2x2 matrices: rank 1, nullity&#x27;, len(ker))
+    assert len(ker) == 3
+
+
+def check_evaluation(nodes=(0, 1, 3)):
+    t = [Fraction(x) for x in nodes]
+    # Row i of the Vandermonde matrix is L_i applied to 1, x, x^2.
+    V = [[ti ** k for k in range(3)] for ti in t]
+    Vinv = inverse(V)
+    print(&#x27;Vandermonde inverse for nodes&#x27;, nodes)
+    for row in Vinv:
+        print(&#x27;  &#x27;, [str(x) for x in row])
+    # Column j of Vinv holds the coefficients of p_j (L_i(p_j) = delta_ij).
+    polys = [[Vinv[k][j] for k in range(3)] for j in range(3)]
+    for i in range(3):
+        for j in range(3):
+            assert poly_eval(polys[j], t[i]) == (1 if i == j else 0)
+    print(&#x27;dual basis polynomials p_j (coefficients p0, p1, p2):&#x27;)
+    for p in polys:
+        print(&#x27;  &#x27;, [str(x) for x in p])
+    # They are the Lagrange polynomials prod_{k != j} (x - t_k)/(t_j - t_k).
+    for j in range(3):
+        for x in [Fraction(-2), Fraction(1, 2), Fraction(5)]:
+            lag = Fraction(1)
+            for k in range(3):
+                if k != j:
+                    lag *= (x - t[k]) / (t[j] - t[k])
+            assert poly_eval(polys[j], x) == lag
+    # Expansion p = sum p(t_j) p_j for p = 2 - x + 4x^2.
+    p = Q([[2, -1, 4]])[0]
+    rebuilt = [sum(poly_eval(p, t[j]) * polys[j][k] for j in range(3))
+               for k in range(3)]
+    print(&#x27;p(t_j) for p = 2 - x + 4x^2:&#x27;,
+          [str(poly_eval(p, tj)) for tj in t])
+    assert rebuilt == p
+    # det of the Vandermonde matrix is prod_{i&lt;j} (t_j - t_i).
+    det = Fraction(1)
+    for i in range(3):
+        for j in range(i + 1, 3):
+            det *= t[j] - t[i]
+    print(&#x27;prod (t_j - t_i) =&#x27;, det)
+    assert det == 6 and rank(V) == 3
+    # Boundary: a repeated node makes the evaluation functionals dependent.
+    bad = [[x ** k for k in range(3)] for x in Q([[0, 1, 1]])[0]]
+    assert rank(bad) == 2
+    try:
+        inverse(bad)
+        raise AssertionError(&#x27;singular matrix was inverted&#x27;)
+    except ValueError:
+        pass
+    # Boundary: over F_2 the functions 1, x, x^2 on {0, 1} have rank 2.
+    rows = [[1, 1], [0, 1], [0, 1]]   # (p(0), p(1)) for 1, x, x^2 over F_2
+    r = 0
+    for c in range(2):
+        p = next((i for i in range(r, 3) if rows[i][c] % 2), None)
+        if p is None:
+            continue
+        rows[r], rows[p] = rows[p], rows[r]
+        for i in range(3):
+            if i != r and rows[i][c] % 2:
+                rows[i] = [(a + b) % 2 for a, b in zip(rows[i], rows[r])]
+        r += 1
+    print(&#x27;rank of (1, x, x^2) as functions on F_2:&#x27;, r)
+    assert r == 2
+
+
+def check_infinite():
+    # On R[x], f_j(p) = coefficient of x^j are independent, but ev_1 is
+    # not a finite combination: on x^(N+1) every f_j (j &lt;= N) is zero
+    # while ev_1(x^(N+1)) = 1.
+    ok = 0
+    for N in range(0, 21):
+        mono = [Fraction(0)] * (N + 2)
+        mono[N + 1] = Fraction(1)
+        assert poly_eval(mono, Fraction(1)) == 1
+        assert all(mono[j] == 0 for j in range(N + 1))
+        ok += 1
+    print(&#x27;ev_1 separated from span(f_0..f_N) for N = 0..20:&#x27;, ok, &#x27;cases&#x27;)
+
+
+def check_annihilator():
+    U = Q([[1, 2, 0, 1, 1],
+           [0, 1, 1, -1, 2],
+           [0, 0, 1, 1, -1],
+           [1, 4, 1, -2, 6]])
+    n = 5
+    R, piv = rref(U)
+    k = len(piv)
+    print(&#x27;RREF of the four spanning vectors of W (nonzero rows):&#x27;)
+    for row in R[:k]:
+        print(&#x27;  &#x27;, [str(x) for x in row])
+    print(&#x27;dim W =&#x27;, k)
+    ann = nullspace(U)
+    print(&#x27;dim W0 =&#x27;, len(ann))
+    assert k == 3 and len(ann) == n - k
+    assert k + len(ann) == n
+    print(&#x27;basis of W0 (one functional per free column):&#x27;)
+    for row in ann:
+        print(&#x27;  &#x27;, [str(x) for x in row])
+    # Every functional in ann kills every spanning vector.
+    for f in ann:
+        for u in U:
+            assert apply(f, u) == 0
+    # W equals the intersection of the two kernels: the common null space
+    # of ann has dimension n - 2 = 3 = dim W and contains W.
+    common = nullspace(ann)
+    assert len(common) == k
+    assert rank(common + U) == k
+    # Fewer than n - k hyperspaces do not cut out W.
+    assert len(nullspace([ann[0]])) == n - 1 != k
+    # S^0 for a non-subspace S equals (span S)^0.
+    S = [U[0], U[1]]
+    assert len(nullspace(S)) == n - 2
+    comb = [a + b for a, b in zip(U[0], U[1])]
+    assert all(apply(f, comb) == 0 for f in nullspace(S))
+
+
+def check_converse():
+    # m = 3 functionals on Q^4 given by the rows of A; the third is the
+    # sum of the first two, so r = 2 and dim W = 4 - 2 = 2.
+    A = Q([[1, 2, 0, 1],
+           [0, 1, 1, -1],
+           [1, 3, 1, 0]])
+    r = rank(A)
+    W = nullspace(A)
+    print(&#x27;converse problem: r =&#x27;, r, &#x27;, dim W =&#x27;, len(W))
+    for row in W:
+        print(&#x27;  &#x27;, [str(x) for x in row])
+    assert r == 2 and len(W) == 4 - r
+    for w in W:
+        assert all(apply(f, w) == 0 for f in A)
+    # Dropping the dependent functional changes nothing.
+    assert len(nullspace(A[:2])) == len(W)
+    assert rank(W + nullspace(A[:2])) == len(W)
+
+
+def main():
+    check_dual_basis_q3()
+    check_trace()
+    check_evaluation()
+    check_infinite()
+    check_annihilator()
+    check_converse()
+    print(&#x27;all chapter 10 checks passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch09.html">Previous: Matrix representation of linear transformations and similarity</a><a rel="next" href="ch11.html">Next: Annihilators, the double dual, and the transpose of a linear map</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

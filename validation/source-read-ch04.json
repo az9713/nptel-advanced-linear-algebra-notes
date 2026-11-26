@@ -1,0 +1,52 @@
+{
+ "author": "author_a",
+ "chapter": "ch04",
+ "recordings": [
+  {
+   "position": 7,
+   "video_id": "mNB7cDaXshQ",
+   "normalized_text_sha256": "fbf324ca88b9e45020ef77a3b173a3399011fd3302c36361fcb8ce5c9c01a2c3",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "linear span",
+    "dependent and independent sets",
+    "basis, standard basis, monomial basis",
+    "finite and infinite dimension",
+    "columns of an invertible matrix form a basis",
+    "finiteness theorem for independent sets"
+   ],
+   "clarifications": [
+    "The spoken conclusion of the finiteness proof says independent where dependent is meant",
+    "root counting needs a field with enough elements; coefficient definition used"
+   ],
+   "original_constructions": [
+    "running vectors v1..v4"
+   ]
+  },
+  {
+   "position": 8,
+   "video_id": "wXhtEtJQx2U",
+   "normalized_text_sha256": "b56040ca2e8632c1e97c99562862ccf24b0c272fd3f30fb26dc83ce6031c7f38",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "adding a vector outside the span",
+    "extension theorem (left as homework)",
+    "dimension formula for sum and intersection",
+    "ordered basis",
+    "coordinate matrix and example",
+    "change of basis question"
+   ],
+   "clarifications": [
+    "The change-of-basis theorem is deferred to Chapter 5"
+   ],
+   "original_constructions": [
+    "three-lines counterexample",
+    "exercises"
+   ]
+  }
+ ]
+}

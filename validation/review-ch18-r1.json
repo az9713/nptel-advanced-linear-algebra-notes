@@ -1,0 +1,31 @@
+{
+ "reviewer": "author_a",
+ "slot": "r1",
+ "chapter": "ch18",
+ "disposition": "accepted",
+ "report": "validation/review-ch18-r1.md",
+ "scope": [
+  "manuscript",
+  "metadata",
+  "lab read and run",
+  "source ledger",
+  "all six solutions"
+ ],
+ "remaining_findings": [],
+ "accepted_files": {
+  "chapters/ch18.md": "9e8c9fa5ee22ecb3efe270468c6709f20956a9aee63c868ea5683c83478f05b5",
+  "chapters/ch18.json": "b1e46fffcb2440f76b41e7a0b073dbd0ca38bd374270e5db5c61363990607ea7",
+  "labs/ch18.py": "ceb4ff1f657f9bf11f9667d1f4c1b375500a0c9d72cebe4092cf9090dfbc7851"
+ },
+ "source_evidence": {
+  "caption_positions": [
+   36,
+   37
+  ],
+  "intervals_read": "both caption files read in full"
+ },
+ "limitations": [
+  "No comprehensive audiovisual audit",
+  "Not human certification or formal proof verification"
+ ]
+}

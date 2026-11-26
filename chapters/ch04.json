@@ -1,0 +1,12 @@
+{
+  "title": "Linear independence, basis, and the invariance of dimension",
+  "lectures": [7, 8],
+  "objectives": [
+    "Test lists of vectors for independence and spanning",
+    "Prove that all bases of a finite-dimensional space have the same size",
+    "Extend independent sets and prove the dimension formula for sums",
+    "Compute coordinates relative to an ordered basis"
+  ],
+  "prerequisites": "Chapters 2 and 3: homogeneous systems, subspaces and spans.",
+  "source_scope": "The captions of Lectures 6 and 7 were read in full; the running vectors, the corrected form of the finiteness argument and the exercises are original."
+}

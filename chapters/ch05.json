@@ -1,0 +1,12 @@
+{
+  "title": "Coordinates and change of ordered basis",
+  "lectures": [9],
+  "objectives": [
+    "Compute coordinate matrices relative to an ordered basis",
+    "Build the change-of-basis matrix and apply it in the correct direction",
+    "Prove that the change-of-basis matrix is invertible and unique",
+    "Construct the ordered basis determined by an invertible matrix"
+  ],
+  "prerequisites": "Chapters 2 and 4: invertibility by row reduction, bases and dimension.",
+  "source_scope": "The caption of Lecture 8 was read in full; the polynomial running example, the second numerical example, the counting and the exercises are original."
+}

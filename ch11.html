@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Annihilators, the double dual, and the transpose of a linear map · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html" aria-current=page>11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>11. Annihilators, the double dual, and the transpose of a linear map</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=Rq3ruFHFic4">Recording 22</a>, <a href="https://www.youtube.com/watch?v=3InyDigc3Vk">Recording 23</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Prove that a finite-dimensional space is canonically isomorphic to its double dual</li><li>Show that every basis of the dual space is a dual basis</li><li>Relate kernel and range of the transpose to annihilators</li><li>Prove that the matrix of the transpose is the transposed matrix</li></ul>
+<p><strong>Prerequisites:</strong> Chapters 7, 9 and 10: rank-nullity, matrices of linear maps and dual bases.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch11.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-annihilators-and-the-separation-of-vectors-by-functionals-0025">1. Annihilators and the separation of vectors by functionals 00:25</a></li><li><a href="#2-the-evaluation-map-and-the-double-dual-0220">2. The evaluation map and the double dual 02:20</a></li><li><a href="#3-every-basis-of-the-dual-space-is-the-dual-of-a-basis-1354">3. Every basis of the dual space is the dual of a basis 13:54</a></li><li><a href="#4-the-transpose-of-a-linear-map-1926">4. The transpose of a linear map 19:26</a></li><li><a href="#5-the-kernel-of-the-transpose-is-the-annihilator-of-the-range-0257">5. The kernel of the transpose is the annihilator of the range 02:57</a></li><li><a href="#6-the-transpose-has-the-same-rank-and-its-range-is-the-annihilator-of-the-kernel-1041">6. The transpose has the same rank, and its range is the annihilator of the kernel 10:41</a></li><li><a href="#7-the-matrix-of-the-transpose-1704">7. The matrix of the transpose 17:04</a></li><li><a href="#8-executable-check">8. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>A linear system $Ax=y$ with $A$ a $3\times 4$ matrix can fail in a way that a row-by-row inspection hides. Take the original matrix</p>
+<p>$$A=\begin{pmatrix}1&amp;2&amp;0&amp;1\\0&amp;1&amp;1&amp;-1\\1&amp;3&amp;1&amp;0\end{pmatrix}$$</p>
+<p>over the field $\mathbb{Q}$ of rational numbers. Its third row is the sum of the first two. Therefore every vector $Ax$ has third coordinate equal to the sum of its first two coordinates, and the right-hand side $y=(1,2,4)$ can never be reached, while $y=(1,2,3)$ can. The test "$-y_1-y_2+y_3=0$" is itself a linear functional on $\mathbb{Q}^3$, namely $g=(-1,-1,1)$, and it has one special property: $g$ applied to every column of $A$ gives $0$. This chapter turns that observation into a theory and answers three questions that the observation raises.</p>
+<ol>
+<li>Is the test complete? That is, if $y$ passes every test $g$ with $gA=0$, must $y$ be a value $Ax$? And how many independent tests are there?</li>
+<li>At most two columns of $A$ are independent. How is that number related to the number of independent rows, and to the number of independent tests?</li>
+<li>A basis of the dual space $V^*$ is a list of coordinate functionals. Is it always the list of coordinate functionals of some basis of $V$?</li>
+</ol>
+<p>The running example is this matrix $A$, the map $T:\mathbb{Q}^4\to\mathbb{Q}^3$, $T(x)=Ax$, which we use in every section. Its numbers are an original construction of this edition. Prerequisites: the dual space and the dual basis of <a href="ch10.html">Chapter 10</a>, rank–nullity from <a href="ch07.html">Chapter 7</a>, and matrices of linear maps from <a href="ch09.html">Chapter 9</a>.</p>
+<p>Conventions. $F$ is an arbitrary field unless a statement says otherwise. A vector of $F^n$ is a column. A linear functional on $F^n$ is written as a row $f=(f_1,\dots,f_n)$ and acts by $f(v)=\sum_i f_iv_i$. The dual space is $V^*=\mathcal{L}(V,F)$, and for an ordered basis $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ of a finite-dimensional $V$ the dual basis $\mathcal{B}^*=(f_1,\dots,f_n)$ is defined by $f_i(\alpha_j)=\delta_{ij}$. Every $f\in V^*$ then expands as $f=\sum_i f(\alpha_i)f_i$, because both sides take the value $f(\alpha_j)$ at each $\alpha_j$ and a linear functional is determined by its values on a basis. This expansion is used repeatedly below.</p>
+<h2 id="1-annihilators-and-the-separation-of-vectors-by-functionals-0025">1. Annihilators and the separation of vectors by functionals <a href="https://www.youtube.com/watch?v=Rq3ruFHFic4&amp;t=25s">00:25</a></h2>
+<p>The dual basis of a basis of $V$ is a basis of $V^*$. The reverse question, whether every basis of $V^*$ comes from a basis of $V$, needs two facts about functionals. We prove them first.</p>
+<p><strong>Definition 1.1.</strong> Let $S$ be a subset of a vector space $V$. The <em>annihilator</em> of $S$ is
+$$S^0=\{f\in V^*: f(s)=0\text{ for every }s\in S\}.$$</p>
+<p>The annihilator is a subspace of $V^*$: if $f,h$ vanish on $S$ and $c\in F$, then $cf+h$ vanishes on $S$. Directly from the definition, $\{0\}^0=V^*$, $V^0=\{0\}$, $S\subseteq S'$ implies $S'^0\subseteq S^0$, and $S^0=(\operatorname{span}S)^0$. The last statement holds because a functional that vanishes on $S$ vanishes on every linear combination of elements of $S$. A functional in $S^0$ is a linear condition that every vector of $S$ satisfies.</p>
+<p><strong>Lemma 1.2 (functionals separate vectors).</strong> Let $V$ be finite-dimensional and let $v\in V$, $v\ne0$. There is $f\in V^*$ with $f(v)\ne0$.</p>
+<p><em>Proof.</em> The set $\{v\}$ is linearly independent because $v\neq 0$. By <a href="ch04.html">Chapter 4</a> it extends to a basis $(v=\alpha_1,\alpha_2,\dots,\alpha_n)$ of $V$. The first functional $f_1$ of the dual basis satisfies $f_1(v)=f_1(\alpha_1)=1\ne0$. $\square$</p>
+<p>The hinge is the extension of an independent set to a basis; this is the only place where finite dimension and the existence of a basis enter. For the running example, take $v=(2,-1,1,0)$. Completing it by $e_1,e_2,e_4$ gives a basis, and its first dual functional is $f=(0,0,1,0)$, with $f(v)=1$.</p>
+<p><strong>Theorem 1.3 (dimension of the annihilator).</strong> Let $V$ be finite-dimensional and let $W$ be a subspace. Then
+$$\dim W+\dim W^0=\dim V.$$</p>
+<p><em>Proof.</em> Let $(\alpha_1,\dots,\alpha_k)$ be a basis of $W$ and extend it to a basis $(\alpha_1,\dots,\alpha_n)$ of $V$, with dual basis $(f_1,\dots,f_n)$. We claim that $(f_{k+1},\dots,f_n)$ is a basis of $W^0$.</p>
+<p>First, each $f_i$ with $i&gt;k$ lies in $W^0$, because $f_i(\alpha_j)=\delta_{ij}=0$ for $j\le k$ and a functional that vanishes on a basis of $W$ vanishes on $W$. Second, these functionals are linearly independent, as part of a basis of $V^*$. Third, they span $W^0$: if $f\in W^0$ then $f(\alpha_i)=0$ for $i\le k$, so the expansion $f=\sum_{i=1}^n f(\alpha_i)f_i$ reduces to $f=\sum_{i&gt;k}f(\alpha_i)f_i$. Hence $\dim W^0=n-k$. $\square$</p>
+<p>The proof gives more than the dimension: it exhibits an explicit basis of $W^0$ once $W$ is placed inside an adapted basis. For $W=\ker T\subseteq\mathbb{Q}^4$ in the running example, a basis of $W$ is $(2,-1,1,0)$ and $(-3,1,0,1)$ (checked: both are solutions of $Ax=0$), so $\dim W^0=4-2=2$. The functionals $(1,2,0,1)$ and $(0,1,1,-1)$, the first two rows of $A$, vanish on both basis vectors and are independent, so they form a basis of $(\ker T)^0$. Section 6 explains why the rows of $A$ appear here. The theorem holds over every field. Finite dimension is used to extend a basis and to count: in infinite dimension $\dim W^0$ cannot be recovered as $\dim V-\dim W$, which has no meaning for infinite cardinals.</p>
+<h2 id="2-the-evaluation-map-and-the-double-dual-0220">2. The evaluation map and the double dual <a href="https://www.youtube.com/watch?v=Rq3ruFHFic4&amp;t=140s">02:20</a></h2>
+<p>The dual space $V^*$ is itself a vector space, so it has a dual space $V^{**}=(V^*)^*=\mathcal{L}(V^*,F)$, called the <em>double dual</em>. An element of $V^{**}$ takes a functional on $V$ and returns a scalar. A vector $v\in V$ gives one such rule for free: evaluate every functional at $v$.</p>
+<p><strong>Definition 2.1.</strong> For $v\in V$ define $L_v:V^*\to F$ by $L_v(f)=f(v)$. Define $\psi:V\to V^{**}$ by $\psi(v)=L_v$.</p>
+<p><strong>Lemma 2.2.</strong> For every $v\in V$, $L_v\in V^{**}$, and $\psi$ is linear.</p>
+<p><em>Proof.</em> Let $f,h\in V^*$ and $c\in F$. By the definition of the vector-space operations on $V^*$, $(cf+h)(v)=cf(v)+h(v)$, that is $L_v(cf+h)=cL_v(f)+L_v(h)$. Thus $L_v$ is linear. For linearity of $\psi$, let $v,w\in V$ and $c\in F$. For every $f\in V^*$,
+$$L_{v+cw}(f)=f(v+cw)=f(v)+cf(w)=L_v(f)+cL_w(f)=(L_v+cL_w)(f),$$
+because $f$ is linear. Hence $L_{v+cw}=L_v+cL_w$, which is $\psi(v+cw)=\psi(v)+c\psi(w)$. $\square$</p>
+<p>The linearity of $\psi$ rests on the linearity of each $f$, while the linearity of $L_v$ rests on the vector-space structure of $V^*$. Two different structures are used, and the lemma checks that they match.</p>
+<p><strong>Theorem 2.3 (the double dual).</strong> Let $V$ be a finite-dimensional vector space over $F$. Then $\psi:V\to V^{**}$ is an isomorphism.</p>
+<p><em>Proof.</em> We show that $\psi$ is injective. Suppose $\psi(v)=0$, so $f(v)=0$ for all $f\in V^*$. If $v\neq 0$, Lemma 1.2 gives an $f$ with $f(v)\neq0$, a contradiction. Hence $\ker\psi=\{0\}$.</p>
+<p>Now $\dim V^*=\dim V$ and $\dim V^{**}=\dim V^*$, because the dual basis of a basis of a finite-dimensional space is a basis of the dual space (<a href="ch10.html">Chapter 10</a>), applied first to $V$ and then to $V^*$. So $\dim V=\dim V^{**}$. An injective linear map between spaces of the same finite dimension is surjective, by rank–nullity (<a href="ch07.html">Chapter 7</a>): its range has dimension $\dim V-0=\dim V^{**}$. Hence $\psi$ is a bijection. $\square$</p>
+<p>The consequence is that every linear functional on $V^*$ is an evaluation at one uniquely determined vector of $V$. If $\ell\in V^{**}$, there is exactly one $\alpha\in V$ with $\ell(f)=f(\alpha)$ for all $f\in V^*$.</p>
+<p>It is worth being precise about why this isomorphism deserves the name <em>natural</em>. The spaces $V$ and $V^*$ have the same dimension, so they are isomorphic, but nothing in $V$ singles out one isomorphism. The usual one is built from a basis, sending $\alpha_j$ to the dual basis vector $f_j$, and a different basis generally gives a different map. The map $\psi$ uses no basis. In the running example $V=\mathbb{Q}^4$ with $f$ a row $(f_1,\dots,f_4)$, we get $L_{e_j}(f)=f_j$, and a general $v$ acts on a row $f$ as $L_v(f)=\sum_jf_jv_j$. The coordinates of a functional are the values it takes at the basis vectors; the double dual is the space of rules that read those values.</p>
+<p><strong>Boundary: infinite dimension.</strong> The map $\psi$ is always injective when a basis exists, since Lemma 1.2 only needs a basis containing $v$, which exists by Zorn's lemma. It is not surjective in general. Let $V=F^{(\mathbb{N})}$ be the space of sequences with finitely many nonzero entries, with basis $(e_k)_{k\in\mathbb{N}}$, and let $e_k^*\in V^*$ be the $k$-th coordinate functional. The functionals $e_k^*$ are linearly independent, because $e_k^*(e_l)=\delta_{kl}$. Extend them to a basis of $V^*$ and define $\Phi\in V^{**}$ by $\Phi(e_k^*)=1$ for every $k$ and $\Phi=0$ on the remaining basis vectors. If $\Phi=L_v$ for some $v\in V$, then $v$ has only finitely many nonzero coordinates; choose $k$ beyond them, so that $L_v(e_k^*)=e_k^*(v)=0\ne1=\Phi(e_k^*)$. This contradiction shows $\Phi\notin\psi(V)$. So Theorem 2.3 needs finite dimension, and the dimension count in its proof is exactly the step that fails. The argument also relies on the axiom of choice (to extend to a basis of $V^*$); it is a proof of existence, and it produces no explicit $\Phi$.</p>
+<h2 id="3-every-basis-of-the-dual-space-is-the-dual-of-a-basis-1354">3. Every basis of the dual space is the dual of a basis <a href="https://www.youtube.com/watch?v=Rq3ruFHFic4&amp;t=834s">13:54</a></h2>
+<p>We can now answer question 3.</p>
+<p><strong>Theorem 3.1.</strong> Let $V$ be a vector space of dimension $n$ over $F$ and let $(f_1,\dots,f_n)$ be a basis of $V^*$. There is exactly one basis $(\alpha_1,\dots,\alpha_n)$ of $V$ with $f_i(\alpha_j)=\delta_{ij}$ for all $i,j$. In other words, every basis of $V^*$ is the dual basis of a unique basis of $V$.</p>
+<p><em>Proof.</em> The basis $(f_1,\dots,f_n)$ of the space $V^*$ has a dual basis $(\ell_1,\dots,\ell_n)$ in $V^{**}$, defined by $\ell_j(f_i)=\delta_{ij}$. By Theorem 2.3 each $\ell_j$ equals $L_{\alpha_j}$ for exactly one $\alpha_j\in V$. Then
+$$f_i(\alpha_j)=L_{\alpha_j}(f_i)=\ell_j(f_i)=\delta_{ij}.$$
+We show that $(\alpha_1,\dots,\alpha_n)$ is linearly independent. If $\sum_jc_j\alpha_j=0$, then applying $\psi$ gives $\sum_jc_j\ell_j=0$, and the independence of $(\ell_j)$ gives all $c_j=0$. Independent lists of $n$ vectors in an $n$-dimensional space are bases. For uniqueness, if $(\alpha'_j)$ is another list with $f_i(\alpha'_j)=\delta_{ij}$, then $L_{\alpha'_j}$ and $\ell_j$ agree on the basis $(f_i)$ of $V^*$, so $L_{\alpha'_j}=\ell_j=L_{\alpha_j}$ and $\alpha'_j=\alpha_j$ by injectivity of $\psi$. $\square$</p>
+<p>The hinge is that a basis of $V^{*}$ has a dual basis in $V^{**}$ automatically, and Theorem 2.3 pulls that dual basis back into $V$. Without Theorem 2.3 the question would have no answer, since a priori the dual basis lives in a different space.</p>
+<p><strong>Proposition 3.2 (computation in $F^n$).</strong> Let $f_1,\dots,f_n$ be rows in $F^n$ and let $M$ be the $n\times n$ matrix with these rows. They form a basis of $(F^n)^*$ if and only if $M$ is invertible, and then the vectors $\alpha_j$ of Theorem 3.1 are the columns of $M^{-1}$.</p>
+<p><em>Proof.</em> The rows are independent exactly when $M$ has rank $n$, that is, when $M$ is invertible. Then $MM^{-1}=I$ says that the $(i,j)$ entry of the product, namely $f_i$ applied to the $j$-th column of $M^{-1}$, equals $\delta_{ij}$. $\square$</p>
+<p><em>Example (original).</em> Take $f_1=(1,2,0,1)$, $f_2=(0,1,1,-1)$, $f_3=(0,0,1,0)$, $f_4=(0,0,0,1)$ in $(\mathbb{Q}^4)^*$. The matrix $M$ with these rows is upper triangular with ones on the diagonal, hence invertible. Solving $M\alpha_j=e_j$ gives
+$$\alpha_1=(1,0,0,0),\ \alpha_2=(-2,1,0,0),\ \alpha_3=(2,-1,1,0),\ \alpha_4=(-3,1,0,1).$$
+Check $f_1(\alpha_2)=-2+2=0$ and $f_2(\alpha_4)=1+0-1=0$. Notice that $\alpha_3,\alpha_4$ are exactly the kernel basis found in Section 1. This is no accident: $f_1,f_2\in(\ker T)^0$ vanish on $\alpha_3,\alpha_4$, and the dual basis vectors on which the first two functionals vanish are the ones that span the common kernel of $f_1$ and $f_2$.</p>
+<p><strong>Boundary.</strong> The proof uses Theorem 2.3, so it needs finite dimension. In $V=F^{(\mathbb{N})}$ the coordinate functionals do not even span $V^*$: the functional $f$ with $f(e_k)=1$ for all $k$ is nonzero on infinitely many $e_k$, while a finite combination of coordinate functionals is not. Many bases of $V^*$ exist when $V$ is finite-dimensional, and each corresponds to one basis of $V$.</p>
+<h2 id="4-the-transpose-of-a-linear-map-1926">4. The transpose of a linear map <a href="https://www.youtube.com/watch?v=Rq3ruFHFic4&amp;t=1166s">19:26</a></h2>
+<p>A linear map $T:V\to W$ moves vectors forward. A functional $g$ on $W$ can be pulled back along $T$ to a functional on $V$: first apply $T$, then apply $g$.</p>
+<p><strong>Definition 4.1.</strong> Let $T:V\to W$ be linear. The <em>transpose</em> of $T$ is the map $T^{\mathsf t}:W^*\to V^*$ defined by
+$$T^{\mathsf t}g=g\circ T,\qquad\text{that is,}\qquad (T^{\mathsf t}g)(\alpha)=g(T\alpha)\quad(\alpha\in V).$$</p>
+<p>No field or dimension hypothesis is needed. Two facts require proof: that $T^{\mathsf t}g$ is a functional on $V$, and that $T^{\mathsf t}$ is linear.</p>
+<p><strong>Lemma 4.2.</strong> For $g\in W^*$, $T^{\mathsf t}g\in V^*$. The map $T^{\mathsf t}:W^*\to V^*$ is linear.</p>
+<p><em>Proof.</em> Let $\alpha,\beta\in V$ and $c\in F$. Since $T$ is linear and $g$ is linear,
+$$(g\circ T)(c\alpha+\beta)=g(cT\alpha+T\beta)=c\,g(T\alpha)+g(T\beta).$$
+So $g\circ T$ is a linear functional on $V$. Now let $g_1,g_2\in W^*$ and $c\in F$. For every $\alpha\in V$,
+$$(T^{\mathsf t}(cg_1+g_2))(\alpha)=(cg_1+g_2)(T\alpha)=c\,g_1(T\alpha)+g_2(T\alpha)=(cT^{\mathsf t}g_1+T^{\mathsf t}g_2)(\alpha).$$
+Two functionals with equal values at every vector are equal, so $T^{\mathsf t}(cg_1+g_2)=cT^{\mathsf t}g_1+T^{\mathsf t}g_2$. $\square$</p>
+<p>The definition is basis-free, so $T^{\mathsf t}$ is determined by $T$ alone, with nothing to choose. The notation $T^{\mathsf t}$ is the one fixed for this book. Some texts write $T'$ (Axler) or $T^{\mathsf T}$ for the same map. It must not be confused with the adjoint $T^*$ of <a href="ch23.html">Chapter 23</a>: the adjoint of an operator on an inner-product space is defined with the inner product and acts on $V$, whereas the transpose acts between the duals and needs no inner product.</p>
+<p><strong>Proposition 4.3 (algebra of the transpose).</strong> Let $S,T:V\to W$, let $R:W\to U$, and let $c\in F$.
+1. $(cS+T)^{\mathsf t}=cS^{\mathsf t}+T^{\mathsf t}$ and $I_V^{\mathsf t}=I_{V^*}$.
+2. $(RT)^{\mathsf t}=T^{\mathsf t}R^{\mathsf t}$, as maps $U^*\to V^*$.
+3. If $T$ is an isomorphism, then $T^{\mathsf t}$ is an isomorphism and $(T^{\mathsf t})^{-1}=(T^{-1})^{\mathsf t}$.</p>
+<p><em>Proof.</em> (1) For $g\in W^*$, $(T^{\mathsf t}g)(\alpha)$ is linear in $T$: $g\circ(cS+T)=c\,g\circ S+g\circ T$. Also $g\circ I_V=g$. (2) For $h\in U^*$, $(RT)^{\mathsf t}h=h\circ(R\circ T)=(h\circ R)\circ T=T^{\mathsf t}(R^{\mathsf t}h)$. The order reverses because $T^{\mathsf t}$ acts after $R^{\mathsf t}$ in the dual direction. (3) Apply (2) to $T^{-1}T=I_V$ and $TT^{-1}=I_W$: $T^{\mathsf t}(T^{-1})^{\mathsf t}=I_{V^*}$ and $(T^{-1})^{\mathsf t}T^{\mathsf t}=I_{W^*}$. $\square$</p>
+<p>Part 2 is the source of the familiar rule $(AB)^{\mathsf T}=B^{\mathsf T}A^{\mathsf T}$ once Section 7 identifies the matrix of $T^{\mathsf t}$.</p>
+<p><em>Example.</em> Let $T:\mathbb{R}^2\to\mathbb{R}^2$, $T(x_1,x_2)=(x_1,0)$, and let $g\in(\mathbb{R}^2)^*$ be $g(x_1,x_2)=ax_1+bx_2$. Then $(T^{\mathsf t}g)(x_1,x_2)=g(x_1,0)=ax_1$. So $T^{\mathsf t}g$ is the functional $(a,0)$. In the dual basis of the standard basis, $T^{\mathsf t}$ has the matrix $\begin{pmatrix}1&amp;0\\0&amp;0\end{pmatrix}$, the same as the matrix of $T$. The two coincide here only because $T$ happens to have a symmetric matrix.</p>
+<p><em>Running example.</em> For $T(x)=Ax$ and a row $g$ in $(\mathbb{Q}^3)^*$, $(T^{\mathsf t}g)(x)=g(Ax)=(gA)x$. So $T^{\mathsf t}$ sends the row $g$ to the row $gA\in(\mathbb{Q}^4)^*$. For $g=(-1,-1,1)$ we get $gA=-(1,2,0,1)-(0,1,1,-1)+(1,3,1,0)=(0,0,0,0)$. So $T^{\mathsf t}g=0$: the certificate of Section 1 is a vector of $\ker T^{\mathsf t}$. The next section proves that all of $\ker T^{\mathsf t}$ consists of such certificates.</p>
+<h2 id="5-the-kernel-of-the-transpose-is-the-annihilator-of-the-range-0257">5. The kernel of the transpose is the annihilator of the range <a href="https://www.youtube.com/watch?v=3InyDigc3Vk&amp;t=177s">02:57</a></h2>
+<p><strong>Theorem 5.1.</strong> Let $T:V\to W$ be a linear map of arbitrary vector spaces over $F$. Then
+$$\ker T^{\mathsf t}=(\operatorname{im}T)^0.$$</p>
+<p><em>Proof.</em> Let $g\in W^*$. Then $g\in\ker T^{\mathsf t}$ if and only if $g\circ T$ is the zero functional on $V$, if and only if $g(T\alpha)=0$ for every $\alpha\in V$. The vectors $T\alpha$ are exactly the elements of $\operatorname{im}T$, so the last condition says that $g$ vanishes on $\operatorname{im}T$, that is, $g\in(\operatorname{im}T)^0$. Each step is an equivalence, so both inclusions hold at once. $\square$</p>
+<p>This statement needs neither a finite dimension nor a basis. In words: a functional on $W$ is killed by pulling back along $T$ precisely when it cannot see anything that $T$ produces.</p>
+<p><strong>Corollary 5.2.</strong> If $W$ is finite-dimensional with $\dim W=m$, and $\operatorname{rank}T=r$, then $\dim\ker T^{\mathsf t}=m-r$. (If $V$ is finite-dimensional too, this is the number of independent "tests" of the opening question.)</p>
+<p><em>Proof.</em> Apply Theorem 1.3 to the subspace $\operatorname{im}T$ of $W$: $\dim(\operatorname{im}T)^0=m-r$. $\square$</p>
+<p>In the running example, $m=3$, $r=2$, so there is exactly one independent test: $\ker T^{\mathsf t}$ is spanned by $g=(-1,-1,1)$. A direct computation confirms it: the equation $gA=0$ reads $g_1+g_3=0$, $2g_1+g_2+3g_3=0$, $g_2+g_3=0$, $g_1-g_2=0$, whose solutions are the multiples of $(-1,-1,1)$.</p>
+<p>The answer to the first half of question 1 is the following criterion. It needs a second lemma about annihilators.</p>
+<p><strong>Lemma 5.3 (double annihilator in finite dimension).</strong> Let $W$ be finite-dimensional, $U$ a subspace, and $w\in W\setminus U$. There is $g\in U^0$ with $g(w)\ne0$. Hence $U=\{w\in W: g(w)=0\text{ for all }g\in U^0\}$.</p>
+<p><em>Proof.</em> A basis of $U$ together with $w$ is linearly independent because $w\notin U$. Extend it to a basis of $W$ and let $g$ be the dual functional of $w$. It vanishes on the basis vectors of $U$, so $g\in U^0$, and $g(w)=1$. The second statement follows: a vector in $U$ is killed by all of $U^0$ by definition, and a vector outside $U$ is not. $\square$</p>
+<p><strong>Theorem 5.4 (solvability criterion).</strong> Let $T:V\to W$ be a linear map with $W$ finite-dimensional, and let $w\in W$. Then $w\in\operatorname{im}T$ if and only if $g(w)=0$ for every $g\in\ker T^{\mathsf t}$. For $T(x)=Ax$ this says: $Ax=y$ has a solution if and only if $gy=0$ for every row $g$ with $gA=0$.</p>
+<p><em>Proof.</em> Theorem 5.1 gives $\ker T^{\mathsf t}=(\operatorname{im}T)^0$; apply Lemma 5.3 with $U=\operatorname{im}T$. $\square$</p>
+<p><em>Running example.</em> The only test is $g=(-1,-1,1)$. For $y=(1,2,3)$, $gy=-1-2+3=0$, so $Ax=y$ is solvable. The equations are $x_1+2x_2+x_4=1$, $x_2+x_3-x_4=2$ and $x_1+3x_2+x_3=3$, with the solutions $x=(1,0,2,0)+s(2,-1,1,0)+t(-3,1,0,1)$. For $y=(1,2,4)$, $gy=1\ne0$, and no solution exists. In terms of row reduction (<a href="ch02.html">Chapter 2</a>), the certificate $g$ is the record of the row operations that turn the third equation into $0=gy$, and the number of independent certificates equals the number of zero rows in the reduced form, $m-r$.</p>
+<p><strong>Boundary.</strong> Theorem 5.1 holds in every dimension. The solvability criterion is stated only for finite-dimensional $W$ because Lemma 5.3 is proved there. The criterion is a statement about <em>every</em> $g\in\ker T^{\mathsf t}$: checking a single functional is not sufficient unless the dimension $m-r$ is one.</p>
+<h2 id="6-the-transpose-has-the-same-rank-and-its-range-is-the-annihilator-of-the-kernel-1041">6. The transpose has the same rank, and its range is the annihilator of the kernel <a href="https://www.youtube.com/watch?v=3InyDigc3Vk&amp;t=641s">10:41</a></h2>
+<p><strong>Theorem 6.1.</strong> Let $V$ and $W$ be finite-dimensional vector spaces over $F$ with $\dim V=n$, $\dim W=m$, let $T:V\to W$ be linear, and let $r=\operatorname{rank}T$. Then
+1. $\operatorname{rank}T^{\mathsf t}=\operatorname{rank}T=r$;
+2. $\operatorname{im}T^{\mathsf t}=(\ker T)^0$.</p>
+<p><em>Proof.</em> (1) By Corollary 5.2, $\dim\ker T^{\mathsf t}=m-r$. Rank–nullity for the map $T^{\mathsf t}:W^*\to V^*$, whose domain has dimension $\dim W^*=m$, gives
+$$\operatorname{rank}T^{\mathsf t}=m-\dim\ker T^{\mathsf t}=m-(m-r)=r.$$</p>
+<p>(2) First we show $\operatorname{im}T^{\mathsf t}\subseteq(\ker T)^0$. An element of $\operatorname{im}T^{\mathsf t}$ has the form $f=g\circ T$ for some $g\in W^*$. If $\alpha\in\ker T$ then $f(\alpha)=g(T\alpha)=g(0)=0$. So $f$ vanishes on $\ker T$. Next we compare dimensions. By rank–nullity for $T$, $\dim\ker T=n-r$, and by Theorem 1.3, $\dim(\ker T)^0=n-(n-r)=r$. By part (1), $\dim\operatorname{im}T^{\mathsf t}=r$. A subspace of a finite-dimensional space with the same dimension as the ambient space is the whole space, so the inclusion is an equality. $\square$</p>
+<p>The hinge of part (1) is that the annihilator of the range has <em>complementary</em> dimension in $W^*$ (Theorem 1.3), so the dimension of the kernel of $T^{\mathsf t}$ and the rank of $T$ add up to $m$, exactly as nullity and rank of $T^{\mathsf t}$ must. The hinge of part (2) is that one inclusion is free and the dimension count upgrades it.</p>
+<p><em>Running example.</em> We have $n=4$, $m=3$, $r=2$. The transpose $T^{\mathsf t}$ sends $\mathbb{Q}^{3*}$ (dimension 3) onto a subspace of dimension $2$ of $\mathbb{Q}^{4*}$, with kernel of dimension $1$. By part (2), $\operatorname{im}T^{\mathsf t}=(\ker T)^0$, which Section 1 identified as the span of the rows $(1,2,0,1)$ and $(0,1,1,-1)$. Indeed $T^{\mathsf t}$ sends the three standard functionals $e_1^*,e_2^*,e_3^*$ to the three rows of $A$, so $\operatorname{im}T^{\mathsf t}$ is the row space of $A$ (<a href="ch06.html">Chapter 6</a>). The nullity of $T$ is $4-2=2$ and the nullity of $T^{\mathsf t}$ is $3-2=1$: these differ because the kernels live in different spaces, $V$ and $W^*$, even though the ranks agree.</p>
+<p><strong>Corollary 6.2 (injectivity and surjectivity).</strong> For finite-dimensional $V,W$:
+1. $T$ is injective if and only if $T^{\mathsf t}$ is surjective;
+2. $T$ is surjective if and only if $T^{\mathsf t}$ is injective.</p>
+<p><em>Proof.</em> (1) $T$ is injective if and only if $\ker T=\{0\}$, if and only if $(\ker T)^0=V^*$ (a functional that vanishes only on $\{0\}$ is unrestricted; conversely, by Theorem 1.3, $\dim(\ker T)^0=n$ forces $\dim\ker T=0$), if and only if $\operatorname{im}T^{\mathsf t}=V^*$ by Theorem 6.1. (2) $T$ is surjective if and only if $\operatorname{im}T=W$, if and only if $(\operatorname{im}T)^0=\{0\}$ (Theorem 1.3 again), if and only if $\ker T^{\mathsf t}=\{0\}$ by Theorem 5.1. $\square$</p>
+<p>The corollary does not say that $T$ is injective if and only if $T^{\mathsf t}$ is injective, and that statement is false. Take $T:\mathbb{Q}\to\mathbb{Q}^2$, $T(x)=(x,0)$. It is injective. Its transpose sends $g=(a,b)$ to the functional $x\mapsto ax$, so $\ker T^{\mathsf t}=\{(0,b)\}$ is one-dimensional, while $T^{\mathsf t}$ is onto $\mathbb{Q}^*$.</p>
+<p>The theorem is field-free. Over $F_2$ the matrix $\begin{pmatrix}1&amp;1\\1&amp;1\end{pmatrix}$ has rank $1$ and so does its transpose, and every step above holds without change, since only bases and dimension counts were used. It needs finite dimension in two places: $\dim W^*=m$ and $\dim(\ker T)^0=n-\dim\ker T$ both fail to give subtractable numbers in infinite dimension. It also needs no inner product. The common value of $\operatorname{rank}T$ and $\operatorname{rank}T^{\mathsf t}$ is the first genuine consequence of duality, and the next section turns it into a statement about matrices.</p>
+<h2 id="7-the-matrix-of-the-transpose-1704">7. The matrix of the transpose <a href="https://www.youtube.com/watch?v=3InyDigc3Vk&amp;t=1024s">17:04</a></h2>
+<p>Let $V$ and $W$ be finite-dimensional over $F$, with ordered bases $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ of $V$ and $\mathcal{C}=(\beta_1,\dots,\beta_m)$ of $W$. Write $\mathcal{B}^*=(f_1,\dots,f_n)$ and $\mathcal{C}^*=(g_1,\dots,g_m)$ for the dual bases. For $T:V\to W$ let $A=[T]_{\mathcal{C}\leftarrow\mathcal{B}}$ be the $m\times n$ matrix with $T\alpha_j=\sum_{k=1}^mA_{kj}\beta_k$. Let $B=[T^{\mathsf t}]_{\mathcal{B}^*\leftarrow\mathcal{C}^*}$ be the $n\times m$ matrix with $T^{\mathsf t}g_j=\sum_{k=1}^nB_{kj}f_k$.</p>
+<p><strong>Theorem 7.1.</strong> $B=A^{\mathsf T}$. That is, the matrix of $T^{\mathsf t}$ relative to the dual bases is the transpose of the matrix of $T$.</p>
+<p><em>Proof.</em> Evaluate the functional $T^{\mathsf t}g_j$ at the basis vector $\alpha_i$ in two ways. By the definition of $T^{\mathsf t}$ and of $A$,
+$$(T^{\mathsf t}g_j)(\alpha_i)=g_j(T\alpha_i)=g_j\Big(\sum_{k=1}^mA_{ki}\beta_k\Big)=\sum_{k=1}^mA_{ki}\,\delta_{jk}=A_{ji}.$$
+By the definition of $B$ and the duality $f_k(\alpha_i)=\delta_{ki}$,
+$$(T^{\mathsf t}g_j)(\alpha_i)=\sum_{k=1}^nB_{kj}f_k(\alpha_i)=B_{ij}.$$
+Hence $B_{ij}=A_{ji}$ for $1\le i\le n$ and $1\le j\le m$. $\square$</p>
+<p>The hinge is the pair of dual bases: the Kronecker deltas $g_j(\beta_k)=\delta_{jk}$ and $f_k(\alpha_i)=\delta_{ki}$ pick out single entries on each side. For bases that are not dual to the chosen coordinates, the statement is false, which is why the theorem names $\mathcal{B}^*$ and $\mathcal{C}^*$.</p>
+<p><em>Running example in adapted bases (original construction).</em> Choose the basis $\mathcal{B}=((1,0,0,0),(0,1,0,0),(2,-1,1,0),(-3,1,0,1))$ of $\mathbb{Q}^4$, whose last two vectors span $\ker T$, and the basis $\mathcal{C}=((1,0,1),(0,1,1),(0,0,1))$ of $\mathbb{Q}^3$, whose first two vectors span $\operatorname{im}T$. We find $T\alpha_1=(1,0,1)=\beta_1$, $T\alpha_2=(2,1,3)=2\beta_1+\beta_2$, and $T\alpha_3=T\alpha_4=0$, so
+$$[T]_{\mathcal{C}\leftarrow\mathcal{B}}=\begin{pmatrix}1&amp;2&amp;0&amp;0\\0&amp;1&amp;0&amp;0\\0&amp;0&amp;0&amp;0\end{pmatrix}.$$
+Computed by Proposition 3.2 (invert the matrix whose columns are the basis), the dual bases are
+$$\mathcal{B}^*:\ \varphi_1=(1,0,-2,3),\ \varphi_2=(0,1,1,-1),\ \varphi_3=(0,0,1,0),\ \varphi_4=(0,0,0,1);$$
+$$\mathcal{C}^*:\ \gamma_1=(1,0,0),\ \gamma_2=(0,1,0),\ \gamma_3=(-1,-1,1).$$
+By Theorem 7.1,
+$$[T^{\mathsf t}]_{\mathcal{B}^*\leftarrow\mathcal{C}^*}=\begin{pmatrix}1&amp;0&amp;0\\2&amp;1&amp;0\\0&amp;0&amp;0\\0&amp;0&amp;0\end{pmatrix}.$$
+We check by hand: $T^{\mathsf t}\gamma_1=\varphi_1+2\varphi_2=(1,2,0,1)$, which is $\gamma_1A$, the first row of $A$; $T^{\mathsf t}\gamma_2=\varphi_2=(0,1,1,-1)=\gamma_2A$; and $T^{\mathsf t}\gamma_3=0$. The third dual basis vector of $\mathcal{C}^*$ is the certificate $g=(-1,-1,1)$: choosing $\mathcal{C}$ so that its first vectors span $\operatorname{im}T$ makes the last dual vector span $(\operatorname{im}T)^0$, as the proof of Theorem 1.3 predicted. In these bases the matrix of $T$ has a zero third row (the relation among the rows) and two zero columns (the kernel), while its transpose has the corresponding zero columns and rows.</p>
+<p><strong>Corollary 7.2 (row rank equals column rank).</strong> For every matrix $A\in F^{m\times n}$, the maximal number of independent rows equals the maximal number of independent columns.</p>
+<p><em>Proof.</em> Let $T:F^n\to F^m$, $T(x)=Ax$, with standard bases. The column space of $A$ is $\operatorname{im}T$, so $\operatorname{rank}T$ is the column rank of $A$. By Theorem 7.1 the matrix of $T^{\mathsf t}$ in the dual of the standard bases is $A^{\mathsf T}$, whose column space has dimension $\operatorname{rank}T^{\mathsf t}$. The columns of $A^{\mathsf T}$ are the rows of $A$, so $\operatorname{rank}T^{\mathsf t}$ is the row rank of $A$. Theorem 6.1 says $\operatorname{rank}T^{\mathsf t}=\operatorname{rank}T$. $\square$</p>
+<p>In the running example both ranks equal $2$, and a direct reduction gives the same value for $A$ and $A^{\mathsf T}$. The corollary holds over every field; the lab checks matrices over $\mathbb{Q}$, $F_2$, and $F_3$.</p>
+<p><strong>Change of basis.</strong> If $\mathcal{B}'=(\alpha'_1,\dots,\alpha'_n)$ is another basis of $V$ with $\alpha'_j=\sum_iP_{ij}\alpha_i$ (the columns of $P$ are the new vectors in old coordinates), then the dual basis of $\mathcal{B}'$ is given by $f'_i=\sum_j(P^{-1})_{ij}f_j$. Indeed, $f'_i(\alpha'_l)=\sum_j(P^{-1})_{ij}f_j(\sum_kP_{kl}\alpha_k)=\sum_j(P^{-1})_{ij}P_{jl}=\delta_{il}$. So the dual coordinates change by the inverse of $P$ acting on rows, and a matrix $A$ with $\mathcal{B}'$ and $\mathcal{C}'$ replacing $\mathcal{B}$ and $\mathcal{C}$ becomes $Q^{-1}AP$ (where $Q$ is the change of basis in $W$), while the matrix of $T^{\mathsf t}$ becomes $P^{\mathsf T}A^{\mathsf T}(Q^{-1})^{\mathsf T}=(Q^{-1}AP)^{\mathsf T}$ in the new dual bases. This is consistent with Theorem 7.1 applied to the new bases. In the running example, $P$ is the matrix of $\mathcal{B}$ and the rows $\varphi_i$ are the rows of $P^{-1}$, as the numbers above show.</p>
+<p><strong>Where the transpose stops.</strong> The transpose acts between dual spaces and needs no inner product. On an inner-product space there is a second construction, the adjoint $T^*$, which acts on the original spaces and has the matrix $\overline{A}^{\mathsf T}$, the conjugate transpose, in orthonormal bases (<a href="ch23.html">Chapter 23</a>). Over $\mathbb{C}$ it differs from the transpose by complex conjugation, so the two must not be identified.</p>
+<h2 id="8-executable-check">8. Executable check</h2>
+<p><a href="labs/ch11.py">The chapter laboratory</a> uses exact rational arithmetic (<code>fractions.Fraction</code>) and implements row reduction, null spaces, inverses, annihilators, dual bases, and the matrix of a map in two bases. It verifies, with <code>assert</code>, the following claims of this chapter.</p>
+<ul>
+<li>The rank, kernel basis, certificate $g=(-1,-1,1)$, and the basis of $(\ker T)^0$ of the running example, and that the solvability test separates $y=(1,2,3)$ from $y=(1,2,4)$.</li>
+<li>The dimension formula $\dim W+\dim W^0=\dim V$ for four subspaces of $\mathbb{Q}^4$ of dimensions 2, 1, 4, and 0.</li>
+<li>The dual basis $\alpha_1,\dots,\alpha_4$ of Section 3 and the matrices $[T]$ and $[T^{\mathsf t}]$ of Section 7, where the matrix of $T^{\mathsf t}$ is computed independently from the definition $\gamma_j\circ T$ and compared with the transpose of $[T]$.</li>
+<li>Equality of the rank of a matrix and of its transpose for several matrices over $\mathbb{Q}$, and for integer matrices over $F_2$ and $F_3$; the counterexample $T(x)=(x,0)$; the identity $(RT)^{\mathsf t}=T^{\mathsf t}R^{\mathsf t}$ on matrices; and the data of Exercises 2, 4, and 5.</li>
+</ul>
+<p>The printed output includes <code>rank T = 2</code>, the certificate <code>(-1, -1, 1)</code>, the basis <code>[1 3 1 0; 1 2 0 1]</code> of $(\ker T)^0$ in the reduced form the program produces (another basis of the row space of $A$), the dual basis of Section 3, and the matrices of Section 7. The laboratory does not verify Theorem 2.3 or Theorem 3.1 for infinite-dimensional spaces (Section 2 uses the axiom of choice, which no program can check), it does not prove any statement for general $F$ or $n$, and it checks the field-independence only on the listed matrices over $F_2$ and $F_3$.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>Prove that $(RT)^{\mathsf t}=T^{\mathsf t}R^{\mathsf t}$ for linear maps $T:V\to W$ and $R:W\to U$, and prove that the map $T\mapsto T^{\mathsf t}$ from $\mathcal{L}(V,W)$ to $\mathcal{L}(W^*,V^*)$ is linear. Deduce that if $T$ is invertible then $(T^{\mathsf t})^{-1}=(T^{-1})^{\mathsf t}$.</li>
+<li>Over $\mathbb{Q}$, show that $f_1=(1,1,0)$, $f_2=(0,1,1)$, $f_3=(1,0,1)$ form a basis of $(\mathbb{Q}^3)^*$ and find the basis of $\mathbb{Q}^3$ whose dual basis it is. Then, for $T:\mathbb{Q}^3\to\mathbb{Q}^2$ with matrix $A_2=\begin{pmatrix}1&amp;2&amp;3\\2&amp;4&amp;6\end{pmatrix}$, find bases of $\ker T^{\mathsf t}$, $(\operatorname{im}T)^0$, $\ker T$, $(\ker T)^0$, and $\operatorname{im}T^{\mathsf t}$, and verify Theorems 5.1 and 6.1 on them.</li>
+<li>Give a counterexample to the claim "if $T$ is injective then $T^{\mathsf t}$ is injective", and state which of its two natural corrections (Corollary 6.2) holds for your example.</li>
+<li>Identify every hypothesis used in the proof that $\operatorname{rank}T^{\mathsf t}=\operatorname{rank}T$ (field, dimension, inner product), and verify each step on the matrix $\begin{pmatrix}1&amp;1\\1&amp;1\end{pmatrix}$ over the field $F_2$. Say what part of the argument loses its meaning if $W$ is infinite-dimensional.</li>
+<li>Design a procedure that, for vectors $s_1,\dots,s_k\in F^n$, outputs a basis of $S^0$ where $S=\operatorname{span}(s_1,\dots,s_k)$. Apply it to $s_1=(1,1,0,0)$, $s_2=(0,0,1,1)$, and show that the same procedure applied to the columns of the running matrix $A$ produces the certificate $g=(-1,-1,1)$.</li>
+<li>Prove that $T^{\mathsf t\mathsf t}\circ\psi_V=\psi_W\circ T$ for every linear $T:V\to W$, where $\psi_V:V\to V^{**}$ and $\psi_W:W\to W^{**}$ are the evaluation maps. Deduce that for finite-dimensional $V,W$, the matrix of $T^{\mathsf t\mathsf t}$ in the bases $\psi_V(\mathcal{B})$ and $\psi_W(\mathcal{C})$ equals the matrix of $T$ in $\mathcal{B}$ and $\mathcal{C}$.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>Let $g\in U^*$. Then $(RT)^{\mathsf t}g=g\circ(R\circ T)=(g\circ R)\circ T=T^{\mathsf t}(g\circ R)=T^{\mathsf t}(R^{\mathsf t}g)$, so $(RT)^{\mathsf t}=T^{\mathsf t}R^{\mathsf t}$. For linearity of $T\mapsto T^{\mathsf t}$ let $S,T\in\mathcal{L}(V,W)$, $c\in F$, $g\in W^*$: $(cS+T)^{\mathsf t}g=g\circ(cS+T)=c\,(g\circ S)+g\circ T$, because $g$ is linear, and the right side is $(cS^{\mathsf t}+T^{\mathsf t})g$. If $T$ is invertible, $T^{\mathsf t}(T^{-1})^{\mathsf t}=(T^{-1}T)^{\mathsf t}=I_V^{\mathsf t}=I_{V^*}$ and $(T^{-1})^{\mathsf t}T^{\mathsf t}=(TT^{-1})^{\mathsf t}=I_{W^*}$. A map with a two-sided inverse is invertible, and the inverse is $(T^{-1})^{\mathsf t}$.</p>
+</li>
+<li>
+<p>The matrix with rows $f_1,f_2,f_3$ is $M=\begin{pmatrix}1&amp;1&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1\end{pmatrix}$ with $\det M=1(1-0)-1(0-1)+0=2\ne0$, so the rows are a basis. By Proposition 3.2 the vectors of the basis of $\mathbb{Q}^3$ are the columns of $M^{-1}=\tfrac12\begin{pmatrix}1&amp;-1&amp;1\\1&amp;1&amp;-1\\-1&amp;1&amp;1\end{pmatrix}$, namely $\alpha_1=\tfrac12(1,1,-1)$, $\alpha_2=\tfrac12(-1,1,1)$, $\alpha_3=\tfrac12(1,-1,1)$. Check: $f_1(\alpha_1)=\tfrac12(1+1)=1$, $f_1(\alpha_2)=\tfrac12(-1+1)=0$, $f_1(\alpha_3)=\tfrac12(1-1)=0$; $f_2(\alpha_1)=\tfrac12(1-1)=0$, $f_2(\alpha_2)=\tfrac12(1+1)=1$, $f_2(\alpha_3)=\tfrac12(-1+1)=0$; $f_3(\alpha_1)=\tfrac12(1-1)=0$, $f_3(\alpha_2)=\tfrac12(-1+1)=0$, $f_3(\alpha_3)=\tfrac12(1+1)=1$.
+   For $A_2$: the rank is $1$ (the second row is twice the first), so $m=2$, $n=3$, $r=1$. $\operatorname{im}T=\operatorname{span}\{(1,2)\}$. $\ker T^{\mathsf t}=\{g:gA_2=0\}$: $g_1+2g_2=0$, so it is spanned by $(-2,1)$, of dimension $m-r=1$. $(\operatorname{im}T)^0=\{g:g(1,2)=0\}$ is spanned by $(-2,1)$ too, confirming Theorem 5.1. $\ker T=\{x_1+2x_2+3x_3=0\}$ has basis $(-2,1,0),(-3,0,1)$, of dimension $n-r=2$. $(\ker T)^0$ is spanned by $(1,2,3)$: it kills both basis vectors ($-2+2=0$, $-3+3=0$) and has dimension $3-2=1$. $\operatorname{im}T^{\mathsf t}=\{gA_2\}=\{(g_1+2g_2)(1,2,3)\}$ is the span of $(1,2,3)$, which equals $(\ker T)^0$, confirming Theorem 6.1(2); its dimension $1$ equals $\operatorname{rank}T$.</p>
+</li>
+<li>
+<p>Let $T:\mathbb{Q}\to\mathbb{Q}^2$, $T(x)=(x,0)$. The map is injective. For $g=(a,b)$, $T^{\mathsf t}g=g\circ T$ is $x\mapsto ax$, so $T^{\mathsf t}(a,b)=a$ and $\ker T^{\mathsf t}=\{(0,b)\}\neq\{0\}$. This agrees with Theorem 5.1: $(\operatorname{im}T)^0=\{g:g(x,0)=0\ \forall x\}=\{(0,b)\}$. The correct statement is part (1) of Corollary 6.2: $T$ injective implies $T^{\mathsf t}$ surjective, and here $T^{\mathsf t}$ is onto $\mathbb{Q}^*$ because $a$ is arbitrary. Injectivity of $T^{\mathsf t}$ corresponds to surjectivity of $T$, and $T$ is not surjective.</p>
+</li>
+<li>
+<p>The proof uses (i) Theorem 5.1, which needs no hypothesis beyond linearity; (ii) Theorem 1.3, which needs $W$ finite-dimensional and any field; (iii) rank–nullity for $T^{\mathsf t}:W^*\to V^*$, which needs $\dim W^*=m$ finite, a fact about duals of finite-dimensional spaces valid over any field. No inner product and no property of $F$ beyond being a field is used; in particular, $F_2$ is allowed. For $A=\begin{pmatrix}1&amp;1\\1&amp;1\end{pmatrix}$ over $F_2$: $\operatorname{im}T=\operatorname{span}\{(1,1)\}$ has dimension $1$. $(\operatorname{im}T)^0=\{g:g_1+g_2=0\}=\operatorname{span}\{(1,1)\}$ because $-1=1$ in $F_2$, so $\dim(\operatorname{im}T)^0=2-1=1$. $\ker T^{\mathsf t}=\{g:gA=(g_1+g_2,g_1+g_2)=0\}=\operatorname{span}\{(1,1)\}$, equal to $(\operatorname{im}T)^0$. Rank–nullity gives $\operatorname{rank}T^{\mathsf t}=2-1=1=\operatorname{rank}T$. If $W$ is infinite-dimensional, Theorem 5.1 still holds, but the step $\operatorname{rank}T^{\mathsf t}=\dim W^*-\dim\ker T^{\mathsf t}$ has no use: $\dim W^*$ and $\dim\ker T^{\mathsf t}$ are infinite cardinals, and $\dim W+\dim W^0=\dim V$ cannot be subtracted to give $r$.</p>
+</li>
+<li>
+<p>Let $M$ be the $k\times n$ matrix whose rows are $s_1,\dots,s_k$. A row $f\in F^n$ lies in $S^0$ if and only if $f(s_i)=0$ for all $i$, that is, $Mf^{\mathsf T}=0$. So $S^0$ is the solution space of $Mx=0$ with solutions written as rows. Procedure: row-reduce $M$ (<a href="ch02.html">Chapter 2</a>); for each free column $c$ set $x_c=1$ and the other free variables to $0$, and solve for the pivot variables. This gives $n-\operatorname{rank}M=n-\dim S$ independent vectors, consistent with Theorem 1.3. For $s_1=(1,1,0,0)$, $s_2=(0,0,1,1)$, $M$ is already reduced with pivots in columns $1$ and $3$. Free column $2$: $x_2=1$, $x_1=-1$, giving $f=(-1,1,0,0)$. Free column $4$: $x_4=1$, $x_3=-1$, giving $f=(0,0,-1,1)$. Check $f(s_1)=-1+1=0$ and $f(s_2)=-1+1=0$ for each; and $2+2=4=\dim\mathbb{Q}^4$. For the columns of the running matrix, $s_1=(1,0,1)$, $s_2=(2,1,3)$, $s_3=(0,1,1)$, $s_4=(1,-1,0)$, the matrix $M=A^{\mathsf T}$ reduces to rows $(1,0,1)$, $(0,1,1)$, $0$, $0$ with pivots in columns $1,2$. The free column $3$ gives $x_3=1$, $x_1=-1$, $x_2=-1$: $f=(-1,-1,1)=g$. The procedure computes $(\operatorname{im}T)^0=\ker T^{\mathsf t}$, as in Theorem 5.1.</p>
+</li>
+<li>
+<p>Let $v\in V$ and $g\in W^*$. Then $T^{\mathsf t}:W^*\to V^*$, and $T^{\mathsf t\mathsf t}=(T^{\mathsf t})^{\mathsf t}:V^{**}\to W^{**}$. By definition of the transpose of $T^{\mathsf t}$ and of $L_v$,
+$$(T^{\mathsf t\mathsf t}\psi_V(v))(g)=(T^{\mathsf t\mathsf t}L_v)(g)=L_v(T^{\mathsf t}g)=(T^{\mathsf t}g)(v)=g(Tv)=L_{Tv}(g)=(\psi_W(Tv))(g).$$
+As this holds for every $g\in W^*$, $T^{\mathsf t\mathsf t}\psi_V(v)=\psi_W(Tv)$ for every $v$. For the matrices, the dual basis of $\mathcal{B}^*=(f_1,\dots,f_n)$ in $V^{**}$ is $\psi_V(\mathcal{B})=(L_{\alpha_1},\dots,L_{\alpha_n})$, because $L_{\alpha_j}(f_i)=f_i(\alpha_j)=\delta_{ij}$; the same holds for $W$. Applying Theorem 7.1 twice, the matrix of $T^{\mathsf t\mathsf t}$ in $\psi_V(\mathcal{B}),\psi_W(\mathcal{C})$ is $(A^{\mathsf T})^{\mathsf T}=A$. This also follows from the identity just proved: $T^{\mathsf t\mathsf t}L_{\alpha_j}=L_{T\alpha_j}=\sum_kA_{kj}L_{\beta_k}$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>K. Hoffman and R. Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, Chapter 3 (linear functionals, the double dual, the transpose).</li>
+<li>S. Axler, <em>Linear Algebra Done Right</em>, 4th ed., Springer, open access at https://linear.axler.net/, Chapter 3. The dual map is written $T'$ there.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch11.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 11 laboratory: annihilators, the double dual, the transpose.
+
+Exact arithmetic over Q (fractions.Fraction).  A matrix is a list of
+rows.  A vector of F^n is a list; a linear functional on F^n is a ROW
+(a list), so the functional f acts on the vector v as sum_i f_i v_i.
+The map T(x) = A x has matrix A; its transpose T^t sends the functional
+g to g o T, whose row is g A.
+&quot;&quot;&quot;
+from fractions import Fraction
+
+
+def Q(rows):
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def identity(n):
+    return [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def transpose(A):
+    return [list(col) for col in zip(*A)]
+
+
+def matmul(A, B):
+    return [[sum((A[i][k] * B[k][j] for k in range(len(B))), Fraction(0))
+             for j in range(len(B[0]))] for i in range(len(A))]
+
+
+def apply(A, x):
+    &quot;&quot;&quot;Column vector A x.&quot;&quot;&quot;
+    return [sum((a * b for a, b in zip(row, x)), Fraction(0)) for row in A]
+
+
+def pair(f, v):
+    &quot;&quot;&quot;Value f(v) of the functional f (a row) at the vector v.&quot;&quot;&quot;
+    return sum((a * b for a, b in zip(f, v)), Fraction(0))
+
+
+def rref(A):
+    &quot;&quot;&quot;Row-reduced echelon form and the list of pivot columns.&quot;&quot;&quot;
+    R = [row[:] for row in A]
+    pivots, r = [], 0
+    for c in range(len(R[0]) if R else 0):
+        p = next((i for i in range(r, len(R)) if R[i][c] != 0), None)
+        if p is None:
+            continue
+        R[r], R[p] = R[p], R[r]
+        R[r] = [x / R[r][c] for x in R[r]]
+        for i in range(len(R)):
+            if i != r and R[i][c] != 0:
+                R[i] = [x - R[i][c] * y for x, y in zip(R[i], R[r])]
+        pivots.append(c)
+        r += 1
+    return R, pivots
+
+
+def rank(A):
+    return len(rref(A)[1])
+
+
+def nullspace(A):
+    &quot;&quot;&quot;Basis of {x : A x = 0}, one vector per free column.&quot;&quot;&quot;
+    R, piv = rref(A)
+    n = len(A[0])
+    basis = []
+    for free in (c for c in range(n) if c not in piv):
+        x = [Fraction(0)] * n
+        x[free] = Fraction(1)
+        for row, c in zip(R, piv):
+            x[c] = -row[free]
+        basis.append(x)
+    return basis
+
+
+def inverse(M):
+    n = len(M)
+    aug = [row + e for row, e in zip(M, identity(n))]
+    R, piv = rref(aug)
+    assert piv[:n] == list(range(n)), &#x27;matrix is singular&#x27;
+    return [row[n:] for row in R]
+
+
+def annihilator(vectors, n):
+    &quot;&quot;&quot;Basis (rows) of S^0 for S = span(vectors) inside F^n.&quot;&quot;&quot;
+    if not vectors:
+        return identity(n)
+    return nullspace(vectors)
+
+
+def dual_basis(cols):
+    &quot;&quot;&quot;Dual basis (rows) of the basis given as a list of vectors.&quot;&quot;&quot;
+    M = transpose(cols)
+    return inverse(M)
+
+
+def span_contains(vectors, y):
+    &quot;&quot;&quot;Is y in the span of vectors?  Compare ranks.&quot;&quot;&quot;
+    return rank(vectors) == rank(vectors + [y])
+
+
+def matrix_in_bases(A, B, C):
+    &quot;&quot;&quot;[T]_{C&lt;-B}: column j holds the C-coordinates of T(b_j).&quot;&quot;&quot;
+    Cmat = transpose(C)
+    Bmat = transpose(B)
+    return matmul(inverse(Cmat), matmul(A, Bmat))
+
+
+def rank_mod_p(A, p):
+    &quot;&quot;&quot;Rank over the prime field F_p of an integer matrix.&quot;&quot;&quot;
+    R = [[x % p for x in row] for row in A]
+    r = 0
+    for c in range(len(R[0])):
+        piv = next((i for i in range(r, len(R)) if R[i][c]), None)
+        if piv is None:
+            continue
+        R[r], R[piv] = R[piv], R[r]
+        inv = pow(R[r][c], p - 2, p)
+        R[r] = [x * inv % p for x in R[r]]
+        for i in range(len(R)):
+            if i != r and R[i][c]:
+                f = R[i][c]
+                R[i] = [(x - f * y) % p for x, y in zip(R[i], R[r])]
+        r += 1
+    return r
+
+
+def show(M):
+    def cell(x):
+        return str(x)
+    if M and isinstance(M[0], list):
+        return &#x27;[&#x27; + &#x27;; &#x27;.join(&#x27; &#x27;.join(cell(x) for x in r)
+                               for r in M) + &#x27;]&#x27;
+    return &#x27;(&#x27; + &#x27;, &#x27;.join(cell(x) for x in M) + &#x27;)&#x27;
+
+
+# Running example (an original construction): T(x) = A x, Q^4 -&gt; Q^3.
+A = Q([[1, 2, 0, 1], [0, 1, 1, -1], [1, 3, 1, 0]])
+m, n = 3, 4
+
+# 1. Rank, kernel, range, and the two annihilators.
+r = rank(A)
+ker = nullspace(A)
+assert r == 2 and len(ker) == n - r
+assert ker == Q([[2, -1, 1, 0], [-3, 1, 0, 1]])
+cols = transpose(A)
+ann_range = annihilator(cols, m)          # (im T)^0 as rows
+assert len(ann_range) == m - r
+ker_t = nullspace(transpose(A))           # ker T^t: g with A^T g = 0
+assert ker_t == Q([[-1, -1, 1]]) == ann_range
+ann_ker = annihilator(ker, n)             # (ker T)^0 as rows
+assert len(ann_ker) == n - len(ker) == r
+for f in ann_ker:
+    assert all(pair(f, v) == 0 for v in ker)
+assert rank(A + ann_ker) == r             # (ker T)^0 = row space of A
+print(&#x27;rank T =&#x27;, r, &#x27;; ker T basis&#x27;, show(ker))
+print(&#x27;ker T^t = (im T)^0 spanned by&#x27;, show(ker_t[0]))
+print(&#x27;(ker T)^0 basis (rows)&#x27;, show(ann_ker))
+
+# 2. The consistency test: A x = y is solvable iff g(y) = 0.
+g = ker_t[0]
+for y, ok in ((Q([[1, 2, 3]])[0], True), (Q([[1, 2, 4]])[0], False)):
+    assert span_contains(cols, y) == ok
+    assert (pair(g, y) == 0) == ok
+print(&#x27;y=(1,2,3): g(y) =&#x27;, pair(g, Q([[1, 2, 3]])[0]),
+      &#x27;(solvable); y=(1,2,4): g(y) =&#x27;, pair(g, Q([[1, 2, 4]])[0]))
+
+# 3. Dimension formula dim S + dim S^0 = dim V for several subspaces.
+for S in (Q([[1, 1, 0, 0], [0, 0, 1, 1]]), Q([[1, 2, 3, 4]]),
+          Q([[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]), []):
+    assert rank(S if S else Q([[0, 0, 0, 0]])) + \
+        len(annihilator(S, 4)) == 4
+print(&#x27;dim S + dim S^0 = 4 checked for subspaces of dimension 2, 1, 4, 0&#x27;)
+
+# 4. Every basis of V* is dual to a basis of V (section 3 example).
+F = Q([[1, 2, 0, 1], [0, 1, 1, -1], [0, 0, 1, 0], [0, 0, 0, 1]])
+vecs = transpose(inverse(F))              # columns of F^{-1}
+assert vecs == Q([[1, 0, 0, 0], [-2, 1, 0, 0],
+                  [2, -1, 1, 0], [-3, 1, 0, 1]])
+for i, f in enumerate(F):
+    for j, v in enumerate(vecs):
+        assert pair(f, v) == int(i == j)
+print(&#x27;dual basis of f1..f4 in V:&#x27;, &#x27; &#x27;.join(show(v) for v in vecs))
+
+# 5. Matrix of T in adapted bases, and the transpose in dual bases.
+Bb = Q([[1, 0, 0, 0], [0, 1, 0, 0], [2, -1, 1, 0], [-3, 1, 0, 1]])
+Cb = Q([[1, 0, 1], [0, 1, 1], [0, 0, 1]])
+phi = dual_basis(Bb)
+gam = dual_basis(Cb)
+assert phi == Q([[1, 0, -2, 3], [0, 1, 1, -1], [0, 0, 1, 0], [0, 0, 0, 1]])
+assert gam == Q([[1, 0, 0], [0, 1, 0], [-1, -1, 1]])
+MT = matrix_in_bases(A, Bb, Cb)
+assert MT == Q([[1, 2, 0, 0], [0, 1, 0, 0], [0, 0, 0, 0]])
+# Matrix of T^t built independently: entry (k, j) is (gam_j o T)(b_k).
+Mt = [[pair(gam[j], apply(A, Bb[k])) for j in range(m)] for k in range(n)]
+assert Mt == transpose(MT)
+# and gam_j o T = sum_k Mt[k][j] phi_k as rows.
+for j in range(m):
+    row = [pair(gam[j], c) for c in transpose(A)]
+    comb = [sum((Mt[k][j] * phi[k][i] for k in range(n)), Fraction(0))
+            for i in range(n)]
+    assert row == comb
+print(&#x27;[T] in adapted bases =&#x27;, show(MT))
+print(&#x27;[T^t] in dual bases  =&#x27;, show(Mt))
+print(&#x27;T^t(gamma_3) =&#x27;, show([sum((Mt[k][2] * phi[k][i] for k in range(n)),
+                                  Fraction(0)) for i in range(n)]))
+
+# 6. Rank of T^t equals rank of T; ranks over other fields.
+assert rank(transpose(A)) == rank(A) == 2
+for M in (Q([[1, 2, 3], [2, 4, 6]]), Q([[0, 1], [0, 0], [0, 0]]),
+          Q([[1, 0, 2, 1], [3, 1, 0, 0], [4, 1, 2, 1]])):
+    assert rank(M) == rank(transpose(M))
+N2 = [[1, 1], [1, 1]]
+N3 = [[1, 2, 0], [2, 1, 0], [0, 0, 1]]
+assert rank_mod_p(N2, 2) == rank_mod_p(transpose(N2), 2) == 1
+assert rank_mod_p(N3, 3) == rank_mod_p(transpose(N3), 3) == 2
+assert rank(Q(N3)) == 3     # the rank depends on the field, not on T^t
+print(&#x27;rank A = rank A^T over Q, F_2, F_3 (rank of N3: Q 3, F_3 2)&#x27;)
+
+# 7. T injective but T^t not injective; T^t is surjective.
+Ainj = Q([[1], [0]])                       # T: Q -&gt; Q^2, x -&gt; (x, 0)
+assert rank(Ainj) == 1 and nullspace(Ainj) == []
+assert len(nullspace(transpose(Ainj))) == 1
+assert rank(transpose(Ainj)) == 1          # onto Q^* (dimension 1)
+print(&#x27;T(x)=(x,0): ker T = 0 but ker T^t =&#x27;,
+      show(nullspace(transpose(Ainj))[0]))
+
+# 8. Section 4 example: T(x1, x2) = (x1, 0); T^t(a, b) = (a, 0).
+A22 = Q([[1, 0], [0, 0]])
+for a, b in ((2, 5), (-1, 3)):
+    gg = Q([[a, b]])[0]
+    gt = [sum((gg[i] * A22[i][j] for i in range(2)), Fraction(0))
+          for j in range(2)]
+    assert gt == Q([[a, 0]])[0]
+print(&#x27;T(x1,x2)=(x1,0): T^t g has row (a, 0) for g = (a, b)&#x27;)
+
+# 9. (S T)^t = T^t S^t on matrices; I^t = I.
+S = Q([[1, 1, 0], [0, 2, 1]])
+assert transpose(matmul(S, A)) == matmul(transpose(A), transpose(S))
+assert transpose(identity(4)) == identity(4)
+print(&#x27;(S T)^t = T^t S^t: checked for S 2x3, T 3x4&#x27;)
+
+# 10. Separation lemma: for v != 0 construct f with f(v) = 1.
+
+
+def separating_functional(v):
+    basis = [v]
+    for e in identity(len(v)):
+        if rank(basis + [e]) &gt; len(basis):
+            basis.append(e)
+    return dual_basis(basis)[0]
+
+
+for v in ker + [Q([[0, 0, 0, 1]])[0], Q([[3, -2, 5, 7]])[0]]:
+    assert pair(separating_functional(v), v) == 1
+print(&#x27;separating functionals built for 4 nonzero vectors&#x27;)
+
+# 11. Exercises 2, 4, 5 of the chapter.
+F2 = Q([[1, 1, 0], [0, 1, 1], [1, 0, 1]])
+half = Fraction(1, 2)
+assert inverse(F2) == [[half, -half, half], [half, half, -half],
+                       [-half, half, half]]
+A2 = Q([[1, 2, 3], [2, 4, 6]])
+assert rank(A2) == 1
+assert nullspace(transpose(A2)) == Q([[-2, 1]])
+assert annihilator(transpose(A2), 2) == Q([[-2, 1]])
+assert nullspace(A2) == Q([[-2, 1, 0], [-3, 0, 1]])
+third = Fraction(1, 3)
+assert annihilator(nullspace(A2), 3) == [[third, 2 * third, Fraction(1)]]
+Nsub = Q([[1, 1, 0, 0], [0, 0, 1, 1]])
+assert annihilator(Nsub, 4) == Q([[-1, 1, 0, 0], [0, 0, -1, 1]])
+print(&#x27;exercise data: ker A2^t spanned by (-2, 1); (ker A2)^0 by (1,2,3)&#x27;)
+print(&#x27;all checks passed&#x27;)
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch10.html">Previous: Linear functionals, dual spaces, and dual bases</a><a rel="next" href="ch12.html">Next: Eigenvalues, eigenvectors, and the characteristic polynomial</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

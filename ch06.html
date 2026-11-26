@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Row space and computations with subspaces · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html" aria-current=page>06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>06. Row space and computations with subspaces</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=BJn7EqX2p0o">Recording 10</a>, <a href="https://www.youtube.com/watch?v=j_laym_mBaI">Recording 11</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Prove that row operations preserve the row space</li><li>Obtain a basis, coordinates and equations of a subspace from its echelon form</li><li>Describe every invertible matrix that reduces a given matrix</li><li>Solve membership, null space, solvability and intersection problems</li></ul>
+<p><strong>Prerequisites:</strong> Chapters 2 and 4: echelon forms, bases, dimension and coordinates.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch06.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-the-row-space-0025">1. The row space 00:25</a></li><li><a href="#2-matrix-multiplication-and-row-spaces-0432">2. Matrix multiplication and row spaces 04:32</a></li><li><a href="#3-the-nonzero-rows-of-the-echelon-form-2007">3. The nonzero rows of the echelon form 20:07</a></li><li><a href="#4-which-matrices-have-the-same-row-space">4. Which matrices have the same row space</a></li><li><a href="#5-a-worked-problem-the-invertible-matrix-mathplaceholder000164end-0000">5. A worked problem: the invertible matrix $P$ 00:00</a></li><li><a href="#6-a-basis-coordinates-and-a-general-element-1433">6. A basis, coordinates and a general element 14:33</a></li><li><a href="#7-the-solutions-of-mathplaceholder000277end-2045">7. The solutions of $AX=0$ 20:45</a></li><li><a href="#8-for-which-mathplaceholder000301end-is-mathplaceholder000302end-solvable-2701">8. For which $Y$ is $AX=Y$ solvable? 27:01</a></li><li><a href="#9-intersections-and-sums">9. Intersections and sums</a></li><li><a href="#10-executable-check">10. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Consider the rational $5\times5$ matrix</p>
+<p>$$
+A=\begin{pmatrix}1&amp;2&amp;0&amp;3&amp;0\\1&amp;2&amp;-1&amp;-1&amp;0\\0&amp;0&amp;1&amp;4&amp;0\\2&amp;4&amp;1&amp;10&amp;1\\0&amp;0&amp;0&amp;0&amp;1\end{pmatrix}.
+$$</p>
+<p>Its five rows span a subspace $W$ of $\mathbb{Q}^5$. Five questions arise at once. How large is $W$, and which vectors form a basis of it? Given a vector $\beta$, does it lie in $W$, and with which coefficients? Which equations cut out $W$? Which vectors $X$ satisfy $AX=0$? For which right-hand sides $Y$ does $AX=Y$ have a solution? One row reduction answers all of them. This chapter shows why, using $A$ as the running example.</p>
+<p>Throughout, $F$ is a field, $F^{m\times n}$ is the space of $m\times n$ matrices, and rows are regarded as vectors of $F^n$. From <a href="ch02.html">Chapter 2</a>: every $A$ is row-equivalent to exactly one <em>row-reduced echelon matrix</em> $R$ (its leading entries are $1$, each column containing a leading entry is otherwise zero, zero rows are last, and the columns $k_1\lt\cdots\lt k_r$ of the leading entries increase); and $R=PA$ for an invertible $P$. The columns $k_i$ are the <em>pivot columns</em>; the others are <em>free columns</em>. From <a href="ch04.html">Chapter 4</a>: <em>span</em>, <em>basis</em>, <em>dimension</em>, and <em>coordinates</em> relative to an ordered basis.</p>
+<h2 id="1-the-row-space-0025">1. The row space <a href="https://www.youtube.com/watch?v=BJn7EqX2p0o&amp;t=25s">00:25</a></h2>
+<p>Let $A\in F^{m\times n}$ and let $\alpha_1,\dots,\alpha_m\in F^n$ be its rows.</p>
+<p><strong>Definition 1.1.</strong> The <em>row space</em> of $A$ is the subspace $\operatorname{Row}(A)=\operatorname{span}(\alpha_1,\dots,\alpha_m)$ of $F^n$. Its dimension is the <em>row rank</em> of $A$.</p>
+<p>The rows span $\operatorname{Row}(A)$ by definition, but they need not be independent. For the running example, $A_1$ minus $A_2$ equals $A_3$, where $A_i$ denotes row $i$: $(0,0,1,4,0)$. So the five rows are dependent and the row rank is less than $5$.</p>
+<h2 id="2-matrix-multiplication-and-row-spaces-0432">2. Matrix multiplication and row spaces <a href="https://www.youtube.com/watch?v=BJn7EqX2p0o&amp;t=272s">04:32</a></h2>
+<p><strong>Theorem 2.1.</strong> Let $A\in F^{m\times n}$, $P\in F^{k\times m}$ and $B=PA$. Then $\operatorname{Row}(B)\subseteq\operatorname{Row}(A)$.</p>
+<p><strong>Proof.</strong> Row $i$ of $B$ has entry $j$ equal to $\sum_{s=1}^mP_{is}A_{sj}$. Hence row $i$ of $B$ is $\beta_i=\sum_{s=1}^mP_{is}\alpha_s$, a linear combination of the rows of $A$. So each $\beta_i$ lies in $\operatorname{Row}(A)$, and therefore their span does. $\square$</p>
+<p>The proof is a single observation: left multiplication forms combinations of rows. The entries of row $i$ of $P$ are the weights.</p>
+<p><strong>Corollary 2.2.</strong> If $P\in F^{m\times m}$ is invertible and $B=PA$, then $\operatorname{Row}(B)=\operatorname{Row}(A)$. In particular, row-equivalent matrices have the same row space.</p>
+<p><strong>Proof.</strong> Theorem 2.1 gives $\operatorname{Row}(B)\subseteq\operatorname{Row}(A)$. Since $A=P^{-1}B$, the same theorem gives the reverse inclusion. Row-equivalent matrices differ by left multiplication by a product of elementary matrices, which is invertible. $\square$</p>
+<p>Without invertibility the inclusion can be strict: with $A=I_2$, the $2\times2$ identity, and $P=(1\;0)$, the row space of $PA$ is a line while that of $A$ is the plane $F^2$. And column operations do not preserve row spaces: swapping the columns of $\begin{pmatrix}1&amp;0\\0&amp;0\end{pmatrix}$ moves its row space from the first coordinate axis to the second.</p>
+<h2 id="3-the-nonzero-rows-of-the-echelon-form-2007">3. The nonzero rows of the echelon form <a href="https://www.youtube.com/watch?v=BJn7EqX2p0o&amp;t=1207s">20:07</a></h2>
+<p>Because $\operatorname{Row}(A)=\operatorname{Row}(R)$ for the echelon form $R$ of $A$, it suffices to understand the row space of an echelon matrix.</p>
+<p><strong>Theorem 3.1.</strong> Let $R$ be a row-reduced echelon matrix with nonzero rows $\rho_1,\dots,\rho_r$ and pivot columns $k_1,\dots,k_r$. Then $(\rho_1,\dots,\rho_r)$ is an ordered basis of $\operatorname{Row}(R)$. If $\beta=(b_1,\dots,b_n)\in\operatorname{Row}(R)$, its coordinates in this basis are $c_i=b_{k_i}$:</p>
+<p>$$
+\beta=\sum_{i=1}^rb_{k_i}\rho_i .
+$$</p>
+<p><strong>Proof.</strong> The nonzero rows span $\operatorname{Row}(R)$, since the zero rows add nothing. Let $\beta=\sum_ic_i\rho_i$. Entry $k_j$ of $\rho_i$ is $R_{ik_j}$, which is $1$ if $i=j$ and $0$ otherwise. So entry $k_j$ of $\beta$ is</p>
+<p>$$
+b_{k_j}=\sum_{i=1}^rc_iR_{ik_j}=c_j .
+$$</p>
+<p>Hence the coefficients are determined by $\beta$. In particular $\beta=0$ forces all $c_j=0$, so $\rho_1,\dots,\rho_r$ are independent. $\square$</p>
+<p>The hinge is the identity block hidden in $R$: the pivot columns of $\rho_1,\dots,\rho_r$ form the $r\times r$ identity. Reading off coordinates then needs no equation to be solved.</p>
+<p><strong>A small example.</strong> Let $R$ have rows $(1,0,3,0,2)$, $(0,1,2,0,-1)$, $(0,0,0,1,0)$ and $(0,0,0,0,0)$. The pivot columns are $1,2,4$. A general vector of its row space is $c_1\rho_1+c_2\rho_2+c_3\rho_3=(c_1,\;c_2,\;3c_1+2c_2,\;c_3,\;2c_1-c_2)$, and $c_1,c_2,c_3$ are entries $1,2,4$. For $(c_1,c_2,c_3)=(2,-1,5)$ this is $(2,-1,4,5,5)$.</p>
+<p><strong>Corollary 3.2.</strong> The row rank of $A$ equals the number $r$ of nonzero rows of its echelon form.</p>
+<p><strong>Corollary 3.3.</strong> Let $\beta\in F^n$. Then $\beta\in\operatorname{Row}(R)$ if and only if $\beta=\sum_ib_{k_i}\rho_i$. Equivalently, for every free column $j$,</p>
+<p>$$
+b_j=\sum_{i=1}^rb_{k_i}R_{ij}.\tag{3.1}
+$$</p>
+<p><strong>Proof.</strong> If $\beta\in\operatorname{Row}(R)$, Theorem 3.1 gives the formula; the converse holds because the right side is a combination of rows. Comparing entries, the pivot entries agree automatically, and the free entries give (3.1). $\square$</p>
+<p>Equations (3.1) are $n-r$ linear equations that cut out $\operatorname{Row}(R)$. So a subspace can be described in two ways: <em>parametrically</em>, by a spanning list, or <em>implicitly</em>, by equations. Row reduction converts the first description into the second.</p>
+<h2 id="4-which-matrices-have-the-same-row-space">4. Which matrices have the same row space</h2>
+<p><strong>Theorem 4.1.</strong> Let $A,B\in F^{m\times n}$. The following are equivalent: (a) $A$ and $B$ are row-equivalent; (b) $\operatorname{Row}(A)=\operatorname{Row}(B)$; (c) $A$ and $B$ have the same echelon form.</p>
+<p><strong>Proof.</strong> (a) implies (b) by Corollary 2.2. For (b) implies (c): let $R,R'$ be the echelon forms of $A,B$. They have the same row space $W$ and the same size. We show that $R$ is determined by $W$. For a nonzero $\beta\in\operatorname{Row}(R)$, written as $\sum_ic_i\rho_i$, let $s$ be the first index with $c_s\neq0$. Every $\rho_i$ with $i\ge s$ is zero before column $k_s$, because $k_i\ge k_s$, and entry $k_s$ of $\beta$ is $c_s\neq0$. So the first nonzero entry of $\beta$ is in column $k_s$. Hence the set of positions of first nonzero entries of vectors in $W$ is exactly $\{k_1,\dots,k_r\}$. It follows that $R$ and $R'$ have the same pivot columns and the same $r$. By Theorem 3.1, $\rho_s$ is the unique vector of $W$ with $b_{k_s}=1$ and $b_{k_i}=0$ for $i\neq s$. So $\rho_s=\rho_s'$, and $R=R'$. (c) implies (a): both are row-equivalent to the same matrix. $\square$</p>
+<p>So a subspace of $F^n$ of dimension at most $m$ has one canonical $m\times n$ echelon matrix whose rows span it. To decide whether two spanning lists of $m$ vectors give the same subspace, compare their echelon forms. For instance, the matrices with rows $(1,1,0),(0,1,1)$ and with rows $(1,0,-1),(1,2,1)$ both have the echelon form with rows $(1,0,-1),(0,1,1)$.</p>
+<h2 id="5-a-worked-problem-the-invertible-matrix-mathplaceholder000164end-0000">5. A worked problem: the invertible matrix $P$ <a href="https://www.youtube.com/watch?v=j_laym_mBaI&amp;t=0s">00:00</a></h2>
+<p>We now work the running example. To find $P$ with $PA=R$, reduce the augmented matrix $[A\mid Y]$ with a symbolic column $Y=(y_1,\dots,y_5)$: each entry of the last column records which combination of rows has been formed. Apply $R_2\leftarrow R_2-R_1$ and $R_4\leftarrow R_4-2R_1$, where $R_i$ is the current row $i$. Row 2 becomes $(0,0,-1,-4,0)$ and row 4 becomes $(0,0,1,4,1)$. Then $R_2\leftarrow -R_2$ gives $(0,0,1,4,0)$; $R_3\leftarrow R_3-R_2$ gives zero; and $R_4\leftarrow R_4-R_2$ gives $(0,0,0,0,1)$. Exchange rows 3 and 5, so row 3 is $(0,0,0,0,1)$. Finally $R_4\leftarrow R_4-R_3$ gives zero. The result is</p>
+<p>$$
+R=\begin{pmatrix}1&amp;2&amp;0&amp;3&amp;0\\0&amp;0&amp;1&amp;4&amp;0\\0&amp;0&amp;0&amp;0&amp;1\\0&amp;0&amp;0&amp;0&amp;0\\0&amp;0&amp;0&amp;0&amp;0\end{pmatrix}.
+$$</p>
+<p>The last column of the augmented matrix now holds $Z=PY$, with</p>
+<p>$$
+Z=\begin{pmatrix}y_1\\y_1-y_2\\y_5\\-3y_1+y_2+y_4-y_5\\-y_1+y_2+y_3\end{pmatrix},\qquad P=\begin{pmatrix}1&amp;0&amp;0&amp;0&amp;0\\1&amp;-1&amp;0&amp;0&amp;0\\0&amp;0&amp;0&amp;0&amp;1\\-3&amp;1&amp;0&amp;1&amp;-1\\-1&amp;1&amp;1&amp;0&amp;0\end{pmatrix}.
+$$</p>
+<p><strong>Is $P$ unique?</strong> No. The rows 4 and 5 of $R$ are zero, so exchanging rows 4 and 5 of $P$, or adding a multiple of row 4 or 5 to any other row, leaves $PA=R$. The following theorem describes all choices.</p>
+<p><strong>Theorem 5.1.</strong> Let $R=PA$ be the echelon form, with $r$ nonzero rows and $P$ invertible. The invertible matrices $P'$ with $P'A=R$ are exactly $P'=QP$ with</p>
+<p>$$
+Q=\begin{pmatrix}I_r&amp;X\\0&amp;Y\end{pmatrix},\qquad X\in F^{r\times(m-r)},\quad Y\in F^{(m-r)\times(m-r)}\ \text{invertible}.
+$$</p>
+<p>Here $I_r$ is the $r\times r$ identity. Consequently $P$ is unique if $r=m$, that is, if the rows of $A$ are linearly independent. If $r\lt m$, then $P$ is not unique, with one exception: $A=0$, $m=1$ and $F=\mathbb{F}_2$.</p>
+<p><strong>Proof.</strong> An invertible $P'$ with $P'A=R$ equals $QP$ with $Q=P'P^{-1}$ invertible, and $QR=QPA=P'A=R$. Conversely $QR=R$ gives $(QP)A=R$. So we determine the invertible $Q$ with $QR=R$. Write $Q$ in blocks $\begin{pmatrix}Q_{11}&amp;Q_{12}\\Q_{21}&amp;Q_{22}\end{pmatrix}$ with $Q_{11}$ of size $r\times r$, and $R=\begin{pmatrix}R_1\\0\end{pmatrix}$, where $R_1$ holds the nonzero rows. Then $QR=R$ says $Q_{11}R_1=R_1$ and $Q_{21}R_1=0$. Each equation expresses rows of the right side as combinations of rows of $R_1$. Since those rows are independent, the coefficients are unique: $Q_{11}=I_r$ and $Q_{21}=0$. Then $Q$ is block upper triangular with blocks $I_r$ and $Y=Q_{22}$. It is invertible if and only if $Y$ is: if $Y$ is invertible, an inverse is $\begin{pmatrix}I_r&amp;-XY^{-1}\\0&amp;Y^{-1}\end{pmatrix}$; if $YZ=0$ for some $Z\neq0$, then the column $(-XZ,Z)$ is nonzero and $Q$ sends it to zero, so $Q$ is not invertible. When $r=m$ the only $Q$ is $I$. When $1\le r\lt m$, taking $Y=I$ and $X\neq0$ gives a $Q\neq I$. When $r=0\lt m$, $Q=Y$ is any invertible $m\times m$ matrix. There is more than one such matrix if $m\ge2$ (the identity and a row interchange) or if $F$ has a nonzero element other than $1$. The only remaining case is $m=1$ and $F=\mathbb{F}_2$. $\square$</p>
+<p>Over a finite field with $q$ elements, the number of choices of $P$ is $q^{r(m-r)}$ times the number of invertible $(m-r)\times(m-r)$ matrices.</p>
+<h2 id="6-a-basis-coordinates-and-a-general-element-1433">6. A basis, coordinates and a general element <a href="https://www.youtube.com/watch?v=j_laym_mBaI&amp;t=873s">14:33</a></h2>
+<p>By Theorem 3.1, the nonzero rows</p>
+<p>$$
+\rho_1=(1,2,0,3,0),\quad\rho_2=(0,0,1,4,0),\quad\rho_3=(0,0,0,0,1)
+$$</p>
+<p>form an ordered basis $\mathcal{B}$ of $W=\operatorname{Row}(A)$. So $\dim W=3$. The pivot columns are $1,3,5$. Every element of $W$ is</p>
+<p>$$
+c_1\rho_1+c_2\rho_2+c_3\rho_3=(c_1,\;2c_1,\;c_2,\;3c_1+4c_2,\;c_3),
+$$</p>
+<p>and a vector $\beta=(b_1,\dots,b_5)\in W$ has coordinate matrix $[\beta]_{\mathcal{B}}=(b_1,b_3,b_5)^{\mathsf T}$, the column of its pivot entries. By Corollary 3.3, $\beta$ lies in $W$ if and only if</p>
+<p>$$
+b_2=2b_1,\qquad b_4=3b_1+4b_3 .
+$$</p>
+<p>For $\beta=(2,4,3,18,5)$ both hold ($4=2\cdot2$ and $18=6+12$), and $\beta=2\rho_1+3\rho_2+5\rho_3$. The vector $(1,0,0,0,0)$ is not in $W$, since $b_2=0\neq2$.</p>
+<h2 id="7-the-solutions-of-mathplaceholder000277end-2045">7. The solutions of $AX=0$ <a href="https://www.youtube.com/watch?v=j_laym_mBaI&amp;t=1245s">20:45</a></h2>
+<p>The systems $AX=0$ and $RX=0$ have the same solutions. The equations of $RX=0$ are $x_1+2x_2+3x_4=0$, $x_3+4x_4=0$ and $x_5=0$. With the free unknowns $x_2,x_4$,</p>
+<p>$$
+X=x_2\,v_1+x_4\,v_2,\qquad v_1=(-2,1,0,0,0),\quad v_2=(-3,0,-4,1,0).
+$$</p>
+<p>By <a href="ch02.html">Chapter 2</a> every solution has this form for unique $x_2,x_4$, so $(v_1,v_2)$ is a basis of the solution space, and its dimension is $2=5-3$. In general the solution space has dimension $n-r$: the basic solutions, one for each free column, are independent because each has a $1$ in its own free position and $0$ in the other free positions.</p>
+<p>The row space and the solution space of $A$ are linked: $AX=0$ says that $\alpha\cdot X=\sum_j\alpha_jx_j$ vanishes for each row $\alpha$, hence for each $\alpha\in W$. Over $\mathbb{Q}$, the numbers $\dim W=3$ and $2$ add to $5$.</p>
+<h2 id="8-for-which-mathplaceholder000301end-is-mathplaceholder000302end-solvable-2701">8. For which $Y$ is $AX=Y$ solvable? <a href="https://www.youtube.com/watch?v=j_laym_mBaI&amp;t=1621s">27:01</a></h2>
+<p>The system $AX=Y$ is equivalent to $RX=Z$ with $Z=PY$. Rows 4 and 5 of $R$ are zero, so a solution exists if and only if $z_4=z_5=0$:</p>
+<p>$$
+-3y_1+y_2+y_4-y_5=0,\qquad -y_1+y_2+y_3=0.
+$$</p>
+<p>The set of such $Y$ is the <em>column space</em> of $A$, the span of its columns, because $AX$ is a combination of the columns with weights $x_j$. It has dimension $5-2=3$, since the two equations are independent. The equality of this number with $\dim W$ is not a coincidence.</p>
+<p><strong>Theorem 8.1.</strong> For every $A\in F^{m\times n}$ the column space and the row space have the same dimension, namely $r$.</p>
+<p><strong>Proof.</strong> A relation $\sum_jc_ja_j=0$ among the columns $a_j$ of $A$ is a solution $X=(c_j)$ of $AX=0$, and the solutions of $AX=0$ are those of $RX=0$. So the columns of $A$ and the columns of $R$ satisfy the same linear relations. In $R$, the pivot columns are the unit columns $e_1,\dots,e_r$ of $F^m$, which are independent. Every other column of $R$ is a combination of them, because its entries after row $r$ vanish. By the equality of relations, the pivot columns $a_{k_1},\dots,a_{k_r}$ of $A$ are independent and the other columns of $A$ are combinations of them. So $\{a_{k_1},\dots,a_{k_r}\}$ is a basis of the column space of $A$, of size $r$. Corollary 3.2 gives the row rank $r$. $\square$</p>
+<p>The hinge is that row operations preserve column <em>relations</em>, although they change the column space itself. The common number is called the <em>rank</em> of $A$. For the running example the pivot columns of $A$, namely columns $1,3,5$, form a basis of the column space.</p>
+<h2 id="9-intersections-and-sums">9. Intersections and sums</h2>
+<p>The implicit description is the tool for intersections. Let $U=\operatorname{span}(e_1,e_2,e_5)$ in $\mathbb{Q}^5$, where $e_i$ are the unit vectors. A vector of $U$ is $(a,b,0,0,c)$. It lies in $W$ exactly when $b=2a$ and $0=3a+0$, so $a=b=0$. Hence $W\cap U=\operatorname{span}(e_5)$. For sums, the spanning lists are joined: $W+U$ is spanned by $\rho_1,\rho_2,\rho_3,e_1,e_2,e_5$, and the dimension formula of <a href="ch04.html">Chapter 4</a> gives $\dim(W+U)=3+3-1=5$. So $W+U=\mathbb{Q}^5$.</p>
+<p>To summarize the recipes, for a subspace given by $m$ spanning vectors in $F^n$:</p>
+<ol>
+<li>Put the vectors as rows and row reduce; the nonzero rows of $R$ form a basis.</li>
+<li>A vector $\beta$ lies in the subspace exactly when $\beta=\sum b_{k_i}\rho_i$, and then these $b_{k_i}$ are its coordinates.</li>
+<li>The equations (3.1) cut out the subspace.</li>
+<li>Intersections are solved by imposing both sets of equations; sums by joining spanning lists.</li>
+</ol>
+<h2 id="10-executable-check">10. Executable check</h2>
+<p><a href="labs/ch06.py">The chapter laboratory</a> computes with exact fractions. For the running example it confirms $PA=R$ for the matrix $P$ above and that $P$ has rank $5$, the pivot columns $(1,3,5)$, the coordinates $(2,3,5)$ of $\beta$, the null-space basis, the two solvability conditions, and the equality of row and column rank. It checks two other choices of $P$, counts the invertible $P$ over $\mathbb{F}_2$ for a $3\times3$ matrix of rank $2$ (there are $4=2^{2\cdot1}\cdot1$), checks the boundary examples of Section 2, the equality of echelon forms in Section 4, the intersection and sum of Section 9 and the small example of Section 3. These are instances; the proofs above give the general statements.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) Find a basis of the row space of the rational matrix with rows $(1,2,1)$, $(2,4,0)$, $(3,6,1)$, and equations that cut it out.</li>
+<li>(Membership.) For the running example, decide whether $(1,2,1,7,3)$ lies in $W$; if so, give its coordinates.</li>
+<li>(Same subspace.) Show that the lists $\{(1,1,1),(1,2,3)\}$ and $\{(0,1,2),(2,3,4)\}$ span the same subspace of $\mathbb{Q}^3$.</li>
+<li>(Field dependence.) Compute the rank of the matrix with rows $(1,1,0)$, $(1,0,1)$, $(0,1,1)$ over $\mathbb{Q}$ and over $\mathbb{F}_2$.</li>
+<li>(Proof.) Prove that $\operatorname{Row}(AB)\subseteq\operatorname{Row}(B)$ and that the column space of $AB$ lies in that of $A$. Deduce $\operatorname{rank}(AB)\le\min(\operatorname{rank}A,\operatorname{rank}B)$.</li>
+<li>(Application of uniqueness.) Over $\mathbb{F}_3$, how many invertible $P$ satisfy $PA=R$ if $A$ is a $3\times4$ matrix of rank $1$?</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>Apply $R_2\leftarrow R_2-2R_1$ and $R_3\leftarrow R_3-3R_1$: rows $(0,0,-2)$ and $(0,0,-2)$. Scale row 2 by $-\tfrac12$, subtract from row 1 and add twice it to row 3. The echelon form has rows $(1,2,0)$, $(0,0,1)$, $(0,0,0)$. So $\big((1,2,0),(0,0,1)\big)$ is a basis, of dimension $2$. The pivot columns are $1,3$ and the single free column is $2$, with $R_{12}=2$. Equation (3.1) reads $b_2=2b_1$. Indeed each of the three given rows satisfies it.</p>
+</li>
+<li>
+<p>The pivot entries are $b_1=1$, $b_3=1$, $b_5=3$. The conditions are $b_2=2b_1=2$, which holds, and $b_4=3b_1+4b_3=7$, which holds. So $\beta\in W$ and $[\beta]_{\mathcal{B}}=(1,1,3)^{\mathsf T}$. Check: $\rho_1+\rho_2+3\rho_3=(1,2,1,7,3)$.</p>
+</li>
+<li>
+<p>Row reduce the first list: $(1,1,1),(1,2,3)$ gives $(1,1,1),(0,1,2)$ and then $(1,0,-1),(0,1,2)$. For the second, start with $(2,3,4),(0,1,2)$; subtract three times the second from the first to get $(2,0,-2)$, scale to $(1,0,-1)$, and keep $(0,1,2)$. The echelon forms agree, so by Theorem 4.1 the subspaces are equal. A direct check: $(0,1,2)=(1,2,3)-(1,1,1)$ and $(2,3,4)=(1,2,3)+(1,1,1)$.</p>
+</li>
+<li>
+<p>Over $\mathbb{Q}$: $R_2-R_1=(0,-1,1)$. Then $R_3+R_2$ applied to $(0,1,1)$ gives $(0,0,2)$, which is nonzero. So there are three nonzero rows and rank $3$. Over $\mathbb{F}_2$, $2=0$, so $(0,0,2)=0$ and the rank is $2$: indeed the three rows add to zero.</p>
+</li>
+<li>
+<p>By Theorem 2.1 with $P=A$, $\operatorname{Row}(AB)\subseteq\operatorname{Row}(B)$. Each column of $AB$ is $A$ times a column of $B$, hence a combination of the columns of $A$, so the column space of $AB$ lies in that of $A$. By Theorem 8.1 the rank is the dimension of either space, and a subspace has dimension at most that of the space (<a href="ch04.html">Chapter 4</a>). So $\operatorname{rank}(AB)\le\operatorname{rank}B$ from the first inclusion and $\operatorname{rank}(AB)\le\operatorname{rank}A$ from the second.</p>
+</li>
+<li>
+<p>Here $m=3$ and $r=1$. By Theorem 5.1 the matrices $Q$ have $X\in\mathbb{F}_3^{1\times2}$, giving $3^2=9$ choices, and $Y\in\mathbb{F}_3^{2\times2}$ invertible. The number of invertible $2\times2$ matrices over $\mathbb{F}_3$ is $(3^2-1)(3^2-3)=48$ (<a href="ch05.html">Chapter 5</a>). So there are $9\cdot48=432$ choices of $P$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, Chapter 2 (computations concerning subspaces).</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., Springer, 2024, open access at https://linear.axler.net/, Chapter 3.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch06.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 6 laboratory: row space and computations with subspaces.
+
+Exact arithmetic over Q (fractions.Fraction), plus one brute-force
+count over the field F_2.  A matrix is a list of rows.  Rows and columns
+are numbered from 0 in code and from 1 in the chapter.
+&quot;&quot;&quot;
+from fractions import Fraction
+from itertools import product
+
+
+def Q(rows):
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def matmul(A, B):
+    return [[sum((A[i][k]*B[k][j] for k in range(len(B))), Fraction(0))
+             for j in range(len(B[0]))] for i in range(len(A))]
+
+
+def transpose(A):
+    return [list(col) for col in zip(*A)]
+
+
+def identity(m):
+    return [[Fraction(int(i == j)) for j in range(m)] for i in range(m)]
+
+
+def rref(A):
+    &quot;&quot;&quot;Return (R, P, pivots) with P*A = R, R row reduced echelon.
+
+    Row operations are applied to [A | I]; the right block ends as P.
+    pivots lists the leading-entry columns k_1 &lt; ... &lt; k_r.
+    &quot;&quot;&quot;
+    m, n = len(A), len(A[0])
+    M = [list(A[i]) + identity(m)[i] for i in range(m)]
+    row, pivots = 0, []
+    for col in range(n):
+        piv = next((i for i in range(row, m) if M[i][col] != 0), None)
+        if piv is None:
+            continue
+        M[row], M[piv] = M[piv], M[row]
+        c = M[row][col]
+        M[row] = [x/c for x in M[row]]
+        for i in range(m):
+            if i != row and M[i][col] != 0:
+                f = M[i][col]
+                M[i] = [x - f*y for x, y in zip(M[i], M[row])]
+        pivots.append(col)
+        row += 1
+        if row == m:
+            break
+    R = [r[:n] for r in M]
+    P = [r[n:] for r in M]
+    return R, P, pivots
+
+
+def is_rref(R):
+    last = -1
+    seen_zero = False
+    pivots = []
+    for row in R:
+        lead = next((k for k, x in enumerate(row) if x != 0), None)
+        if lead is None:
+            seen_zero = True
+            continue
+        if seen_zero or row[lead] != 1 or lead &lt;= last:
+            return False
+        last = lead
+        pivots.append(lead)
+    for k in pivots:
+        if sum(1 for row in R if row[k] != 0) != 1:
+            return False
+    return True
+
+
+def rank(A):
+    return len(rref(A)[2])
+
+
+def row_basis(A):
+    R, _, piv = rref(A)
+    return R[:len(piv)]
+
+
+def coordinates(beta, R, pivots):
+    &quot;&quot;&quot;Coordinates of beta in the basis of nonzero rows of an RREF R.&quot;&quot;&quot;
+    c = [beta[k] for k in pivots]
+    combo = [sum((c[i]*R[i][j] for i in range(len(c))), Fraction(0))
+             for j in range(len(beta))]
+    return c if combo == list(beta) else None
+
+
+def null_basis(A):
+    &quot;&quot;&quot;Basis of {x : Ax = 0}: one vector per free column.&quot;&quot;&quot;
+    R, _, piv = rref(A)
+    n = len(A[0])
+    basis = []
+    for f in (j for j in range(n) if j not in piv):
+        v = [Fraction(0)]*n
+        v[f] = Fraction(1)
+        for i, k in enumerate(piv):
+            v[k] = -R[i][f]
+        basis.append(v)
+    return basis
+
+
+def in_row_space(A, beta):
+    return rank(A + [list(beta)]) == rank(A)
+
+
+def same_row_space(A, B):
+    return row_basis(A) == row_basis(B)
+
+
+def mat_vec(A, x):
+    return [sum((a*b for a, b in zip(row, x)), Fraction(0)) for row in A]
+
+
+def fp_matmul(A, B, p=2):
+    return tuple(tuple(sum(A[i][k]*B[k][j] for k in range(len(B))) % p
+                       for j in range(len(B[0]))) for i in range(len(A)))
+
+
+def count_P_over_F2(A, R):
+    &quot;&quot;&quot;Count invertible P over F_2 with P*A = R by brute force.&quot;&quot;&quot;
+    m = len(A)
+    cnt = 0
+    for entries in product((0, 1), repeat=m*m):
+        P = [entries[i*m:(i+1)*m] for i in range(m)]
+        if fp_matmul(P, A) != tuple(tuple(r) for r in R):
+            continue
+        if invertible_f2(P):
+            cnt += 1
+    return cnt
+
+
+def invertible_f2(P):
+    m = len(P)
+    M = [list(r) + [int(i == j) for j in range(m)]
+         for i, r in enumerate(P)]
+    for col in range(m):
+        piv = next((i for i in range(col, m) if M[i][col]), None)
+        if piv is None:
+            return False
+        M[col], M[piv] = M[piv], M[col]
+        for i in range(m):
+            if i != col and M[i][col]:
+                M[i] = [(x + y) % 2 for x, y in zip(M[i], M[col])]
+    return True
+
+
+def main():
+    # ---- running example: the 5 x 5 matrix of Section 5 -------------
+    A = Q([[1, 2, 0, 3, 0],
+           [1, 2, -1, -1, 0],
+           [0, 0, 1, 4, 0],
+           [2, 4, 1, 10, 1],
+           [0, 0, 0, 0, 1]])
+    R, P, piv = rref(A)
+    assert is_rref(R) and matmul(P, A) == R
+    assert piv == [0, 2, 4]
+    assert R == Q([[1, 2, 0, 3, 0], [0, 0, 1, 4, 0], [0, 0, 0, 0, 1],
+                   [0]*5, [0]*5])
+    print(&#x27;pivot columns (1-based):&#x27;, [k + 1 for k in piv])
+    print(&#x27;P from this lab:&#x27;, [[str(x) for x in r] for r in P])
+
+    # the matrix P of Section 5 (one of many valid choices)
+    P5 = Q([[1, 0, 0, 0, 0],
+            [1, -1, 0, 0, 0],
+            [0, 0, 0, 0, 1],
+            [-3, 1, 0, 1, -1],
+            [-1, 1, 1, 0, 0]])
+    assert matmul(P5, A) == R
+    assert rank(P5) == 5
+    print(&#x27;P of Section 5 reproduces R; rank P =&#x27;, rank(P5))
+
+    # ---- row space, basis, coordinates -----------------------------
+    assert rank(A) == 3
+    basis = R[:3]
+    # beta = (b1, 2 b1, b3, 3 b1 + 4 b3, b5) with b1=2, b3=3, b5=5
+    beta = [Fraction(2), Fraction(4), Fraction(3), Fraction(18),
+            Fraction(5)]
+    assert in_row_space(A, beta)
+    c = coordinates(beta, R, piv)
+    assert c == [2, 3, 5]
+    print(&#x27;coordinates of&#x27;, [int(x) for x in beta], &#x27;are&#x27;,
+          [int(x) for x in c])
+    bad = [Fraction(x) for x in (1, 0, 0, 0, 0)]
+    assert not in_row_space(A, bad) and coordinates(bad, R, piv) is None
+    # every row of A lies in the row space of R and conversely
+    assert all(in_row_space(R[:3], row) for row in A)
+    assert all(in_row_space(A, row) for row in R[:3])
+
+    # ---- null space --------------------------------------------------
+    N = null_basis(A)
+    assert N == [Q([[-2, 1, 0, 0, 0]])[0], Q([[-3, 0, -4, 1, 0]])[0]]
+    assert all(mat_vec(A, v) == [0]*5 for v in N)
+    assert len(N) == 5 - rank(A)
+    print(&#x27;null space basis:&#x27;, [[int(x) for x in v] for v in N])
+
+    # ---- solvability conditions for Ax = y ---------------------------
+    z4, z5 = P5[3], P5[4]
+    print(&#x27;conditions: z4 =&#x27;, [int(x) for x in z4], &#x27; z5 =&#x27;,
+          [int(x) for x in z5])
+    # column space = {y : z4.y = 0 and z5.y = 0}
+    cols = transpose(A)
+    for col in cols:
+        assert sum(a*b for a, b in zip(z4, col)) == 0
+        assert sum(a*b for a, b in zip(z5, col)) == 0
+    y_good = mat_vec(A, [Fraction(x) for x in (1, 1, 1, 1, 1)])
+    assert sum(a*b for a, b in zip(z4, y_good)) == 0
+    y_bad = [Fraction(x) for x in (1, 0, 0, 0, 0)]
+    assert sum(a*b for a, b in zip(z5, y_bad)) != 0
+    # row rank = column rank, and the left null space has dimension 2
+    assert rank(transpose(A)) == rank(A) == 3
+    assert len(null_basis(transpose(A))) == 5 - 3
+    for z in null_basis(transpose(A)):
+        assert all(x == 0 for x in
+                   [sum(a*b for a, b in zip(z, col)) for col in cols])
+    print(&#x27;row rank = column rank =&#x27;, rank(A))
+
+    # ---- P is not unique: P&#x27; = Q P with Q R = R ---------------------
+    Qm = identity(5)
+    Qm[0][4] = Fraction(7)      # add 7 * (zero row 5 of R) to row 1
+    assert matmul(Qm, R) == R and Qm != identity(5)
+    P2 = matmul(Qm, P5)
+    assert matmul(P2, A) == R and P2 != P5 and rank(P2) == 5
+    # swapping the last two rows of P5 also works
+    P3 = [r[:] for r in P5]
+    P3[3], P3[4] = P3[4], P3[3]
+    assert matmul(P3, A) == R
+
+    # ---- P is unique when the rows of A are independent -------------
+    C = Q([[1, 0, 2, 1], [0, 1, 1, 3], [1, 1, 0, 5]])
+    assert rank(C) == 3
+    assert len(null_basis(transpose(C))) == 0   # unique P
+
+    # ---- count of P over F_2: |F|^(r(m-r)) |GL_{m-r}| = 4 -----------
+    A2 = [[1, 0, 1], [0, 1, 1], [1, 1, 0]]    # rank 2 over F_2
+    R2 = [[1, 0, 1], [0, 1, 1], [0, 0, 0]]
+    assert fp_matmul(A2, [[1, 0, 0], [0, 1, 0], [0, 0, 1]]) == \
+        tuple(tuple(r) for r in A2)
+    n2 = count_P_over_F2([[x for x in r] for r in A2], R2)
+    assert n2 == 2**(2*1) * 1
+    print(&#x27;invertible P over F_2 with PA = R:&#x27;, n2)
+
+    # ---- boundary: non-invertible P gives strict inclusion ----------
+    I2 = Q([[1, 0], [0, 1]])
+    P1 = Q([[1, 0]])
+    Bm = matmul(P1, I2)
+    assert in_row_space(I2, Bm[0]) and rank(Bm) == 1 &lt; rank(I2)
+    # boundary: column operations change the row space
+    E = Q([[1, 0], [0, 0]])
+    Ecol = Q([[0, 1], [1, 0]])
+    EQ = matmul(E, Ecol)
+    assert rank(EQ) == rank(E) and not same_row_space(E, EQ)
+
+    # ---- same row space &lt;=&gt; same RREF &lt;=&gt; row equivalent -------------
+    A3 = Q([[1, 1, 0], [0, 1, 1]])
+    B3 = Q([[1, 0, -1], [1, 2, 1]])
+    assert same_row_space(A3, B3)
+    assert rref(A3)[0] == rref(B3)[0]
+    # RREF with the same row space is unique (pivot set = K(W))
+    print(&#x27;RREF of A3 =&#x27;, [[str(x) for x in r] for r in rref(A3)[0]])
+
+    # ---- implicit versus parametric description; intersection -------
+    # W = row space of A:  b2 = 2 b1, b4 = 3 b1 + 4 b3
+    eqs = Q([[2, -1, 0, 0, 0], [3, 0, 4, -1, 0]])
+    for row in A:
+        assert mat_vec(eqs, row) == [0, 0]
+    assert len(null_basis(eqs)) == 3
+    assert same_row_space(A, Q([list(v) for v in null_basis(eqs)]))
+    # U = span{(1,0,0,0,0),(0,1,0,0,0),(0,0,0,0,1)}  (original)
+    U = Q([[1, 0, 0, 0, 0], [0, 1, 0, 0, 0], [0, 0, 0, 0, 1]])
+    # W cap U: vectors c.U with eqs satisfied
+    M = matmul(eqs, transpose(U))          # 2 x 3
+    sol = null_basis(M)
+    inter = [[sum((ci*u for ci, u in zip(cvec, col)), Fraction(0))
+              for col in zip(*U)] for cvec in sol]
+    assert len(inter) == 1
+    assert inter[0] == Q([[0, 0, 0, 0, 1]])[0]
+    dimsum = rank(A + U)
+    assert dimsum == 3 + 3 - len(inter)
+    print(&#x27;dim(W) + dim(U) - dim(W cap U) =&#x27;, 3, &#x27;+&#x27;, 3, &#x27;-&#x27;, len(inter),
+          &#x27;=&#x27;, dimsum)
+
+    # ---- example of Section 3 (5 columns, 3 pivots) ------------
+    R9 = Q([[1, 0, 3, 0, 2], [0, 1, 2, 0, -1], [0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0]])
+    assert is_rref(R9)
+    c1, c2, c3 = Fraction(2), Fraction(-1), Fraction(5)
+    vec = [c1*R9[0][j] + c2*R9[1][j] + c3*R9[2][j] for j in range(5)]
+    assert coordinates(vec, R9, [0, 1, 3]) == [c1, c2, c3]
+    print(&#x27;R9 combination:&#x27;, [int(x) for x in vec])
+    print(&#x27;all assertions passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch05.html">Previous: Coordinates and change of ordered basis</a><a rel="next" href="ch07.html">Next: Linear transformations, null space, range, and the rank-nullity theorem</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

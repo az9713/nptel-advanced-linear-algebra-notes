@@ -1,0 +1,385 @@
+{
+  "title": "Advanced Linear Algebra",
+  "subtitle": "Spaces, operators, and their canonical decompositions",
+  "course": "NPTEL 111107164",
+  "instructor": "Prof. Premananda Bera",
+  "institution": "IIT Roorkee",
+  "playlist": "https://www.youtube.com/playlist?list=PLLy_2iUCG87ChONRU6EeO6A2rIzM3HUvG",
+  "official_course": "https://nptel.ac.in/courses/111107164",
+  "repository": "nptel-advanced-linear-algebra-notes",
+  "expected_chapters": 26,
+  "expected_positions": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61
+  ],
+  "introduction_position": 1,
+  "minimum_reviewers": 1,
+  "audience": "Mathematics/physics master's student or engineering senior who has met matrix computation and wants proof-level command of abstract linear algebra.",
+  "authorization": "User explicitly authorized autonomous completion with the documented NPTEL/Stanford workflow and a commit and push to a new repository; no additional human gates.",
+  "delivery": "Offline static dark-mode HTML, editable Markdown, one executable lab and six fully solved exercises per chapter, source map, one current independent review per chapter, reproducible public build, checked GitHub Pages publication.",
+  "coverage_boundary": "Captions read sequentially; board matrices are not in captions, so worked numerical examples are labeled original constructions. No comprehensive audiovisual audit is claimed.",
+  "chapter_plan": {
+    "ch01": {
+      "title": "Linear systems as one matrix equation, and the operations that preserve its solutions",
+      "lectures": [
+        2,
+        3
+      ]
+    },
+    "ch02": {
+      "title": "Row-reduced echelon form: one canonical answer to every linear system",
+      "lectures": [
+        4
+      ]
+    },
+    "ch03": {
+      "title": "Vector spaces and subspaces: the axioms that make linear combinations work",
+      "lectures": [
+        5,
+        6
+      ]
+    },
+    "ch04": {
+      "title": "Linear independence, basis, and the invariance of dimension",
+      "lectures": [
+        7,
+        8
+      ]
+    },
+    "ch05": {
+      "title": "Coordinates and change of ordered basis",
+      "lectures": [
+        9
+      ]
+    },
+    "ch06": {
+      "title": "Row space and computations with subspaces",
+      "lectures": [
+        10,
+        11
+      ]
+    },
+    "ch07": {
+      "title": "Linear transformations, null space, range, and the rank-nullity theorem",
+      "lectures": [
+        12,
+        13
+      ]
+    },
+    "ch08": {
+      "title": "The algebra of linear transformations: sums, composition, invertibility, and isomorphism",
+      "lectures": [
+        14,
+        15,
+        16
+      ]
+    },
+    "ch09": {
+      "title": "Matrix representation of linear transformations and similarity",
+      "lectures": [
+        17,
+        18
+      ]
+    },
+    "ch10": {
+      "title": "Linear functionals, dual spaces, and dual bases",
+      "lectures": [
+        19,
+        20,
+        21
+      ]
+    },
+    "ch11": {
+      "title": "Annihilators, the double dual, and the transpose of a linear map",
+      "lectures": [
+        22,
+        23
+      ]
+    },
+    "ch12": {
+      "title": "Eigenvalues, eigenvectors, and the characteristic polynomial",
+      "lectures": [
+        24,
+        25
+      ]
+    },
+    "ch13": {
+      "title": "Diagonalizable operators and annihilating polynomials",
+      "lectures": [
+        26,
+        27
+      ]
+    },
+    "ch14": {
+      "title": "The Cayley-Hamilton theorem and the minimal polynomial in computation",
+      "lectures": [
+        28,
+        29
+      ]
+    },
+    "ch15": {
+      "title": "Invariant subspaces, conductors, and triangulability",
+      "lectures": [
+        30,
+        31
+      ]
+    },
+    "ch16": {
+      "title": "Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation",
+      "lectures": [
+        32,
+        33
+      ]
+    },
+    "ch17": {
+      "title": "Direct-sum decompositions and projections",
+      "lectures": [
+        34,
+        35
+      ]
+    },
+    "ch18": {
+      "title": "Invariant direct sums and block-diagonal operators",
+      "lectures": [
+        36,
+        37
+      ]
+    },
+    "ch19": {
+      "title": "The primary decomposition theorem",
+      "lectures": [
+        38,
+        39
+      ]
+    },
+    "ch20": {
+      "title": "Applications of primary decomposition: diagonalizable plus nilpotent parts",
+      "lectures": [
+        40,
+        41,
+        42
+      ]
+    },
+    "ch21": {
+      "title": "Inner products, norms, and the Cauchy-Schwarz inequality",
+      "lectures": [
+        43,
+        44,
+        61,
+        45
+      ]
+    },
+    "ch22": {
+      "title": "Orthogonal projection, Gram-Schmidt, and best approximation",
+      "lectures": [
+        47,
+        46
+      ]
+    },
+    "ch23": {
+      "title": "Linear functionals and adjoint operators on inner product spaces",
+      "lectures": [
+        48,
+        49,
+        50,
+        51
+      ]
+    },
+    "ch24": {
+      "title": "Inner-product-space isomorphisms and unitary operators",
+      "lectures": [
+        52,
+        53,
+        55,
+        54
+      ]
+    },
+    "ch25": {
+      "title": "Normal operators and spectral resolution",
+      "lectures": [
+        56,
+        57,
+        58
+      ]
+    },
+    "ch26": {
+      "title": "Singular value decomposition and forms on inner product spaces",
+      "lectures": [
+        59,
+        60
+      ]
+    }
+  },
+  "chapter_authors": {
+    "ch01": "author_a",
+    "ch02": "author_a",
+    "ch03": "author_a",
+    "ch04": "author_a",
+    "ch05": "author_a",
+    "ch06": "author_a",
+    "ch07": "author_a",
+    "ch08": "author_a",
+    "ch09": "author_a",
+    "ch10": "author_a",
+    "ch11": "author_a",
+    "ch12": "author_a",
+    "ch13": "author_a",
+    "ch14": "author_a",
+    "ch15": "author_b",
+    "ch16": "author_b",
+    "ch17": "author_b",
+    "ch18": "author_b",
+    "ch19": "author_b",
+    "ch20": "author_b",
+    "ch21": "author_b",
+    "ch22": "author_b",
+    "ch23": "author_b",
+    "ch24": "author_b",
+    "ch25": "author_b",
+    "ch26": "author_b"
+  },
+  "reviewers": {
+    "ch01": [
+      "author_b"
+    ],
+    "ch02": [
+      "author_b"
+    ],
+    "ch03": [
+      "author_b"
+    ],
+    "ch04": [
+      "author_b"
+    ],
+    "ch05": [
+      "author_b"
+    ],
+    "ch06": [
+      "author_b"
+    ],
+    "ch07": [
+      "author_b"
+    ],
+    "ch08": [
+      "author_b"
+    ],
+    "ch09": [
+      "author_b"
+    ],
+    "ch10": [
+      "author_b"
+    ],
+    "ch11": [
+      "author_b"
+    ],
+    "ch12": [
+      "author_b"
+    ],
+    "ch13": [
+      "author_b"
+    ],
+    "ch14": [
+      "author_b"
+    ],
+    "ch15": [
+      "author_a"
+    ],
+    "ch16": [
+      "author_a"
+    ],
+    "ch17": [
+      "author_a"
+    ],
+    "ch18": [
+      "author_a"
+    ],
+    "ch19": [
+      "author_a"
+    ],
+    "ch20": [
+      "author_a"
+    ],
+    "ch21": [
+      "author_a"
+    ],
+    "ch22": [
+      "author_a"
+    ],
+    "ch23": [
+      "author_a"
+    ],
+    "ch24": [
+      "author_a"
+    ],
+    "ch25": [
+      "author_a"
+    ],
+    "ch26": [
+      "author_a"
+    ]
+  },
+  "reviewer_canonical_id": {
+    "author_a": "author_a",
+    "author_b": "author_b"
+  },
+  "status": "in production",
+  "review_policy_note": "The user limited the run to two agents. Each chapter has one independent AI review by the agent that did not author it, not the two of earlier editions."
+}

@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Linear functionals and adjoint operators on inner product spaces · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html" aria-current=page>23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>23. Linear functionals and adjoint operators on inner product spaces</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=DBoDKvOMl3o">Recording 48</a>, <a href="https://www.youtube.com/watch?v=lN_tuUFxovo">Recording 49</a>, <a href="https://www.youtube.com/watch?v=OR00X0UhdmE">Recording 50</a>, <a href="https://www.youtube.com/watch?v=ycvgCq8Dx0Q">Recording 51</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Represent linear functionals by vectors and find the vector</li><li>Construct the adjoint and compute its matrix in any basis</li><li>Prove the algebraic rules of adjoints and decompose operators</li><li>Recognize the failure of both existence theorems in infinite dimension</li></ul>
+<p><strong>Prerequisites:</strong> Inner products and orthonormal bases (Chapters 21 and 22); dual spaces and transposes (Chapter 11).</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch23.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-representing-linear-functionals-0239">1. Representing linear functionals 02:39</a></li><li><a href="#2-the-geometry-of-the-representing-vector-1820">2. The geometry of the representing vector 18:20</a></li><li><a href="#3-the-running-example-evaluation-at-a-point-0025">3. The running example: evaluation at a point 00:25</a></li><li><a href="#4-no-representing-vector-in-infinite-dimension-0025">4. No representing vector in infinite dimension 00:25</a></li><li><a href="#5-existence-of-the-adjoint-0942">5. Existence of the adjoint 09:42</a></li><li><a href="#6-matrices-of-the-adjoint-1923">6. Matrices of the adjoint 19:23</a></li><li><a href="#7-examples">7. Examples</a></li><li><a href="#8-infinite-dimension-an-adjoint-may-or-may-not-exist-1405">8. Infinite dimension: an adjoint may or may not exist 14:05</a></li><li><a href="#9-algebra-of-adjoints-2610">9. Algebra of adjoints 26:10</a></li><li><a href="#10-self-adjoint-operators-and-the-cartesian-decomposition-3030">10. Self-adjoint operators and the Cartesian decomposition 30:30</a></li><li><a href="#11-executable-check">11. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Let $P_2$ be the real polynomials of degree at most $2$ with $\langle f,g\rangle=\int_0^1fg$. Reading the value $f(0)$ is a linear operation. Can it also be done by integrating $f$ against one fixed polynomial $g$? It can: for every $f\in P_2$,</p>
+<p>$$f(0)=\int_0^1f(x)\,(30x^2-36x+9)\,dx .$$</p>
+<p>The same question for the derivative operator $D$ asks for an operator $D^*$ with $\langle Df,g\rangle=\langle f,D^*g\rangle$. This chapter proves that on a finite-dimensional inner product space every linear functional is an inner product with a fixed vector, deduces that every operator has such a partner, and shows that both statements can fail in infinite dimension. The space $P_2$ is the running example.</p>
+<p><strong>Conventions.</strong> $V$ is an inner product space over $F=\mathbb{R}$ or $\mathbb{C}$, with $\langle\cdot,\cdot\rangle$ linear in the first argument and conjugate-linear in the second (<a href="ch21.html">Chapter 21</a>). A <em>linear functional</em> is a linear map $f:V\to F$; an <em>operator</em> is a linear map $T:V\to V$. An <em>orthonormal basis</em> is a basis of pairwise orthogonal vectors of norm $1$; every finite-dimensional inner product space has one. $S^{\perp}$ is the set of vectors orthogonal to all of $S$, and $A^*=\overline{A}^{\mathsf T}$ is the conjugate transpose of a matrix.</p>
+<h2 id="1-representing-linear-functionals-0239">1. Representing linear functionals <a href="https://www.youtube.com/watch?v=DBoDKvOMl3o&amp;t=159s">02:39</a></h2>
+<p>For fixed $\beta\in V$, the rule $f_\beta(\alpha)=\langle\alpha,\beta\rangle$ is a linear functional, by linearity in the first argument.</p>
+<p><strong>Theorem 1.1</strong> (representation theorem). Let $V$ be finite-dimensional and $f$ a linear functional on $V$. There is exactly one $\beta\in V$ with $f(\alpha)=\langle\alpha,\beta\rangle$ for all $\alpha$. For every orthonormal basis $(e_1,\dots,e_n)$,</p>
+<p>$$\beta=\sum_{j=1}^n\overline{f(e_j)}\,e_j .$$</p>
+<p><em>Proof.</em> Define $\beta$ by the formula. Then $\langle e_k,\beta\rangle=\sum_jf(e_j)\langle e_k,e_j\rangle=f(e_k)$. So $f_\beta$ and $f$ agree on a basis, hence everywhere. If $\gamma$ also represents $f$, then $\langle\alpha,\beta-\gamma\rangle=0$ for all $\alpha$; taking $\alpha=\beta-\gamma$ gives $\beta=\gamma$. $\square$</p>
+<p><strong>Where the formula comes from</strong> <a href="https://www.youtube.com/watch?v=DBoDKvOMl3o&amp;t=548s">09:08</a>. If some $\beta=\sum y_je_j$ works, then $f(e_k)=\langle e_k,\beta\rangle=\overline{y_k}$. So $y_k=\overline{f(e_k)}$ is forced. The conjugate appears because $\beta$ sits in the conjugate-linear slot. For the same reason the assignment $\beta\mapsto f_\beta$ is a bijection from $V$ onto the dual space $V^*$ (the space of linear functionals) that is <em>conjugate-linear</em>: $f_{c\beta+\gamma}=\bar c\,f_\beta+f_\gamma$.</p>
+<h2 id="2-the-geometry-of-the-representing-vector-1820">2. The geometry of the representing vector <a href="https://www.youtube.com/watch?v=DBoDKvOMl3o&amp;t=1100s">18:20</a></h2>
+<p>Let $V$ be finite-dimensional, let $f\ne0$ and put $N=\ker f$. Then $V=N\oplus N^{\perp}$ (<a href="ch22.html">Chapter 22</a>), and $\dim N^{\perp}=\dim V-\dim N=1$. Take any nonzero $\gamma\in N^{\perp}$. The orthogonal projection of $\alpha$ on $N^{\perp}$ is $P\alpha=\frac{\langle\alpha,\gamma\rangle}{\|\gamma\|^2}\gamma$, and $\alpha-P\alpha\in N$. Hence</p>
+<p>$$f(\alpha)=f(P\alpha)=\frac{\langle\alpha,\gamma\rangle}{\|\gamma\|^2}f(\gamma)=\Big\langle\alpha,\ \frac{\overline{f(\gamma)}}{\|\gamma\|^2}\,\gamma\Big\rangle .$$</p>
+<p>So $\beta=\overline{f(\gamma)}\,\gamma/\|\gamma\|^2$. The representing vector is perpendicular to the kernel; its direction is fixed by the kernel and its length and phase by the values of $f$.</p>
+<h2 id="3-the-running-example-evaluation-at-a-point-0025">3. The running example: evaluation at a point <a href="https://www.youtube.com/watch?v=OR00X0UhdmE&amp;t=25s">00:25</a></h2>
+<p>Gram–Schmidt on $(1,x,x^2)$ <a href="https://www.youtube.com/watch?v=OR00X0UhdmE&amp;t=375s">06:15</a> gives $1,\ x-\tfrac12,\ x^2-x+\tfrac16$ with squared norms $1,\tfrac1{12},\tfrac1{180}$. So an orthonormal basis is</p>
+<p>$$e_1=1,\qquad e_2=\sqrt{12}\,\big(x-\tfrac12\big),\qquad e_3=\sqrt{180}\,\big(x^2-x+\tfrac16\big).$$</p>
+<p>For $\varphi(f)=f(t_0)$ Theorem 1.1 gives $g=\sum_je_j(t_0)\,e_j$, that is,</p>
+<p>$$g(x)=1+12\,(t_0-\tfrac12)(x-\tfrac12)+180\,(t_0^2-t_0+\tfrac16)(x^2-x+\tfrac16).$$</p>
+<p>At $t_0=0$ this is $g(x)=9-36x+30x^2$, the polynomial of the opening. As a check, $\int_0^1g=1$, $\int_0^1xg=0$ and $\int_0^1x^2g=0$, which are the values of $1,x,x^2$ at $0$.</p>
+<h2 id="4-no-representing-vector-in-infinite-dimension-0025">4. No representing vector in infinite dimension <a href="https://www.youtube.com/watch?v=lN_tuUFxovo&amp;t=25s">00:25</a></h2>
+<p>Let $V=\mathbb{C}[x]$, all complex polynomials, with $\langle f,g\rangle=\int_0^1f\bar g$. Fix $z\in\mathbb{C}$ and let $L(f)=f(z)$, a nonzero linear functional.</p>
+<p><strong>Proposition 4.1.</strong> No $g\in V$ satisfies $L(f)=\langle f,g\rangle$ for all $f$.</p>
+<p><em>Proof.</em> Suppose $g$ does. Let $h=x-z$ and let $\bar h=x-\bar z$, the polynomial with conjugated coefficients. Apply $L$ to $f=h\,\bar h\,g$, which vanishes at $z$:</p>
+<p>$$0=\langle h\bar hg,\,g\rangle=\int_0^1|h(x)|^2\,|g(x)|^2\,dx .$$</p>
+<p>The integrand is continuous and nonnegative, so it vanishes on $[0,1]$. Since $h$ has at most one zero there, $g$ vanishes at infinitely many points and is the zero polynomial. Then $L=0$, a contradiction. $\square$</p>
+<p>The theorem fails here although every individual space $P_n$ has a representing polynomial $g_n$: the $g_n$ do not stabilize at any single polynomial.</p>
+<h2 id="5-existence-of-the-adjoint-0942">5. Existence of the adjoint <a href="https://www.youtube.com/watch?v=lN_tuUFxovo&amp;t=582s">09:42</a></h2>
+<p><strong>Definition 5.1</strong> <a href="https://www.youtube.com/watch?v=ycvgCq8Dx0Q&amp;t=25s">00:25</a>. An operator $T$ on $V$ <em>has an adjoint</em> if there is an operator $T^*$ on $V$ with</p>
+<p>$$\langle T\alpha,\beta\rangle=\langle\alpha,T^*\beta\rangle\qquad\text{for all }\alpha,\beta\in V.$$</p>
+<p>There is at most one such operator, in any dimension: if $\langle\alpha,U\beta\rangle=\langle\alpha,U'\beta\rangle$ for all $\alpha$, then $U\beta=U'\beta$.</p>
+<p><strong>Theorem 5.2.</strong> On a finite-dimensional inner product space every operator has an adjoint.</p>
+<p><em>Proof.</em> Fix $\beta$. The rule $\varphi(\alpha)=\langle T\alpha,\beta\rangle$ is a linear functional. By Theorem 1.1 there is a unique $\beta'$ with $\varphi(\alpha)=\langle\alpha,\beta'\rangle$; define $T^*\beta=\beta'$. It remains to prove linearity. For all $\alpha$, $\beta,\gamma$ and $c\in F$,</p>
+<p>$$\langle\alpha,T^*(c\beta+\gamma)\rangle=\langle T\alpha,c\beta+\gamma\rangle=\bar c\,\langle T\alpha,\beta\rangle+\langle T\alpha,\gamma\rangle=\langle\alpha,cT^*\beta+T^*\gamma\rangle .$$</p>
+<p>Hence $T^*(c\beta+\gamma)=cT^*\beta+T^*\gamma$. $\square$</p>
+<p>The hinge is that the two conjugations cancel: $c$ leaves the second slot as $\bar c$ and re-enters it as $c$.</p>
+<h2 id="6-matrices-of-the-adjoint-1923">6. Matrices of the adjoint <a href="https://www.youtube.com/watch?v=lN_tuUFxovo&amp;t=1163s">19:23</a></h2>
+<p><strong>Theorem 6.1.</strong> Let $\mathcal{B}=(e_1,\dots,e_n)$ be an orthonormal basis and $A=[T]_{\mathcal{B}}$. Then $A_{kj}=\langle Te_j,e_k\rangle$, and $[T^*]_{\mathcal{B}}=A^*$.</p>
+<p><em>Proof.</em> By definition of the matrix, $Te_j=\sum_kA_{kj}e_k$; taking the inner product with $e_k$ gives the first formula. Let $B=[T^*]_{\mathcal{B}}$. Then</p>
+<p>$$B_{kj}=\langle T^*e_j,e_k\rangle=\overline{\langle e_k,T^*e_j\rangle}=\overline{\langle Te_k,e_j\rangle}=\overline{A_{jk}} .\qquad\square$$</p>
+<p><strong>A general basis.</strong> The word <em>orthonormal</em> cannot be dropped. Let $\mathcal{B}$ be any basis, $G$ its Gram matrix, so that $\langle\alpha,\beta\rangle=Y^*GX$ in coordinates, and $A=[T]_{\mathcal{B}}$, $B=[T^*]_{\mathcal{B}}$. The defining identity reads $Y^*GAX=(BY)^*GX$ for all $X,Y$, so $GA=B^*G$. Since $G$ is Hermitian and invertible,</p>
+<p>$$[T^*]_{\mathcal{B}}=G^{-1}A^*G .$$</p>
+<p><strong>The derivative on $P_2$.</strong> In the orthonormal basis, $De_1=0$, $De_2=2\sqrt3\,e_1$ and $De_3=2\sqrt{15}\,e_2$. So $D^*$ has the transposed matrix: $D^*e_1=2\sqrt3\,e_2$, $D^*e_2=2\sqrt{15}\,e_3$, $D^*e_3=0$. In particular $D^*1=12x-6$. In the basis $(1,x,x^2)$ the matrices are</p>
+<p>$$[D]=\begin{pmatrix}0&amp;1&amp;0\\0&amp;0&amp;2\\0&amp;0&amp;0\end{pmatrix},\qquad[D^*]=\begin{pmatrix}-6&amp;2&amp;3\\12&amp;-24&amp;-26\\0&amp;30&amp;30\end{pmatrix}.$$</p>
+<p>The second is far from the transpose of the first, because this basis is not orthonormal.</p>
+<p><strong>Transpose and adjoint.</strong> The transpose $T^{\mathsf t}$ of <a href="ch11.html">Chapter 11</a> acts on functionals by $T^{\mathsf t}f=f\circ T$. The defining identity of the adjoint says $f_\beta\circ T=f_{T^*\beta}$, that is, $T^{\mathsf t}f_\beta=f_{T^*\beta}$. So $T^*$ is the transpose carried back to $V$ through the conjugate-linear bijection $\beta\mapsto f_\beta$.</p>
+<h2 id="7-examples">7. Examples</h2>
+<p><strong>Column vectors</strong> <a href="https://www.youtube.com/watch?v=ycvgCq8Dx0Q&amp;t=232s">03:52</a>. On $\mathbb{C}^n$ with $\langle X,Y\rangle=Y^*X$ and $TX=AX$: $\langle AX,Y\rangle=Y^*AX=(A^*Y)^*X$, so $T^*Y=A^*Y$.</p>
+<p><strong>The adjoint depends on the inner product.</strong> On $\mathbb{C}^2$ let $A=\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix}$. For the standard inner product $T^*$ has the matrix $\begin{pmatrix}0&amp;0\\1&amp;0\end{pmatrix}$. For $\langle X,Y\rangle=Y^*\operatorname{diag}(1,2)X$ the formula $G^{-1}A^*G$ gives $\begin{pmatrix}0&amp;0\\1/2&amp;0\end{pmatrix}$.</p>
+<p><strong>Left multiplication</strong> <a href="https://www.youtube.com/watch?v=ycvgCq8Dx0Q&amp;t=458s">07:38</a>. On $\mathbb{C}^{n\times n}$ with $\langle A,B\rangle=\operatorname{tr}(B^*A)$ let $T(A)=MA$. Then $\langle MA,B\rangle=\operatorname{tr}(B^*MA)=\operatorname{tr}\big((M^*B)^*A\big)=\langle A,M^*B\rangle$. So $T^*(B)=M^*B$.</p>
+<p><strong>Orthogonal projections</strong> <a href="https://www.youtube.com/watch?v=OR00X0UhdmE&amp;t=1006s">16:46</a>. Let $E$ be the orthogonal projection on a finite-dimensional subspace $W$ of any inner product space. Since $E\alpha\perp\beta-E\beta$ and $\alpha-E\alpha\perp E\beta$,</p>
+<p>$$\langle E\alpha,\beta\rangle=\langle E\alpha,E\beta\rangle=\langle\alpha,E\beta\rangle .$$</p>
+<p>So $E^*=E$. For $W$ spanned by $w=(3,12,-1)$ in $\mathbb{R}^3$ <a href="https://www.youtube.com/watch?v=OR00X0UhdmE&amp;t=1362s">22:42</a>, $E\alpha=\frac{\langle\alpha,w\rangle}{154}w$, with standard matrix</p>
+<p>$$\frac1{154}\begin{pmatrix}9&amp;36&amp;-3\\36&amp;144&amp;-12\\-3&amp;-12&amp;1\end{pmatrix},$$</p>
+<p>which is symmetric, as Theorem 6.1 requires.</p>
+<h2 id="8-infinite-dimension-an-adjoint-may-or-may-not-exist-1405">8. Infinite dimension: an adjoint may or may not exist <a href="https://www.youtube.com/watch?v=ycvgCq8Dx0Q&amp;t=845s">14:05</a></h2>
+<p>Let $V=\mathbb{C}[x]$ with the integral inner product.</p>
+<p><strong>Multiplication</strong> has an adjoint. For a fixed polynomial $p$ and $Tg=pg$, $\langle pg,h\rangle=\int_0^1g\,\overline{\bar ph}=\langle g,\bar ph\rangle$. So $T^*h=\bar ph$.</p>
+<p><strong>Differentiation has none</strong> <a href="https://www.youtube.com/watch?v=ycvgCq8Dx0Q&amp;t=1262s">21:02</a>. Integration by parts gives</p>
+<p>$$\langle Df,g\rangle=f(1)\overline{g(1)}-f(0)\overline{g(0)}-\langle f,Dg\rangle .$$</p>
+<p>So a vector $u$ with $\langle Df,g\rangle=\langle f,u\rangle$ for all $f$ exists exactly when the boundary functional $\varphi(f)=f(1)\overline{g(1)}-f(0)\overline{g(0)}$ is representable. Suppose $\varphi(f)=\langle f,h\rangle$. Every $f=x(x-1)h$ has $\varphi(f)=0$, so $\int_0^1x(x-1)|h|^2=0$. The integrand has one sign, so $h=0$. Hence $\varphi=0$, and the choices $f=x$ and $f=1-x$ give $g(1)=g(0)=0$. Therefore $D^*g$ can be defined only for $g$ vanishing at both ends (where it is $-Dg$), and $D$ has no adjoint on $V$. On $P_2$, in contrast, $D^*$ exists by Theorem 5.2; the adjoint depends on the space as well as on the inner product.</p>
+<h2 id="9-algebra-of-adjoints-2610">9. Algebra of adjoints <a href="https://www.youtube.com/watch?v=ycvgCq8Dx0Q&amp;t=1570s">26:10</a></h2>
+<p><strong>Theorem 9.1.</strong> Let $V$ be finite-dimensional, $T,U$ operators and $c\in F$. Then</p>
+<p>$$(T+U)^*=T^*+U^*,\quad(cT)^*=\bar c\,T^*,\quad(TU)^*=U^*T^*,\quad(T^*)^*=T .$$</p>
+<p><em>Proof.</em> By uniqueness it suffices to check the defining identity. First, $\langle(T+U)\alpha,\beta\rangle=\langle\alpha,T^*\beta\rangle+\langle\alpha,U^*\beta\rangle$. Second, $\langle cT\alpha,\beta\rangle=c\langle\alpha,T^*\beta\rangle=\langle\alpha,\bar cT^*\beta\rangle$. Third, $\langle TU\alpha,\beta\rangle=\langle U\alpha,T^*\beta\rangle=\langle\alpha,U^*T^*\beta\rangle$. Fourth, $\langle T^*\alpha,\beta\rangle=\overline{\langle\beta,T^*\alpha\rangle}=\overline{\langle T\beta,\alpha\rangle}=\langle\alpha,T\beta\rangle$. $\square$</p>
+<p><strong>Proposition 9.2.</strong> If $T$ has an adjoint (for instance if $V$ is finite-dimensional), then $\ker T^*=(\operatorname{im}T)^{\perp}$.</p>
+<p><em>Proof.</em> $T^*\beta=0$ if and only if $\langle\alpha,T^*\beta\rangle=0$ for all $\alpha$, that is, $\langle T\alpha,\beta\rangle=0$ for all $\alpha$. $\square$</p>
+<p>On $P_2$: $\operatorname{im}D=P_1$, and $\ker D^*$ is spanned by $e_3$, which is orthogonal to $P_1$.</p>
+<h2 id="10-self-adjoint-operators-and-the-cartesian-decomposition-3030">10. Self-adjoint operators and the Cartesian decomposition <a href="https://www.youtube.com/watch?v=ycvgCq8Dx0Q&amp;t=1830s">30:30</a></h2>
+<p><strong>Definition 10.1.</strong> An operator is <em>self-adjoint</em> (also <em>Hermitian</em>) if $T^*=T$.</p>
+<p>In an orthonormal basis this says $A^*=A$. Let $V$ be a finite-dimensional complex inner product space. Every operator splits as</p>
+<p>$$T=U_1+iU_2,\qquad U_1=\frac{T+T^*}{2},\quad U_2=\frac{T-T^*}{2i},$$</p>
+<p>with $U_1,U_2$ self-adjoint by Theorem 9.1. The splitting is unique: if $T=U_1+iU_2$ with self-adjoint parts, then $T^*=U_1-iU_2$, and the two equations determine $U_1,U_2$. The operators $U_1,U_2$ play the roles of the real and imaginary parts of a complex number, and $T$ itself need not be self-adjoint. Over $\mathbb{R}$ there is no $i$; the analogous splitting is $T=\tfrac12(T+T^*)+\tfrac12(T-T^*)$, a self-adjoint part plus a <em>skew-adjoint</em> part ($S^*=-S$). Self-adjoint operators are the ones that <a href="ch25.html">Chapter 25</a> diagonalizes by orthonormal bases.</p>
+<h2 id="11-executable-check">11. Executable check</h2>
+<p><a href="labs/ch23.py">The chapter laboratory</a> works with exact fractions. It computes the Gram matrix of $(1,x,x^2)$, the representing polynomial of $f(0)$ and of a general point, both matrices of $D$ and $D^*$ and the defining identity on a basis, the geometric formula of Section 2 on a complex example, the projection matrix of Section 7, the weighted example, left multiplication on complex matrices, and the data of the exercises. It does not check the infinite-dimensional statements, which are proved above.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) Find $g\in P_2$ with $f'(0)=\langle f,g\rangle$ for all $f\in P_2$.</li>
+<li>(Range and kernel.) On a finite-dimensional space show that $\operatorname{im}T^*=(\ker T)^{\perp}$ and that $T$ and $T^*$ have the same rank.</li>
+<li>(Invariant subspaces.) Let $V$ be finite-dimensional and $TW\subseteq W$. Show that $T^*W^{\perp}\subseteq W^{\perp}$.</li>
+<li>(Trace inner product.) On $\mathbb{C}^{n\times n}$ with $\operatorname{tr}(B^*A)$ find the adjoint of $T(A)=AM$.</li>
+<li>(Products.) For self-adjoint $T,U$ show that $TU$ is self-adjoint exactly when $TU=UT$, and give self-adjoint $2\times2$ matrices whose product is not.</li>
+<li>(Complex versus real.) Show that on a finite-dimensional complex space $T$ is self-adjoint if and only if $\langle T\alpha,\alpha\rangle$ is real for all $\alpha$, and that this fails over $\mathbb{R}$.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>With $\varphi(f)=f'(0)$ we have $\varphi(e_1)=0$, $\varphi(e_2)=\sqrt{12}$ and $\varphi(e_3)=-\sqrt{180}$. So $g=12(x-\tfrac12)-180(x^2-x+\tfrac16)=-180x^2+192x-36$. Check: $\int_0^1g=0$, $\int_0^1xg=1$ and $\int_0^1x^2g=0$.</p>
+</li>
+<li>
+<p>Apply Proposition 9.2 to $T^*$: since $(T^*)^*=T$, $\ker T=(\operatorname{im}T^*)^{\perp}$. Taking orthogonal complements in a finite-dimensional space, where $W^{\perp\perp}=W$, gives $(\ker T)^{\perp}=\operatorname{im}T^*$. Therefore $\operatorname{rank}T^*=\dim V-\dim\ker T=\operatorname{rank}T$.</p>
+</li>
+<li>
+<p>Let $\beta\in W^{\perp}$ and $\alpha\in W$. Then $\langle\alpha,T^*\beta\rangle=\langle T\alpha,\beta\rangle=0$, because $T\alpha\in W$. So $T^*\beta\in W^{\perp}$.</p>
+</li>
+<li>
+<p>$\langle AM,B\rangle=\operatorname{tr}(B^*AM)=\operatorname{tr}(MB^*A)$, by $\operatorname{tr}(XY)=\operatorname{tr}(YX)$. Since $MB^*=(BM^*)^*$, this is $\operatorname{tr}((BM^*)^*A)=\langle A,BM^*\rangle$. So $T^*(B)=BM^*$.</p>
+</li>
+<li>
+<p>$(TU)^*=U^*T^*=UT$, so $(TU)^*=TU$ exactly when $UT=TU$. For $T=\operatorname{diag}(1,0)$ and $U=\begin{pmatrix}0&amp;1\\1&amp;0\end{pmatrix}$ the product is $\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix}$, which is not self-adjoint.</p>
+</li>
+<li>
+<p>If $T^*=T$, then $\langle T\alpha,\alpha\rangle=\langle\alpha,T\alpha\rangle=\overline{\langle T\alpha,\alpha\rangle}$. Conversely, if all these numbers are real, then $\langle T\alpha,\alpha\rangle=\langle\alpha,T\alpha\rangle=\langle T^*\alpha,\alpha\rangle$. So $S=T-T^*$ has $\langle S\alpha,\alpha\rangle=0$ for all $\alpha$. Expanding $\langle S(\alpha+c\beta),\alpha+c\beta\rangle=0$ gives $\bar c\,\langle S\alpha,\beta\rangle+c\,\langle S\beta,\alpha\rangle=0$. With $c=1$ and $c=i$ these two equations force $\langle S\alpha,\beta\rangle=0$, so $S=0$. Over $\mathbb{R}$ the quarter turn $\begin{pmatrix}0&amp;-1\\1&amp;0\end{pmatrix}$ has $\langle T\alpha,\alpha\rangle=0$ for all $\alpha$, but $T^*=-T\ne T$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, the chapter on inner product spaces.</li>
+<li>Steven Roman, <em>Advanced Linear Algebra</em>, 3rd ed., Springer GTM 135, the chapter on structure theory for normal operators.</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., open access at https://linear.axler.net/, the chapters on inner product spaces and operators on them.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch23.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 23 laboratory: representing vectors and adjoints.
+
+Exact arithmetic over Q and Q(i).  A polynomial c0 + c1 x + c2 x^2 is the
+list [c0, c1, c2], with &lt;f, g&gt; equal to the integral of f g over [0, 1].
+Complex numbers use Python complex with small integer entries, which are
+exact in floating point for the operations used here.  The statements about
+the space of all polynomials are proved in the chapter, not checked here.
+&quot;&quot;&quot;
+from fractions import Fraction as Fr
+
+import numpy as np
+
+H = [[Fr(1, i + j + 1) for j in range(3)] for i in range(3)]
+
+
+def mul(a, b):
+    return [[sum(a[i][k] * b[k][j] for k in range(len(b)))
+             for j in range(len(b[0]))] for i in range(len(a))]
+
+
+def transpose(a):
+    return [list(r) for r in zip(*a)]
+
+
+def solve(m, rhs):
+    n = len(m)
+    aug = [list(m[i]) + list(rhs[i]) for i in range(n)]
+    for c in range(n):
+        p = next(r for r in range(c, n) if aug[r][c] != 0)
+        aug[c], aug[p] = aug[p], aug[c]
+        aug[c] = [x / aug[c][c] for x in aug[c]]
+        for r in range(n):
+            if r != c and aug[r][c] != 0:
+                f = aug[r][c]
+                aug[r] = [x - f * y for x, y in zip(aug[r], aug[c])]
+    return [row[n:] for row in aug]
+
+
+def ip(f, g):
+    return sum(f[i] * g[j] * H[i][j] for i in range(3) for j in range(3))
+
+
+def representer(values):
+    &quot;&quot;&quot;g with &lt;x^k, g&gt; = values[k]; solves the Gram system.&quot;&quot;&quot;
+    return [r[0] for r in solve(H, [[v] for v in values])]
+
+
+def functionals():
+    g0 = representer([Fr(1), Fr(0), Fr(0)])
+    assert g0 == [9, -36, 30]
+    ortho = [([1, 0, 0], 1), ([Fr(-1, 2), 1, 0], 12),
+             ([Fr(1, 6), -1, 1], 180)]
+    for a, w in ortho:
+        assert ip(a, a) == Fr(1, w)
+    for t in (Fr(0), Fr(1, 3), Fr(2)):
+        g = [Fr(0)] * 3
+        for a, w in ortho:
+            value = sum(c * t ** k for k, c in enumerate(a))
+            g = [x + w * value * c for x, c in zip(g, a)]
+        assert g == representer([t ** k for k in range(3)])
+    g1 = representer([Fr(0), Fr(1), Fr(0)])
+    assert g1 == [-36, 192, -180]
+    print(&#x27;representer of f(0):&#x27;, [str(c) for c in g0])
+    print(&quot;representer of f&#x27;(0):&quot;, [str(c) for c in g1])
+
+
+def derivative_adjoint():
+    d = [[Fr(0), Fr(1), Fr(0)], [Fr(0), Fr(0), Fr(2)], [Fr(0)] * 3]
+    b = solve(H, mul(transpose(d), H))
+    assert b == [[-6, 2, 3], [12, -24, -26], [0, 30, 30]]
+    basis = [[Fr(int(i == j)) for i in range(3)] for j in range(3)]
+    for j in range(3):
+        for k in range(3):
+            df = [d[i][j] for i in range(3)]
+            dsg = [b[i][k] for i in range(3)]
+            assert ip(df, basis[k]) == ip(basis[j], dsg)
+    assert [b[i][0] for i in range(3)] == [-6, 12, 0]
+    e3 = [Fr(1, 6), Fr(-1), Fr(1)]
+    assert all(sum(b[i][k] * e3[k] for k in range(3)) == 0
+               for i in range(3))
+    print(&#x27;[D*] =&#x27;, [[int(x) for x in row] for row in b])
+
+
+def matrices():
+    w = [3, 12, -1]
+    assert sum(x * x for x in w) == 154
+    e = [[Fr(a * b, 154) for b in w] for a in w]
+    assert mul(e, e) == e and transpose(e) == e
+    assert [[int(154 * x) for x in row] for row in e] == [
+        [9, 36, -3], [36, 144, -12], [-3, -12, 1]]
+    g = [[Fr(1), Fr(0)], [Fr(0), Fr(2)]]
+    a = [[Fr(0), Fr(1)], [Fr(0), Fr(0)]]
+    assert solve(g, mul(transpose(a), g)) == [[0, 0], [Fr(1, 2), 0]]
+    print(&#x27;projection and weighted-adjoint examples verified&#x27;)
+
+
+def complex_checks():
+    # beta = conj(f(gamma)) gamma / |gamma|^2 for f(a) = a1 + i a2
+    f = np.array([1, 1j])
+    gamma = (2 - 1j) * f.conj()
+    assert abs(f @ np.array([1j, -1])) == 0          # (i, -1) in ker f
+    assert np.vdot(gamma, np.array([1j, -1])) == 0
+    beta = np.conj(f @ gamma) * gamma / np.vdot(gamma, gamma)
+    assert np.allclose(beta, f.conj())
+    m = np.array([[1, 1j], [0, 2]])
+    a = np.array([[1, 2], [3j, 1 - 1j]])
+    b = np.array([[2j, 0], [1, 1 + 1j]])
+
+    def tr(x, y):
+        return np.trace(y.conj().T @ x)
+
+    assert tr(m @ a, b) == tr(a, m.conj().T @ b)
+    assert tr(a @ m, b) == tr(a, b @ m.conj().T)
+    u1 = (m + m.conj().T) / 2
+    u2 = (m - m.conj().T) / 2j
+    assert np.array_equal(u1, u1.conj().T)
+    assert np.array_equal(u2, u2.conj().T)
+    assert np.array_equal(u1 + 1j * u2, m)
+    p = np.array([[1, 0], [0, 0]]) @ np.array([[0, 1], [1, 0]])
+    assert not np.array_equal(p, p.T)
+    turn = np.array([[0, -1], [1, 0]])
+    v = np.array([3, 5])
+    assert (turn @ v) @ v == 0 and np.array_equal(turn.T, -turn)
+    print(&#x27;complex representer, trace adjoints, decomposition verified&#x27;)
+
+
+def main():
+    functionals()
+    derivative_adjoint()
+    matrices()
+    complex_checks()
+    print(&#x27;all chapter 23 checks passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch22.html">Previous: Orthogonal projection, Gram-Schmidt, and best approximation</a><a rel="next" href="ch24.html">Next: Inner-product-space isomorphisms and unitary operators</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

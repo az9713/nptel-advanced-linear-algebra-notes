@@ -1,0 +1,12 @@
+{
+  "title": "The algebra of linear transformations: sums, composition, invertibility, and isomorphism",
+  "lectures": [14, 15, 16],
+  "objectives": [
+    "Prove that linear maps form a vector space of dimension mn",
+    "Compose linear maps and use the algebra structure of operators",
+    "Characterize invertible and nonsingular linear maps",
+    "Identify finite-dimensional spaces up to isomorphism"
+  ],
+  "prerequisites": "Chapters 4 and 7: bases, dimension, linear maps and rank-nullity.",
+  "source_scope": "The captions of Lectures 13, 14 and 15 were read in full; the running matrices, the one-sided inverse examples and the exercises are original."
+}

@@ -1,0 +1,15 @@
+{
+  "title": "The primary decomposition theorem",
+  "lectures": [
+    38,
+    39
+  ],
+  "objectives": [
+    "State the primary decomposition theorem over an arbitrary field",
+    "Build the component projections from a Bezout identity",
+    "Prove that each restriction has a prime-power minimal polynomial",
+    "Apply the decomposition to invariant subspaces and generalized eigenspaces"
+  ],
+  "prerequisites": "Minimal polynomial, polynomial ideals, direct sums and projections (Chapters 13 and 15 to 18).",
+  "source_scope": "The captions of the two recordings (positions 38 and 39) were read in full. The 3 by 3 block of the running example is the matrix discussed in the first recording; the quarter-turn block, the corollaries, laboratory and exercises are original."
+}

@@ -1,0 +1,34 @@
+{
+ "reviewer": "author_a",
+ "slot": "r1",
+ "chapter": "ch16",
+ "disposition": "accepted",
+ "report": "validation/review-ch16-r1.md",
+ "scope": [
+  "manuscript",
+  "metadata",
+  "lab read and run",
+  "source ledger",
+  "all six solutions"
+ ],
+ "remaining_findings": [],
+ "accepted_files": {
+  "chapters/ch16.md": "c16170d2d960b912296eb3816b2fea703ea017a6c0022814087a925bda86381f",
+  "chapters/ch16.json": "b8561ae63b84f04dd0c615e3ecd375c39fa984e9dcc4e7a644ad66656109e04b",
+  "labs/ch16.py": "7bd8a274efe4decd8213d6e192bd6de45d7861d46b156c880a4f5506d2edc69e"
+ },
+ "source_evidence": {
+  "caption_positions": [
+   32,
+   33
+  ],
+  "intervals_read": "both caption files read in full"
+ },
+ "limitations": [
+  "No comprehensive audiovisual audit",
+  "Not human certification or formal proof verification"
+ ],
+ "rechecks": [
+  "Recheck 1: both blocking findings repaired (monic generator named the conductor in Section 1; characteristic of a field defined in Section 6 before first use). Pipeline check OK."
+ ]
+}

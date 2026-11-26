@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>The primary decomposition theorem · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html" aria-current=page>19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>19. The primary decomposition theorem</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=eyIs2irRboE">Recording 38</a>, <a href="https://www.youtube.com/watch?v=Qra533N0-nw">Recording 39</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>State the primary decomposition theorem over an arbitrary field</li><li>Build the component projections from a Bezout identity</li><li>Prove that each restriction has a prime-power minimal polynomial</li><li>Apply the decomposition to invariant subspaces and generalized eigenspaces</li></ul>
+<p><strong>Prerequisites:</strong> Minimal polynomial, polynomial ideals, direct sums and projections (Chapters 13 and 15 to 18).</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch19.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-the-question-0025">1. The question 00:25</a></li><li><a href="#2-kernels-of-powers-0614">2. Kernels of powers 06:14</a></li><li><a href="#3-the-theorem-1432">3. The theorem 14:32</a></li><li><a href="#4-a-bezout-identity-produces-projections-0254">4. A Bezout identity produces projections 02:54</a></li><li><a href="#5-the-ranges-are-the-primary-components-0950">5. The ranges are the primary components 09:50</a></li><li><a href="#6-the-minimal-polynomial-of-each-piece-1640">6. The minimal polynomial of each piece 16:40</a></li><li><a href="#7-two-consequences">7. Two consequences</a></li><li><a href="#8-a-first-look-at-the-diagonalizable-and-nilpotent-parts-2155">8. A first look at the diagonalizable and nilpotent parts 21:55</a></li><li><a href="#9-where-the-hypotheses-bind">9. Where the hypotheses bind</a></li><li><a href="#10-executable-check">10. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Let $T$ be the operator on $\mathbb{Q}^5$ whose standard matrix is block diagonal,</p>
+<p>$$M=\begin{pmatrix}A&amp;0\\0&amp;C\end{pmatrix},\qquad A=\begin{pmatrix}2&amp;0&amp;0\\1&amp;2&amp;0\\0&amp;0&amp;-1\end{pmatrix},\qquad C=\begin{pmatrix}0&amp;-1\\1&amp;0\end{pmatrix}.$$</p>
+<p>This is the running example of the chapter. The block $A$ is the example worked in the first recording used here; the block $C$, a quarter turn, is added so that the example also has a factor with no root in $\mathbb{Q}$. The operator has two defects that stop diagonalization. The eigenvalue $2$ is repeated but has only one independent eigenvector. And on the last two coordinates there is no eigenvalue at all over $\mathbb{Q}$. Even so, the space splits into three invariant pieces on which $T$ behaves in three different ways. The <em>primary decomposition theorem</em> says that every operator on a finite-dimensional space splits like this, with one piece for each irreducible factor of its minimal polynomial.</p>
+<p><strong>Conventions.</strong> $F$ is a field, $V$ is a vector space over $F$, and $T$ is a linear operator on $V$. $F[x]$ is the ring of polynomials over $F$, and $p(T)$ is $p$ evaluated at $T$. All polynomials in $T$ commute. For finite-dimensional $V$, the <em>minimal polynomial</em> $m_T$ is the monic polynomial of least degree with $m_T(T)=0$; every $p$ with $p(T)=0$ is a multiple of it (<a href="ch13.html">Chapter 13</a>). A polynomial of positive degree is <em>irreducible</em> over $F$ if it is not a product of two polynomials of positive degree. Every monic polynomial of positive degree is a product of monic irreducible polynomials, uniquely up to order. Polynomials are <em>relatively prime</em> if no polynomial of positive degree divides all of them. A subspace $W$ is <em>$T$-invariant</em> if $T(W)\subseteq W$, and then $T_W$ denotes the restriction.</p>
+<h2 id="1-the-question-0025">1. The question <a href="https://www.youtube.com/watch?v=eyIs2irRboE&amp;t=25s">00:25</a></h2>
+<p>When $V=W_1\oplus\cdots\oplus W_k$ with each $W_i$ invariant, $T$ is the direct sum of its restrictions $T_i=T_{W_i}$ (<a href="ch18.html">Chapter 18</a>). The question now runs the other way. Given only $T$, is there such a decomposition, and can the pieces be described?</p>
+<p>Eigenspaces give an answer when $T$ is diagonalizable. Two things can go wrong. First, the field may be too small: $T$ may have no eigenvalue in $F$. One can enlarge the field to an <em>algebraically closed</em> field, one in which every nonconstant polynomial has a root, such as $\mathbb{C}$. Second, and this no field change repairs, there may be too few eigenvectors.</p>
+<h2 id="2-kernels-of-powers-0614">2. Kernels of powers <a href="https://www.youtube.com/watch?v=eyIs2irRboE&amp;t=374s">06:14</a></h2>
+<p>The block $A$ shows the second defect and the repair. Its characteristic polynomial is $(x-2)^2(x+1)$, because $A$ is triangular. Solving $(A+I)X=0$ gives the eigenvector $e_3$ for $-1$, where $e_1,e_2,e_3$ are the standard basis vectors. Solving $(A-2I)X=0$ gives only multiples of $e_2$. So there are two independent eigenvectors in a three-dimensional space. Now square:</p>
+<p>$$A-2I=\begin{pmatrix}0&amp;0&amp;0\\1&amp;0&amp;0\\0&amp;0&amp;-3\end{pmatrix},\qquad (A-2I)^2=\begin{pmatrix}0&amp;0&amp;0\\0&amp;0&amp;0\\0&amp;0&amp;9\end{pmatrix}.$$</p>
+<p>The null space of $(A-2I)^2$ is $\operatorname{span}(e_1,e_2)$. Together with $\ker(A+I)=\operatorname{span}(e_3)$ it fills the space:</p>
+<p>$$F^3=\ker(A-2I)^2\oplus\ker(A+I).$$</p>
+<p>Raising the factor to the power with which it occurs in the minimal polynomial recovers the missing direction.</p>
+<h2 id="3-the-theorem-1432">3. The theorem <a href="https://www.youtube.com/watch?v=eyIs2irRboE&amp;t=872s">14:32</a></h2>
+<p><strong>Theorem 3.1 (primary decomposition).</strong> Let $V$ be finite-dimensional over $F$, let $T$ be a linear operator on $V$, and factor its minimal polynomial as</p>
+<p>$$m_T=p_1^{r_1}p_2^{r_2}\cdots p_k^{r_k},$$</p>
+<p>with $p_i$ distinct monic irreducible polynomials over $F$ and $r_i\ge1$. Let $W_i=\ker p_i(T)^{r_i}$. Then</p>
+<ol>
+<li>$V=W_1\oplus\cdots\oplus W_k$;</li>
+<li>each $W_i$ is nonzero and $T$-invariant;</li>
+<li>the minimal polynomial of $T_i=T_{W_i}$ is $p_i^{r_i}$.</li>
+</ol>
+<p>No hypothesis is placed on $F$. The polynomials $p_i$ need not be linear. The subspaces $W_i$ are the <em>primary components</em> of $T$.</p>
+<p>The proof has one idea: write the identity operator as a sum of polynomials in $T$, each of which survives on one component and vanishes on the others. Sections 4 to 6 carry it out.</p>
+<h2 id="4-a-bezout-identity-produces-projections-0254">4. A Bezout identity produces projections <a href="https://www.youtube.com/watch?v=Qra533N0-nw&amp;t=174s">02:54</a></h2>
+<p>Write $m=m_T$ and put $f_i=m/p_i^{r_i}=\prod_{j\ne i}p_j^{r_j}$, the part of $m$ that remains after removing the $i$th factor.</p>
+<p><strong>Lemma 4.1.</strong> There are $g_1,\dots,g_k\in F[x]$ with $g_1f_1+\cdots+g_kf_k=1$.</p>
+<p><em>Proof.</em> The set $J$ of all sums $\sum a_if_i$ with $a_i\in F[x]$ is an ideal of $F[x]$. Every nonzero ideal of $F[x]$ consists of the multiples of one monic polynomial $d$ (<a href="ch15.html">Chapter 15</a>). Since each $f_i$ lies in $J$, $d$ divides every $f_i$. If $d$ had positive degree, some irreducible $q$ would divide $d$, hence every $f_i$, hence $m$. So $q=p_l$ for some $l$. But $p_l$ does not divide $f_l$, which is a product of powers of the other irreducibles. So $d=1$, and $1\in J$. $\square$</p>
+<p>The polynomials $f_i$ have no common factor as a family, even though any two of them may share factors when $k\ge3$. The identity is called a <em>Bezout identity</em>.</p>
+<p><strong>The projections.</strong> Let $h_i=g_if_i$ and $E_i=h_i(T)$.</p>
+<p><strong>Proposition 4.2.</strong> $E_1+\cdots+E_k=I$, $E_iE_j=0$ for $i\ne j$, $E_i^2=E_i$, and each $E_i$ commutes with $T$.</p>
+<p><em>Proof.</em> The first equation is Lemma 4.1 evaluated at $T$. For $i\ne j$, the product $f_if_j$ contains every factor $p_l^{r_l}$, since $f_i$ lacks only the $i$th and $f_j$ contains it. So $m$ divides $h_ih_j$, and $E_iE_j=(h_ih_j)(T)=0$. Multiplying $\sum_iE_i=I$ by $E_j$ now gives $E_j^2=E_j$. Finally $E_i$ is a polynomial in $T$. $\square$</p>
+<h2 id="5-the-ranges-are-the-primary-components-0950">5. The ranges are the primary components <a href="https://www.youtube.com/watch?v=Qra533N0-nw&amp;t=590s">09:50</a></h2>
+<p><strong>Proposition 5.1.</strong> $\operatorname{im}E_j=W_j$ for every $j$.</p>
+<p><em>Proof.</em> Let $\alpha\in\operatorname{im}E_j$, so $\alpha=E_j\alpha$. Then $p_j(T)^{r_j}\alpha=(p_j^{r_j}g_jf_j)(T)\alpha=(g_jm)(T)\alpha=0$, because $p_j^{r_j}f_j=m$. So $\alpha\in W_j$.</p>
+<p>Conversely, let $\alpha\in W_j$. For $i\ne j$ the polynomial $f_i$ contains the factor $p_j^{r_j}$, so $E_i\alpha=(g_if_i)(T)\alpha=0$. Then $\alpha=\sum_iE_i\alpha=E_j\alpha$. $\square$</p>
+<p><strong>Proof of parts 1 and 2 of Theorem 3.1.</strong> By Proposition 4.2 and <a href="ch17.html">Chapter 17</a>, $V$ is the direct sum of the ranges of the $E_i$, which by Proposition 5.1 are the $W_i$. Each $W_i$ is invariant: if $p_i(T)^{r_i}\alpha=0$ then $p_i(T)^{r_i}T\alpha=Tp_i(T)^{r_i}\alpha=0$. Each $W_i$ is nonzero: if $W_i=0$, then $p_i(T)^{r_i}$ is injective, and $p_i(T)^{r_i}f_i(T)=m(T)=0$ forces $f_i(T)=0$. That contradicts the minimality of $m$, because $\deg f_i&lt;\deg m$. $\square$</p>
+<h2 id="6-the-minimal-polynomial-of-each-piece-1640">6. The minimal polynomial of each piece <a href="https://www.youtube.com/watch?v=Qra533N0-nw&amp;t=1000s">16:40</a></h2>
+<p><strong>Proof of part 3.</strong> Let $s$ be the minimal polynomial of $T_j$. Since $p_j(T_j)^{r_j}=0$ on $W_j$ by the definition of $W_j$, $s$ divides $p_j^{r_j}$. For the other direction we show $(sf_j)(T)=0$. Write $\alpha=\sum_i\alpha_i$ with $\alpha_i\in W_i$. For $i\ne j$, $f_j$ contains $p_i^{r_i}$, so $f_j(T)\alpha_i=0$. For $i=j$,</p>
+<p>$$(sf_j)(T)\alpha_j=f_j(T)\,s(T)\alpha_j=0,$$</p>
+<p>since $s(T)\alpha_j=s(T_j)\alpha_j=0$. Hence $m$ divides $sf_j$. Cancelling $f_j$ from $m=p_j^{r_j}f_j$ shows that $p_j^{r_j}$ divides $s$. Both are monic, so $s=p_j^{r_j}$. $\square$</p>
+<p>The hinge of the whole theorem is Lemma 4.1. It turns the coprimeness of the factors, a statement about polynomials, into projections, a statement about vectors.</p>
+<p><strong>On the running example.</strong> The minimal polynomial of $M$ is</p>
+<p>$$m=(x-2)^2(x+1)(x^2+1)=x^5-3x^4+x^3+x^2+4.$$</p>
+<p>The factor $x^2+1$ is irreducible over $\mathbb{Q}$. The cofactors are $f_1=(x+1)(x^2+1)$, $f_2=(x-2)^2(x^2+1)$ and $f_3=(x-2)^2(x+1)$. A Bezout identity is $g_1f_1+g_2f_2+g_3f_3=1$ with</p>
+<p>$$g_1=\frac{49-17x}{225},\qquad g_2=\frac1{18},\qquad g_3=\frac{x+7}{50}.$$</p>
+<p>The $g_i$ can be found one factor at a time. For example, modulo $x^2+1$ we have $f_3\equiv7-x$, and $(7-x)(7+x)=49-x^2\equiv50$, so $g_3=(x+7)/50$. Evaluating $h_i=g_if_i$ at $M$ gives the three coordinate projections onto $\operatorname{span}(e_1,e_2)$, $\operatorname{span}(e_3)$ and $\operatorname{span}(e_4,e_5)$. So</p>
+<p>$$W_1=\operatorname{span}(e_1,e_2),\qquad W_2=\operatorname{span}(e_3),\qquad W_3=\operatorname{span}(e_4,e_5),$$</p>
+<p>of dimensions $2,1,2$, with restrictions having minimal polynomials $(x-2)^2$, $x+1$ and $x^2+1$. In this example the answer could be read from the block form. The point is that the formula $E_i=h_i(M)$ needs no block form: for $M'=PMP^{-1}$ with any invertible $P$, the same polynomials give $h_i(M')=Ph_i(M)P^{-1}$, the projections of the transformed components.</p>
+<h2 id="7-two-consequences">7. Two consequences</h2>
+<p><strong>Invariant subspaces split along the components.</strong></p>
+<p><strong>Corollary 7.1.</strong> Under the hypotheses of Theorem 3.1, every $T$-invariant subspace $U$ satisfies $U=(U\cap W_1)\oplus\cdots\oplus(U\cap W_k)$.</p>
+<p><em>Proof.</em> Each $E_i$ is a polynomial in $T$, so $E_iU\subseteq U$, and $E_iU\subseteq W_i$. Every $u\in U$ equals $\sum_iE_iu$ with $E_iu\in U\cap W_i$. The sum is direct because the $W_i$ are independent. $\square$</p>
+<p><strong>The split case.</strong> Suppose every $p_i$ is linear, $p_i=x-c_i$; over $\mathbb{C}$ this is always so. Then the $c_i$ are the distinct eigenvalues, and $W_i=\ker(T-c_iI)^{r_i}$ contains the eigenspace of $c_i$. These are called <em>generalized eigenspaces</em>.</p>
+<p><strong>Corollary 7.2.</strong> In the split case, $\dim W_i$ is the algebraic multiplicity of $c_i$ in the characteristic polynomial $c_T$.</p>
+<p><em>Proof.</em> The operator $T_i-c_iI$ on $W_i$ satisfies $(T_i-c_iI)^{r_i}=0$. So the only eigenvalue of $T_i$ is $c_i$, and $T_i$ is triangulable (<a href="ch16.html">Chapter 16</a>) with every diagonal entry $c_i$. Hence $c_{T_i}(x)=(x-c_i)^{\dim W_i}$. In a basis adapted to the decomposition the matrix of $T$ is block diagonal, so $c_T=\prod_ic_{T_i}$. $\square$</p>
+<h2 id="8-a-first-look-at-the-diagonalizable-and-nilpotent-parts-2155">8. A first look at the diagonalizable and nilpotent parts <a href="https://www.youtube.com/watch?v=eyIs2irRboE&amp;t=1315s">21:55</a></h2>
+<p>An operator $N$ is <em>nilpotent</em> if $N^r=0$ for some positive integer $r$. Suppose $m_T=\prod(x-c_i)^{r_i}$ splits, with the projections $E_i$ above. Put</p>
+<p>$$D=c_1E_1+\cdots+c_kE_k,\qquad N=T-D=\sum_i(T-c_iI)E_i.$$</p>
+<p>The operator $D$ is diagonalizable (<a href="ch18.html">Chapter 18</a>, since each $E_i\ne0$ and the $c_i$ are distinct). Because the $E_i$ commute with $T$ and annihilate each other,</p>
+<p>$$N^r=\sum_i(T-c_iI)^rE_i .$$</p>
+<p>The $i$th term vanishes when $r\ge r_i$, since $E_i$ maps into $W_i$. So $N^r=0$ for $r\ge\max r_i$. Therefore $T=D+N$ with $D$ diagonalizable, $N$ nilpotent, and, both being polynomials in $T$, $DN=ND$. <a href="ch20.html">Chapter 20</a> proves that these two properties determine $D$ and $N$.</p>
+<p><strong>On the running example.</strong> Over $\mathbb{Q}$ the polynomial $x^2+1$ does not split, so apply the construction to the block $A$ alone. There $D=\operatorname{diag}(2,2,-1)$ and $N$ has the single nonzero entry $1$ in position $(2,1)$, with $N^2=0$. For the whole of $M$ one can still keep $D=2E_1-E_2+ME_3$ and $N=(M-2I)E_1$. Then $N^2=0$ and $DN=ND$, but $D$ is not diagonalizable over $\mathbb{Q}$, since on $W_3$ it is the quarter turn. Over $\mathbb{C}$ it is.</p>
+<h2 id="9-where-the-hypotheses-bind">9. Where the hypotheses bind</h2>
+<p><strong>The exponent matters.</strong> With exponent $1$ instead of $2$, $\ker(M-2I)$ is only a line, and $\ker(M-2I)+W_2+W_3$ has dimension $4$, not $5$.</p>
+<p><strong>Coprimeness matters.</strong> The polynomials $(x-2)^2$ and $(x-2)(x+1)$ share a factor. Their kernels on $\mathbb{Q}^5$ have dimension $2$ each, but their sum has dimension $3$, because both contain $e_2$.</p>
+<p><strong>Finite dimension.</strong> The proof used finite dimension only to obtain a nonzero polynomial that annihilates $T$. Theorem 3.1 therefore holds on any vector space for an operator that satisfies some nonzero polynomial. It fails to apply to differentiation on $F[x]$ in characteristic $0$, which satisfies none.</p>
+<p><strong>The field.</strong> The decomposition depends on $F$. Over $\mathbb{C}$ the factor $x^2+1$ becomes $(x-i)(x+i)$, and $W_3$ splits into two lines.</p>
+<h2 id="10-executable-check">10. Executable check</h2>
+<p><a href="labs/ch19.py">The chapter laboratory</a> uses exact rational arithmetic. It checks the minimal polynomial of $M$, the polynomials $h_i$ and the identity $\sum h_i=1$, the projection identities, the components and their dimensions, the minimal polynomial of each restriction, the operators of Section 8, the behaviour under a change of basis, the two failures of Section 9, and the computations of the exercises. It tests one example; the theorem is proved above.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) For the block $A$, find polynomials $h_1,h_2$ with $h_1+h_2=1$ that give the projections onto $\ker(A-2I)^2$ and $\ker(A+I)$.</li>
+<li>(Complex splitting.) Over $\mathbb{C}$, compute the two projections that split the block $C$ along the factors $x-i$ and $x+i$.</li>
+<li>(Invariant subspaces.) Use Corollary 7.1 to list all $T$-invariant subspaces of $\mathbb{Q}^5$ for the running example.</li>
+<li>(Two factors.) Let $q_1,q_2$ be relatively prime and $q_1(T)q_2(T)=0$. Prove that $V=\ker q_1(T)\oplus\ker q_2(T)$ and that $\ker q_1(T)=\operatorname{im}q_2(T)$, with no dimension hypothesis.</li>
+<li>(Involutions.) Let $F$ have characteristic different from $2$ and $T^2=I$. Find the projections of Theorem 3.1 as polynomials in $T$. What happens in characteristic $2$?</li>
+<li>(Field dependence.) Let $S$ be the cyclic shift of $F^4$, $Se_1=e_2$, $Se_2=e_3$, $Se_3=e_4$, $Se_4=e_1$. Find the primary decomposition for $F=\mathbb{Q}$, for $F=\mathbb{F}_5$ and for $F=\mathbb{F}_2$.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>The minimal polynomial of $A$ is $(x-2)^2(x+1)$, so $f_1=x+1$ and $f_2=(x-2)^2$. Modulo $(x-2)^2$ we have $x+1=3+(x-2)$, with inverse $\frac13-\frac19(x-2)=\frac{5-x}{9}$. So $h_1=\frac{(5-x)(x+1)}{9}$. At $-1$, $f_2=9$, so $g_2=\frac19$ and $h_2=\frac{(x-2)^2}{9}$. Check: $h_1+h_2=\frac{(-x^2+4x+5)+(x^2-4x+4)}{9}=1$. Then $h_2(A)=\frac19(A-2I)^2=\operatorname{diag}(0,0,1)$ and $h_1(A)=\operatorname{diag}(1,1,0)$.</p>
+</li>
+<li>
+<p>Here $p_1=x-i$, $p_2=x+i$, and $\frac{x+i}{2i}-\frac{x-i}{2i}=1$. So $h_1=\frac{x+i}{2i}$ and $h_2=-\frac{x-i}{2i}$. Then
+$$h_1(C)=\frac{C+iI}{2i}=\frac12\begin{pmatrix}1&amp;i\\-i&amp;1\end{pmatrix},\qquad h_2(C)=\frac12\begin{pmatrix}1&amp;-i\\i&amp;1\end{pmatrix}.$$
+Their sum is $I$. The range of $h_1(C)$ is spanned by $(1,-i)$, an eigenvector for $i$.</p>
+</li>
+<li>
+<p>By Corollary 7.1 an invariant $U$ is $U_1\oplus U_2\oplus U_3$ with $U_i$ an invariant subspace of $W_i$, and every such sum is invariant. In $W_1$ the operator has the single eigenvalue $2$ with eigenspace $\operatorname{span}(e_2)$, so the invariant subspaces are $0$, $\operatorname{span}(e_2)$ and $W_1$. In $W_2$, a line, they are $0$ and $W_2$. In $W_3$ there is no eigenvector over $\mathbb{Q}$, so they are $0$ and $W_3$. In all there are $3\cdot2\cdot2=12$ invariant subspaces.</p>
+</li>
+<li>
+<p>The ideal generated by $q_1,q_2$ contains $1$ by the argument of Lemma 4.1, so $a_1q_1+a_2q_2=1$. Put $E=(a_2q_2)(T)$ and $E'=(a_1q_1)(T)$. Then $E+E'=I$ and $EE'=(a_1a_2q_1q_2)(T)=0$, so $E,E'$ are projections with $V=\operatorname{im}E\oplus\operatorname{im}E'$. If $\alpha\in\operatorname{im}E$, then $q_1(T)\alpha=(q_1a_2q_2)(T)\beta=0$. If $q_1(T)\alpha=0$ then $E'\alpha=0$ and $\alpha=E\alpha$. So $\operatorname{im}E=\ker q_1(T)$, and similarly $\operatorname{im}E'=\ker q_2(T)$. Next, $\operatorname{im}q_2(T)\subseteq\ker q_1(T)$ because $q_1q_2(T)=0$. Conversely $\alpha\in\ker q_1(T)$ equals $E\alpha=q_2(T)\,a_2(T)\alpha$, which lies in $\operatorname{im}q_2(T)$.</p>
+</li>
+<li>
+<p>The polynomial $x^2-1=(x-1)(x+1)$ has distinct factors, and $\frac12(x+1)-\frac12(x-1)=1$. So $E_1=\frac12(T+I)$ and $E_2=\frac12(I-T)$, the projections onto the vectors with $T\alpha=\alpha$ and $T\alpha=-\alpha$. In characteristic $2$, $x^2-1=(x-1)^2$ is a power of one irreducible. There is one primary component, $V$ itself, and no splitting.</p>
+</li>
+<li>
+<p>Since $S^4=I$ and $I,S,S^2,S^3$ are linearly independent, $m_S=x^4-1$. Over $\mathbb{Q}$, $x^4-1=(x-1)(x+1)(x^2+1)$. The components are $\operatorname{span}(1,1,1,1)$, $\operatorname{span}(1,-1,1,-1)$, and $\ker(S^2+I)=\operatorname{span}\big((1,0,-1,0),(0,1,0,-1)\big)$. Over $\mathbb{F}_5$, $x^2+1=(x-2)(x-3)$, so there are four lines. The equation $Sv=cv$ gives $v_{j-1}=cv_j$, so $v=(1,c^{-1},c^{-2},c^{-3})$: for $c=1,4,2,3$ these are $(1,1,1,1)$, $(1,4,1,4)$, $(1,3,4,2)$ and $(1,2,4,3)$. Over $\mathbb{F}_2$, $x^4-1=(x-1)^4$, so there is a single component $\mathbb{F}_2^4$, on which $S-I$ is nilpotent with $(S-I)^3\ne0$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, the chapter on elementary canonical forms.</li>
+<li>Steven Roman, <em>Advanced Linear Algebra</em>, 3rd ed., Springer GTM 135, the chapters on modules over a principal ideal domain.</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., open access at https://linear.axler.net/, the chapter on operators on complex vector spaces.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch19.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 19 laboratory: the primary decomposition theorem.
+
+Exact arithmetic over Q (fractions.Fraction).  A polynomial is a list of
+Fractions, constant term first, with no trailing zero.  A matrix is a
+list of rows.  The model is the chapter&#x27;s running example: the operator
+M on Q^5 with minimal polynomial (x-2)^2 (x+1) (x^2+1).  The lab builds
+the projections E_j = h_j(M) from a Bezout identity, and checks every
+claim of the theorem and of the diagonalizable-plus-nilpotent corollary.
+&quot;&quot;&quot;
+from fractions import Fraction
+
+Q = Fraction
+
+
+# ---------------------------------------------------------------- polys
+def trim(p):
+    p = [Fraction(c) for c in p]
+    while p and p[-1] == 0:
+        p.pop()
+    return p
+
+
+def padd(a, b):
+    n = max(len(a), len(b))
+    a = list(a) + [0] * (n - len(a))
+    b = list(b) + [0] * (n - len(b))
+    return trim([x + y for x, y in zip(a, b)])
+
+
+def pscale(a, c):
+    return trim([c * x for x in a])
+
+
+def pmul(a, b):
+    if not a or not b:
+        return []
+    out = [Fraction(0)] * (len(a) + len(b) - 1)
+    for i, x in enumerate(a):
+        for j, y in enumerate(b):
+            out[i + j] += x * y
+    return trim(out)
+
+
+def ppow(a, r):
+    out = [Fraction(1)]
+    for _ in range(r):
+        out = pmul(out, a)
+    return out
+
+
+def pdivmod(a, b):
+    &quot;&quot;&quot;Quotient and remainder of a by b over Q, with b nonzero.&quot;&quot;&quot;
+    a = trim(a)
+    b = trim(b)
+    q = [Fraction(0)] * max(len(a) - len(b) + 1, 1)
+    while len(a) &gt;= len(b) and a:
+        shift = len(a) - len(b)
+        c = a[-1] / b[-1]
+        q[shift] = c
+        a = padd(a, pscale([0] * shift + list(b), -c))
+    return trim(q), a
+
+
+def pinverse_mod(f, m):
+    &quot;&quot;&quot;The polynomial g with deg g &lt; deg m and f g = 1 mod m.
+
+    Requires gcd(f, m) = 1.  Extended Euclid with a running coefficient.
+    &quot;&quot;&quot;
+    r0, r1 = trim(m), pdivmod(f, m)[1]
+    t0, t1 = [], [Fraction(1)]
+    while r1:
+        q, r = pdivmod(r0, r1)
+        r0, r1 = r1, r
+        t0, t1 = t1, padd(t0, pscale(pmul(q, t1), -1))
+    assert len(r0) == 1, &#x27;f and m are not relatively prime&#x27;
+    return pscale(pdivmod(t0, m)[1], 1 / r0[0])
+
+
+def pstr(p):
+    if not p:
+        return &#x27;0&#x27;
+    terms = []
+    for k in range(len(p) - 1, -1, -1):
+        c = p[k]
+        if c == 0:
+            continue
+        mono = &#x27;&#x27; if k == 0 else (&#x27;x&#x27; if k == 1 else &#x27;x^%d&#x27; % k)
+        if k == 0:
+            coef = str(c)
+        elif c == 1:
+            coef = &#x27;&#x27;
+        elif c == -1:
+            coef = &#x27;-&#x27;
+        else:
+            coef = &#x27;(%s)&#x27; % c
+        terms.append(coef + mono)
+    return &#x27; + &#x27;.join(terms)
+
+
+# ------------------------------------------------------------- matrices
+def ident(n):
+    return [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def zeros(n):
+    return [[Fraction(0)] * n for _ in range(n)]
+
+
+def mmul(a, b):
+    return [[sum(x * y for x, y in zip(row, col)) for col in zip(*b)]
+            for row in a]
+
+
+def madd(a, b):
+    return [[x + y for x, y in zip(r, s)] for r, s in zip(a, b)]
+
+
+def mscale(a, c):
+    return [[c * x for x in r] for r in a]
+
+
+def peval(p, m):
+    &quot;&quot;&quot;p(M) by Horner&#x27;s rule.&quot;&quot;&quot;
+    n = len(m)
+    out = zeros(n)
+    for c in reversed(p):
+        out = madd(mmul(out, m), mscale(ident(n), c))
+    return out
+
+
+def rref(rows):
+    &quot;&quot;&quot;Reduced row echelon form and pivot columns, exact.&quot;&quot;&quot;
+    a = [list(map(Fraction, r)) for r in rows]
+    piv, r = [], 0
+    for c in range(len(a[0]) if a else 0):
+        s = next((i for i in range(r, len(a)) if a[i][c] != 0), None)
+        if s is None:
+            continue
+        a[r], a[s] = a[s], a[r]
+        a[r] = [x / a[r][c] for x in a[r]]
+        for i in range(len(a)):
+            if i != r and a[i][c] != 0:
+                f = a[i][c]
+                a[i] = [x - f * y for x, y in zip(a[i], a[r])]
+        piv.append(c)
+        r += 1
+        if r == len(a):
+            break
+    return a, piv
+
+
+def rank(rows):
+    return len(rref(rows)[1]) if rows else 0
+
+
+def nullspace(a):
+    &quot;&quot;&quot;Basis (list of vectors) of {x : A x = 0}.&quot;&quot;&quot;
+    n = len(a[0])
+    red, piv = rref(a)
+    basis = []
+    for f in (c for c in range(n) if c not in piv):
+        v = [Fraction(0)] * n
+        v[f] = Fraction(1)
+        for row, pc in zip(red, piv):
+            v[pc] = -row[f]
+        basis.append(v)
+    return basis
+
+
+def columns(a):
+    return [list(c) for c in zip(*a)]
+
+
+def sum_dim(*bases):
+    &quot;&quot;&quot;Dimension of the sum of the spans of the given bases.&quot;&quot;&quot;
+    return rank([v for b in bases for v in b])
+
+
+def restrict(m, basis):
+    &quot;&quot;&quot;Matrix of x -&gt; M x on span(basis), written in that basis.&quot;&quot;&quot;
+    k = len(basis)
+    aug = [[basis[j][i] for j in range(k)] +
+           [sum(m[i][t] * basis[c][t] for t in range(len(m)))
+            for c in range(k)] for i in range(len(m))]
+    red, piv = rref(aug)
+    assert piv[:k] == list(range(k)), &#x27;basis is not independent&#x27;
+    return [[red[i][k + c] for c in range(k)] for i in range(k)]
+
+
+def minimal_polynomial(m):
+    &quot;&quot;&quot;Monic polynomial of least degree annihilating M.&quot;&quot;&quot;
+    n = len(m)
+    powers = [ident(n)]
+    for _ in range(n):
+        powers.append(mmul(powers[-1], m))
+    flat = [[x for row in p for x in row] for p in powers]
+    for d in range(1, n + 1):
+        sol = nullspace(columns(flat[:d + 1]))
+        if sol:
+            c = sol[0]
+            return trim([x / c[d] for x in c])
+    raise AssertionError(&#x27;no annihilating polynomial of degree &lt;= n&#x27;)
+
+
+def inverse(a):
+    n = len(a)
+    red, piv = rref([list(r) + ident(n)[i] for i, r in enumerate(a)])
+    assert piv[:n] == list(range(n)), &#x27;matrix is singular&#x27;
+    return [r[n:] for r in red]
+
+
+# ------------------------------------------------- primary decomposition
+def primary_data(factors):
+    &quot;&quot;&quot;Return m, the powers p_i^r_i, the cofactors f_i, and the h_i.
+
+    Here h_i = g_i f_i reduced modulo m, where g_i f_i = 1 modulo
+    p_i^r_i and m = prod p_i^r_i.  Then sum h_i = 1 exactly.
+    &quot;&quot;&quot;
+    powers = [ppow(p, r) for p, r in factors]
+    m = [Fraction(1)]
+    for q in powers:
+        m = pmul(m, q)
+    fs, hs = [], []
+    for q in powers:
+        f = pdivmod(m, q)[0]
+        g = pinverse_mod(f, q)
+        fs.append(f)
+        hs.append(pdivmod(pmul(g, f), m)[1])
+    return m, powers, fs, hs
+
+
+def main():
+    p1, p2, p3 = trim([-2, 1]), trim([1, 1]), trim([1, 0, 1])
+    factors = [(p1, 2), (p2, 1), (p3, 1)]
+    A = [[2, 0, 0], [1, 2, 0], [0, 0, -1]]
+    C = [[0, -1], [1, 0]]
+    n = 5
+    M = zeros(n)
+    for i in range(3):
+        for j in range(3):
+            M[i][j] = Q(A[i][j])
+    for i in range(2):
+        for j in range(2):
+            M[3 + i][3 + j] = Q(C[i][j])
+
+    # 1. minimal polynomial of the running example
+    m, powers, fs, hs = primary_data(factors)
+    mp = minimal_polynomial(M)
+    assert mp == m, (pstr(mp), pstr(m))
+    assert peval(m, M) == zeros(n)
+    print(&#x27;minimal polynomial      :&#x27;, pstr(mp))
+
+    # 2. Bezout identity and the polynomials h_j
+    total = []
+    for i, (f, h) in enumerate(zip(fs, hs)):
+        print(&#x27;f_%d = %s&#x27; % (i + 1, pstr(f)))
+        print(&#x27;h_%d = %s&#x27; % (i + 1, pstr(h)))
+        total = padd(total, h)
+    assert total == [Q(1)], total
+
+    # 3. projections E_j = h_j(M)
+    E = [peval(h, M) for h in hs]
+    for j in range(3):
+        assert mmul(E[j], E[j]) == E[j]
+        assert mmul(E[j], M) == mmul(M, E[j])
+        for i in range(3):
+            if i != j:
+                assert mmul(E[i], E[j]) == zeros(n)
+    s = zeros(n)
+    for e in E:
+        s = madd(s, e)
+    assert s == ident(n)
+    block = [[0, 1], [2], [3, 4]]
+    for j in range(3):
+        want = zeros(n)
+        for a in block[j]:
+            want[a][a] = Q(1)
+        assert E[j] == want
+    print(&#x27;E_1, E_2, E_3 are the coordinate projections onto&#x27;)
+    print(&#x27;  span(e1,e2), span(e3), span(e4,e5): checked&#x27;)
+
+    # 4. W_j = ker p_j(M)^r_j equals im E_j, dimensions 2, 1, 2
+    W = [nullspace(peval(q, M)) for q in powers]
+    dims = [len(w) for w in W]
+    print(&#x27;dim W_1, W_2, W_3       :&#x27;, dims)
+    assert dims == [2, 1, 2]
+    for j in range(3):
+        img = columns(E[j])
+        assert rank(img) == dims[j] == sum_dim(img, W[j])
+    assert sum_dim(*W) == n == sum(dims)
+
+    # 5. minimal polynomial of each restriction T_j is p_j^r_j
+    for j in range(3):
+        assert minimal_polynomial(restrict(M, W[j])) == powers[j]
+    print(&#x27;min poly of T_1, T_2, T_3:&#x27;, [pstr(q) for q in powers])
+
+    # 6. semisimple part S and nilpotent part N
+    S = madd(mscale(E[0], Q(2)), mscale(E[1], Q(-1)))
+    S = madd(S, mmul(M, E[2]))
+    N = mmul(madd(M, mscale(ident(n), Q(-2))), E[0])
+    assert madd(S, N) == M
+    assert mmul(S, N) == mmul(N, S)
+    assert mmul(N, N) == zeros(n) and N != zeros(n)
+    TE3 = mmul(M, E[2])
+    assert madd(mmul(TE3, TE3), E[2]) == zeros(n)
+    print(&#x27;N^2 = 0, N != 0, SN = NS, S + N = M: checked&#x27;)
+    print(&#x27;N =&#x27;, [[str(v) for v in r] for r in N])
+
+    # 7. the formula does not depend on the basis
+    P = [[1, 1, 0, 0, 0], [0, 1, 1, 0, 0], [0, 0, 1, 1, 0],
+         [0, 0, 0, 1, 1], [0, 0, 0, 0, 1]]
+    P = [[Q(v) for v in r] for r in P]
+    Pinv = inverse(P)
+    M2 = mmul(mmul(P, M), Pinv)
+    E2 = [peval(h, M2) for h in hs]
+    for j in range(3):
+        assert E2[j] == mmul(mmul(P, E[j]), Pinv)
+    assert E2[0] != E[0]
+    print(&#x27;E_j(P M P^-1) = P E_j P^-1 and differs from E_j: checked&#x27;)
+
+    # 8. boundary: the exponent of (x-2) is too small
+    k1 = nullspace(peval(p1, M))
+    print(&#x27;dim ker(M-2I)           :&#x27;, len(k1))
+    assert len(k1) == 1
+    assert sum_dim(k1, W[1], W[2]) == 4 &lt; n
+
+    # 9. boundary: factors that are not relatively prime
+    q1, q2 = ppow(p1, 2), pmul(p1, p2)
+    a, b = nullspace(peval(q1, M)), nullspace(peval(q2, M))
+    print(&#x27;dim ker q1, ker q2, sum :&#x27;, len(a), len(b), sum_dim(a, b))
+    assert sum_dim(a, b) &lt; len(a) + len(b)
+
+    # 10. x^2+1 has no root in Q (x^2+1 &gt;= 1 for every rational x), so
+    # T_3 has no eigenvalue over Q; its restriction has x^2+1 as minimal
+    # polynomial, which is irreducible over Q.
+    assert all(t * t + 1 != 0 for t in (Q(a, 7) for a in range(-70, 71)))
+    assert all(len(nullspace(madd(restrict(M, W[2]),
+                                  mscale(ident(2), -Q(a, 3))))) == 0
+               for a in range(-30, 31))
+    # 11. numbers quoted in the chapter and the exercises
+    assert m == trim([4, 0, 1, 1, -3, 1])
+    D = madd(mscale(E[0], Q(2)), mscale(E[1], Q(-1)))
+    assert S == madd(D, mmul(M, E[2]))
+
+    # exercise 1: the block A
+    A3 = [[Q(v) for v in r] for r in A]
+    h1 = pscale(pmul(trim([5, -1]), trim([1, 1])), Q(1, 9))
+    h2 = pscale(ppow(p1, 2), Q(1, 9))
+    assert padd(h1, h2) == [1]
+    assert peval(h1, A3) == [[1, 0, 0], [0, 1, 0], [0, 0, 0]]
+    assert peval(h2, A3) == [[0, 0, 0], [0, 0, 0], [0, 0, 1]]
+
+    # exercise 2: complex projections of the quarter turn
+    half = [[0.5, 0.5j], [-0.5j, 0.5]]
+    Cc = [[0, -1], [1, 0]]
+    for i in range(2):
+        for j in range(2):
+            v = (Cc[i][j] + (1j if i == j else 0)) / 2j
+            assert v == half[i][j]
+    assert mmul(half, half) == half
+
+    # exercise 6: the cyclic shift over Q, F_5, F_2
+    Sh = [[Q(int((i - j) % 4 == 1)) for j in range(4)] for i in range(4)]
+    assert minimal_polynomial(Sh) == trim([-1, 0, 0, 0, 1])
+    for c, v in ((1, (1, 1, 1, 1)), (4, (1, 4, 1, 4)),
+                 (2, (1, 3, 4, 2)), (3, (1, 2, 4, 3))):
+        image = [v[(i - 1) % 4] for i in range(4)]
+        assert all((image[i] - c * v[i]) % 5 == 0 for i in range(4))
+    N1 = madd(Sh, mscale(ident(4), Q(-1)))
+    cube = mmul(mmul(N1, N1), N1)
+    assert any(int(x) % 2 for row in cube for x in row)
+    assert all(int(x) % 2 == 0 for row in mmul(cube, N1) for x in row)
+    print(&#x27;exercises 1, 2, 6: checked&#x27;)
+    print(&#x27;all assertions passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch18.html">Previous: Invariant direct sums and block-diagonal operators</a><a rel="next" href="ch20.html">Next: Applications of primary decomposition: diagonalizable plus nilpotent parts</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

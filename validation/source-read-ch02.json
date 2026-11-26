@@ -1,0 +1,32 @@
+{
+ "author": "author_a",
+ "chapter": "ch02",
+ "recordings": [
+  {
+   "position": 4,
+   "video_id": "5nsdoUfGpFE",
+   "normalized_text_sha256": "5777e7bc394b04bace98c7674650a9d4c9c703fc855e58b6e01843611f6a29e0",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "recap of row-reduced matrices",
+    "row-reduced echelon matrix definition and Kronecker delta form",
+    "existence of echelon form (left as homework in lecture)",
+    "worked reduction",
+    "free variables and homogeneous solutions",
+    "augmented matrix PA=R, PY=Z",
+    "consistency condition and parallel planes"
+   ],
+   "clarifications": [
+    "The lecture's reading of a nonzero z as parallel planes is not general; three-line counterexample given"
+   ],
+   "original_constructions": [
+    "running matrix A",
+    "uniqueness theorem via end positions",
+    "left-kernel certificate",
+    "exercises"
+   ]
+  }
+ ]
+}

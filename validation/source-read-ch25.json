@@ -1,0 +1,64 @@
+{
+  "author": "author_b",
+  "chapter": "ch25",
+  "recordings": [
+    {
+      "position": 56,
+      "video_id": "3mRBrsR9UXA",
+      "normalized_text_sha256": "9c832be299379c35cf01a59211b98d756d5ec4a88ecd5892d219a6317a6f0ace",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "existence of eigenvectors for self-adjoint operators",
+        "remarks on the field and infinite dimension",
+        "multiplication operator without eigenvectors",
+        "orthogonal complement of an invariant subspace",
+        "orthonormal eigenbasis by induction"
+      ],
+      "clarifications": [],
+      "original_constructions": [
+        "running symmetric matrix"
+      ]
+    },
+    {
+      "position": 57,
+      "video_id": "ZL0UkkCrud0",
+      "normalized_text_sha256": "073c45fadfca4795f0ebf2ca5f41f994766628483e9a27066a3b156aa5246d43",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "unitary and orthogonal diagonalization of matrices",
+        "eigenvectors of normal operators and adjoints",
+        "normal matrices",
+        "upper triangular normal matrices are diagonal"
+      ],
+      "clarifications": [],
+      "original_constructions": [
+        "Gram-Schmidt inside an eigenspace"
+      ]
+    },
+    {
+      "position": 58,
+      "video_id": "yYlXk5C91UE",
+      "normalized_text_sha256": "a2e9e087b964975bf6e3f09d0118b2137637d56c41cfd8f4630f4f63544d1bbe",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "upper triangular form in an orthonormal basis",
+        "matrix version",
+        "spectral theorem and resolution",
+        "projections as Lagrange polynomials"
+      ],
+      "clarifications": [
+        "The theorem needs the complex field for normal operators"
+      ],
+      "original_constructions": [
+        "square root and powers",
+        "exercises"
+      ]
+    }
+  ]
+}

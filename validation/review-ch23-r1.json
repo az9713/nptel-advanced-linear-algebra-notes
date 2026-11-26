@@ -1,0 +1,36 @@
+{
+ "reviewer": "author_a",
+ "slot": "r1",
+ "chapter": "ch23",
+ "disposition": "accepted",
+ "report": "validation/review-ch23-r1.md",
+ "scope": [
+  "manuscript",
+  "metadata",
+  "lab read and run",
+  "source ledger",
+  "all six solutions"
+ ],
+ "remaining_findings": [],
+ "accepted_files": {
+  "chapters/ch23.md": "92f2816d61d86c388a8739cf3c83016a65b8ef8d272ffc113a347903cda2f2c7",
+  "chapters/ch23.json": "f528867f935d0050325e3ee3e1fd1d87b0742400b5bd328309d039c427412589",
+  "labs/ch23.py": "9e3b9a55a1a430ccedb731c21a398883fd06a7c6676ce42903c3436f679e9fa9"
+ },
+ "source_evidence": {
+  "caption_positions": [
+   48,
+   49,
+   50,
+   51
+  ],
+  "intervals_read": "all four caption files read in full"
+ },
+ "limitations": [
+  "No comprehensive audiovisual audit",
+  "Not human certification or formal proof verification"
+ ],
+ "rechecks": [
+  "Recheck 1: both missing hypotheses are now stated (Section 2 and Proposition 9.2). Pipeline check OK."
+ ]
+}

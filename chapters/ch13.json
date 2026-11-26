@@ -1,0 +1,12 @@
+{
+  "title": "Diagonalizable operators and annihilating polynomials",
+  "lectures": [26, 27],
+  "objectives": [
+    "Prove that eigenspaces of distinct eigenvalues are independent",
+    "Characterize diagonalizability by eigenspace dimensions",
+    "Construct the minimal polynomial and prove its properties",
+    "Prove the distinct-linear-factor criterion in both directions"
+  ],
+  "prerequisites": "Chapters 8, 9 and 12: operator spaces, similarity and eigenvalues.",
+  "source_scope": "The captions of Lectures 25 and 26 were read in full; the second matrix, the converse proof by Lagrange polynomials and the exercises are original."
+}

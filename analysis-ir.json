@@ -1,0 +1,2661 @@
+{
+  "title": "Chapter provenance and section index",
+  "kind": "section-index, not automatic claim attribution",
+  "boundary": "Recording locators identify related discussion. They do not attribute every derivation, example, or research extension to the lecture. Reading and review ledgers state actual scope.",
+  "chapters": [
+    {
+      "id": "ch01",
+      "title": "Linear systems as one matrix equation, and the operations that preserve its solutions",
+      "manuscript": "chapters/ch01.md",
+      "manuscript_sha256": "96272f0538dae93c1902a4770a3143cc45094a6a6957d1a5eb3536da4339815c",
+      "laboratory": "labs/ch01.py",
+      "recordings": [
+        {
+          "position": 2,
+          "video_id": "hMkT19xNNRk"
+        },
+        {
+          "position": 3,
+          "video_id": "VsQSt1jqknk"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch01.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Fields: the arithmetic that elimination needs [04:07](https://www.youtube.com/watch?v=hMkT19xNNRk&t=247s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=hMkT19xNNRk&t=247s"
+          ],
+          "source_line": 19
+        },
+        {
+          "heading": "2. Systems of linear equations and their solution sets [15:54](https://www.youtube.com/watch?v=hMkT19xNNRk&t=954s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=hMkT19xNNRk&t=954s"
+          ],
+          "source_line": 53
+        },
+        {
+          "heading": "3. The row picture: each equation is a line or a plane [18:39](https://www.youtube.com/watch?v=hMkT19xNNRk&t=1119s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=hMkT19xNNRk&t=1119s"
+          ],
+          "source_line": 84
+        },
+        {
+          "heading": "4. The column picture: solving means forming a combination [22:10](https://www.youtube.com/watch?v=hMkT19xNNRk&t=1330s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=hMkT19xNNRk&t=1330s"
+          ],
+          "source_line": 111
+        },
+        {
+          "heading": "5. Linear combinations of equations and equivalent systems [27:35](https://www.youtube.com/watch?v=hMkT19xNNRk&t=1655s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=hMkT19xNNRk&t=1655s"
+          ],
+          "source_line": 137
+        },
+        {
+          "heading": "6. The matrix form of a system [03:10](https://www.youtube.com/watch?v=VsQSt1jqknk&t=190s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=VsQSt1jqknk&t=190s"
+          ],
+          "source_line": 167
+        },
+        {
+          "heading": "7. Elementary row operations and their inverses [04:46](https://www.youtube.com/watch?v=VsQSt1jqknk&t=286s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=VsQSt1jqknk&t=286s"
+          ],
+          "source_line": 193
+        },
+        {
+          "heading": "8. Elementary matrices [09:42](https://www.youtube.com/watch?v=VsQSt1jqknk&t=582s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=VsQSt1jqknk&t=582s"
+          ],
+          "source_line": 213
+        },
+        {
+          "heading": "9. Row equivalence preserves solutions [14:48](https://www.youtube.com/watch?v=VsQSt1jqknk&t=888s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=VsQSt1jqknk&t=888s"
+          ],
+          "source_line": 239
+        },
+        {
+          "heading": "10. Row-reduced matrices [22:24](https://www.youtube.com/watch?v=VsQSt1jqknk&t=1344s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=VsQSt1jqknk&t=1344s"
+          ],
+          "source_line": 255
+        },
+        {
+          "heading": "11. Every matrix is row-equivalent to a row-reduced matrix [29:01](https://www.youtube.com/watch?v=VsQSt1jqknk&t=1741s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=VsQSt1jqknk&t=1741s"
+          ],
+          "source_line": 289
+        },
+        {
+          "heading": "12. Executable check",
+          "recording_locators": [],
+          "source_line": 334
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 342
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 367
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 8061,
+        "major_headings": 14,
+        "display_equation_blocks": 17
+      }
+    },
+    {
+      "id": "ch02",
+      "title": "Row-reduced echelon form: one canonical answer to every linear system",
+      "manuscript": "chapters/ch02.md",
+      "manuscript_sha256": "8024b0b77c3268715c2cfcb44e1936123f44cdcb55a3d8b4d920de09a6b46af0",
+      "laboratory": "labs/ch02.py",
+      "recordings": [
+        {
+          "position": 4,
+          "video_id": "5nsdoUfGpFE"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch02.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. From a row-reduced matrix to its solutions [00:25](https://www.youtube.com/watch?v=5nsdoUfGpFE&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5nsdoUfGpFE&t=25s"
+          ],
+          "source_line": 19
+        },
+        {
+          "heading": "2. The definition of row-reduced echelon form [11:03](https://www.youtube.com/watch?v=5nsdoUfGpFE&t=663s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5nsdoUfGpFE&t=663s"
+          ],
+          "source_line": 43
+        },
+        {
+          "heading": "3. Every matrix has an echelon form [19:54](https://www.youtube.com/watch?v=5nsdoUfGpFE&t=1194s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5nsdoUfGpFE&t=1194s"
+          ],
+          "source_line": 73
+        },
+        {
+          "heading": "4. A complete reduction [22:01](https://www.youtube.com/watch?v=5nsdoUfGpFE&t=1321s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5nsdoUfGpFE&t=1321s"
+          ],
+          "source_line": 89
+        },
+        {
+          "heading": "5. The solutions of a homogeneous system [28:08](https://www.youtube.com/watch?v=5nsdoUfGpFE&t=1688s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5nsdoUfGpFE&t=1688s"
+          ],
+          "source_line": 109
+        },
+        {
+          "heading": "6. Nonhomogeneous systems and the consistency condition [36:23](https://www.youtube.com/watch?v=5nsdoUfGpFE&t=2183s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5nsdoUfGpFE&t=2183s"
+          ],
+          "source_line": 137
+        },
+        {
+          "heading": "7. What inconsistency looks like [40:35](https://www.youtube.com/watch?v=5nsdoUfGpFE&t=2435s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5nsdoUfGpFE&t=2435s"
+          ],
+          "source_line": 164
+        },
+        {
+          "heading": "8. Uniqueness: why the echelon form is canonical",
+          "recording_locators": [],
+          "source_line": 172
+        },
+        {
+          "heading": "9. Boundaries",
+          "recording_locators": [],
+          "source_line": 200
+        },
+        {
+          "heading": "10. Executable check",
+          "recording_locators": [],
+          "source_line": 208
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 212
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 237
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 4532,
+        "major_headings": 12,
+        "display_equation_blocks": 10
+      }
+    },
+    {
+      "id": "ch03",
+      "title": "Vector spaces and subspaces: the axioms that make linear combinations work",
+      "manuscript": "chapters/ch03.md",
+      "manuscript_sha256": "5c5b41d8342281542b9c6655e89ab939a29fff92e5191a56e01702edfa7e4012",
+      "laboratory": "labs/ch03.py",
+      "recordings": [
+        {
+          "position": 5,
+          "video_id": "aEF5PPbv8Oc"
+        },
+        {
+          "position": 6,
+          "video_id": "BQ6bUhF4tPM"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch03.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. From solving $AX=Y$ to abstract vector spaces [00:25](https://www.youtube.com/watch?v=aEF5PPbv8Oc&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=aEF5PPbv8Oc&t=25s"
+          ],
+          "source_line": 13
+        },
+        {
+          "heading": "2. The axioms of a vector space [03:14](https://www.youtube.com/watch?v=aEF5PPbv8Oc&t=194s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=aEF5PPbv8Oc&t=194s"
+          ],
+          "source_line": 23
+        },
+        {
+          "heading": "3. First examples: $F^n$ and a field over a subfield [15:55](https://www.youtube.com/watch?v=aEF5PPbv8Oc&t=955s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=aEF5PPbv8Oc&t=955s"
+          ],
+          "source_line": 70
+        },
+        {
+          "heading": "4. Function spaces and polynomials [28:50](https://www.youtube.com/watch?v=aEF5PPbv8Oc&t=1730s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=aEF5PPbv8Oc&t=1730s"
+          ],
+          "source_line": 96
+        },
+        {
+          "heading": "5. Subspaces and the one-step test [00:48](https://www.youtube.com/watch?v=BQ6bUhF4tPM&t=48s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BQ6bUhF4tPM&t=48s"
+          ],
+          "source_line": 120
+        },
+        {
+          "heading": "6. Null spaces, solution sets, and spaces of matrices [25:08](https://www.youtube.com/watch?v=BQ6bUhF4tPM&t=1508s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BQ6bUhF4tPM&t=1508s"
+          ],
+          "source_line": 158
+        },
+        {
+          "heading": "7. Linear combinations and span [32:41](https://www.youtube.com/watch?v=BQ6bUhF4tPM&t=1961s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BQ6bUhF4tPM&t=1961s"
+          ],
+          "source_line": 182
+        },
+        {
+          "heading": "8. Intersections and unions [41:01](https://www.youtube.com/watch?v=BQ6bUhF4tPM&t=2461s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BQ6bUhF4tPM&t=2461s"
+          ],
+          "source_line": 216
+        },
+        {
+          "heading": "9. Sums of subspaces [47:20](https://www.youtube.com/watch?v=BQ6bUhF4tPM&t=2840s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BQ6bUhF4tPM&t=2840s"
+          ],
+          "source_line": 244
+        },
+        {
+          "heading": "10. Executable check",
+          "recording_locators": [],
+          "source_line": 276
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 284
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 309
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 6707,
+        "major_headings": 12,
+        "display_equation_blocks": 12
+      }
+    },
+    {
+      "id": "ch04",
+      "title": "Linear independence, basis, and the invariance of dimension",
+      "manuscript": "chapters/ch04.md",
+      "manuscript_sha256": "6bba462638dbc175f323484e22c972020cabc095e036153e2c1c50c3658c3289",
+      "laboratory": "labs/ch04.py",
+      "recordings": [
+        {
+          "position": 7,
+          "video_id": "mNB7cDaXshQ"
+        },
+        {
+          "position": 8,
+          "video_id": "wXhtEtJQx2U"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch04.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Spans of arbitrary sets [00:25](https://www.youtube.com/watch?v=mNB7cDaXshQ&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=mNB7cDaXshQ&t=25s"
+          ],
+          "source_line": 21
+        },
+        {
+          "heading": "2. Linear dependence and independence [07:10](https://www.youtube.com/watch?v=mNB7cDaXshQ&t=430s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=mNB7cDaXshQ&t=430s"
+          ],
+          "source_line": 25
+        },
+        {
+          "heading": "3. Basis [15:17](https://www.youtube.com/watch?v=mNB7cDaXshQ&t=917s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=mNB7cDaXshQ&t=917s"
+          ],
+          "source_line": 48
+        },
+        {
+          "heading": "4. Dimension: finite and infinite [26:14](https://www.youtube.com/watch?v=mNB7cDaXshQ&t=1574s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=mNB7cDaXshQ&t=1574s"
+          ],
+          "source_line": 62
+        },
+        {
+          "heading": "5. The key inequality [33:20](https://www.youtube.com/watch?v=mNB7cDaXshQ&t=2000s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=mNB7cDaXshQ&t=2000s"
+          ],
+          "source_line": 68
+        },
+        {
+          "heading": "6. Building bases: extension and reduction [00:25](https://www.youtube.com/watch?v=wXhtEtJQx2U&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=wXhtEtJQx2U&t=25s"
+          ],
+          "source_line": 98
+        },
+        {
+          "heading": "7. The dimension of a sum [04:36](https://www.youtube.com/watch?v=wXhtEtJQx2U&t=276s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=wXhtEtJQx2U&t=276s"
+          ],
+          "source_line": 121
+        },
+        {
+          "heading": "8. Ordered bases and coordinates [21:41](https://www.youtube.com/watch?v=wXhtEtJQx2U&t=1301s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=wXhtEtJQx2U&t=1301s"
+          ],
+          "source_line": 143
+        },
+        {
+          "heading": "9. Executable check",
+          "recording_locators": [],
+          "source_line": 165
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 169
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 194
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 3332,
+        "major_headings": 11,
+        "display_equation_blocks": 6
+      }
+    },
+    {
+      "id": "ch05",
+      "title": "Coordinates and change of ordered basis",
+      "manuscript": "chapters/ch05.md",
+      "manuscript_sha256": "0cd97e85ad038f7e5ad52dff432eed0c6cd03851196fe13361f27dd3721918e3",
+      "laboratory": "labs/ch05.py",
+      "recordings": [
+        {
+          "position": 9,
+          "video_id": "rA7m8jQKtQ4"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch05.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Ordered bases and coordinate matrices [00:25](https://www.youtube.com/watch?v=rA7m8jQKtQ4&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=rA7m8jQKtQ4&t=25s"
+          ],
+          "source_line": 13
+        },
+        {
+          "heading": "2. The change-of-basis theorem [04:35](https://www.youtube.com/watch?v=rA7m8jQKtQ4&t=275s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=rA7m8jQKtQ4&t=275s"
+          ],
+          "source_line": 33
+        },
+        {
+          "heading": "3. The running example worked out",
+          "recording_locators": [],
+          "source_line": 67
+        },
+        {
+          "heading": "4. Composing changes of basis",
+          "recording_locators": [],
+          "source_line": 87
+        },
+        {
+          "heading": "5. Example in $F^3$ [16:57](https://www.youtube.com/watch?v=rA7m8jQKtQ4&t=1017s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=rA7m8jQKtQ4&t=1017s"
+          ],
+          "source_line": 103
+        },
+        {
+          "heading": "6. Every invertible matrix is a change of basis [25:21](https://www.youtube.com/watch?v=rA7m8jQKtQ4&t=1521s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=rA7m8jQKtQ4&t=1521s"
+          ],
+          "source_line": 131
+        },
+        {
+          "heading": "7. What is invariant under a change of basis",
+          "recording_locators": [],
+          "source_line": 167
+        },
+        {
+          "heading": "8. Executable check",
+          "recording_locators": [],
+          "source_line": 171
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 175
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 200
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2049,
+        "major_headings": 10,
+        "display_equation_blocks": 17
+      }
+    },
+    {
+      "id": "ch06",
+      "title": "Row space and computations with subspaces",
+      "manuscript": "chapters/ch06.md",
+      "manuscript_sha256": "d92dd7bb5c321ebd5e2fb8b160689383ef581fbe0ebc7b572f9111fd54541ed0",
+      "laboratory": "labs/ch06.py",
+      "recordings": [
+        {
+          "position": 10,
+          "video_id": "BJn7EqX2p0o"
+        },
+        {
+          "position": 11,
+          "video_id": "j_laym_mBaI"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch06.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. The row space [00:25](https://www.youtube.com/watch?v=BJn7EqX2p0o&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BJn7EqX2p0o&t=25s"
+          ],
+          "source_line": 13
+        },
+        {
+          "heading": "2. Matrix multiplication and row spaces [04:32](https://www.youtube.com/watch?v=BJn7EqX2p0o&t=272s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BJn7EqX2p0o&t=272s"
+          ],
+          "source_line": 21
+        },
+        {
+          "heading": "3. The nonzero rows of the echelon form [20:07](https://www.youtube.com/watch?v=BJn7EqX2p0o&t=1207s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BJn7EqX2p0o&t=1207s"
+          ],
+          "source_line": 35
+        },
+        {
+          "heading": "4. Which matrices have the same row space",
+          "recording_locators": [],
+          "source_line": 69
+        },
+        {
+          "heading": "5. A worked problem: the invertible matrix $P$ [00:00](https://www.youtube.com/watch?v=j_laym_mBaI&t=0s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=j_laym_mBaI&t=0s"
+          ],
+          "source_line": 77
+        },
+        {
+          "heading": "6. A basis, coordinates and a general element [14:33](https://www.youtube.com/watch?v=j_laym_mBaI&t=873s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=j_laym_mBaI&t=873s"
+          ],
+          "source_line": 105
+        },
+        {
+          "heading": "7. The solutions of $AX=0$ [20:45](https://www.youtube.com/watch?v=j_laym_mBaI&t=1245s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=j_laym_mBaI&t=1245s"
+          ],
+          "source_line": 127
+        },
+        {
+          "heading": "8. For which $Y$ is $AX=Y$ solvable? [27:01](https://www.youtube.com/watch?v=j_laym_mBaI&t=1621s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=j_laym_mBaI&t=1621s"
+          ],
+          "source_line": 139
+        },
+        {
+          "heading": "9. Intersections and sums",
+          "recording_locators": [],
+          "source_line": 155
+        },
+        {
+          "heading": "10. Executable check",
+          "recording_locators": [],
+          "source_line": 166
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 170
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 195
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2637,
+        "major_headings": 12,
+        "display_equation_blocks": 12
+      }
+    },
+    {
+      "id": "ch07",
+      "title": "Linear transformations, null space, range, and the rank-nullity theorem",
+      "manuscript": "chapters/ch07.md",
+      "manuscript_sha256": "01b473c53c18c6b5aeeba614f162ae23c49579edf1bbedd81a96ea3d97b4e7ec",
+      "laboratory": "labs/ch07.py",
+      "recordings": [
+        {
+          "position": 12,
+          "video_id": "Pwk7p8WiCh0"
+        },
+        {
+          "position": 13,
+          "video_id": "VzuJgqY-ORo"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch07.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Definition [00:25](https://www.youtube.com/watch?v=Pwk7p8WiCh0&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Pwk7p8WiCh0&t=25s"
+          ],
+          "source_line": 13
+        },
+        {
+          "heading": "2. Examples [04:58](https://www.youtube.com/watch?v=Pwk7p8WiCh0&t=298s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Pwk7p8WiCh0&t=298s"
+          ],
+          "source_line": 31
+        },
+        {
+          "heading": "3. Range and null space [15:53](https://www.youtube.com/watch?v=Pwk7p8WiCh0&t=953s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Pwk7p8WiCh0&t=953s"
+          ],
+          "source_line": 45
+        },
+        {
+          "heading": "4. A linear map is fixed by its values on a basis [22:11](https://www.youtube.com/watch?v=Pwk7p8WiCh0&t=1331s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Pwk7p8WiCh0&t=1331s"
+          ],
+          "source_line": 59
+        },
+        {
+          "heading": "5. The rank-nullity theorem [04:38](https://www.youtube.com/watch?v=VzuJgqY-ORo&t=278s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=VzuJgqY-ORo&t=278s"
+          ],
+          "source_line": 81
+        },
+        {
+          "heading": "6. Rank of a matrix: row rank equals column rank [20:00](https://www.youtube.com/watch?v=VzuJgqY-ORo&t=1200s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=VzuJgqY-ORo&t=1200s"
+          ],
+          "source_line": 107
+        },
+        {
+          "heading": "7. The running example [29:44](https://www.youtube.com/watch?v=VzuJgqY-ORo&t=1784s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=VzuJgqY-ORo&t=1784s"
+          ],
+          "source_line": 123
+        },
+        {
+          "heading": "8. Executable check",
+          "recording_locators": [],
+          "source_line": 137
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 141
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 166
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2080,
+        "major_headings": 10,
+        "display_equation_blocks": 8
+      }
+    },
+    {
+      "id": "ch08",
+      "title": "The algebra of linear transformations: sums, composition, invertibility, and isomorphism",
+      "manuscript": "chapters/ch08.md",
+      "manuscript_sha256": "6bc0e27d305ca6b39783ebc75f53577de6ca050b731a5b92928af457d20e2981",
+      "laboratory": "labs/ch08.py",
+      "recordings": [
+        {
+          "position": 14,
+          "video_id": "4DXAx2Qc3DM"
+        },
+        {
+          "position": 15,
+          "video_id": "QIt8CporAVU"
+        },
+        {
+          "position": 16,
+          "video_id": "PpvRhe2QpjA"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch08.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Sums and scalar multiples [00:25](https://www.youtube.com/watch?v=4DXAx2Qc3DM&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=4DXAx2Qc3DM&t=25s"
+          ],
+          "source_line": 13
+        },
+        {
+          "heading": "2. The space of linear maps [08:48](https://www.youtube.com/watch?v=4DXAx2Qc3DM&t=528s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=4DXAx2Qc3DM&t=528s"
+          ],
+          "source_line": 39
+        },
+        {
+          "heading": "3. Its dimension is $mn$ [15:12](https://www.youtube.com/watch?v=4DXAx2Qc3DM&t=912s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=4DXAx2Qc3DM&t=912s"
+          ],
+          "source_line": 49
+        },
+        {
+          "heading": "4. Composition [08:55](https://www.youtube.com/watch?v=QIt8CporAVU&t=535s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=QIt8CporAVU&t=535s"
+          ],
+          "source_line": 75
+        },
+        {
+          "heading": "5. Linear operators form an algebra [15:07](https://www.youtube.com/watch?v=QIt8CporAVU&t=907s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=QIt8CporAVU&t=907s"
+          ],
+          "source_line": 91
+        },
+        {
+          "heading": "6. Invertible linear maps [00:25](https://www.youtube.com/watch?v=PpvRhe2QpjA&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PpvRhe2QpjA&t=25s"
+          ],
+          "source_line": 114
+        },
+        {
+          "heading": "7. Nonsingular maps [10:45](https://www.youtube.com/watch?v=PpvRhe2QpjA&t=645s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PpvRhe2QpjA&t=645s"
+          ],
+          "source_line": 132
+        },
+        {
+          "heading": "8. Isomorphisms [21:35](https://www.youtube.com/watch?v=PpvRhe2QpjA&t=1295s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PpvRhe2QpjA&t=1295s"
+          ],
+          "source_line": 152
+        },
+        {
+          "heading": "9. Executable check",
+          "recording_locators": [],
+          "source_line": 168
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 172
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 197
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2211,
+        "major_headings": 11,
+        "display_equation_blocks": 9
+      }
+    },
+    {
+      "id": "ch09",
+      "title": "Matrix representation of linear transformations and similarity",
+      "manuscript": "chapters/ch09.md",
+      "manuscript_sha256": "b59417951e67128d28162477aa63ec5247bc123273c872036b22fcbed982e55b",
+      "laboratory": "labs/ch09.py",
+      "recordings": [
+        {
+          "position": 17,
+          "video_id": "mB_27xaN1nU"
+        },
+        {
+          "position": 18,
+          "video_id": "PiG2BMkK3s4"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch09.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. The matrix of a linear map [04:53](https://www.youtube.com/watch?v=mB_27xaN1nU&t=293s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=mB_27xaN1nU&t=293s"
+          ],
+          "source_line": 19
+        },
+        {
+          "heading": "2. Every matrix is the matrix of one map [15:27](https://www.youtube.com/watch?v=mB_27xaN1nU&t=927s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=mB_27xaN1nU&t=927s"
+          ],
+          "source_line": 43
+        },
+        {
+          "heading": "3. Examples [19:57](https://www.youtube.com/watch?v=mB_27xaN1nU&t=1197s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=mB_27xaN1nU&t=1197s"
+          ],
+          "source_line": 51
+        },
+        {
+          "heading": "4. The correspondence is a linear isomorphism [32:39](https://www.youtube.com/watch?v=mB_27xaN1nU&t=1959s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=mB_27xaN1nU&t=1959s"
+          ],
+          "source_line": 77
+        },
+        {
+          "heading": "5. Composition corresponds to the matrix product",
+          "recording_locators": [],
+          "source_line": 93
+        },
+        {
+          "heading": "6. From a matrix back to a formula, and the row convention [00:25](https://www.youtube.com/watch?v=PiG2BMkK3s4&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PiG2BMkK3s4&t=25s"
+          ],
+          "source_line": 111
+        },
+        {
+          "heading": "7. Change of bases: similarity [10:40](https://www.youtube.com/watch?v=PiG2BMkK3s4&t=640s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PiG2BMkK3s4&t=640s"
+          ],
+          "source_line": 115
+        },
+        {
+          "heading": "8. Every invertible matrix realizes a change of basis [23:31](https://www.youtube.com/watch?v=PiG2BMkK3s4&t=1411s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PiG2BMkK3s4&t=1411s"
+          ],
+          "source_line": 141
+        },
+        {
+          "heading": "9. The running example and a second computation [27:41](https://www.youtube.com/watch?v=PiG2BMkK3s4&t=1661s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PiG2BMkK3s4&t=1661s"
+          ],
+          "source_line": 149
+        },
+        {
+          "heading": "10. What similarity preserves and what it does not",
+          "recording_locators": [],
+          "source_line": 173
+        },
+        {
+          "heading": "11. Executable check",
+          "recording_locators": [],
+          "source_line": 187
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 191
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 216
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2096,
+        "major_headings": 13,
+        "display_equation_blocks": 15
+      }
+    },
+    {
+      "id": "ch10",
+      "title": "Linear functionals, dual spaces, and dual bases",
+      "manuscript": "chapters/ch10.md",
+      "manuscript_sha256": "fdd53685c8ee453a307d03a781ef9d7b34bc0ea04bf50a0cda2addd5b84b9f0a",
+      "laboratory": "labs/ch10.py",
+      "recordings": [
+        {
+          "position": 19,
+          "video_id": "PocfxH03Dgs"
+        },
+        {
+          "position": 20,
+          "video_id": "k7t7UkJ4z5g"
+        },
+        {
+          "position": 21,
+          "video_id": "Y6dbBjO73IQ"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch10.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Linear functionals [00:25](https://www.youtube.com/watch?v=PocfxH03Dgs&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PocfxH03Dgs&t=25s"
+          ],
+          "source_line": 19
+        },
+        {
+          "heading": "2. Further examples [11:14](https://www.youtube.com/watch?v=PocfxH03Dgs&t=674s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PocfxH03Dgs&t=674s"
+          ],
+          "source_line": 29
+        },
+        {
+          "heading": "3. The dual space [17:34](https://www.youtube.com/watch?v=PocfxH03Dgs&t=1054s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PocfxH03Dgs&t=1054s"
+          ],
+          "source_line": 39
+        },
+        {
+          "heading": "4. The dual basis [21:46](https://www.youtube.com/watch?v=PocfxH03Dgs&t=1306s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=PocfxH03Dgs&t=1306s"
+          ],
+          "source_line": 45
+        },
+        {
+          "heading": "5. Evaluation functionals and interpolation [00:25](https://www.youtube.com/watch?v=k7t7UkJ4z5g&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=k7t7UkJ4z5g&t=25s"
+          ],
+          "source_line": 71
+        },
+        {
+          "heading": "6. Null spaces of functionals: hyperspaces [19:25](https://www.youtube.com/watch?v=k7t7UkJ4z5g&t=1165s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=k7t7UkJ4z5g&t=1165s"
+          ],
+          "source_line": 103
+        },
+        {
+          "heading": "7. Annihilators [24:02](https://www.youtube.com/watch?v=k7t7UkJ4z5g&t=1442s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=k7t7UkJ4z5g&t=1442s"
+          ],
+          "source_line": 111
+        },
+        {
+          "heading": "8. Every subspace is an intersection of hyperspaces [00:25](https://www.youtube.com/watch?v=Y6dbBjO73IQ&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Y6dbBjO73IQ&t=25s"
+          ],
+          "source_line": 127
+        },
+        {
+          "heading": "9. From functionals back to subspaces [15:12](https://www.youtube.com/watch?v=Y6dbBjO73IQ&t=912s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Y6dbBjO73IQ&t=912s"
+          ],
+          "source_line": 153
+        },
+        {
+          "heading": "10. Executable check",
+          "recording_locators": [],
+          "source_line": 163
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 167
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 192
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2091,
+        "major_headings": 12,
+        "display_equation_blocks": 13
+      }
+    },
+    {
+      "id": "ch11",
+      "title": "Annihilators, the double dual, and the transpose of a linear map",
+      "manuscript": "chapters/ch11.md",
+      "manuscript_sha256": "2d5748700c53cbc0ca29a62c5a31f8ace3f576084f7fc79d89ffa211b9d4f402",
+      "laboratory": "labs/ch11.py",
+      "recordings": [
+        {
+          "position": 22,
+          "video_id": "Rq3ruFHFic4"
+        },
+        {
+          "position": 23,
+          "video_id": "3InyDigc3Vk"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch11.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Annihilators and the separation of vectors by functionals [00:25](https://www.youtube.com/watch?v=Rq3ruFHFic4&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Rq3ruFHFic4&t=25s"
+          ],
+          "source_line": 17
+        },
+        {
+          "heading": "2. The evaluation map and the double dual [02:20](https://www.youtube.com/watch?v=Rq3ruFHFic4&t=140s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Rq3ruFHFic4&t=140s"
+          ],
+          "source_line": 41
+        },
+        {
+          "heading": "3. Every basis of the dual space is the dual of a basis [13:54](https://www.youtube.com/watch?v=Rq3ruFHFic4&t=834s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Rq3ruFHFic4&t=834s"
+          ],
+          "source_line": 67
+        },
+        {
+          "heading": "4. The transpose of a linear map [19:26](https://www.youtube.com/watch?v=Rq3ruFHFic4&t=1166s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Rq3ruFHFic4&t=1166s"
+          ],
+          "source_line": 89
+        },
+        {
+          "heading": "5. The kernel of the transpose is the annihilator of the range [02:57](https://www.youtube.com/watch?v=3InyDigc3Vk&t=177s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=3InyDigc3Vk&t=177s"
+          ],
+          "source_line": 121
+        },
+        {
+          "heading": "6. The transpose has the same rank, and its range is the annihilator of the kernel [10:41](https://www.youtube.com/watch?v=3InyDigc3Vk&t=641s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=3InyDigc3Vk&t=641s"
+          ],
+          "source_line": 150
+        },
+        {
+          "heading": "7. The matrix of the transpose [17:04](https://www.youtube.com/watch?v=3InyDigc3Vk&t=1024s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=3InyDigc3Vk&t=1024s"
+          ],
+          "source_line": 175
+        },
+        {
+          "heading": "8. Executable check",
+          "recording_locators": [],
+          "source_line": 208
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 219
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 247
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 5296,
+        "major_headings": 10,
+        "display_equation_blocks": 18
+      }
+    },
+    {
+      "id": "ch12",
+      "title": "Eigenvalues, eigenvectors, and the characteristic polynomial",
+      "manuscript": "chapters/ch12.md",
+      "manuscript_sha256": "3bbf6e6253a37a6ed4e1d565504cd288737831d7cb12d240fee17648432b9bd2",
+      "laboratory": "labs/ch12.py",
+      "recordings": [
+        {
+          "position": 24,
+          "video_id": "42dHe_scp8k"
+        },
+        {
+          "position": 25,
+          "video_id": "qDCmg29dsgs"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch12.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Eigenvalues and eigenvectors [00:26](https://www.youtube.com/watch?v=42dHe_scp8k&t=26s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=42dHe_scp8k&t=26s"
+          ],
+          "source_line": 13
+        },
+        {
+          "heading": "2. The characteristic polynomial [11:24](https://www.youtube.com/watch?v=42dHe_scp8k&t=684s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=42dHe_scp8k&t=684s"
+          ],
+          "source_line": 23
+        },
+        {
+          "heading": "3. Similar matrices have the same characteristic polynomial [17:40](https://www.youtube.com/watch?v=42dHe_scp8k&t=1060s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=42dHe_scp8k&t=1060s"
+          ],
+          "source_line": 43
+        },
+        {
+          "heading": "4. Does every operator have an eigenvalue? [22:01](https://www.youtube.com/watch?v=42dHe_scp8k&t=1321s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=42dHe_scp8k&t=1321s"
+          ],
+          "source_line": 51
+        },
+        {
+          "heading": "5. The running examples [26:13](https://www.youtube.com/watch?v=42dHe_scp8k&t=1573s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=42dHe_scp8k&t=1573s"
+          ],
+          "source_line": 61
+        },
+        {
+          "heading": "6. Eigenvectors for distinct eigenvalues are independent",
+          "recording_locators": [],
+          "source_line": 75
+        },
+        {
+          "heading": "7. Diagonalizable operators [34:19](https://www.youtube.com/watch?v=qDCmg29dsgs&t=2059s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=qDCmg29dsgs&t=2059s"
+          ],
+          "source_line": 89
+        },
+        {
+          "heading": "8. The two matrices decided [21:36](https://www.youtube.com/watch?v=qDCmg29dsgs&t=1296s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=qDCmg29dsgs&t=1296s"
+          ],
+          "source_line": 105
+        },
+        {
+          "heading": "9. The questions ahead [29:54](https://www.youtube.com/watch?v=qDCmg29dsgs&t=1794s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=qDCmg29dsgs&t=1794s"
+          ],
+          "source_line": 123
+        },
+        {
+          "heading": "10. Executable check",
+          "recording_locators": [],
+          "source_line": 127
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 131
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 156
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2436,
+        "major_headings": 12,
+        "display_equation_blocks": 4
+      }
+    },
+    {
+      "id": "ch13",
+      "title": "Diagonalizable operators and annihilating polynomials",
+      "manuscript": "chapters/ch13.md",
+      "manuscript_sha256": "d72e88de967d9cc1c175dcf5e97c1910b0f20e313eb202441885bce6e0e6f3ac",
+      "laboratory": "labs/ch13.py",
+      "recordings": [
+        {
+          "position": 26,
+          "video_id": "5GnTjNp0C4c"
+        },
+        {
+          "position": 27,
+          "video_id": "6wLBCQ12WvE"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch13.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. The matrix of a diagonalizable operator [00:25](https://www.youtube.com/watch?v=5GnTjNp0C4c&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5GnTjNp0C4c&t=25s"
+          ],
+          "source_line": 19
+        },
+        {
+          "heading": "2. Polynomials act on eigenvectors by evaluation [11:09](https://www.youtube.com/watch?v=5GnTjNp0C4c&t=669s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5GnTjNp0C4c&t=669s"
+          ],
+          "source_line": 31
+        },
+        {
+          "heading": "3. Eigenspaces of distinct eigenvalues are independent [15:17](https://www.youtube.com/watch?v=5GnTjNp0C4c&t=917s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5GnTjNp0C4c&t=917s"
+          ],
+          "source_line": 39
+        },
+        {
+          "heading": "4. Diagonalizable means that the eigenspaces fill $V$ [30:05](https://www.youtube.com/watch?v=5GnTjNp0C4c&t=1805s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=5GnTjNp0C4c&t=1805s"
+          ],
+          "source_line": 57
+        },
+        {
+          "heading": "5. Annihilating polynomials [00:09](https://www.youtube.com/watch?v=6wLBCQ12WvE&t=9s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=6wLBCQ12WvE&t=9s"
+          ],
+          "source_line": 65
+        },
+        {
+          "heading": "6. The minimal polynomial [10:40](https://www.youtube.com/watch?v=6wLBCQ12WvE&t=640s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=6wLBCQ12WvE&t=640s"
+          ],
+          "source_line": 75
+        },
+        {
+          "heading": "7. Roots of the minimal polynomial are the eigenvalues [21:26](https://www.youtube.com/watch?v=6wLBCQ12WvE&t=1286s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=6wLBCQ12WvE&t=1286s"
+          ],
+          "source_line": 89
+        },
+        {
+          "heading": "8. The criterion for diagonalizability [29:58](https://www.youtube.com/watch?v=6wLBCQ12WvE&t=1798s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=6wLBCQ12WvE&t=1798s"
+          ],
+          "source_line": 97
+        },
+        {
+          "heading": "9. Executable check",
+          "recording_locators": [],
+          "source_line": 111
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 115
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 140
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 1901,
+        "major_headings": 11,
+        "display_equation_blocks": 4
+      }
+    },
+    {
+      "id": "ch14",
+      "title": "The Cayley-Hamilton theorem and the minimal polynomial in computation",
+      "manuscript": "chapters/ch14.md",
+      "manuscript_sha256": "157480017acd6cb9b90333d122d76886f92510ac363832e3dbe5bc6a1a4abb09",
+      "laboratory": "labs/ch14.py",
+      "recordings": [
+        {
+          "position": 28,
+          "video_id": "0pgdc_igMNw"
+        },
+        {
+          "position": 29,
+          "video_id": "z3langlkEHE"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch14.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. The theorem [00:25](https://www.youtube.com/watch?v=0pgdc_igMNw&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=0pgdc_igMNw&t=25s"
+          ],
+          "source_line": 13
+        },
+        {
+          "heading": "2. The proof through the adjugate [08:44](https://www.youtube.com/watch?v=0pgdc_igMNw&t=524s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=0pgdc_igMNw&t=524s"
+          ],
+          "source_line": 21
+        },
+        {
+          "heading": "3. The running example [23:35](https://www.youtube.com/watch?v=0pgdc_igMNw&t=1415s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=0pgdc_igMNw&t=1415s"
+          ],
+          "source_line": 59
+        },
+        {
+          "heading": "4. Algebraic and geometric multiplicity [34:21](https://www.youtube.com/watch?v=0pgdc_igMNw&t=2061s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=0pgdc_igMNw&t=2061s"
+          ],
+          "source_line": 79
+        },
+        {
+          "heading": "5. $AB$ and $BA$ [10:40](https://www.youtube.com/watch?v=z3langlkEHE&t=640s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=z3langlkEHE&t=640s"
+          ],
+          "source_line": 93
+        },
+        {
+          "heading": "6. A matrix that is diagonalizable over $\\mathbb{C}$ but not over $\\mathbb{R}$ [27:23](https://www.youtube.com/watch?v=z3langlkEHE&t=1643s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=z3langlkEHE&t=1643s"
+          ],
+          "source_line": 127
+        },
+        {
+          "heading": "7. Executable check",
+          "recording_locators": [],
+          "source_line": 141
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 145
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 170
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 1788,
+        "major_headings": 9,
+        "display_equation_blocks": 11
+      }
+    },
+    {
+      "id": "ch15",
+      "title": "Invariant subspaces, conductors, and triangulability",
+      "manuscript": "chapters/ch15.md",
+      "manuscript_sha256": "0f77b111f53f384e9f8590072dda8de620693a5bd601a4512826d38a53bb8296",
+      "laboratory": "labs/ch15.py",
+      "recordings": [
+        {
+          "position": 30,
+          "video_id": "K-RIfSg3uWI"
+        },
+        {
+          "position": 31,
+          "video_id": "wTr4FJ6ogvM"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch15.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Invariant subspaces [01:40](https://www.youtube.com/watch?v=K-RIfSg3uWI&t=100s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=K-RIfSg3uWI&t=100s"
+          ],
+          "source_line": 13
+        },
+        {
+          "heading": "2. First examples: trivial subspaces, kernel, range, and polynomials [03:14](https://www.youtube.com/watch?v=K-RIfSg3uWI&t=194s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=K-RIfSg3uWI&t=194s"
+          ],
+          "source_line": 29
+        },
+        {
+          "heading": "3. Commuting operators and eigenspaces [09:56](https://www.youtube.com/watch?v=K-RIfSg3uWI&t=596s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=K-RIfSg3uWI&t=596s"
+          ],
+          "source_line": 44
+        },
+        {
+          "heading": "4. Restriction and the block form of the matrix [16:04](https://www.youtube.com/watch?v=K-RIfSg3uWI&t=964s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=K-RIfSg3uWI&t=964s"
+          ],
+          "source_line": 62
+        },
+        {
+          "heading": "5. What the blocks say about the two polynomials [23:47](https://www.youtube.com/watch?v=K-RIfSg3uWI&t=1427s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=K-RIfSg3uWI&t=1427s"
+          ],
+          "source_line": 86
+        },
+        {
+          "heading": "6. An operator with no invariant line [30:54](https://www.youtube.com/watch?v=K-RIfSg3uWI&t=1854s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=K-RIfSg3uWI&t=1854s"
+          ],
+          "source_line": 114
+        },
+        {
+          "heading": "7. The conductor of a vector into an invariant subspace [01:43](https://www.youtube.com/watch?v=wTr4FJ6ogvM&t=103s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=wTr4FJ6ogvM&t=103s"
+          ],
+          "source_line": 124
+        },
+        {
+          "heading": "8. The monic generator and its properties [16:14](https://www.youtube.com/watch?v=wTr4FJ6ogvM&t=974s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=wTr4FJ6ogvM&t=974s"
+          ],
+          "source_line": 146
+        },
+        {
+          "heading": "9. Triangulable operators [22:54](https://www.youtube.com/watch?v=wTr4FJ6ogvM&t=1374s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=wTr4FJ6ogvM&t=1374s"
+          ],
+          "source_line": 181
+        },
+        {
+          "heading": "10. The linear-conductor lemma [25:49](https://www.youtube.com/watch?v=wTr4FJ6ogvM&t=1549s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=wTr4FJ6ogvM&t=1549s"
+          ],
+          "source_line": 195
+        },
+        {
+          "heading": "11. Invariance seen from the dual space",
+          "recording_locators": [],
+          "source_line": 217
+        },
+        {
+          "heading": "12. Executable check",
+          "recording_locators": [],
+          "source_line": 227
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 231
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 256
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 4605,
+        "major_headings": 14,
+        "display_equation_blocks": 10
+      }
+    },
+    {
+      "id": "ch16",
+      "title": "Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation",
+      "manuscript": "chapters/ch16.md",
+      "manuscript_sha256": "c16170d2d960b912296eb3816b2fea703ea017a6c0022814087a925bda86381f",
+      "laboratory": "labs/ch16.py",
+      "recordings": [
+        {
+          "position": 32,
+          "video_id": "kr-Jpj_GcgU"
+        },
+        {
+          "position": 33,
+          "video_id": "x2dU2iysRcQ"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch16.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Conductors and the lemma behind both criteria [00:25](https://www.youtube.com/watch?v=kr-Jpj_GcgU&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=kr-Jpj_GcgU&t=25s"
+          ],
+          "source_line": 17
+        },
+        {
+          "heading": "2. Triangular matrices and flags: the triangulability theorem [05:56](https://www.youtube.com/watch?v=kr-Jpj_GcgU&t=356s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=kr-Jpj_GcgU&t=356s"
+          ],
+          "source_line": 38
+        },
+        {
+          "heading": "3. The converse, and what the diagonal records [21:40](https://www.youtube.com/watch?v=kr-Jpj_GcgU&t=1300s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=kr-Jpj_GcgU&t=1300s"
+          ],
+          "source_line": 54
+        },
+        {
+          "heading": "4. A worked triangulation [27:23](https://www.youtube.com/watch?v=kr-Jpj_GcgU&t=1643s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=kr-Jpj_GcgU&t=1643s"
+          ],
+          "source_line": 68
+        },
+        {
+          "heading": "5. The diagonalizability criterion [01:07](https://www.youtube.com/watch?v=x2dU2iysRcQ&t=67s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=x2dU2iysRcQ&t=67s"
+          ],
+          "source_line": 86
+        },
+        {
+          "heading": "6. Applications: idempotents [19:11](https://www.youtube.com/watch?v=x2dU2iysRcQ&t=1151s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=x2dU2iysRcQ&t=1151s"
+          ],
+          "source_line": 110
+        },
+        {
+          "heading": "7. Where the criteria fail: field, characteristic, dimension [21:18](https://www.youtube.com/watch?v=x2dU2iysRcQ&t=1278s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=x2dU2iysRcQ&t=1278s"
+          ],
+          "source_line": 126
+        },
+        {
+          "heading": "8. One basis for a commuting family",
+          "recording_locators": [],
+          "source_line": 140
+        },
+        {
+          "heading": "9. Executable check",
+          "recording_locators": [],
+          "source_line": 160
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 174
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 206
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 5122,
+        "major_headings": 11,
+        "display_equation_blocks": 16
+      }
+    },
+    {
+      "id": "ch17",
+      "title": "Direct-sum decompositions and projections",
+      "manuscript": "chapters/ch17.md",
+      "manuscript_sha256": "908fe5720513dc64b239c09d261be167258bd8d453642e81efab8cf2b7fb6d3a",
+      "laboratory": "labs/ch17.py",
+      "recordings": [
+        {
+          "position": 34,
+          "video_id": "P5dUSimEXHk"
+        },
+        {
+          "position": 35,
+          "video_id": "HYudOaJ_gxE"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch17.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Independent subspaces [00:25](https://www.youtube.com/watch?v=P5dUSimEXHk&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=P5dUSimEXHk&t=25s"
+          ],
+          "source_line": 17
+        },
+        {
+          "heading": "2. Direct sums and three examples [22:33](https://www.youtube.com/watch?v=P5dUSimEXHk&t=1353s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=P5dUSimEXHk&t=1353s"
+          ],
+          "source_line": 63
+        },
+        {
+          "heading": "3. Projections [32:21](https://www.youtube.com/watch?v=P5dUSimEXHk&t=1941s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=P5dUSimEXHk&t=1941s"
+          ],
+          "source_line": 81
+        },
+        {
+          "heading": "4. The matrix of a projection [00:25](https://www.youtube.com/watch?v=HYudOaJ_gxE&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=HYudOaJ_gxE&t=25s"
+          ],
+          "source_line": 114
+        },
+        {
+          "heading": "5. The projections of a direct sum [03:50](https://www.youtube.com/watch?v=HYudOaJ_gxE&t=230s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=HYudOaJ_gxE&t=230s"
+          ],
+          "source_line": 122
+        },
+        {
+          "heading": "6. Invariant summands [24:14](https://www.youtube.com/watch?v=HYudOaJ_gxE&t=1454s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=HYudOaJ_gxE&t=1454s"
+          ],
+          "source_line": 149
+        },
+        {
+          "heading": "7. Executable check",
+          "recording_locators": [],
+          "source_line": 175
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 179
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 212
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 3092,
+        "major_headings": 9,
+        "display_equation_blocks": 15
+      }
+    },
+    {
+      "id": "ch18",
+      "title": "Invariant direct sums and block-diagonal operators",
+      "manuscript": "chapters/ch18.md",
+      "manuscript_sha256": "9e8c9fa5ee22ecb3efe270468c6709f20956a9aee63c868ea5683c83478f05b5",
+      "laboratory": "labs/ch18.py",
+      "recordings": [
+        {
+          "position": 36,
+          "video_id": "FSrROxmVg0k"
+        },
+        {
+          "position": 37,
+          "video_id": "YmpfezqZGhU"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch18.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Invariant summands [00:25](https://www.youtube.com/watch?v=FSrROxmVg0k&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=FSrROxmVg0k&t=25s"
+          ],
+          "source_line": 19
+        },
+        {
+          "heading": "2. Invariance means commuting with the projections [09:08](https://www.youtube.com/watch?v=FSrROxmVg0k&t=548s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=FSrROxmVg0k&t=548s"
+          ],
+          "source_line": 33
+        },
+        {
+          "heading": "3. Diagonalizable operators: the spectral form [19:26](https://www.youtube.com/watch?v=FSrROxmVg0k&t=1166s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=FSrROxmVg0k&t=1166s"
+          ],
+          "source_line": 59
+        },
+        {
+          "heading": "4. Powers and polynomials [27:16](https://www.youtube.com/watch?v=FSrROxmVg0k&t=1636s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=FSrROxmVg0k&t=1636s"
+          ],
+          "source_line": 73
+        },
+        {
+          "heading": "5. The projections are polynomials in the operator [29:52](https://www.youtube.com/watch?v=FSrROxmVg0k&t=1792s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=FSrROxmVg0k&t=1792s"
+          ],
+          "source_line": 83
+        },
+        {
+          "heading": "6. The converse: a spectral form proves diagonalizability [09:22](https://www.youtube.com/watch?v=YmpfezqZGhU&t=562s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=YmpfezqZGhU&t=562s"
+          ],
+          "source_line": 103
+        },
+        {
+          "heading": "7. Where the hypotheses bind",
+          "recording_locators": [],
+          "source_line": 139
+        },
+        {
+          "heading": "8. Executable check",
+          "recording_locators": [],
+          "source_line": 155
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 159
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 189
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2311,
+        "major_headings": 10,
+        "display_equation_blocks": 15
+      }
+    },
+    {
+      "id": "ch19",
+      "title": "The primary decomposition theorem",
+      "manuscript": "chapters/ch19.md",
+      "manuscript_sha256": "a416f82c83fd190942bfeda40abaa0c54070f0c2b3d5b4564c6a774568c2f6dd",
+      "laboratory": "labs/ch19.py",
+      "recordings": [
+        {
+          "position": 38,
+          "video_id": "eyIs2irRboE"
+        },
+        {
+          "position": 39,
+          "video_id": "Qra533N0-nw"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch19.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. The question [00:25](https://www.youtube.com/watch?v=eyIs2irRboE&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=eyIs2irRboE&t=25s"
+          ],
+          "source_line": 11
+        },
+        {
+          "heading": "2. Kernels of powers [06:14](https://www.youtube.com/watch?v=eyIs2irRboE&t=374s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=eyIs2irRboE&t=374s"
+          ],
+          "source_line": 17
+        },
+        {
+          "heading": "3. The theorem [14:32](https://www.youtube.com/watch?v=eyIs2irRboE&t=872s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=eyIs2irRboE&t=872s"
+          ],
+          "source_line": 29
+        },
+        {
+          "heading": "4. A Bezout identity produces projections [02:54](https://www.youtube.com/watch?v=Qra533N0-nw&t=174s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Qra533N0-nw&t=174s"
+          ],
+          "source_line": 45
+        },
+        {
+          "heading": "5. The ranges are the primary components [09:50](https://www.youtube.com/watch?v=Qra533N0-nw&t=590s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Qra533N0-nw&t=590s"
+          ],
+          "source_line": 61
+        },
+        {
+          "heading": "6. The minimal polynomial of each piece [16:40](https://www.youtube.com/watch?v=Qra533N0-nw&t=1000s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Qra533N0-nw&t=1000s"
+          ],
+          "source_line": 71
+        },
+        {
+          "heading": "7. Two consequences",
+          "recording_locators": [],
+          "source_line": 95
+        },
+        {
+          "heading": "8. A first look at the diagonalizable and nilpotent parts [21:55](https://www.youtube.com/watch?v=eyIs2irRboE&t=1315s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=eyIs2irRboE&t=1315s"
+          ],
+          "source_line": 109
+        },
+        {
+          "heading": "9. Where the hypotheses bind",
+          "recording_locators": [],
+          "source_line": 123
+        },
+        {
+          "heading": "10. Executable check",
+          "recording_locators": [],
+          "source_line": 133
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 137
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 164
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2178,
+        "major_headings": 12,
+        "display_equation_blocks": 11
+      }
+    },
+    {
+      "id": "ch20",
+      "title": "Applications of primary decomposition: diagonalizable plus nilpotent parts",
+      "manuscript": "chapters/ch20.md",
+      "manuscript_sha256": "0ab1f9472dea096d8d0e321a6584f233cc6ab2f8be485ee29b5761d84dbaad6a",
+      "laboratory": "labs/ch20.py",
+      "recordings": [
+        {
+          "position": 40,
+          "video_id": "B6C1-7Oc_e4"
+        },
+        {
+          "position": 41,
+          "video_id": "Q7XtHAR9jRc"
+        },
+        {
+          "position": 42,
+          "video_id": "f-YSQNvXrvM"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch20.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Linear initial value problems [00:15](https://www.youtube.com/watch?v=B6C1-7Oc_e4&t=15s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=B6C1-7Oc_e4&t=15s"
+          ],
+          "source_line": 11
+        },
+        {
+          "heading": "2. Generalized eigenvectors and chains [19:45](https://www.youtube.com/watch?v=B6C1-7Oc_e4&t=1185s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=B6C1-7Oc_e4&t=1185s"
+          ],
+          "source_line": 21
+        },
+        {
+          "heading": "3. Solutions from a chain [06:36](https://www.youtube.com/watch?v=Q7XtHAR9jRc&t=396s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Q7XtHAR9jRc&t=396s"
+          ],
+          "source_line": 37
+        },
+        {
+          "heading": "4. The diagonalizable and nilpotent parts [19:25](https://www.youtube.com/watch?v=Q7XtHAR9jRc&t=1165s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Q7XtHAR9jRc&t=1165s"
+          ],
+          "source_line": 65
+        },
+        {
+          "heading": "5. Cyclic subspaces and companion matrices [15:02](https://www.youtube.com/watch?v=f-YSQNvXrvM&t=902s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=f-YSQNvXrvM&t=902s"
+          ],
+          "source_line": 91
+        },
+        {
+          "heading": "6. The cyclic decomposition for a prime power [39:22](https://www.youtube.com/watch?v=f-YSQNvXrvM&t=2362s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=f-YSQNvXrvM&t=2362s"
+          ],
+          "source_line": 105
+        },
+        {
+          "heading": "7. Nilpotent operators and Jordan nilpotent blocks [22:27](https://www.youtube.com/watch?v=Q7XtHAR9jRc&t=1347s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Q7XtHAR9jRc&t=1347s"
+          ],
+          "source_line": 123
+        },
+        {
+          "heading": "8. The Jordan canonical form [38:17](https://www.youtube.com/watch?v=Q7XtHAR9jRc&t=2297s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Q7XtHAR9jRc&t=2297s"
+          ],
+          "source_line": 139
+        },
+        {
+          "heading": "9. The rational canonical form [25:46](https://www.youtube.com/watch?v=f-YSQNvXrvM&t=1546s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=f-YSQNvXrvM&t=1546s"
+          ],
+          "source_line": 161
+        },
+        {
+          "heading": "10. Executable check",
+          "recording_locators": [],
+          "source_line": 181
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 185
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 210
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 3009,
+        "major_headings": 12,
+        "display_equation_blocks": 16
+      }
+    },
+    {
+      "id": "ch21",
+      "title": "Inner products, norms, and the Cauchy-Schwarz inequality",
+      "manuscript": "chapters/ch21.md",
+      "manuscript_sha256": "a771b12a33c44e22bd789743251cd88233ba9735c3e43d1fa5f371f7f8cf8ab1",
+      "laboratory": "labs/ch21.py",
+      "recordings": [
+        {
+          "position": 43,
+          "video_id": "fRCjsemJ9nk"
+        },
+        {
+          "position": 44,
+          "video_id": "xYXFAnXDED0"
+        },
+        {
+          "position": 61,
+          "video_id": "NYo2wbePAnI"
+        },
+        {
+          "position": 45,
+          "video_id": "Yjx3j9IDn6o"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch21.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. The definition of an inner product [02:47](https://www.youtube.com/watch?v=fRCjsemJ9nk&t=167s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=fRCjsemJ9nk&t=167s"
+          ],
+          "source_line": 11
+        },
+        {
+          "heading": "2. Standard examples [08:17](https://www.youtube.com/watch?v=fRCjsemJ9nk&t=497s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=fRCjsemJ9nk&t=497s"
+          ],
+          "source_line": 30
+        },
+        {
+          "heading": "3. Inner products pulled back along a map [25:29](https://www.youtube.com/watch?v=fRCjsemJ9nk&t=1529s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=fRCjsemJ9nk&t=1529s"
+          ],
+          "source_line": 48
+        },
+        {
+          "heading": "4. Norm and polarization [00:08](https://www.youtube.com/watch?v=xYXFAnXDED0&t=8s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=xYXFAnXDED0&t=8s"
+          ],
+          "source_line": 58
+        },
+        {
+          "heading": "5. The matrix of an inner product [11:54](https://www.youtube.com/watch?v=xYXFAnXDED0&t=714s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=xYXFAnXDED0&t=714s"
+          ],
+          "source_line": 80
+        },
+        {
+          "heading": "6. The Hilbert matrix [27:26](https://www.youtube.com/watch?v=xYXFAnXDED0&t=1646s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=xYXFAnXDED0&t=1646s"
+          ],
+          "source_line": 104
+        },
+        {
+          "heading": "7. Inner product spaces and the two inequalities [10:16](https://www.youtube.com/watch?v=NYo2wbePAnI&t=616s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=NYo2wbePAnI&t=616s"
+          ],
+          "source_line": 112
+        },
+        {
+          "heading": "8. Two classical inequalities [21:57](https://www.youtube.com/watch?v=NYo2wbePAnI&t=1317s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=NYo2wbePAnI&t=1317s"
+          ],
+          "source_line": 143
+        },
+        {
+          "heading": "9. Orthogonality [25:08](https://www.youtube.com/watch?v=NYo2wbePAnI&t=1508s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=NYo2wbePAnI&t=1508s"
+          ],
+          "source_line": 155
+        },
+        {
+          "heading": "10. Orthogonal and orthonormal sets [00:25](https://www.youtube.com/watch?v=Yjx3j9IDn6o&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Yjx3j9IDn6o&t=25s"
+          ],
+          "source_line": 173
+        },
+        {
+          "heading": "11. Orthogonal sets are independent [13:01](https://www.youtube.com/watch?v=Yjx3j9IDn6o&t=781s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Yjx3j9IDn6o&t=781s"
+          ],
+          "source_line": 181
+        },
+        {
+          "heading": "12. The Gram–Schmidt process [19:40](https://www.youtube.com/watch?v=Yjx3j9IDn6o&t=1180s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=Yjx3j9IDn6o&t=1180s"
+          ],
+          "source_line": 193
+        },
+        {
+          "heading": "13. Executable check",
+          "recording_locators": [],
+          "source_line": 217
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 221
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 248
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2471,
+        "major_headings": 15,
+        "display_equation_blocks": 22
+      }
+    },
+    {
+      "id": "ch22",
+      "title": "Orthogonal projection, Gram-Schmidt, and best approximation",
+      "manuscript": "chapters/ch22.md",
+      "manuscript_sha256": "0d480e8e37582d5041d13c186778ae244a0d26b85abd12b7f9c82a40c1a8dcb3",
+      "laboratory": "labs/ch22.py",
+      "recordings": [
+        {
+          "position": 47,
+          "video_id": "x-NoTbaUUr4"
+        },
+        {
+          "position": 46,
+          "video_id": "wjR4wDkAnG4"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch22.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Best approximation [00:25](https://www.youtube.com/watch?v=x-NoTbaUUr4&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=x-NoTbaUUr4&t=25s"
+          ],
+          "source_line": 11
+        },
+        {
+          "heading": "2. The characterization theorem [10:52](https://www.youtube.com/watch?v=x-NoTbaUUr4&t=652s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=x-NoTbaUUr4&t=652s"
+          ],
+          "source_line": 19
+        },
+        {
+          "heading": "3. Gram–Schmidt as repeated projection, and the normal equations",
+          "recording_locators": [],
+          "source_line": 56
+        },
+        {
+          "heading": "4. The orthogonal complement [00:09](https://www.youtube.com/watch?v=wjR4wDkAnG4&t=9s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=wjR4wDkAnG4&t=9s"
+          ],
+          "source_line": 74
+        },
+        {
+          "heading": "5. The orthogonal projection [08:12](https://www.youtube.com/watch?v=wjR4wDkAnG4&t=492s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=wjR4wDkAnG4&t=492s"
+          ],
+          "source_line": 84
+        },
+        {
+          "heading": "6. Bessel's inequality [30:40](https://www.youtube.com/watch?v=wjR4wDkAnG4&t=1840s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=wjR4wDkAnG4&t=1840s"
+          ],
+          "source_line": 115
+        },
+        {
+          "heading": "7. What the projection answers",
+          "recording_locators": [],
+          "source_line": 127
+        },
+        {
+          "heading": "8. Infinite dimension: no closest vector [07:12](https://www.youtube.com/watch?v=x-NoTbaUUr4&t=432s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=x-NoTbaUUr4&t=432s"
+          ],
+          "source_line": 135
+        },
+        {
+          "heading": "9. Executable check",
+          "recording_locators": [],
+          "source_line": 145
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 149
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 174
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 1928,
+        "major_headings": 11,
+        "display_equation_blocks": 13
+      }
+    },
+    {
+      "id": "ch23",
+      "title": "Linear functionals and adjoint operators on inner product spaces",
+      "manuscript": "chapters/ch23.md",
+      "manuscript_sha256": "92f2816d61d86c388a8739cf3c83016a65b8ef8d272ffc113a347903cda2f2c7",
+      "laboratory": "labs/ch23.py",
+      "recordings": [
+        {
+          "position": 48,
+          "video_id": "DBoDKvOMl3o"
+        },
+        {
+          "position": 49,
+          "video_id": "lN_tuUFxovo"
+        },
+        {
+          "position": 50,
+          "video_id": "OR00X0UhdmE"
+        },
+        {
+          "position": 51,
+          "video_id": "ycvgCq8Dx0Q"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch23.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Representing linear functionals [02:39](https://www.youtube.com/watch?v=DBoDKvOMl3o&t=159s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=DBoDKvOMl3o&t=159s"
+          ],
+          "source_line": 11
+        },
+        {
+          "heading": "2. The geometry of the representing vector [18:20](https://www.youtube.com/watch?v=DBoDKvOMl3o&t=1100s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=DBoDKvOMl3o&t=1100s"
+          ],
+          "source_line": 23
+        },
+        {
+          "heading": "3. The running example: evaluation at a point [00:25](https://www.youtube.com/watch?v=OR00X0UhdmE&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=OR00X0UhdmE&t=25s"
+          ],
+          "source_line": 31
+        },
+        {
+          "heading": "4. No representing vector in infinite dimension [00:25](https://www.youtube.com/watch?v=lN_tuUFxovo&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=lN_tuUFxovo&t=25s"
+          ],
+          "source_line": 43
+        },
+        {
+          "heading": "5. Existence of the adjoint [09:42](https://www.youtube.com/watch?v=lN_tuUFxovo&t=582s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=lN_tuUFxovo&t=582s"
+          ],
+          "source_line": 57
+        },
+        {
+          "heading": "6. Matrices of the adjoint [19:23](https://www.youtube.com/watch?v=lN_tuUFxovo&t=1163s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=lN_tuUFxovo&t=1163s"
+          ],
+          "source_line": 75
+        },
+        {
+          "heading": "7. Examples",
+          "recording_locators": [],
+          "source_line": 95
+        },
+        {
+          "heading": "8. Infinite dimension: an adjoint may or may not exist [14:05](https://www.youtube.com/watch?v=ycvgCq8Dx0Q&t=845s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=ycvgCq8Dx0Q&t=845s"
+          ],
+          "source_line": 113
+        },
+        {
+          "heading": "9. Algebra of adjoints [26:10](https://www.youtube.com/watch?v=ycvgCq8Dx0Q&t=1570s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=ycvgCq8Dx0Q&t=1570s"
+          ],
+          "source_line": 125
+        },
+        {
+          "heading": "10. Self-adjoint operators and the Cartesian decomposition [30:30](https://www.youtube.com/watch?v=ycvgCq8Dx0Q&t=1830s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=ycvgCq8Dx0Q&t=1830s"
+          ],
+          "source_line": 139
+        },
+        {
+          "heading": "11. Executable check",
+          "recording_locators": [],
+          "source_line": 149
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 153
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 178
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 1806,
+        "major_headings": 13,
+        "display_equation_blocks": 16
+      }
+    },
+    {
+      "id": "ch24",
+      "title": "Inner-product-space isomorphisms and unitary operators",
+      "manuscript": "chapters/ch24.md",
+      "manuscript_sha256": "8f347893097d3dcaba9fa5cd0e11f815abdc7efe862bdb94d63b32a23997f7ad",
+      "laboratory": "labs/ch24.py",
+      "recordings": [
+        {
+          "position": 52,
+          "video_id": "BsQaLOtFezU"
+        },
+        {
+          "position": 53,
+          "video_id": "tyF49ajvS4A"
+        },
+        {
+          "position": 55,
+          "video_id": "UeExjHRhiaI"
+        },
+        {
+          "position": 54,
+          "video_id": "s6zU8DC-YJ0"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch24.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. Maps that preserve inner products [00:25](https://www.youtube.com/watch?v=BsQaLOtFezU&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BsQaLOtFezU&t=25s"
+          ],
+          "source_line": 11
+        },
+        {
+          "heading": "2. Equivalent conditions in finite dimension [10:47](https://www.youtube.com/watch?v=BsQaLOtFezU&t=647s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BsQaLOtFezU&t=647s"
+          ],
+          "source_line": 19
+        },
+        {
+          "heading": "3. Preserving is not enough in general [34:41](https://www.youtube.com/watch?v=BsQaLOtFezU&t=2081s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=BsQaLOtFezU&t=2081s"
+          ],
+          "source_line": 40
+        },
+        {
+          "heading": "4. Unitary operators [00:25](https://www.youtube.com/watch?v=tyF49ajvS4A&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=tyF49ajvS4A&t=25s"
+          ],
+          "source_line": 46
+        },
+        {
+          "heading": "5. Unitary and orthogonal matrices [15:07](https://www.youtube.com/watch?v=tyF49ajvS4A&t=907s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=tyF49ajvS4A&t=907s"
+          ],
+          "source_line": 62
+        },
+        {
+          "heading": "6. The unitary group and triangular factorization [00:25](https://www.youtube.com/watch?v=UeExjHRhiaI&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=UeExjHRhiaI&t=25s"
+          ],
+          "source_line": 86
+        },
+        {
+          "heading": "7. Toward orthonormal eigenbases: normal operators [12:17](https://www.youtube.com/watch?v=s6zU8DC-YJ0&t=737s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=s6zU8DC-YJ0&t=737s"
+          ],
+          "source_line": 112
+        },
+        {
+          "heading": "8. Self-adjoint operators [24:30](https://www.youtube.com/watch?v=s6zU8DC-YJ0&t=1470s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=s6zU8DC-YJ0&t=1470s"
+          ],
+          "source_line": 120
+        },
+        {
+          "heading": "9. Executable check",
+          "recording_locators": [],
+          "source_line": 130
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 134
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 159
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 2176,
+        "major_headings": 11,
+        "display_equation_blocks": 6
+      }
+    },
+    {
+      "id": "ch25",
+      "title": "Normal operators and spectral resolution",
+      "manuscript": "chapters/ch25.md",
+      "manuscript_sha256": "b8cb90bab26a96938a68be4a2bf9a1094ca4a9088c59bfb23efb1d90a53ede7c",
+      "laboratory": "labs/ch25.py",
+      "recordings": [
+        {
+          "position": 56,
+          "video_id": "3mRBrsR9UXA"
+        },
+        {
+          "position": 57,
+          "video_id": "ZL0UkkCrud0"
+        },
+        {
+          "position": 58,
+          "video_id": "yYlXk5C91UE"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch25.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. A self-adjoint operator has an eigenvector [00:25](https://www.youtube.com/watch?v=3mRBrsR9UXA&t=25s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=3mRBrsR9UXA&t=25s"
+          ],
+          "source_line": 13
+        },
+        {
+          "heading": "2. Invariant subspaces and their complements [16:00](https://www.youtube.com/watch?v=3mRBrsR9UXA&t=960s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=3mRBrsR9UXA&t=960s"
+          ],
+          "source_line": 23
+        },
+        {
+          "heading": "3. Orthonormal eigenbases for self-adjoint operators [23:38](https://www.youtube.com/watch?v=3mRBrsR9UXA&t=1418s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=3mRBrsR9UXA&t=1418s"
+          ],
+          "source_line": 29
+        },
+        {
+          "heading": "4. Eigenvectors of a normal operator [10:31](https://www.youtube.com/watch?v=ZL0UkkCrud0&t=631s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=ZL0UkkCrud0&t=631s"
+          ],
+          "source_line": 45
+        },
+        {
+          "heading": "5. Triangular and normal means diagonal [18:07](https://www.youtube.com/watch?v=ZL0UkkCrud0&t=1087s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=ZL0UkkCrud0&t=1087s"
+          ],
+          "source_line": 57
+        },
+        {
+          "heading": "6. Schur's theorem [02:33](https://www.youtube.com/watch?v=yYlXk5C91UE&t=153s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=yYlXk5C91UE&t=153s"
+          ],
+          "source_line": 63
+        },
+        {
+          "heading": "7. The spectral theorem [21:47](https://www.youtube.com/watch?v=yYlXk5C91UE&t=1307s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=yYlXk5C91UE&t=1307s"
+          ],
+          "source_line": 75
+        },
+        {
+          "heading": "8. Polynomials in a normal operator [30:44](https://www.youtube.com/watch?v=yYlXk5C91UE&t=1844s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=yYlXk5C91UE&t=1844s"
+          ],
+          "source_line": 89
+        },
+        {
+          "heading": "9. Executable check",
+          "recording_locators": [],
+          "source_line": 111
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 115
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 142
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 1712,
+        "major_headings": 11,
+        "display_equation_blocks": 7
+      }
+    },
+    {
+      "id": "ch26",
+      "title": "Singular value decomposition and forms on inner product spaces",
+      "manuscript": "chapters/ch26.md",
+      "manuscript_sha256": "a070ccff0eb350d4107e9844608ae9afbb7ce922abede0b5380e81852c2ec662",
+      "laboratory": "labs/ch26.py",
+      "recordings": [
+        {
+          "position": 59,
+          "video_id": "moaXD7Hfqfg"
+        },
+        {
+          "position": 60,
+          "video_id": "2byXhwHzR-0"
+        }
+      ],
+      "reading_ledgers": [
+        "validation/source-read-ch26.json"
+      ],
+      "sections": [
+        {
+          "heading": "1. The matrix $A^*A$ [03:03](https://www.youtube.com/watch?v=moaXD7Hfqfg&t=183s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=moaXD7Hfqfg&t=183s"
+          ],
+          "source_line": 11
+        },
+        {
+          "heading": "2. The decomposition theorem [06:25](https://www.youtube.com/watch?v=moaXD7Hfqfg&t=385s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=moaXD7Hfqfg&t=385s"
+          ],
+          "source_line": 21
+        },
+        {
+          "heading": "3. A rank-one example in full [30:40](https://www.youtube.com/watch?v=moaXD7Hfqfg&t=1840s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=moaXD7Hfqfg&t=1840s"
+          ],
+          "source_line": 45
+        },
+        {
+          "heading": "4. Sesquilinear forms [03:56](https://www.youtube.com/watch?v=2byXhwHzR-0&t=236s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=2byXhwHzR-0&t=236s"
+          ],
+          "source_line": 58
+        },
+        {
+          "heading": "5. Forms are operators [10:59](https://www.youtube.com/watch?v=2byXhwHzR-0&t=659s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=2byXhwHzR-0&t=659s"
+          ],
+          "source_line": 66
+        },
+        {
+          "heading": "6. The matrix of a form [34:05](https://www.youtube.com/watch?v=2byXhwHzR-0&t=2045s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=2byXhwHzR-0&t=2045s"
+          ],
+          "source_line": 84
+        },
+        {
+          "heading": "7. Hermitian forms and principal axes [37:47](https://www.youtube.com/watch?v=2byXhwHzR-0&t=2267s)",
+          "recording_locators": [
+            "https://www.youtube.com/watch?v=2byXhwHzR-0&t=2267s"
+          ],
+          "source_line": 94
+        },
+        {
+          "heading": "8. Executable check",
+          "recording_locators": [],
+          "source_line": 114
+        },
+        {
+          "heading": "Exercises",
+          "recording_locators": [],
+          "source_line": 118
+        },
+        {
+          "heading": "References",
+          "recording_locators": [],
+          "source_line": 143
+        }
+      ],
+      "external_reference_urls": [],
+      "diagnostics": {
+        "whitespace_words": 1738,
+        "major_headings": 10,
+        "display_equation_blocks": 10
+      }
+    }
+  ]
+}

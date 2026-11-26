@@ -1,0 +1,50 @@
+{
+  "author": "author_b",
+  "chapter": "ch16",
+  "recordings": [
+    {
+      "position": 32,
+      "video_id": "kr-Jpj_GcgU",
+      "normalized_text_sha256": "65f1167b2fced9dcf6a9987a42b86cb81dd19a69610525f0da0d12a995b5e641",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "triangulability theorem, both directions",
+        "repeated use of the linear-conductor lemma",
+        "characteristic and minimal polynomial exponents",
+        "3x3 nilpotent matrix triangularized; non-uniqueness"
+      ],
+      "clarifications": [
+        "Diagonal entries are determined up to order",
+        "The converse is proved without Cayley-Hamilton"
+      ],
+      "original_constructions": [
+        "commuting-family theorem and counterexamples",
+        "derivative exercise",
+        "idempotent built from the running basis"
+      ]
+    },
+    {
+      "position": 33,
+      "video_id": "x2dU2iysRcQ",
+      "normalized_text_sha256": "e4f362c4df8f4b3d8ded78ab92b5a22ad0f5f81722c7175d3b99555f1b113fd2",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "diagonalizability criterion and proof via the lemma",
+        "idempotent matrices are diagonalizable",
+        "integral operator: invariant and non-invariant polynomial subspaces"
+      ],
+      "clarifications": [
+        "Idempotents are diagonalizable over every field"
+      ],
+      "original_constructions": [
+        "commuting-family theorem and counterexamples",
+        "derivative exercise",
+        "idempotent built from the running basis"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Linear systems as one matrix equation, and the operations that preserve its solutions",
+  "lectures": [2, 3],
+  "objectives": [
+    "State the field axioms and say which one each elimination step uses",
+    "Prove that equivalent systems have the same solutions",
+    "Write each elementary row operation as multiplication by an invertible elementary matrix",
+    "Row-reduce any matrix and read the solutions of the system"
+  ],
+  "prerequisites": "Matrix computation and school-level elimination of linear equations.",
+  "source_scope": "The captions of the course promo and Lectures 1 and 2 were read in full; the running example, the proofs as written, the counterexamples and the exercises are original."
+}

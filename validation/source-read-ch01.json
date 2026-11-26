@@ -1,0 +1,70 @@
+{
+ "author": "author_a",
+ "chapter": "ch01",
+ "recordings": [
+  {
+   "position": 1,
+   "video_id": "ivBzUfpal-g",
+   "normalized_text_sha256": "c828f35f77238e8682a51670766c4a2d817cb132c85b92ab887647143d4fcb86",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "course motivation and applications",
+    "prerequisites",
+    "course plan of 60 lectures"
+   ],
+   "clarifications": [
+    "promo only; no mathematics used"
+   ],
+   "original_constructions": []
+  },
+  {
+   "position": 2,
+   "video_id": "hMkT19xNNRk",
+   "normalized_text_sha256": "39a02c846d22366a733fa105d1a03c439b449f89d47d76f6658216a20527965e",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "field properties of R and C",
+    "field and subfield",
+    "m equations in n unknowns, homogeneous systems",
+    "row and column geometry",
+    "linear combinations and equivalent systems"
+   ],
+   "clarifications": [
+    "The spoken claim that three planes with no parallel pair always meet is false; the chapter gives a counterexample",
+    "A field also needs 1 != 0 and the multiplicative group excludes 0"
+   ],
+   "original_constructions": [
+    "running system (R)",
+    "two-line example",
+    "three-plane counterexample"
+   ]
+  },
+  {
+   "position": 3,
+   "video_id": "VsQSt1jqknk",
+   "normalized_text_sha256": "a2651822730285a0c4f430eb0447d49f1c2547bd6bdc3c3c23b32d96150ffd71",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "matrix form AX=Y",
+    "three elementary row operations and inverses",
+    "elementary matrices",
+    "row equivalence preserves solutions",
+    "row-reduced matrices and existence theorem"
+   ],
+   "clarifications": [
+    "Column operations change solutions; only row operations are used"
+   ],
+   "original_constructions": [
+    "opening failure",
+    "proof of reduction by invariant",
+    "exercises"
+   ]
+  }
+ ]
+}

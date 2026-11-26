@@ -1,0 +1,31 @@
+{
+  "reviewer": "author_a",
+  "slot": "r1",
+  "chapter": "ch15",
+  "disposition": "accepted",
+  "report": "validation/review-ch15-r1.md",
+  "scope": [
+    "manuscript",
+    "metadata",
+    "lab read and run",
+    "source ledger",
+    "all six solutions"
+  ],
+  "remaining_findings": [],
+  "accepted_files": {
+    "chapters/ch15.md": "0f77b111f53f384e9f8590072dda8de620693a5bd601a4512826d38a53bb8296",
+    "chapters/ch15.json": "c4b279cf30ab62a6202adef70e489e4641c601a4c9cbcb1c60efced2f7213751",
+    "labs/ch15.py": "88598e405eef1564f5342437905c94aa028b982c7d5f6d36c1214c451da5312c"
+  },
+  "source_evidence": {
+    "caption_positions": [
+      30,
+      31
+    ],
+    "intervals_read": "position 31 stored captions read in full; for position 30 the stored file duplicates the transpose lecture, so YouTube en-orig automatic captions of K-RIfSg3uWI were fetched and read in full; the maintainer then replaced the stored position 30 text with those automatic captions and compared Sections 1-6 with it"
+  },
+  "limitations": [
+    "No comprehensive audiovisual audit",
+    "Not human certification or formal proof verification"
+  ]
+}

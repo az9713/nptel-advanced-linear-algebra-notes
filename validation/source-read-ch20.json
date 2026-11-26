@@ -1,0 +1,72 @@
+{
+  "author": "author_b",
+  "chapter": "ch20",
+  "recordings": [
+    {
+      "position": 40,
+      "video_id": "B6C1-7Oc_e4",
+      "normalized_text_sha256": "258fa4715227fa9d351ecbcbfb43bba1ebc277554a2c97a455b25ce7b6ce8caa",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "linear initial value problem",
+        "eigenvector solutions",
+        "repeated eigenvalue 2 by 2 example",
+        "generalized eigenvectors of rank r",
+        "chains of generalized eigenvectors"
+      ],
+      "clarifications": [
+        "Chain independence, left as homework, is proved"
+      ],
+      "original_constructions": [
+        "running matrix chain"
+      ]
+    },
+    {
+      "position": 41,
+      "video_id": "Q7XtHAR9jRc",
+      "normalized_text_sha256": "ca8004342b89359349f849a2ac6d9bf5fe1d26cc22011ada03cf1983d17ecdb8",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "six-dimensional example",
+        "solutions from a chain",
+        "diagonalizable plus nilpotent",
+        "Jordan nilpotent blocks and block counts",
+        "Jordan canonical form and an example with two forms"
+      ],
+      "clarifications": [
+        "The spoken sum of block sizes is the algebraic multiplicity, and other blocks are bounded by the minimal polynomial exponent",
+        "The block-count formula is 2 mu_i - mu_{i-1} - mu_{i+1}"
+      ],
+      "original_constructions": [
+        "uniqueness of D and N",
+        "fundamental solution theorem"
+      ]
+    },
+    {
+      "position": 42,
+      "video_id": "f-YSQNvXrvM",
+      "normalized_text_sha256": "9db951b2e9e0376a4586009ffd5de2a97e5ab80ec6f51022c20859ff043b8301",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "nilpotent block form and two examples",
+        "cyclic subspaces and companion matrices",
+        "cyclic decomposition (stated)",
+        "rational canonical form",
+        "eight-dimensional example"
+      ],
+      "clarifications": [
+        "Field of the eight-dimensional example fixed as the rationals, where the quartic is irreducible"
+      ],
+      "original_constructions": [
+        "full proof of the cyclic decomposition",
+        "uniqueness of exponents"
+      ]
+    }
+  ]
+}

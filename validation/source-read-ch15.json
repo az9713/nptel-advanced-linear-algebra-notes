@@ -1,0 +1,61 @@
+{
+  "author": "author_b",
+  "chapter": "ch15",
+  "recordings": [
+    {
+      "position": 30,
+      "video_id": "K-RIfSg3uWI",
+      "normalized_text_sha256": "d009b9109a0e074cbfbb4d5dd14590ad2ac7fcf1ee8ffe27bffdcbf7741b66be",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "invariant subspace: definition",
+        "range, kernel, zero subspace and whole space",
+        "derivative on polynomials of bounded degree",
+        "range and kernel of a commuting operator",
+        "eigenspaces",
+        "restriction and block upper triangular matrix",
+        "divisibility of characteristic and minimal polynomials",
+        "quarter-turn on the real and complex plane"
+      ],
+      "clarifications": [
+        "The manual track 'en-6UJrWS5jR_I' of this video carries the Lecture 22 (position 23) text. It is not used.",
+        "The stored text and the section timestamps come from YouTube automatic English captions (en-orig) of this video.",
+        "The transpose material is not re-proved here (Chapter 11); only the invariance of annihilators is added."
+      ],
+      "original_constructions": [
+        "4x4 rational running example and its adapted basis",
+        "divisibility of the minimal polynomial into the product of the block minimal polynomials",
+        "annihilator invariance under the transpose",
+        "exercises and laboratory"
+      ]
+    },
+    {
+      "position": 31,
+      "video_id": "wTr4FJ6ogvM",
+      "normalized_text_sha256": "203bfa3403fb8bb0e2afe00c20c26442a66bd7bfffa8bbed61783c7b7125e8c3",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "the set of polynomials sending a vector into a subspace",
+        "subspace and ideal properties; invariance under polynomials in the operator",
+        "monic generator (conductor); zero and whole-space cases; divisibility of the minimal polynomial",
+        "definition of triangulable operator",
+        "linear-conductor lemma"
+      ],
+      "clarifications": [
+        "The polynomial set F[x] is a ring and a vector space, not a field.",
+        "Invariance of the subspace is assumed from the start, including in the lemma; a counterexample shows it is needed for the ideal property.",
+        "The linear conductor belongs to the new vector h(T)beta, not to the starting vector.",
+        "The triangulability theorem itself is left to Chapter 16."
+      ],
+      "original_constructions": [
+        "degree bound and algorithm for conductors",
+        "flag characterization of triangular matrices",
+        "infinite-dimensional boundary example"
+      ]
+    }
+  ]
+}

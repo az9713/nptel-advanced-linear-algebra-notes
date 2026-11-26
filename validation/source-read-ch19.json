@@ -1,0 +1,49 @@
+{
+  "author": "author_b",
+  "chapter": "ch19",
+  "recordings": [
+    {
+      "position": 38,
+      "video_id": "eyIs2irRboE",
+      "normalized_text_sha256": "9ccd41d8efc669943436c7626ad13574a33bd8b7ea8f9d210a1b922461d7b2c2",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "motivation: missing eigenvalues and missing eigenvectors",
+        "3 by 3 example with kernel of a squared factor",
+        "statement of the primary decomposition theorem",
+        "split case: diagonalizable plus nilpotent"
+      ],
+      "clarifications": [
+        "The matrix entries of the example were reconstructed from the spoken rank and kernel statements and agree with them"
+      ],
+      "original_constructions": [
+        "quarter-turn block"
+      ]
+    },
+    {
+      "position": 39,
+      "video_id": "Qra533N0-nw",
+      "normalized_text_sha256": "1c4f2bd230dcbd3901509c21c58b0a26fcd32bbc1066b28eb0a5b5ff6c3ba327",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "cofactors and Bezout identity",
+        "projections as polynomials in the operator",
+        "ranges equal kernels",
+        "invariance",
+        "minimal polynomial of each restriction"
+      ],
+      "clarifications": [
+        "The cofactors are jointly coprime, not pairwise",
+        "Nonzero components are proved from minimality"
+      ],
+      "original_constructions": [
+        "invariant subspace and multiplicity corollaries",
+        "exercises"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+ "reviewer": "author_a",
+ "slot": "r1",
+ "chapter": "ch17",
+ "disposition": "accepted",
+ "report": "validation/review-ch17-r1.md",
+ "scope": [
+  "manuscript",
+  "metadata",
+  "lab read and run",
+  "source ledger",
+  "all six solutions"
+ ],
+ "remaining_findings": [],
+ "accepted_files": {
+  "chapters/ch17.md": "908fe5720513dc64b239c09d261be167258bd8d453642e81efab8cf2b7fb6d3a",
+  "chapters/ch17.json": "70a5e474bf360fd4a8fb8d99a30b6a5b97aeefc05def8a5502dfcb049e18ee58",
+  "labs/ch17.py": "0777b43343c00e1eb7a9087014c49b2541372c5600393ed4eb92e8351c870a6f"
+ },
+ "source_evidence": {
+  "caption_positions": [
+   34,
+   35
+  ],
+  "intervals_read": "both caption files read in full"
+ },
+ "limitations": [
+  "No comprehensive audiovisual audit",
+  "Not human certification or formal proof verification"
+ ],
+ "rechecks": [
+  "Recheck 1: the eigenspace claim now assumes finite dimension and all distinct eigenvalues. Pipeline check OK."
+ ]
+}

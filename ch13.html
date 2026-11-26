@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Diagonalizable operators and annihilating polynomials · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html" aria-current=page>13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>13. Diagonalizable operators and annihilating polynomials</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=5GnTjNp0C4c">Recording 26</a>, <a href="https://www.youtube.com/watch?v=6wLBCQ12WvE">Recording 27</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Prove that eigenspaces of distinct eigenvalues are independent</li><li>Characterize diagonalizability by eigenspace dimensions</li><li>Construct the minimal polynomial and prove its properties</li><li>Prove the distinct-linear-factor criterion in both directions</li></ul>
+<p><strong>Prerequisites:</strong> Chapters 8, 9 and 12: operator spaces, similarity and eigenvalues.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch13.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-the-matrix-of-a-diagonalizable-operator-0025">1. The matrix of a diagonalizable operator 00:25</a></li><li><a href="#2-polynomials-act-on-eigenvectors-by-evaluation-1109">2. Polynomials act on eigenvectors by evaluation 11:09</a></li><li><a href="#3-eigenspaces-of-distinct-eigenvalues-are-independent-1517">3. Eigenspaces of distinct eigenvalues are independent 15:17</a></li><li><a href="#4-diagonalizable-means-that-the-eigenspaces-fill-mathplaceholder000093end-3005">4. Diagonalizable means that the eigenspaces fill $V$ 30:05</a></li><li><a href="#5-annihilating-polynomials-0009">5. Annihilating polynomials 00:09</a></li><li><a href="#6-the-minimal-polynomial-1040">6. The minimal polynomial 10:40</a></li><li><a href="#7-roots-of-the-minimal-polynomial-are-the-eigenvalues-2126">7. Roots of the minimal polynomial are the eigenvalues 21:26</a></li><li><a href="#8-the-criterion-for-diagonalizability-2958">8. The criterion for diagonalizability 29:58</a></li><li><a href="#9-executable-check">9. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>The two rational matrices</p>
+<p>$$
+A=\begin{pmatrix}5&amp;-6&amp;-6\\-1&amp;4&amp;2\\3&amp;-6&amp;-4\end{pmatrix},\qquad B=\begin{pmatrix}2&amp;1&amp;0\\0&amp;2&amp;0\\0&amp;0&amp;1\end{pmatrix}
+$$</p>
+<p>have the same characteristic polynomial $(x-1)(x-2)^2$. Yet $A$ is similar to $\operatorname{diag}(1,2,2)$ and $B$ is not similar to any diagonal matrix. They are the running examples of this chapter. A direct computation shows a difference that no determinant sees:</p>
+<p>$$
+(A-I)(A-2I)=0,\qquad(B-I)(B-2I)\neq0 .
+$$</p>
+<p>So $A$ satisfies a quadratic equation and $B$ does not. This chapter shows that this is the whole difference. We collect all polynomials that an operator satisfies, find the smallest one, and prove that the operator is diagonalizable exactly when that polynomial is a product of distinct linear factors.</p>
+<p>Throughout, $F$ is a field, $V$ is a vector space over $F$, and $T$ is an operator on $V$ (a linear map $V\to V$). Finite dimension is stated where used. For a polynomial $p=\sum a_mx^m\in F[x]$, where $F[x]$ is the set of polynomials over $F$, we write $p(T)=\sum a_mT^m$ with $T^0=I$, and similarly $p(M)$ for a square matrix $M$. Since powers of $T$ commute, $(pq)(T)=p(T)q(T)=q(T)p(T)$ and $(p+q)(T)=p(T)+q(T)$. An <em>eigenvalue</em> $c$ has <em>eigenspace</em> $E_c=\ker(T-cI)\neq0$; $c_T$ denotes the characteristic polynomial $\det(xI-T)$ (<a href="ch12.html">Chapter 12</a>).</p>
+<h2 id="1-the-matrix-of-a-diagonalizable-operator-0025">1. The matrix of a diagonalizable operator <a href="https://www.youtube.com/watch?v=5GnTjNp0C4c&amp;t=25s">00:25</a></h2>
+<p>Let $\dim V=n$. The operator $T$ is <em>diagonalizable</em> if $V$ has an ordered basis $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ of eigenvectors. If $T\alpha_i=c_i\alpha_i$, then $[T]_{\mathcal{B}}=\operatorname{diag}(c_1,\dots,c_n)$. Every other matrix of $T$ is similar to this diagonal matrix.</p>
+<p>The scalars may repeat. Let $c_1,\dots,c_k$ now be the distinct eigenvalues, each $c_i$ occurring $d_i$ times, and order the basis so that equal eigenvalues are adjacent. Then</p>
+<p>$$
+[T]_{\mathcal{B}}=\begin{pmatrix}c_1I_{d_1}&amp;&amp;\\&amp;\ddots&amp;\\&amp;&amp;c_kI_{d_k}\end{pmatrix},\qquad d_1+\cdots+d_k=n,
+$$</p>
+<p>where $I_d$ is the $d\times d$ identity. Two facts follow at once. First, $c_T(x)=(x-c_1)^{d_1}\cdots(x-c_k)^{d_k}$. Second, $[T-c_iI]_{\mathcal{B}}$ is diagonal with exactly $d_i$ zero entries, so $\dim E_{c_i}=d_i$. For a diagonalizable operator, the characteristic polynomial therefore already tells the dimensions of the eigenspaces.</p>
+<h2 id="2-polynomials-act-on-eigenvectors-by-evaluation-1109">2. Polynomials act on eigenvectors by evaluation <a href="https://www.youtube.com/watch?v=5GnTjNp0C4c&amp;t=669s">11:09</a></h2>
+<p><strong>Lemma 2.1.</strong> If $T\alpha=c\alpha$ and $f\in F[x]$, then $f(T)\alpha=f(c)\alpha$.</p>
+<p><strong>Proof.</strong> First $T^m\alpha=c^m\alpha$ for every $m\ge0$: it holds for $m=0$, and $T^{m+1}\alpha=T(c^m\alpha)=c^m(T\alpha)=c^{m+1}\alpha$. Then for $f=\sum a_mx^m$, linearity gives $f(T)\alpha=\sum a_mT^m\alpha=\sum a_mc^m\alpha=f(c)\alpha$. $\square$</p>
+<p>For example, with $f=7-2x+5x^3+x^4$ we have $f(1)=11$ and $f(2)=59$. So $f(A)$ multiplies the eigenvector $(3,-1,3)$ of $A$ for $1$ by $11$, and the eigenvectors $(2,1,0)$, $(2,0,1)$ for $2$ by $59$.</p>
+<h2 id="3-eigenspaces-of-distinct-eigenvalues-are-independent-1517">3. Eigenspaces of distinct eigenvalues are independent <a href="https://www.youtube.com/watch?v=5GnTjNp0C4c&amp;t=917s">15:17</a></h2>
+<p><strong>Lemma 3.1.</strong> Let $c_1,\dots,c_k$ be distinct eigenvalues with eigenspaces $W_i=E_{c_i}$, and suppose $\beta_1+\cdots+\beta_k=0$ with $\beta_i\in W_i$. Then every $\beta_i=0$.</p>
+<p><strong>Proof.</strong> Consider the <em>Lagrange polynomials</em></p>
+<p>$$
+f_i(x)=\prod_{j\neq i}\frac{x-c_j}{c_i-c_j},
+$$</p>
+<p>which satisfy $f_i(c_j)=1$ if $i=j$ and $0$ otherwise. Apply $f_i(T)$ to the relation. By Lemma 2.1, $f_i(T)\beta_j=f_i(c_j)\beta_j$, so only the term $j=i$ survives and $\beta_i=0$. $\square$</p>
+<p><strong>Corollary 3.2.</strong> If each $W_i$ is finite-dimensional with basis $\mathcal{B}_i$, then the list $(\mathcal{B}_1,\dots,\mathcal{B}_k)$ is a basis of $W=W_1+\cdots+W_k$, and $\dim W=\sum\dim W_i$.</p>
+<p><strong>Proof.</strong> The list spans $W$. A relation among its members can be grouped as $\beta_1+\cdots+\beta_k=0$ with $\beta_i$ a combination of $\mathcal{B}_i$. Lemma 3.1 gives $\beta_i=0$, and the independence of $\mathcal{B}_i$ gives that all its coefficients vanish. $\square$</p>
+<p>The corollary rules out any hidden relation between eigenvectors of different eigenvalues, so dimensions simply add.</p>
+<h2 id="4-diagonalizable-means-that-the-eigenspaces-fill-mathplaceholder000093end-3005">4. Diagonalizable means that the eigenspaces fill $V$ <a href="https://www.youtube.com/watch?v=5GnTjNp0C4c&amp;t=1805s">30:05</a></h2>
+<p><strong>Theorem 4.1.</strong> Let $\dim V=n$ and let $c_1,\dots,c_k$ be the distinct eigenvalues of $T$ in $F$. The following are equivalent: (a) $T$ is diagonalizable; (b) $V=E_{c_1}+\cdots+E_{c_k}$; (c) $\sum\dim E_{c_i}=n$.</p>
+<p><strong>Proof.</strong> (a) implies (b) because a basis of eigenvectors lies in the union of the eigenspaces. (b) and (c) are equivalent by Corollary 3.2: the sum has dimension $\sum\dim E_{c_i}$, so it is all of $V$ exactly when this number is $n$. (c) implies (a): the concatenated bases form a basis of $V$ made of eigenvectors. $\square$</p>
+<p>For $A$, the eigenspace $E_1$ is spanned by $(3,-1,3)$ and $E_2$ by $(2,1,0)$, $(2,0,1)$; dimensions $1+2=3$. With $P$ having these three columns, $P^{-1}AP=\operatorname{diag}(1,2,2)$, equivalently $A=P\operatorname{diag}(1,2,2)P^{-1}$. For $B$, $E_1$ is spanned by $(0,0,1)$ and $E_2$ by $(1,0,0)$ only; $1+1\lt3$, so $B$ is not diagonalizable.</p>
+<h2 id="5-annihilating-polynomials-0009">5. Annihilating polynomials <a href="https://www.youtube.com/watch?v=6wLBCQ12WvE&amp;t=9s">00:09</a></h2>
+<p>A polynomial $f$ <em>annihilates</em> $T$ if $f(T)=0$. Let $J=\{f\in F[x]:f(T)=0\}$. The set $J$ is an <em>ideal</em> of $F[x]$: it contains $0$, is closed under sums, and $f\in J$ implies $gf\in J$ for every $g\in F[x]$, since $(gf)(T)=g(T)f(T)=0$.</p>
+<p><strong>Theorem 5.1.</strong> If $\dim V=n$, then $J$ contains a nonzero polynomial of degree at most $n^2$.</p>
+<p><strong>Proof.</strong> The operators on $V$ form a space of dimension $n^2$ (<a href="ch08.html">Chapter 8</a>). So the $n^2+1$ operators $I,T,T^2,\dots,T^{n^2}$ are linearly dependent: there are scalars, not all zero, with $\sum_{i=0}^{n^2}c_iT^i=0$. The polynomial $\sum c_ix^i$ is nonzero and lies in $J$. $\square$</p>
+<p><strong>Infinite dimension.</strong> On $\mathbb{Q}[x]$ let $D$ be differentiation. No nonzero polynomial annihilates $D$. If $p=\sum p_ix^i$ has lowest nonzero coefficient $p_j$, then $p(D)x^j=p_j\,j!\neq0$: the terms with $i&lt;j$ have $p_i=0$, and $D^ix^j=0$ for $i&gt;j$. So $J=0$ here.</p>
+<h2 id="6-the-minimal-polynomial-1040">6. The minimal polynomial <a href="https://www.youtube.com/watch?v=6wLBCQ12WvE&amp;t=640s">10:40</a></h2>
+<p>We use the division algorithm: for $g$ and $h\neq0$ in $F[x]$ there are unique $q,r$ with $g=qh+r$ and $r=0$ or $\deg r&lt;\deg h$.</p>
+<p><strong>Theorem 6.1.</strong> Let $\dim V$ be finite. There is a unique monic polynomial $m_T$ (leading coefficient $1$) of least degree with $m_T(T)=0$. A polynomial $g$ satisfies $g(T)=0$ if and only if $m_T$ divides $g$.</p>
+<p><strong>Proof.</strong> By Theorem 5.1, $J\neq0$. Choose a nonzero element of $J$ of least degree and divide it by its leading coefficient; call it $m$. If $g\in J$, write $g=qm+r$. Then $r=g-qm\in J$, and if $r\neq0$ it has degree less than $\deg m$, contradicting the choice. So $r=0$ and $m$ divides $g$. Conversely multiples of $m$ lie in $J$. If $m'$ is another monic element of least degree, then $m$ divides $m'$ and the degrees agree, so $m=m'$. $\square$</p>
+<p>$m_T$ is the <em>minimal polynomial</em> of $T$. For a matrix $M$ it is defined the same way with $M$ in place of $T$, and $m_T=m_{[T]_{\mathcal{B}}}$ for every basis, because $p\mapsto p(T)$ corresponds to $p\mapsto p([T]_{\mathcal{B}})$.</p>
+<p>In practice $m_M$ is found by testing the powers $I,M,M^2,\dots$ for the first linear dependency; each test is a linear system. For $A$ the first dependency is among $I,A,A^2$: $m_A=x^2-3x+2=(x-1)(x-2)$. For $B$ it first occurs among $I,B,B^2,B^3$: $m_B=(x-1)(x-2)^2$.</p>
+<p><strong>Similar matrices have the same minimal polynomial</strong> <a href="https://www.youtube.com/watch?v=6wLBCQ12WvE&amp;t=1032s">17:12</a>. If $M'=P^{-1}MP$, then $M'^r=P^{-1}M^rP$, so $f(M')=P^{-1}f(M)P$ for every $f$. Hence $f(M')=0$ exactly when $f(M)=0$. The two matrices have the same ideal of annihilators and the same monic generator.</p>
+<h2 id="7-roots-of-the-minimal-polynomial-are-the-eigenvalues-2126">7. Roots of the minimal polynomial are the eigenvalues <a href="https://www.youtube.com/watch?v=6wLBCQ12WvE&amp;t=1286s">21:26</a></h2>
+<p><strong>Theorem 7.1.</strong> Let $\dim V$ be finite and $c\in F$. Then $m_T(c)=0$ if and only if $c$ is an eigenvalue of $T$.</p>
+<p><strong>Proof.</strong> Suppose $m_T(c)=0$. Then $m_T(x)=(x-c)q(x)$ with $q$ of smaller degree. By minimality $q(T)\neq0$: choose $\beta$ with $\alpha=q(T)\beta\neq0$. Then $(T-cI)\alpha=m_T(T)\beta=0$, so $\alpha$ is an eigenvector for $c$. Conversely, if $T\alpha=c\alpha$ with $\alpha\neq0$, then by Lemma 2.1, $0=m_T(T)\alpha=m_T(c)\alpha$, so $m_T(c)=0$. $\square$</p>
+<p>So $m_T$ and $c_T$ have the same roots in $F$. Their multiplicities may differ: for $A$ the root $2$ has multiplicity $2$ in $c_A$ and $1$ in $m_A$; for $B$ it has multiplicity $2$ in both. The sharper statement that $m_T$ divides $c_T$ is the Cayley–Hamilton theorem, proved in <a href="ch14.html">Chapter 14</a>; it is not used in the present chapter.</p>
+<h2 id="8-the-criterion-for-diagonalizability-2958">8. The criterion for diagonalizability <a href="https://www.youtube.com/watch?v=6wLBCQ12WvE&amp;t=1798s">29:58</a></h2>
+<p><strong>Theorem 8.1.</strong> Let $\dim V=n\ge1$. Then $T$ is diagonalizable if and only if $m_T=(x-c_1)\cdots(x-c_k)$ with distinct $c_1,\dots,c_k\in F$.</p>
+<p><strong>Proof.</strong> Let $T$ be diagonalizable with distinct eigenvalues $c_1,\dots,c_k$, and put $p=\prod(x-c_i)$. Each $\alpha\in V$ is a sum $\beta_1+\cdots+\beta_k$ with $\beta_i\in E_{c_i}$ (Theorem 4.1). By Lemma 2.1, $p(T)\beta_i=p(c_i)\beta_i=0$. So $p(T)=0$ and $m_T$ divides $p$. By Theorem 7.1 each $c_i$ is a root of $m_T$, so $p$ divides $m_T$. Both are monic, hence $m_T=p$.</p>
+<p>Conversely, let $m_T=\prod(x-c_i)$ with distinct $c_i$, and let $f_i$ be the Lagrange polynomials of Section 3. The polynomial $\sum f_i-1$ has degree at most $k-1$ and vanishes at the $k$ points $c_j$, so it is zero: $\sum_if_i=1$. Hence $\alpha=\sum_if_i(T)\alpha$ for every $\alpha\in V$. Moreover $(x-c_i)f_i$ is a nonzero constant multiple of $m_T$, so $(T-c_iI)f_i(T)=0$. Thus $f_i(T)\alpha\in E_{c_i}$. Therefore $V=E_{c_1}+\cdots+E_{c_k}$, and $T$ is diagonalizable by Theorem 4.1. $\square$</p>
+<p>The hinge of the converse is the identity $\sum f_i=1$, which splits every vector into pieces that automatically lie in eigenspaces. For $A$ these are the operators $f_1(A)=2I-A$ and $f_2(A)=A-I$. They satisfy $f_1(A)+f_2(A)=I$, $f_i(A)^2=f_i(A)$, $f_1(A)f_2(A)=0$, and their ranks are $1$ and $2$, the dimensions of the eigenspaces.</p>
+<p><strong>A consequence for powers.</strong> Since $A^2=3A-2I$, every power of $A$ is a combination of $I$ and $A$. Explicitly $A^k=(2^k-1)A+(2-2^k)I$, which follows from Lemma 2.1 applied to the eigenvectors: both sides multiply the eigenvectors for $1$ by $1$ and those for $2$ by $2^k$.</p>
+<p><strong>Field dependence.</strong> The rotation $R=\begin{pmatrix}0&amp;-1\\1&amp;0\end{pmatrix}$ has $m_R=x^2+1$. Over $\mathbb{R}$ this is not a product of linear factors, so $R$ is not diagonalizable. Over $\mathbb{C}$, $m_R=(x-i)(x+i)$ has distinct roots, so it is.</p>
+<h2 id="9-executable-check">9. Executable check</h2>
+<p><a href="labs/ch13.py">The chapter laboratory</a> uses exact fractions (and NumPy for the one complex check). It computes both characteristic polynomials, the eigenspace dimensions, $f(A)$ on eigenvectors, $P^{-1}AP$, both minimal polynomials by dependence of powers, the invariance under similarity, the multiplicities, the operators $f_i(A)$, the power formula up to $k=12$, the rotation, and the derivative example. These are instances; the proofs above cover the general case.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) Find the minimal polynomials of $\operatorname{diag}(3,3,5)$ and of $\begin{pmatrix}3&amp;1&amp;0\\0&amp;3&amp;0\\0&amp;0&amp;5\end{pmatrix}$.</li>
+<li>(Inverse.) Use $m_A$ to write $A^{-1}$ as a polynomial in $A$.</li>
+<li>(Idempotents.) Show that an operator with $E^2=E$ on a finite-dimensional space is diagonalizable over every field.</li>
+<li>(Field dependence.) Let $S=\begin{pmatrix}0&amp;-1\\1&amp;-1\end{pmatrix}$. Find $m_S$ and decide diagonalizability over $\mathbb{R}$ and over $\mathbb{C}$.</li>
+<li>(Restriction.) Let $T$ be diagonalizable on a finite-dimensional space and $W$ a $T$-invariant subspace. Show that the restriction of $T$ to $W$ is diagonalizable.</li>
+<li>(Block sum.) Find the minimal polynomial of the $6\times6$ block diagonal matrix with blocks $A$ and $B$.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>The first matrix $D$ has eigenvalues $3,5$ and $(D-3I)(D-5I)=0$, while neither factor is zero; so $m_D=(x-3)(x-5)$. For the second matrix $M$, $m_M$ has the roots $3$ and $5$ (Theorem 7.1). The product $(M-3I)(M-5I)$ is not zero: its $(1,2)$ entry comes from the block $\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix}\begin{pmatrix}-2&amp;1\\0&amp;-2\end{pmatrix}$, which has $(1,2)$ entry $-2$. On the other hand $(M-3I)^2(M-5I)=0$, since $(M-3I)^2$ vanishes on the first two coordinates and $M-5I$ on the third. So $m_M=(x-3)^2(x-5)$.</p>
+</li>
+<li>
+<p>From $m_A=x^2-3x+2$, $A^2-3A+2I=0$, so $A(3I-A)=2I$. Hence $A^{-1}=\frac12(3I-A)$.</p>
+</li>
+<li>
+<p>$E$ is annihilated by $x^2-x=x(x-1)$, so $m_E$ divides it. Every monic divisor of $x(x-1)$ other than $1$ is a product of distinct linear factors, and $m_E=1$ happens only for $V=0$. Since $0\neq1$ in every field, Theorem 8.1 applies.</p>
+</li>
+<li>
+<p>$S^2=\begin{pmatrix}-1&amp;1\\-1&amp;0\end{pmatrix}$, so $S^2+S+I=0$. Since $S$ is not a scalar matrix, $m_S$ has degree $2$: $m_S=x^2+x+1$. Over $\mathbb{R}$ its discriminant is $1-4=-3&lt;0$, so it has no roots and $S$ is not diagonalizable. Over $\mathbb{C}$ it has the two distinct roots $(-1\pm i\sqrt3)/2$, so $S$ is diagonalizable.</p>
+</li>
+<li>
+<p>Let $T_W$ be the restriction and $m=m_T$. For $w\in W$, $m(T_W)w=m(T)w=0$, so $m(T_W)=0$ and $m_{T_W}$ divides $m$. By Theorem 8.1, $m$ is a product of distinct linear factors, so every monic divisor of it is too. Again by Theorem 8.1 (applied on $W$, if $W\neq0$; the zero space is trivially diagonalizable), $T_W$ is diagonalizable.</p>
+</li>
+<li>
+<p>For a block diagonal $M$ with blocks $A,B$, $p(M)$ has blocks $p(A),p(B)$. So $p(M)=0$ exactly when $m_A$ and $m_B$ both divide $p$, that is, when their least common multiple divides $p$. With $m_A=(x-1)(x-2)$ and $m_B=(x-1)(x-2)^2$, the least common multiple is $(x-1)(x-2)^2$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, the chapter on elementary canonical forms.</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., Springer, 2024, open access at https://linear.axler.net/, the chapter on eigenvalues and eigenvectors.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch13.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 13 laboratory: diagonalizability and minimal polynomials.
+
+Exact arithmetic over Q (fractions.Fraction).  A matrix is a list of
+rows.  A polynomial is a list of coefficients, lowest degree first:
+[a0, a1, a2] stands for a0 + a1 x + a2 x^2.  Every routine returns new
+objects and never changes its inputs.
+
+The laboratory checks, on the running matrix A and the defective matrix
+B of the chapter:
+  * f(T)v = f(c)v for an eigenvector v (Lemma 2.1);
+  * the dimension test for diagonalizability (Theorem 4.1);
+  * the minimal polynomial from dependence of powers (Theorems 5.1, 6.1);
+  * invariance of the minimal polynomial under similarity (Section 6);
+  * roots of the minimal polynomial are the eigenvalues (Theorem 7.1);
+  * the Lagrange operators and the criterion (Theorem 8.1).
+Apart from a floating-point check of the rotation over C it computes
+only over Q.
+&quot;&quot;&quot;
+from fractions import Fraction
+import numpy as np
+
+
+def Q(rows):
+    &quot;&quot;&quot;Matrix over Q from integer or Fraction entries.&quot;&quot;&quot;
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def identity(n):
+    return [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def mat_mul(a, b):
+    return [[sum(a[i][k]*b[k][j] for k in range(len(b)))
+             for j in range(len(b[0]))] for i in range(len(a))]
+
+
+def mat_add(a, b):
+    return [[x + y for x, y in zip(r, s)] for r, s in zip(a, b)]
+
+
+def mat_scale(c, a):
+    return [[c*x for x in row] for row in a]
+
+
+def mat_sub(a, b):
+    return mat_add(a, mat_scale(Fraction(-1), b))
+
+
+def mat_inv(a):
+    &quot;&quot;&quot;Inverse by Gauss-Jordan elimination; raises on a singular matrix.&quot;&quot;&quot;
+    n = len(a)
+    m = [list(row) + list(idr) for row, idr in zip(a, identity(n))]
+    for col in range(n):
+        piv = next((r for r in range(col, n) if m[r][col] != 0), None)
+        if piv is None:
+            raise ZeroDivisionError(&#x27;singular matrix&#x27;)
+        m[col], m[piv] = m[piv], m[col]
+        pv = m[col][col]
+        m[col] = [x/pv for x in m[col]]
+        for r in range(n):
+            if r != col and m[r][col] != 0:
+                f = m[r][col]
+                m[r] = [x - f*y for x, y in zip(m[r], m[col])]
+    return [row[n:] for row in m]
+
+
+def rref_rank_nullspace(a):
+    &quot;&quot;&quot;Return (rank, basis of the null space) of a, exactly.&quot;&quot;&quot;
+    rows, cols = len(a), len(a[0])
+    m = [list(r) for r in a]
+    pivots = []
+    r = 0
+    for c in range(cols):
+        piv = next((i for i in range(r, rows) if m[i][c] != 0), None)
+        if piv is None:
+            continue
+        m[r], m[piv] = m[piv], m[r]
+        pv = m[r][c]
+        m[r] = [x/pv for x in m[r]]
+        for i in range(rows):
+            if i != r and m[i][c] != 0:
+                f = m[i][c]
+                m[i] = [x - f*y for x, y in zip(m[i], m[r])]
+        pivots.append(c)
+        r += 1
+        if r == rows:
+            break
+    free = [c for c in range(cols) if c not in pivots]
+    basis = []
+    for fcol in free:
+        v = [Fraction(0)]*cols
+        v[fcol] = Fraction(1)
+        for row, pc in enumerate(pivots):
+            v[pc] = -m[row][fcol]
+        basis.append(v)
+    return len(pivots), basis
+
+
+# ---- polynomials ------------------------------------------------------
+
+def trim(p):
+    p = list(p)
+    while p and p[-1] == 0:
+        p.pop()
+    return p
+
+
+def poly_mul(p, q):
+    out = [Fraction(0)]*(len(p) + len(q) - 1)
+    for i, a in enumerate(p):
+        for j, b in enumerate(q):
+            out[i + j] += a*b
+    return trim(out)
+
+
+def poly_divmod(p, d):
+    &quot;&quot;&quot;Quotient and remainder of p by d (d nonzero).&quot;&quot;&quot;
+    p, d = trim(p), trim(d)
+    q = [Fraction(0)]*max(len(p) - len(d) + 1, 1)
+    r = list(p)
+    while len(r) &gt;= len(d) and r:
+        k = len(r) - len(d)
+        c = r[-1]/d[-1]
+        q[k] = c
+        for i, x in enumerate(d):
+            r[i + k] -= c*x
+        r = trim(r)
+    return trim(q), r
+
+
+def poly_eval(p, x):
+    out = Fraction(0)
+    for c in reversed(p):
+        out = out*x + c
+    return out
+
+
+def poly_at_matrix(p, a):
+    &quot;&quot;&quot;p(A) by Horner&#x27;s rule; the constant term multiplies I.&quot;&quot;&quot;
+    n = len(a)
+    out = [[Fraction(0)]*n for _ in range(n)]
+    for c in reversed(p):
+        out = mat_add(mat_mul(out, a), mat_scale(c, identity(n)))
+    return out
+
+
+def from_roots(roots):
+    p = [Fraction(1)]
+    for r in roots:
+        p = poly_mul(p, [Fraction(-r), Fraction(1)])
+    return p
+
+
+def show(p):
+    return &#x27; + &#x27;.join(&#x27;%s*x^%d&#x27; % (c, i) for i, c in enumerate(p) if c != 0)
+
+
+# ---- the objects of the chapter ---------------------------------------
+
+def char_poly(a):
+    &quot;&quot;&quot;Faddeev-LeVerrier: coefficients of det(xI - A), exact over Q.&quot;&quot;&quot;
+    n = len(a)
+    coeffs = [Fraction(1)]
+    mk = [[Fraction(0)]*n for _ in range(n)]
+    for k in range(1, n + 1):
+        mk = mat_add(mat_mul(a, mk), mat_scale(coeffs[-1], identity(n)))
+        am = mat_mul(a, mk)
+        ck = -sum(am[i][i] for i in range(n))/k
+        coeffs.append(ck)
+    return list(reversed(coeffs))
+
+
+def vec(a):
+    return [x for row in a for x in row]
+
+
+def min_poly(a):
+    &quot;&quot;&quot;Least-degree monic p with p(A) = 0, from linear dependence of
+    I, A, A^2, ...; also returns the number of powers inspected.&quot;&quot;&quot;
+    n = len(a)
+    powers = [identity(n)]
+    for d in range(1, n*n + 1):
+        powers.append(mat_mul(powers[-1], a))
+        cols = [vec(p) for p in powers]
+        mat = [[cols[j][i] for j in range(len(cols))]
+               for i in range(n*n)]
+        rank, null = rref_rank_nullspace(mat)
+        if rank &lt; len(cols):
+            rel = null[0]
+            return trim([x/rel[-1] for x in rel]), len(cols)
+    raise AssertionError(&#x27;no dependence among n^2 + 1 powers&#x27;)
+
+
+def eig_space_dim(a, c):
+    n = len(a)
+    rank, _ = rref_rank_nullspace(mat_sub(a, mat_scale(Fraction(c),
+                                                       identity(n))))
+    return n - rank
+
+
+def integer_roots(p, bound=30):
+    return [r for r in range(-bound, bound + 1) if poly_eval(p, r) == 0]
+
+
+def multiplicity(p, r):
+    k = 0
+    while True:
+        q, rem = poly_divmod(p, [Fraction(-r), Fraction(1)])
+        if rem:
+            return k
+        p, k = q, k + 1
+
+
+def lagrange(nodes, i):
+    &quot;&quot;&quot;f_i with f_i(c_j) = delta_ij; the nodes must be distinct.&quot;&quot;&quot;
+    p = [Fraction(1)]
+    for j, c in enumerate(nodes):
+        if j != i:
+            p = poly_mul(p, [Fraction(-c)/(nodes[i] - c),
+                             Fraction(1)/(nodes[i] - c)])
+    return p
+
+
+def is_diagonalizable_over_Q(a):
+    &quot;&quot;&quot;Dimension test of Theorem 4.1 with integer eigenvalues.&quot;&quot;&quot;
+    n = len(a)
+    roots = integer_roots(char_poly(a))
+    return sum(eig_space_dim(a, c) for c in roots) == n
+
+
+def apply(a, v):
+    return [sum(a[i][j]*v[j] for j in range(len(v)))
+            for i in range(len(a))]
+
+
+def main():
+    A = Q([[5, -6, -6], [-1, 4, 2], [3, -6, -4]])
+    B = Q([[2, 1, 0], [0, 2, 0], [0, 0, 1]])
+    n = 3
+    I3 = identity(n)
+    zero = [[Fraction(0)]*n for _ in range(n)]
+
+    # characteristic polynomials: equal for A and B
+    cA, cB = char_poly(A), char_poly(B)
+    print(&#x27;c_A =&#x27;, show(cA))
+    assert cA == cB == from_roots([1, 2, 2])
+    assert cA == [Fraction(-4), Fraction(8), Fraction(-5), Fraction(1)]
+
+    # eigenspace dimensions
+    dA = {c: eig_space_dim(A, c) for c in (1, 2)}
+    dB = {c: eig_space_dim(B, c) for c in (1, 2)}
+    print(&#x27;dim E_c for A:&#x27;, dA, &#x27; for B:&#x27;, dB)
+    assert dA == {1: 1, 2: 2} and dB == {1: 1, 2: 1}
+    assert is_diagonalizable_over_Q(A)
+    assert not is_diagonalizable_over_Q(B)
+
+    # Lemma 2.1: f(T)v = f(c)v on an eigenvector
+    v1 = [Fraction(3), Fraction(-1), Fraction(3)]
+    v2a = [Fraction(2), Fraction(1), Fraction(0)]
+    v2b = [Fraction(2), Fraction(0), Fraction(1)]
+    assert apply(A, v1) == v1
+    assert apply(A, v2a) == [2*x for x in v2a]
+    assert apply(A, v2b) == [2*x for x in v2b]
+    f = [Fraction(c) for c in (7, -2, 0, 5, 1)]
+    for c, v in ((1, v1), (2, v2a), (2, v2b)):
+        assert apply(poly_at_matrix(f, A), v) == \
+            [poly_eval(f, c)*x for x in v]
+    print(&#x27;f(1) =&#x27;, poly_eval(f, 1), &#x27; f(2) =&#x27;, poly_eval(f, 2))
+
+    # Theorem 4.1: the eigenvectors form a basis; P^-1 A P = D
+    P = [[v1[i], v2a[i], v2b[i]] for i in range(n)]
+    D = mat_mul(mat_inv(P), mat_mul(A, P))
+    print(&#x27;P^-1 A P =&#x27;, [[str(x) for x in r] for r in D])
+    assert D == Q([[1, 0, 0], [0, 2, 0], [0, 0, 2]])
+    assert rref_rank_nullspace(P)[0] == 3
+
+    # Section 5: n^2 + 1 powers are dependent; minimal polynomial
+    mA, countA = min_poly(A)
+    mB, countB = min_poly(B)
+    print(&#x27;m_A =&#x27;, show(mA), &#x27; powers inspected:&#x27;, countA)
+    print(&#x27;m_B =&#x27;, show(mB), &#x27; powers inspected:&#x27;, countB)
+    assert mA == from_roots([1, 2]) and mB == from_roots([1, 2, 2])
+    assert countA &lt;= n*n + 1 and countB &lt;= n*n + 1
+    assert poly_at_matrix(mA, A) == zero
+    assert poly_at_matrix(from_roots([1, 2]), B) != zero
+    # same characteristic polynomial, different minimal polynomial
+    assert cA == cB and mA != mB
+    # m divides c in both examples (an instance of Chapter 14)
+    for m, c in ((mA, cA), (mB, cB)):
+        assert poly_divmod(c, m)[1] == []
+    # every annihilating polynomial is a multiple of m_A
+    g = poly_mul(mA, [Fraction(3), Fraction(1), Fraction(4)])
+    assert poly_at_matrix(g, A) == zero
+    assert poly_divmod(g, mA)[1] == []
+    assert poly_at_matrix([Fraction(1), Fraction(1)], A) != zero
+
+    # Section 6: similar matrices share the minimal polynomial
+    S = Q([[1, 2, 0], [0, 1, 3], [1, 0, 1]])
+    A2 = mat_mul(mat_inv(S), mat_mul(A, S))
+    assert min_poly(A2)[0] == mA
+    assert A2 != A
+
+    # Section 7: roots of m are the eigenvalues, multiplicities differ
+    assert integer_roots(mA) == integer_roots(cA) == [1, 2]
+    assert integer_roots(mB) == integer_roots(cB) == [1, 2]
+    print(&#x27;mult of 2 in c_A, m_A:&#x27;, multiplicity(cA, 2),
+          multiplicity(mA, 2))
+    assert (multiplicity(cA, 2), multiplicity(mA, 2)) == (2, 1)
+    assert (multiplicity(cB, 2), multiplicity(mB, 2)) == (2, 2)
+
+    # Section 8: converse by Lagrange projections
+    nodes = [Fraction(1), Fraction(2)]
+    ps = [lagrange(nodes, i) for i in range(2)]
+    for i in range(2):
+        for j in range(2):
+            assert poly_eval(ps[i], nodes[j]) == int(i == j)
+    E = [poly_at_matrix(p, A) for p in ps]
+    total = mat_add(E[0], E[1])
+    assert total == I3
+    for i, c in enumerate(nodes):
+        assert mat_mul(mat_sub(A, mat_scale(c, I3)), E[i]) == zero
+        assert mat_mul(E[i], E[i]) == E[i]
+    ranks = [rref_rank_nullspace(e)[0] for e in E]
+    print(&#x27;ranks of p_i(A):&#x27;, ranks, &#x27; p_1 =&#x27;, show(ps[0]))
+    assert ranks == [1, 2]
+    assert mat_mul(E[0], E[1]) == zero
+
+    # powers of A from the minimal polynomial
+    Ak = I3
+    for k in range(1, 13):
+        Ak = mat_mul(Ak, A)
+        formula = mat_add(mat_scale(Fraction(2**k - 1), A),
+                          mat_scale(Fraction(2 - 2**k), I3))
+        assert Ak == formula
+    print(&#x27;A^12 row 1:&#x27;, [str(x) for x in Ak[0]])
+
+    # field dependence: the rotation has m = x^2 + 1
+    R = Q([[0, -1], [1, 0]])
+    mR, _ = min_poly(R)
+    print(&#x27;m_R =&#x27;, show(mR))
+    assert mR == [Fraction(1), Fraction(0), Fraction(1)]
+    assert integer_roots(mR) == []
+    assert not is_diagonalizable_over_Q(R)
+    Rc = np.array([[0, -1], [1, 0]], dtype=complex)
+    Pc = np.array([[1, 1], [1j, -1j]])
+    Dc = np.linalg.inv(Pc) @ Rc @ Pc
+    assert np.allclose(Dc, np.diag([-1j, 1j]), atol=1e-12)
+
+    # infinite dimension: d/dx on Q[x] has no annihilating polynomial
+    def deriv(coeffs):
+        return [i*c for i, c in enumerate(coeffs)][1:] or [Fraction(0)]
+
+    def p_of_D(p, coeffs):
+        out = [Fraction(0)]*(len(coeffs))
+        cur = list(coeffs)
+        for a in p:
+            for i, c in enumerate(cur):
+                out[i] += a*c
+            cur = deriv(cur) + [Fraction(0)]*(len(coeffs) - len(cur) + 1)
+            cur = cur[:len(coeffs)]
+        return out
+
+    for p in ([Fraction(0), Fraction(2), Fraction(5)],
+              [Fraction(3), Fraction(1)],
+              [Fraction(0), Fraction(0), Fraction(-4), Fraction(1)]):
+        j = next(i for i, c in enumerate(p) if c != 0)
+        xj = [Fraction(0)]*j + [Fraction(1)]
+        res = p_of_D(p, xj)
+        assert res[0] == p[j]*_fact(j) != 0
+    print(&#x27;all checks passed&#x27;)
+
+
+def _fact(j):
+    out = 1
+    for i in range(2, j + 1):
+        out *= i
+    return out
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch12.html">Previous: Eigenvalues, eigenvectors, and the characteristic polynomial</a><a rel="next" href="ch14.html">Next: The Cayley-Hamilton theorem and the minimal polynomial in computation</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

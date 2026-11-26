@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Singular value decomposition and forms on inner product spaces · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html" aria-current=page>26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>26. Singular value decomposition and forms on inner product spaces</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=moaXD7Hfqfg">Recording 59</a>, <a href="https://www.youtube.com/watch?v=2byXhwHzR-0">Recording 60</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Prove and compute the singular value decomposition</li><li>Correspond sesquilinear forms with operators</li><li>Distinguish the matrix of a form from the matrix of an operator</li><li>Diagonalize Hermitian forms by principal axes</li></ul>
+<p><strong>Prerequisites:</strong> The spectral theorem (Chapter 25), the representation theorem (Chapter 23) and Gram-Schmidt.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch26.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-the-matrix-mathplaceholder000020end-0303">1. The matrix $A^*A$ 03:03</a></li><li><a href="#2-the-decomposition-theorem-0625">2. The decomposition theorem 06:25</a></li><li><a href="#3-a-rank-one-example-in-full-3040">3. A rank-one example in full 30:40</a></li><li><a href="#4-sesquilinear-forms-0356">4. Sesquilinear forms 03:56</a></li><li><a href="#5-forms-are-operators-1059">5. Forms are operators 10:59</a></li><li><a href="#6-the-matrix-of-a-form-3405">6. The matrix of a form 34:05</a></li><li><a href="#7-hermitian-forms-and-principal-axes-3747">7. Hermitian forms and principal axes 37:47</a></li><li><a href="#8-executable-check">8. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>The matrix</p>
+<p>$$A=\begin{pmatrix}3&amp;0\\4&amp;5\end{pmatrix}$$</p>
+<p>maps the unit circle of $\mathbb{R}^2$ to an ellipse. How long are its axes? Eigenvalues do not answer: they are $3$ and $5$, while the longest vector $Ax$ with $\|x\|=1$ has length $3\sqrt5\approx6.708$. The answer needs two orthonormal bases, one for the inputs and one for the outputs, and such a pair exists for every matrix, square or not. This is the singular value decomposition. The second half of the chapter treats functions of two vectors such as $(x,y)\mapsto\langle Ax,Ay\rangle$, and shows that the same spectral theorem puts every Hermitian one into diagonal form. The matrix $A$ is the running example (an original choice).</p>
+<p><strong>Conventions.</strong> $F$ is $\mathbb{R}$ or $\mathbb{C}$. On $F^n$, $\langle x,y\rangle=y^*x$, where ${}^*$ is the conjugate transpose, defined for matrices of any shape. A square matrix $U$ is <em>unitary</em> if $U^*U=I$ (a real unitary matrix is called <em>orthogonal</em>). A matrix $H$ is <em>Hermitian</em> if $H^*=H$. A basis is <em>orthonormal</em> if its vectors have norm $1$ and are pairwise orthogonal. We use the spectral theorem of <a href="ch25.html">Chapter 25</a>: a Hermitian matrix has an orthonormal basis of eigenvectors with real eigenvalues (real vectors if the matrix is real).</p>
+<h2 id="1-the-matrix-mathplaceholder000020end-0303">1. The matrix $A^*A$ <a href="https://www.youtube.com/watch?v=moaXD7Hfqfg&amp;t=183s">03:03</a></h2>
+<p>A rectangular $A\in F^{m\times n}$ has no eigenvalues, but $A^*A$ is a square $n\times n$ matrix.</p>
+<p><strong>Lemma 1.1.</strong> $A^*A$ is Hermitian, $x^*A^*Ax=\|Ax\|^2\ge0$ for all $x$, and its eigenvalues are real and nonnegative.</p>
+<p><em>Proof.</em> $(A^*A)^*=A^*A$, and $x^*A^*Ax=(Ax)^*(Ax)$. If $A^*Az=\lambda z$ with $z\ne0$, then $\|Az\|^2=\lambda\|z\|^2$, so $\lambda\ge0$. $\square$</p>
+<p>A Hermitian matrix with $x^*Hx\ge0$ for all $x$ is called <em>positive semidefinite</em>.</p>
+<h2 id="2-the-decomposition-theorem-0625">2. The decomposition theorem <a href="https://www.youtube.com/watch?v=moaXD7Hfqfg&amp;t=385s">06:25</a></h2>
+<p><strong>Theorem 2.1.</strong> Let $A\in F^{m\times n}$ have rank $r$. There are unitary $U\in F^{m\times m}$ and $V\in F^{n\times n}$ with</p>
+<p>$$A=UDV^*,$$</p>
+<p>where $D\in F^{m\times n}$ has $D_{jj}=\sigma_j$ for $j\le r$, all other entries zero, and $\sigma_1\ge\dots\ge\sigma_r\gt0$.</p>
+<p><em>Proof.</em> By the spectral theorem and Lemma 1.1, $F^n$ has an orthonormal basis $v_1,\dots,v_n$ with $A^*Av_j=\lambda_jv_j$ and $\lambda_j\ge0$. Number them so that $\lambda_1\ge\lambda_2\ge\dots$, and let $s$ be the number of positive ones. Put $x_j=Av_j$. Then</p>
+<p>$$\langle x_j,x_k\rangle=v_k^*A^*Av_j=\lambda_j\,v_k^*v_j=\lambda_j\delta_{jk},$$</p>
+<p>where $\delta_{jk}$ is $1$ for $j=k$ and $0$ otherwise. So $x_j=0$ for $j\gt s$, and with $\sigma_j=\sqrt{\lambda_j}$ the vectors $u_j=x_j/\sigma_j$ $(j\le s)$ are orthonormal in $F^m$. The vectors $Av_j$ span the image of $A$, and the nonzero ones are independent; therefore $s=r$, and in particular $r\le\min(m,n)$. Extend $u_1,\dots,u_r$ to an orthonormal basis $u_1,\dots,u_m$ of $F^m$ (extend to a basis and apply Gram–Schmidt). Let $U,V$ have the columns $u_j,v_j$. The equations $Av_j=\sigma_ju_j$ $(j\le r)$ and $Av_j=0$ $(j\gt r)$ say $AV=UD$. Since $V^{-1}=V^*$, $A=UDV^*$. $\square$</p>
+<p>The hinge is the displayed line: orthogonal eigenvectors of $A^*A$ have <em>orthogonal images</em> under $A$.</p>
+<p><strong>Definition 2.2.</strong> The numbers $\sigma_1,\dots,\sigma_r$ are the <em>singular values</em> of $A$. The columns of $V$ are <em>right</em> and those of $U$ <em>left singular vectors</em>.</p>
+<p>The singular values are determined by $A$: if $A=UDV^*$ is any such factorization, then $A^*A=V(D^*D)V^*$, so the $\sigma_j^2$ are the nonzero eigenvalues of $A^*A$ with their multiplicities. The matrices $U,V$ are not unique; for instance $(U,V)$ may be replaced by $(-U,-V)$. Singular values are in general not eigenvalues of $A$.</p>
+<p><strong>Shapes</strong> <a href="https://www.youtube.com/watch?v=moaXD7Hfqfg&amp;t=1252s">20:52</a>. For $m\gt n$ the matrix $D$ has zero rows below the diagonal block; for $m\lt n$ it has zero columns to the right; for $m=n$ it is an ordinary diagonal matrix.</p>
+<p><strong>On the running example.</strong> $A^{\mathsf T}A=\begin{pmatrix}25&amp;20\\20&amp;25\end{pmatrix}$ has eigenvalues $45,5$ with unit eigenvectors $v_1=(1,1)/\sqrt2$, $v_2=(1,-1)/\sqrt2$. So $\sigma_1=3\sqrt5$, $\sigma_2=\sqrt5$, and $u_j=Av_j/\sigma_j$ gives $u_1=(1,3)/\sqrt{10}$, $u_2=(3,-1)/\sqrt{10}$. The unit circle is mapped to an ellipse with semi-axes $3\sqrt5$ along $u_1$ and $\sqrt5$ along $u_2$. Note $\sigma_1\sigma_2=15=|\det A|$.</p>
+<h2 id="3-a-rank-one-example-in-full-3040">3. A rank-one example in full <a href="https://www.youtube.com/watch?v=moaXD7Hfqfg&amp;t=1840s">30:40</a></h2>
+<p>Let
+$$B=\begin{pmatrix}1&amp;1-i\\1+i&amp;2\\1&amp;1-i\end{pmatrix},\qquad B^*B=4\begin{pmatrix}1&amp;1-i\\1+i&amp;2\end{pmatrix}.$$</p>
+<p>The eigenvalues of $B^*B$ are $12$ and $0$, with orthogonal eigenvectors $(1,1+i)$ and $(1-i,-1)$, each of squared norm $3$. So $r=1$, $\sigma_1=2\sqrt3$ and $V$ has these vectors divided by $\sqrt3$ as columns. Then $Bv_1=\sqrt3\,(1,1+i,1)$, so $u_1=\frac12(1,1+i,1)$.</p>
+<p><strong>Completing $U$</strong> <a href="https://www.youtube.com/watch?v=moaXD7Hfqfg&amp;t=2059s">34:19</a>. The list $u_1,e_2,e_3$ is a basis of $\mathbb{C}^3$. Gram–Schmidt gives</p>
+<p>$$x_2=\tfrac14(-1+i,\;2,\;-1+i),\qquad x_3=\tfrac12(-1,0,1),$$</p>
+<p>each of squared norm $\tfrac12$. So $u_2=\sqrt2\,x_2$ and $u_3=\sqrt2\,x_3$, and $U^*BV$ has the single nonzero entry $2\sqrt3$ in position $(1,1)$. The choice of $u_2,u_3$ is arbitrary within the orthogonal complement of $u_1$.</p>
+<h2 id="4-sesquilinear-forms-0356">4. Sesquilinear forms <a href="https://www.youtube.com/watch?v=2byXhwHzR-0&amp;t=236s">03:56</a></h2>
+<p><strong>Definition 4.1.</strong> Let $V$ be a vector space over $F$. A <em>sesquilinear form</em> on $V$ is a function $f:V\times V\to F$ with</p>
+<p>$$f(c\alpha+\beta,\gamma)=cf(\alpha,\gamma)+f(\beta,\gamma),\qquad f(\alpha,c\beta+\gamma)=\bar c\,f(\alpha,\beta)+f(\alpha,\gamma).$$</p>
+<p>It is linear in the first argument and conjugate-linear in the second. Over $\mathbb{R}$ it is <em>bilinear</em>. Sums and scalar multiples of forms are forms, so the forms make up a vector space. An inner product is a form; so is $f(x,y)=\langle Ax,Ay\rangle$.</p>
+<h2 id="5-forms-are-operators-1059">5. Forms are operators <a href="https://www.youtube.com/watch?v=2byXhwHzR-0&amp;t=659s">10:59</a></h2>
+<p>From here to the end, $V$ is a <strong>finite-dimensional inner product space</strong>.</p>
+<p><strong>Theorem 5.1.</strong> For every form $f$ there is a unique operator $T_f$ with $f(\alpha,\beta)=\langle T_f\alpha,\beta\rangle$. The map $f\mapsto T_f$ is a linear isomorphism from the space of forms onto the space of operators on $V$.</p>
+<p><em>Proof.</em> For fixed $\beta$, $\alpha\mapsto f(\alpha,\beta)$ is a linear functional. By the representation theorem of <a href="ch23.html">Chapter 23</a> there is a unique $U\beta$ with $f(\alpha,\beta)=\langle\alpha,U\beta\rangle$. The identity</p>
+<p>$$\langle\alpha,U(c\beta+\gamma)\rangle=f(\alpha,c\beta+\gamma)=\bar c\,f(\alpha,\beta)+f(\alpha,\gamma)=\langle\alpha,cU\beta+U\gamma\rangle$$</p>
+<p>shows that $U$ is linear. Put $T_f=U^*$; then $f(\alpha,\beta)=\langle\alpha,U\beta\rangle=\langle T_f\alpha,\beta\rangle$. If $T'$ also works, then $\langle(T_f-T')\alpha,\beta\rangle=0$ for all $\alpha,\beta$, so $T'=T_f$. Linearity of $f\mapsto T_f$ follows from uniqueness, since $cT_f+T_g$ represents $cf+g$. The map is injective because $T_f=0$ forces $f=0$, and surjective because every operator $T$ defines the form $\langle T\alpha,\beta\rangle$. $\square$</p>
+<p><strong>An inner product on forms</strong> <a href="https://www.youtube.com/watch?v=2byXhwHzR-0&amp;t=1667s">27:47</a>. Transporting $\operatorname{tr}(ST^*)$ through the isomorphism, $\langle f,g\rangle=\operatorname{tr}(T_fT_g^*)$ is an inner product on forms. For any orthonormal basis $(\alpha_j)$,</p>
+<p>$$\langle f,g\rangle=\sum_{j,k}f(\alpha_k,\alpha_j)\,\overline{g(\alpha_k,\alpha_j)},$$</p>
+<p>because the matrix of $T_f$ has the entries $\langle T_f\alpha_k,\alpha_j\rangle=f(\alpha_k,\alpha_j)$ in row $j$, column $k$. So the right side does not depend on the chosen orthonormal basis.</p>
+<h2 id="6-the-matrix-of-a-form-3405">6. The matrix of a form <a href="https://www.youtube.com/watch?v=2byXhwHzR-0&amp;t=2045s">34:05</a></h2>
+<p><strong>Definition 6.1.</strong> For an ordered basis $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ the <em>matrix of $f$</em> is given by $M_{jk}=f(\alpha_k,\alpha_j)$ (note the order).</p>
+<p>With coordinate columns $X,Y$ of $\alpha,\beta$ this gives $f(\alpha,\beta)=Y^*MX$. If $G$ is the Gram matrix of $\mathcal{B}$, then $\langle T_f\alpha,\beta\rangle=Y^*G\,[T_f]_{\mathcal{B}}X$, so</p>
+<p>$$M=G\,[T_f]_{\mathcal{B}} .$$</p>
+<p>In an orthonormal basis $G=I$ and the two matrices coincide. In another basis they usually differ: for $f$ equal to the inner product itself, $T_f=I$ but $M=G$. They also change differently. If $P$ expresses a new basis in the old one, the matrix of the form becomes $P^*MP$, while the matrix of an operator becomes $P^{-1}[T]P$. The two rules agree when $P$ is unitary.</p>
+<h2 id="7-hermitian-forms-and-principal-axes-3747">7. Hermitian forms and principal axes <a href="https://www.youtube.com/watch?v=2byXhwHzR-0&amp;t=2267s">37:47</a></h2>
+<p><strong>Definition 7.1.</strong> A form is <em>Hermitian</em> if $f(\alpha,\beta)=\overline{f(\beta,\alpha)}$. Over $\mathbb{R}$ this means <em>symmetric</em>.</p>
+<p><strong>Proposition 7.2.</strong> $f$ is Hermitian if and only if $T_f$ is self-adjoint.</p>
+<p><em>Proof.</em> $\overline{f(\beta,\alpha)}=\overline{\langle T_f\beta,\alpha\rangle}=\langle\alpha,T_f\beta\rangle$. So $f$ is Hermitian exactly when $\langle T_f\alpha,\beta\rangle=\langle\alpha,T_f\beta\rangle$ for all $\alpha,\beta$. $\square$</p>
+<p><strong>Theorem 7.3</strong> (principal axes) <a href="https://www.youtube.com/watch?v=2byXhwHzR-0&amp;t=2473s">41:13</a>. For a Hermitian form $f$ there is an orthonormal basis of $V$ in which the matrix of $f$ is diagonal with real entries.</p>
+<p><em>Proof.</em> $T_f$ is self-adjoint, so there is an orthonormal basis with $T_f\alpha_k=c_k\alpha_k$ and $c_k$ real. Then $f(\alpha_k,\alpha_j)=\langle c_k\alpha_k,\alpha_j\rangle=c_k\delta_{jk}$. $\square$</p>
+<p>In these coordinates $f(\alpha,\alpha)=\sum_kc_k|x_k|^2$. Consequently $f$ is an inner product on $V$ exactly when all $c_k$ are positive: if they are, the sum is positive for $\alpha\ne0$; and $f(\alpha_k,\alpha_k)=c_k$ shows necessity.</p>
+<p><strong>On the running example.</strong> The form $f(x,y)=\langle Ax,Ay\rangle$ has $T_f=A^{\mathsf T}A$. Its principal axes are the right singular vectors and its diagonal entries are $\sigma_1^2=45$, $\sigma_2^2=5$:</p>
+<p>$$\|Ax\|^2=25x_1^2+40x_1x_2+25x_2^2=45s^2+5t^2,\qquad s=\frac{x_1+x_2}{\sqrt2},\ t=\frac{x_1-x_2}{\sqrt2}.$$</p>
+<p>The singular value decomposition of $A$ is therefore the principal axis theorem for $\|Ax\|^2$, together with the images of the axes.</p>
+<h2 id="8-executable-check">8. Executable check</h2>
+<p><a href="labs/ch26.py">The chapter laboratory</a> uses integer, rational and Gaussian-integer arithmetic where the data allow it and floating point with a stated tolerance where square roots occur. It verifies $A^{\mathsf T}A$ and the singular vectors of the running example, the factorization of $B$ with its completed unitary matrix, the identity $M=G[T_f]$ in a non-orthonormal basis, the basis independence of the form inner product on an example, and the exercise data. It does not check the general theorems.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) Find a singular value decomposition of $\begin{pmatrix}1&amp;1\\0&amp;0\end{pmatrix}$.</li>
+<li>(Normal matrices.) Show that the singular values of a normal matrix are the absolute values of its nonzero eigenvalues.</li>
+<li>(Extremes.) For $A\in F^{m\times n}$ of rank $r\ge1$ show that the maximum of $\|Ax\|$ over $\|x\|=1$ is $\sigma_1$. Find the minimum.</li>
+<li>(Adjoint.) Show that $A$ and $A^*$ have the same singular values.</li>
+<li>(Principal axes.) Bring the curve $5x_1^2-6x_1x_2+5x_2^2=1$ to principal axes and find the lengths of its semi-axes.</li>
+<li>(Boundary.) For the real form $f(x,y)=x_1y_2-x_2y_1$ show that no basis of $\mathbb{R}^2$ gives it a diagonal matrix. What happens for the same formula $x_1\bar y_2-x_2\bar y_1$ on $\mathbb{C}^2$?</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>Call the matrix $N$. $N^{\mathsf T}N=\begin{pmatrix}1&amp;1\\1&amp;1\end{pmatrix}$ has eigenvalues $2,0$ with unit eigenvectors $(1,1)/\sqrt2$ and $(1,-1)/\sqrt2$. So $\sigma_1=\sqrt2$ and $u_1=Nv_1/\sqrt2=(1,0)$; take $u_2=(0,1)$. Then $U=I$, $D=\operatorname{diag}(\sqrt2,0)$, $V=\frac1{\sqrt2}\begin{pmatrix}1&amp;1\\1&amp;-1\end{pmatrix}$.</p>
+</li>
+<li>
+<p>Over $\mathbb{C}$ (a real matrix is also a complex one with the same $A^*A$), the spectral theorem gives an orthonormal basis with $Av_j=c_jv_j$ and $A^*v_j=\bar c_jv_j$. Then $A^*Av_j=|c_j|^2v_j$. So the nonzero eigenvalues of $A^*A$, with multiplicity, are the $|c_j|^2\ne0$, and the singular values are the $|c_j|$.</p>
+</li>
+<li>
+<p>Write $x=\sum_jy_jv_j$ with $\sum|y_j|^2=1$. By the proof of Theorem 2.1 the images $Av_j$ are orthogonal with $\|Av_j\|=\sigma_j$ (zero for $j\gt r$). So $\|Ax\|^2=\sum_{j\le r}\sigma_j^2|y_j|^2\le\sigma_1^2$, with equality at $x=v_1$. The minimum is attained at $v_n$: it is $\sigma_n$ if $r=n$ and $0$ if $r\lt n$.</p>
+</li>
+<li>
+<p>From $A=UDV^*$ follows $A^*=VD^*U^*$. This is a factorization of the same type for $A^*$, since $D^*$ has the real diagonal entries $\sigma_j$. By the uniqueness of singular values, they are the singular values of $A^*$.</p>
+</li>
+<li>
+<p>The matrix $\begin{pmatrix}5&amp;-3\\-3&amp;5\end{pmatrix}$ has eigenvalues $2$ on $(1,1)/\sqrt2$ and $8$ on $(1,-1)/\sqrt2$. In the coordinates $s,t$ of Section 7 the curve is $2s^2+8t^2=1$, an ellipse with semi-axes $1/\sqrt2$ along $(1,1)$ and $1/\sqrt8$ along $(1,-1)$.</p>
+</li>
+<li>
+<p>A diagonal matrix $M$ in a real basis would make $f(\alpha,\beta)=Y^{\mathsf T}MX$ symmetric. But $f(e_1,e_2)=1$ and $f(e_2,e_1)=-1$. Over $\mathbb{C}$ the standard matrix is $M=\begin{pmatrix}0&amp;-1\\1&amp;0\end{pmatrix}=T_f$, which is normal, with eigenvalues $\pm i$ and orthogonal eigenvectors. So there is an orthonormal basis making the matrix diagonal, with imaginary entries; the form is not Hermitian, but $if$ is.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, the chapter on operators on inner product spaces.</li>
+<li>Steven Roman, <em>Advanced Linear Algebra</em>, 3rd ed., Springer GTM 135, the chapters on structure theory for normal operators and on metric vector spaces.</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., open access at https://linear.axler.net/, the chapter on singular value decomposition.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch26.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 26 laboratory: singular values and forms.
+
+Integer and Gaussian-integer identities are checked exactly (Python
+complex is exact for these small values).  Where square roots occur the
+check uses floating point with numpy.allclose.  The general theorems are
+proved in the chapter.
+&quot;&quot;&quot;
+from fractions import Fraction as Fr
+
+import numpy as np
+
+
+def running_example():
+    a = np.array([[3, 0], [4, 5]])
+    assert np.array_equal(a.T @ a, [[25, 20], [20, 25]])
+    for v, lam in (([1, 1], 45), ([1, -1], 5)):
+        assert np.array_equal(a.T @ a @ v, lam * np.array(v))
+    v = np.array([[1, 1], [1, -1]]) / np.sqrt(2)
+    u = np.array([[1, 3], [3, -1]]) / np.sqrt(10)
+    d = np.diag([3 * np.sqrt(5), np.sqrt(5)])
+    assert np.allclose(u.T @ u, np.eye(2))
+    assert np.allclose(u @ d @ v.T, a)
+    assert np.allclose(np.linalg.svd(a)[1], np.diag(d))
+    assert np.isclose(d[0, 0] * d[1, 1], 15)
+    for x1, x2 in ((1, 0), (2, -3), (5, 7)):
+        s2, t2 = Fr((x1 + x2) ** 2, 2), Fr((x1 - x2) ** 2, 2)
+        y = a @ [x1, x2]
+        q = 25 * x1 ** 2 + 40 * x1 * x2 + 25 * x2 ** 2
+        assert int(y @ y) == q == 45 * s2 + 5 * t2
+    print(&#x27;running example: sigma^2 = 45, 5; U D V^T = A&#x27;)
+
+
+def rank_one_example():
+    b = np.array([[1, 1 - 1j], [1 + 1j, 2], [1, 1 - 1j]])
+    h = b.conj().T @ b
+    assert np.array_equal(h, 4 * np.array([[1, 1 - 1j], [1 + 1j, 2]]))
+    v1 = np.array([1, 1 + 1j])
+    v0 = np.array([1 - 1j, -1])
+    assert np.array_equal(h @ v1, 12 * v1)
+    assert np.array_equal(h @ v0, 0 * v0)
+    assert np.vdot(v1, v0) == 0
+    assert np.array_equal(b @ v1, 3 * np.array([1, 1 + 1j, 1]))
+    u1 = np.array([1, 1 + 1j, 1]) / 2
+    x2 = np.array([-1 + 1j, 2, -1 + 1j]) / 4
+    x3 = np.array([-1, 0, 1]) / 2
+    e2, e3 = np.array([0, 1, 0]), np.array([0, 0, 1])
+    assert np.allclose(x2, e2 - np.vdot(u1, e2) * u1)
+    w = e3 - np.vdot(u1, e3) * u1
+    w = w - np.vdot(x2, e3) / np.vdot(x2, x2) * x2
+    assert np.allclose(x3, w)
+    u = np.column_stack([u1, np.sqrt(2) * x2, np.sqrt(2) * x3])
+    v = np.column_stack([v1, v0]) / np.sqrt(3)
+    d = np.zeros((3, 2))
+    d[0, 0] = 2 * np.sqrt(3)
+    assert np.allclose(u.conj().T @ u, np.eye(3))
+    assert np.allclose(u.conj().T @ b @ v, d)
+    print(&#x27;rank-one example: sigma = 2 sqrt 3, U completed&#x27;)
+
+
+def forms():
+    # f(a, b) = &lt;T a, b&gt; in the basis (1,0), (1,1)
+    t = np.array([[1, 2], [0, 3]])
+    p = np.array([[1, 1], [0, 1]])
+    pinv = np.array([[1, -1], [0, 1]])
+
+    def f(x, y):
+        return np.vdot(y, t @ x)
+
+    m = np.array([[f(p[:, k], p[:, j]) for k in range(2)]
+                  for j in range(2)])
+    gram = p.T @ p
+    op = pinv @ t @ p
+    assert np.array_equal(m, gram @ op)
+    assert np.array_equal(m, p.T @ t @ p)
+    assert not np.array_equal(m, op)
+    s = np.array([[0, 1j], [2, 1]])
+    c, sn = Fr(3, 5), Fr(4, 5)
+    basis = np.array([[c, -sn], [sn, c]], dtype=float)
+    total = sum(np.vdot(basis[:, j], s @ basis[:, k])
+                * np.conj(np.vdot(basis[:, j], t @ basis[:, k]))
+                for j in range(2) for k in range(2))
+    assert np.isclose(total, np.trace(s @ t.conj().T))
+    print(&#x27;form matrices and basis independence verified&#x27;)
+
+
+def exercises():
+    n = np.array([[1, 1], [0, 0]])
+    v = np.array([[1, 1], [1, -1]]) / np.sqrt(2)
+    assert np.allclose(np.diag([np.sqrt(2), 0]) @ v.T, n)
+    q = np.array([[5, -3], [-3, 5]])
+    assert np.array_equal(q @ [1, 1], [2, 2])
+    assert np.array_equal(q @ [1, -1], [8, -8])
+    m = np.array([[0, -1], [1, 0]])
+    assert np.array_equal(m @ [1, -1j], 1j * np.array([1, -1j]))
+    assert np.array_equal(1j * m, (1j * m).conj().T)
+    print(&#x27;exercise data verified&#x27;)
+
+
+def main():
+    running_example()
+    rank_one_example()
+    forms()
+    exercises()
+    print(&#x27;all chapter 26 checks passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch25.html">Previous: Normal operators and spectral resolution</a><a href="study-guide.html">Study guide</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

@@ -1,0 +1,15 @@
+{
+  "title": "Singular value decomposition and forms on inner product spaces",
+  "lectures": [
+    59,
+    60
+  ],
+  "objectives": [
+    "Prove and compute the singular value decomposition",
+    "Correspond sesquilinear forms with operators",
+    "Distinguish the matrix of a form from the matrix of an operator",
+    "Diagonalize Hermitian forms by principal axes"
+  ],
+  "prerequisites": "The spectral theorem (Chapter 25), the representation theorem (Chapter 23) and Gram-Schmidt.",
+  "source_scope": "The captions of the two recordings (positions 59 and 60) were read in full. The three by two example comes from the first; the running matrix, positivity criterion, change-of-basis rules, laboratory and exercises are original."
+}

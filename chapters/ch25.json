@@ -1,0 +1,16 @@
+{
+  "title": "Normal operators and spectral resolution",
+  "lectures": [
+    56,
+    57,
+    58
+  ],
+  "objectives": [
+    "Prove that self-adjoint operators have orthonormal eigenbases",
+    "Relate eigenvectors of a normal operator and its adjoint",
+    "Prove Schur's theorem and the spectral theorem",
+    "Compute spectral resolutions and polynomials of operators"
+  ],
+  "prerequisites": "Adjoints (Chapter 23), unitary and self-adjoint operators (Chapter 24), eigenvalues and projections.",
+  "source_scope": "The captions of the three recordings (positions 56 to 58) were read in full. The multiplication-operator example comes from the first; the running symmetric matrix, the rotation-dilation matrix, laboratory and exercises are original."
+}

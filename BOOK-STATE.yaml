@@ -1,0 +1,11 @@
+edition: Advanced Linear Algebra
+phase: ready-for-publication
+expected_chapters: 26
+expected_teaching_recordings: 60
+acquired_recordings_including_introduction: 61
+pilot_gate: passed
+review_policy: One independent current file-hash acceptance per manuscript, metadata, and lab; no self-review. Run limited to two agents.
+repository_slug: nptel-advanced-linear-algebra-notes
+durable_plan: plan/outline.md
+notation: plan/notation.md
+review_brief: EDITOR_DOMAIN.md

@@ -1,0 +1,12 @@
+{
+  "title": "Linear transformations, null space, range, and the rank-nullity theorem",
+  "lectures": [12, 13],
+  "objectives": [
+    "Verify linearity and compute range and null space",
+    "Define a linear map by its values on a basis and test other prescriptions",
+    "Prove the rank-nullity theorem and its consequences",
+    "Deduce that row rank equals column rank"
+  ],
+  "prerequisites": "Chapters 2, 4 and 6: echelon forms, bases, dimension and row space.",
+  "source_scope": "The captions of Lectures 11 and 12 were read in full; the additional propositions, the infinite-dimensional boundary and the exercises are original."
+}

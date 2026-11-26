@@ -1,0 +1,17 @@
+{
+  "title": "Linear functionals and adjoint operators on inner product spaces",
+  "lectures": [
+    48,
+    49,
+    50,
+    51
+  ],
+  "objectives": [
+    "Represent linear functionals by vectors and find the vector",
+    "Construct the adjoint and compute its matrix in any basis",
+    "Prove the algebraic rules of adjoints and decompose operators",
+    "Recognize the failure of both existence theorems in infinite dimension"
+  ],
+  "prerequisites": "Inner products and orthonormal bases (Chapters 21 and 22); dual spaces and transposes (Chapter 11).",
+  "source_scope": "The captions of the four recordings (positions 48 to 51) were read in full. The evaluation example, the projection onto a line, the matrix, trace, multiplication and differentiation examples come from them; the derivative adjoint on quadratics, the general-basis formula, the transpose relation, the range-kernel facts, laboratory and exercises are original."
+}

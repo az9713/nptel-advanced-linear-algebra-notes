@@ -1,0 +1,514 @@
+{
+  "status": "pass",
+  "chapter_count": 26,
+  "allow_partial": false,
+  "covered_positions": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61
+  ],
+  "chapters": [
+    {
+      "id": "ch01",
+      "source_sha256": "96272f0538dae93c1902a4770a3143cc45094a6a6957d1a5eb3536da4339815c",
+      "metadata_sha256": "4805d9e7cde4ec72c54353021fc2e7778d9d84e41b146db7d0ca3985bbfef60c",
+      "html_sha256": "5a140676d5ba3d1d26db5199e974312df272ad0c15a04ef3ee8a88ee306133bf",
+      "source_words": 10006
+    },
+    {
+      "id": "ch02",
+      "source_sha256": "8024b0b77c3268715c2cfcb44e1936123f44cdcb55a3d8b4d920de09a6b46af0",
+      "metadata_sha256": "b49b6e4d1af032926e03adbdaf31a6d9567b8b513e7199ed8a38334b715ceb79",
+      "html_sha256": "0bacf3f7ea461aa0b6d2077a2b7e1d8873159dcd9fd8248ba811bc4ebb8023cb",
+      "source_words": 5529
+    },
+    {
+      "id": "ch03",
+      "source_sha256": "5c5b41d8342281542b9c6655e89ab939a29fff92e5191a56e01702edfa7e4012",
+      "metadata_sha256": "0d80b1b2adabb5799d4fd6be3e6b940bc3ebf88a876d49cb0eafacb4a299ad40",
+      "html_sha256": "ac831aa03bdc161deb9ca7a2f21750f8eed8400d9dc043419110f4a1b984ff90",
+      "source_words": 8768
+    },
+    {
+      "id": "ch04",
+      "source_sha256": "6bba462638dbc175f323484e22c972020cabc095e036153e2c1c50c3658c3289",
+      "metadata_sha256": "8cbcf8eb11f3f0b8f48c9e962e5db2e39077ec73615aad13925412a9b27e4fe6",
+      "html_sha256": "e223f036783340a2597b0c7fcaf143e0fa63833a10c9c8e5a37a80cff3c78d98",
+      "source_words": 4366
+    },
+    {
+      "id": "ch05",
+      "source_sha256": "0cd97e85ad038f7e5ad52dff432eed0c6cd03851196fe13361f27dd3721918e3",
+      "metadata_sha256": "f69228ba50782d696b18f63c67d47ec673f70715eeb3e3d34c9f243927a2e365",
+      "html_sha256": "9afad1b2cbcff129b261d78bb3d28d4062a6c52bb1c0bae86d95a28ceb0845fd",
+      "source_words": 3190
+    },
+    {
+      "id": "ch06",
+      "source_sha256": "d92dd7bb5c321ebd5e2fb8b160689383ef581fbe0ebc7b572f9111fd54541ed0",
+      "metadata_sha256": "43c3b4993c9f606fd697129e82013fe7beb7ca9bead7e9f110c5f3d4abfdf578",
+      "html_sha256": "729ba15fca794235bbcde9f7e2e8fa49443b68c56c6cafa2ecf9956787324d51",
+      "source_words": 3599
+    },
+    {
+      "id": "ch07",
+      "source_sha256": "01b473c53c18c6b5aeeba614f162ae23c49579edf1bbedd81a96ea3d97b4e7ec",
+      "metadata_sha256": "6f867eede98d834d6aeb267c4ce028aeab7fca1c23e7a2fa18d9e65aa020c3c1",
+      "html_sha256": "91ea8c6c458008579fb7f1f648a59aff6b1497b2219e8e44c3c0f017d3ffb5d7",
+      "source_words": 2973
+    },
+    {
+      "id": "ch08",
+      "source_sha256": "6bc0e27d305ca6b39783ebc75f53577de6ca050b731a5b92928af457d20e2981",
+      "metadata_sha256": "5a1c63eedce5f797097926e95a033e34373c2632aa55db4dc115b70a0ac12a05",
+      "html_sha256": "9cdfe97eb5da9c2a0ed1a9cbf12ddc2fcc0fecd7ad5292546db5694fcbcd0168",
+      "source_words": 3159
+    },
+    {
+      "id": "ch09",
+      "source_sha256": "b59417951e67128d28162477aa63ec5247bc123273c872036b22fcbed982e55b",
+      "metadata_sha256": "84bb226582b907aa401e3dda3cf7286e92d62a19326b4b9d1f8f57562851cf12",
+      "html_sha256": "f0e0ab0e0b7b8170c54fec35b6ca6a10baccc3d0d4cbb7c81ee1b6af5eb5a8c3",
+      "source_words": 3374
+    },
+    {
+      "id": "ch10",
+      "source_sha256": "fdd53685c8ee453a307d03a781ef9d7b34bc0ea04bf50a0cda2addd5b84b9f0a",
+      "metadata_sha256": "cb34137a6ea0adf3343cca084bda950b6e294ba2530e6fb4dbf458fc68246658",
+      "html_sha256": "72925c741fc6c71a4721a4bc8e3df345116bb64023ead3f277826e301a12d051",
+      "source_words": 2960
+    },
+    {
+      "id": "ch11",
+      "source_sha256": "2d5748700c53cbc0ca29a62c5a31f8ace3f576084f7fc79d89ffa211b9d4f402",
+      "metadata_sha256": "b045ce089d0b9c7266ffc726292b778d39397899ff3f4a4d09966214177d78d3",
+      "html_sha256": "fd3e0a208bf8e767545fddf332c6fc6867a0298f67c6bbad7764bd4110170146",
+      "source_words": 7428
+    },
+    {
+      "id": "ch12",
+      "source_sha256": "3bbf6e6253a37a6ed4e1d565504cd288737831d7cb12d240fee17648432b9bd2",
+      "metadata_sha256": "5f0488edb577c0e04216baa87c282b5c7f590b02e626758cc673d7fef4ddf017",
+      "html_sha256": "0efd69140c5706e0fac27774839145fd777598cf5c6c2d39b98e32104abcf295",
+      "source_words": 3312
+    },
+    {
+      "id": "ch13",
+      "source_sha256": "d72e88de967d9cc1c175dcf5e97c1910b0f20e313eb202441885bce6e0e6f3ac",
+      "metadata_sha256": "488baf09d0371cbae7203a4734d495b84e0fb07aec7d455372f0e85bbe8950c9",
+      "html_sha256": "29e6b95d6433dd3e2be8653d8797df9e194f10a65f31d84ec64856e1f977c0e4",
+      "source_words": 2654
+    },
+    {
+      "id": "ch14",
+      "source_sha256": "157480017acd6cb9b90333d122d76886f92510ac363832e3dbe5bc6a1a4abb09",
+      "metadata_sha256": "20b6ba20b4e89578f6a9ca2d3154cf3f7356990cb2154159f61e9f1943315ad1",
+      "html_sha256": "13bce9633e697bf5af37cc794da8439761604f24b92edbf76631e0b669270f5c",
+      "source_words": 2647
+    },
+    {
+      "id": "ch15",
+      "source_sha256": "0f77b111f53f384e9f8590072dda8de620693a5bd601a4512826d38a53bb8296",
+      "metadata_sha256": "c4b279cf30ab62a6202adef70e489e4641c601a4c9cbcb1c60efced2f7213751",
+      "html_sha256": "fcc47f41b9109c9d07eb2228e1157f249859761f305ba210227641ca05640e54",
+      "source_words": 6240
+    },
+    {
+      "id": "ch16",
+      "source_sha256": "c16170d2d960b912296eb3816b2fea703ea017a6c0022814087a925bda86381f",
+      "metadata_sha256": "b8561ae63b84f04dd0c615e3ecd375c39fa984e9dcc4e7a644ad66656109e04b",
+      "html_sha256": "9f4f3a5f45ca119bbd0620b67aa9f298efe646777a91f0ce85934c6358045c8f",
+      "source_words": 6877
+    },
+    {
+      "id": "ch17",
+      "source_sha256": "908fe5720513dc64b239c09d261be167258bd8d453642e81efab8cf2b7fb6d3a",
+      "metadata_sha256": "70a5e474bf360fd4a8fb8d99a30b6a5b97aeefc05def8a5502dfcb049e18ee58",
+      "html_sha256": "b40495145d1e6b5a36af8e43d204fbf4e3fb0159abdab5694ab9d03b44df9ec8",
+      "source_words": 4295
+    },
+    {
+      "id": "ch18",
+      "source_sha256": "9e8c9fa5ee22ecb3efe270468c6709f20956a9aee63c868ea5683c83478f05b5",
+      "metadata_sha256": "b1e46fffcb2440f76b41e7a0b073dbd0ca38bd374270e5db5c61363990607ea7",
+      "html_sha256": "a49ec48b84475aebce98c0d4e190fbbf0c32829bd2ba43c1c2d5545a37472bb2",
+      "source_words": 3229
+    },
+    {
+      "id": "ch19",
+      "source_sha256": "a416f82c83fd190942bfeda40abaa0c54070f0c2b3d5b4564c6a774568c2f6dd",
+      "metadata_sha256": "63565ea5d147f17299f7f88c056e9ce9463a62b4abdc42e0f9605c24ba9bf91e",
+      "html_sha256": "90220afd442f8a21b7ab9271db43b790d19e3b99933587646b085c529ef2d8ee",
+      "source_words": 3039
+    },
+    {
+      "id": "ch20",
+      "source_sha256": "0ab1f9472dea096d8d0e321a6584f233cc6ab2f8be485ee29b5761d84dbaad6a",
+      "metadata_sha256": "d079cd1eeffcff18ea11924abd5e980cec91d8cb70bda83b44e04f877e565a7c",
+      "html_sha256": "c892aec515a1bb6482720a5423df094a0f12527542194d8ba4452fcf9da8cdcc",
+      "source_words": 4392
+    },
+    {
+      "id": "ch21",
+      "source_sha256": "a771b12a33c44e22bd789743251cd88233ba9735c3e43d1fa5f371f7f8cf8ab1",
+      "metadata_sha256": "b98cc9f1f08e4f1e04fbeab57e54d938719a2fe7b2d4ff776a897f845353f3ed",
+      "html_sha256": "b7e289f9a5aae1240c2d357fa61ea8713a67cfd4f5d5b224c29077d1e6172aea",
+      "source_words": 3834
+    },
+    {
+      "id": "ch22",
+      "source_sha256": "0d480e8e37582d5041d13c186778ae244a0d26b85abd12b7f9c82a40c1a8dcb3",
+      "metadata_sha256": "7f9769e83ea53497205f48a2c4629828abe7418b3ccb4699cc60b0535d2f6c99",
+      "html_sha256": "534eebf7cf1694e66d1f981b19ccbcb6d7394235a8a4b4e3bebbf4c3ba39546a",
+      "source_words": 2860
+    },
+    {
+      "id": "ch23",
+      "source_sha256": "92f2816d61d86c388a8739cf3c83016a65b8ef8d272ffc113a347903cda2f2c7",
+      "metadata_sha256": "f528867f935d0050325e3ee3e1fd1d87b0742400b5bd328309d039c427412589",
+      "html_sha256": "f61abedffe94c32450b965be574dbd0bd8b9832ddd4a5229825075b31d0fc210",
+      "source_words": 2983
+    },
+    {
+      "id": "ch24",
+      "source_sha256": "8f347893097d3dcaba9fa5cd0e11f815abdc7efe862bdb94d63b32a23997f7ad",
+      "metadata_sha256": "fc7cc659a783cf3ca00908a232ad506fefdbbc4394f41d351a1026b1e9c7062b",
+      "html_sha256": "d9f071ce694b503ba42e708054fdc264a235e65fcf0f9ac9bb4af1eed22cfb8f",
+      "source_words": 3296
+    },
+    {
+      "id": "ch25",
+      "source_sha256": "b8cb90bab26a96938a68be4a2bf9a1094ca4a9088c59bfb23efb1d90a53ede7c",
+      "metadata_sha256": "4d41f950f8190d62e6a7f8e557925e0d546425ce4e06ef26a2af4f1b00ad9d8c",
+      "html_sha256": "c9d5566c267cce5e01f4bfbb7e7dbc40b97703710eb78408b104d41fdc81fc90",
+      "source_words": 2420
+    },
+    {
+      "id": "ch26",
+      "source_sha256": "a070ccff0eb350d4107e9844608ae9afbb7ce922abede0b5380e81852c2ec662",
+      "metadata_sha256": "2cf3c31077181c8a1c654b4dbf2730db5c88360c81422074134286a689124d38",
+      "html_sha256": "8ba71d616532a85ffdd19764a4c2adf3f8633053e2651fe765318e3bcc8c8567",
+      "source_words": 2488
+    }
+  ],
+  "labs": [
+    {
+      "file": "labs/ch01.py",
+      "sha256": "c17f8cd55df49e343dc7275a4244dac29cae9abd444abb32e516693e9e91264a",
+      "exit_code": 0,
+      "stdout": "e(A) = e(I)A and inverse operations: checked for 4 operations\noperations: R1 <- (1/2) R1; R2 <- R2 + (-1) R1; R3 <- R3 + (-3) R1; R2 <- (1/2) R2; R3 <- R3 + (-2) R2\nR = [0 0 1 1; 1 2 0 3; 0 0 0 0]\nP = [1/2 0 0; -1/4 1/2 0; -1 -1 1]\nAX = 0 solved by x2*(-2,1,0,0) + x4*(-3,0,-1,1)\nY = ['2', '9', '11'] -> reduced augmented [0 0 1 1 1; 1 2 0 3 4; 0 0 0 0 0]\nY = ['2', '9', '12'] -> reduced augmented [0 0 1 1 0; 1 2 0 3 0; 0 0 0 0 1]\nparticular solution for Y=(2,9,11): X0 = (4,0,1,0)\nsimultaneous replacement admits X = (0,0,3,-1); A*X = ['4', '-4', '0']\ntwo-line example: unique solution (1, 2)\nswapping coefficient rows only gives (-2/5, -11/5)\nplanes x1=0, x2=0, x1+x2=1: reduced last row [0 0 0 1]\nover F_3: solutions [(2, 2)]\nover F_2: solutions []\nover Q: (1/2, 1/2); over F_2 the reduced row is 0 = 1\nx1 + x2 = 1 over F_2 has exactly 2 solutions\nexercise 2 operations: R2 <- R2 + (-2) R1; R1 <- R1 + (-1) R2; R3 <- R3 + (-1) R2; R1 <- R1 + (-2) R3\nexercise 2 R = [1 0 0 -3; 0 0 1 1; 0 1 0 1]  P = [-1 1 -2; -2 1 0; 2 -1 1]\nclearing below only gives [1 2 1 0; 0 0 1 1; 0 1 0 1] (not row-reduced)\ncolumn relations a2 = 2 a1 and a4 = 3 a1 + a3 hold in A and R\nrow-reduced matrices row-equivalent to A found: 6\nafter swapping columns the solution is (2, 1); Q(2, 1) = (1, 2)\nall checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch02.py",
+      "sha256": "1cb935a65a089989dc06cc83c0a01802e83f16de4463798177b8b4e903d56052",
+      "exit_code": 0,
+      "stdout": "operations: R1 <-> R2; R3 <- R3 + (-2) R1; R4 <- R4 + (-3) R1; R2 <-> R3; R2 <- (-1) R2; R1 <- R1 + (-1) R2; R4 <- R4 + (1) R2; R1 <- R1 + (-1) R3; R2 <- R2 + (1) R3\nR = [1 2 0 3 0; 0 0 1 4 0; 0 0 0 0 1; 0 0 0 0 0]\nP = [-1 -1 1 0; 1 2 -1 0; 1 0 0 0; 0 -1 -1 1]\npivot columns k = (1, 3, 5)  r = 3\nR0 leading columns (5, 1, 3): row-reduced, not echelon; two swaps give R\nker A = x2*(-2,1,0,0,0) + x4*(-3,0,-4,1,0); free columns (2, 4)\nY = (1,2,5,7): Z = PY = ['2', '0', '1', '0'] ; X0 = ['2', '0', '0', '0', '1']\nY = (1,2,5,8): inconsistent; w = ['0', '-1', '-1', '1']  wA = 0, wY = 1\nlines x1=0, x2=0, x1+x2=1: witness w = ['-1', '-1', '1'] , wY = 1\nrow-reduced matrices that are row-equivalent to A (row orders of R): 24 ; of these in echelon form: 1\n60 random chains of 25 elementary operations: same RREF\n2x2 matrices over F_2: 16 matrices, 5 distinct RREFs, same kernel => same RREF\n2x3 matrices over F_2: 64 matrices, 15 distinct RREFs, same kernel => same RREF\n2x2 matrices over F_3: 81 matrices, 6 distinct RREFs, same kernel => same RREF\n2x3 matrices over F_3: 729 matrices, 27 distinct RREFs, same kernel => same RREF\nA over F_3: |ker A| = 9 = 3^(n-r)\nRREF of (1 1; 1 -1): I over Q and F_3, (1 1; 0 0) over F_2\nRREF of (1 2; 2 1): I over Q, (1 2; 0 0) over F_3\nexercise 2: R = [1 2 0 1; 0 0 1 -2; 0 0 0 0]  P = [1/3 1/3 0; -2/3 1/3 0; -1 -1 1]  X0 = ['2', '0', '1', '0']\ncolumn relation: a4 = 3 a1 + 4 a3 holds in A\nall checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch03.py",
+      "sha256": "8c354c5558f3e35f65fe2c2e68cf72d15193d7922d16ed6e62c9709f50e77e68",
+      "exit_code": 0,
+      "stdout": "rank A = 2 ; pivot columns (from 0): [0, 2]\nbasis of N(A): [('-1', '1', '0', '0'), ('1', '0', '-2', '1')]\nAX=(2,3,5): solvable, x0 = ('2', '0', '3', '0')\nAX=(2,3,4): inconsistent;  0 is not a solution of AX=Y\ncolumn space = {y : y3 = y1 + y2}, checked on 216 integer y\nW1 meet W2 = span of ('0', '1', '-2', '1')\nrank of W1 and W2 generators together = 4 (sum = Q^4)\nunion fails: u in W1, w in W2, u+w = ('0', '1', '0', '0')\nSym + Skew split of a 3x3 matrix over Q: checked\nexercise 2: U meet W = span{(0,1,1)}, checked on a grid\nF_3^2: all axioms hold; one-step test agrees with the definition on 511 subsets; 6 subspaces\n   union of two subspaces is a subspace iff nested: 15 pairs, 9 nested\nF_2^3: all axioms hold; one-step test agrees with the definition on 255 subsets; 16 subspaces\n   union of two subspaces is a subspace iff nested: 120 pairs, 50 nested\nF_2^2 is the union of 3 proper subspaces, not of 2\nF_3^2: 4 lines cover, no 3 of them do\nscalar multiplication c*u = 0 fails exactly: ['S4']\nx^2 + x over F_2 is the zero function; over Q the evaluation map on P_2 is injective (Vandermonde rank 3)\nF_2^(2x2): Sym = Skew has 8 elements; Sym + Skew has 8 of 16\nch03 laboratory: all assertions passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch04.py",
+      "sha256": "36ae43d590e01113265a6733bd68cf0d7db76f8c3f6cef7c761cf37d3f5c5d5f",
+      "exit_code": 0,
+      "stdout": "rank of (v1, v2, v3, v4) = 3\nrelation: v1 + 2 v2 - v3 - v4 = 0; null space = (-1, -2, 1, 1)\nextend (v1, v2, v3) to a basis of Q^4 by (1, 0, 0, 0)\n[v4]_B = (1, 2, -1)\n[v4]_B' = (-2, 3, -1)  P x' = (1, 2, -1)\ndim U, dim W, dim(U+W), dim(U cap W) = 3 2 4 1\ndimension formula: 200 random pairs in Q^2..Q^5 agree\nthree lines in a plane: dim of sum = 2, inclusion-exclusion = 3\nover F_2: the polynomial x + x^2 is the zero function on F_2\nF_2^3: unordered bases 28 (ordered 168 ) ; every minimal spanning and maximal independent set has size 3\nch04 laboratory: all assertions passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch05.py",
+      "sha256": "54617d8cee2c756c0b37ff0706cc746724f5178c2eeca22d29e027f3a53cba88",
+      "exit_code": 0,
+      "stdout": "P = [['1', '-1', '1'], ['0', '1', '-2'], ['0', '0', '1']]\nP^-1 = [['1', '1', '1'], ['0', '1', '2'], ['0', '0', '1']]\nX = ['2', '3', '5']  Xp = ['10', '13', '5']\nP X (wrong direction) = ['4', '-7', '5']\nP^2 = [['1', '-2', '4'], ['0', '1', '-4'], ['0', '0', '1']]\nf = p(1): a = ['1', '1', '1']  ap = ['1', '0', '0']\nB1 columns: [['1', '1', '0'], ['0', '1', '1'], ['1', '0', '1']]\nB2 columns: [['1', '1', '1'], ['0', '1', '1'], ['0', '0', '1']]\nP(B1<-B2) = [['1/2', '0', '-1/2'], ['1/2', '1', '1/2'], ['1/2', '0', '1/2']]\nv = ['4', '-2', '6']  [v]_B1 = ['-2', '0', '6']  [v]_B2 = ['4', '-6', '8']\nconverse: P^-1 = [['1/3', '-2/3', '2/3'], ['1/3', '1/3', '-1/3'], ['-1/3', '2/3', '1/3']]  [p]_B2 = ['2', '0', '3']\nordered bases of F_2^2: 6\nordered bases of F_2^3: 168\nordered bases of F_3^2: 48\nall checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch06.py",
+      "sha256": "002a47fcc442b99e3fd966e6a86c62e37ce14944afdb488d0c567a6f05d0c800",
+      "exit_code": 0,
+      "stdout": "pivot columns (1-based): [1, 3, 5]\nP from this lab: [['1', '0', '0', '0', '0'], ['1', '-1', '0', '0', '0'], ['-3', '1', '0', '1', '0'], ['-1', '1', '1', '0', '0'], ['3', '-1', '0', '-1', '1']]\nP of Section 5 reproduces R; rank P = 5\ncoordinates of [2, 4, 3, 18, 5] are [2, 3, 5]\nnull space basis: [[-2, 1, 0, 0, 0], [-3, 0, -4, 1, 0]]\nconditions: z4 = [-3, 1, 0, 1, -1]  z5 = [-1, 1, 1, 0, 0]\nrow rank = column rank = 3\ninvertible P over F_2 with PA = R: 4\nRREF of A3 = [['1', '0', '-1'], ['0', '1', '1']]\ndim(W) + dim(U) - dim(W cap U) = 3 + 3 - 1 = 5\nR9 combination: [2, -1, 4, 5, 5]\nall assertions passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch07.py",
+      "sha256": "e4af01939b1f6c78f397f67c5d287722965f414819aad947675cf0fe6da6f9f8",
+      "exit_code": 0,
+      "stdout": "A rank 2 nullity 1 kernel ['-2', '4', '3']\nR(A) pivots [0, 1] image basis [['1', '2', '-1'], ['-1', '1', '-2']]\nimage condition y = ['1', '-1', '-1'] (a - b - c = 0)\nrow space basis [['1', '0', '2/3'], ['0', '1', '-4/3']]\nrank-nullity and row rank = column rank verified on 300 matrices; 21 distinct (n, rank) pairs\nrelation space of (1,1),(0,1),(1,0): [['-1', '1', '1']]\nforced T(1,0) = ['1', '0', '-1'] prescribed ['1', '2', '1']\nD J = identity on polynomials; J D (1) = 0 != 1: J is injective but not onto, D is onto but not injective\nch07 laboratory: all assertions passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch08.py",
+      "sha256": "af27eccb8a6363e90195a22924e9a961a92f6ae9d0d12897cac9506c82605213",
+      "exit_code": 0,
+      "stdout": "T+U has matrix [(3, 1, 1); (1, 0, 1)]  2T has matrix [(2, 2, 0); (0, 2, 2)]\ndim L(Q^3, Q^2) = 6; coefficients of T: (1, 1, 0, 0, 1, 1) coefficients of U: (2, 0, 1, 1, -1, 0)\nR after T has matrix [(1, 3, 2); (1, 4, 3)]  rank 2\nCN = [(0, 1); (0, 1)]  NC = [(1, 3); (0, 0)]  N^2 = 0\nC^2 = 4C - I;  C^{-1} = [(3, -2); (-1, 1)]\nT G = I_2 but G T has rank 2 ; ker T spanned by (1, -1, 1)\n3 x 3 G T = [(2/3, 1/3, -1/3); (1/3, 2/3, 1/3); (-1/3, 1/3, 2/3)]\n{1+x, x+x^2, 1+x^2}: det over Q = 2 ; over F_2 the sum of the three is 0\nD J = I but J D p = p - p(0); J injective, not onto Q[x]\nF_2: 16 maps F^2 -> F^2, 6 isomorphisms\nF_3: 81 maps F^2 -> F^2, 48 isomorphisms\nall checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch09.py",
+      "sha256": "52172a12dd3262fc746602efb474d7820aa6259178bf73246f104f3fbf28e102",
+      "exit_code": 0,
+      "stdout": "Section 3  [T]_std = [['1', '-2', '0'], ['0', '1', '1']]\nSection 3  [T]_{std<-B*} = [['-1', '-1', '1'], ['2', '1', '0']]\nSection 3  [T]_{C'<-B*} = [['-3', '-2', '1'], ['2', '1', '0']]\nSection 2  U(x) = (x1 + 3 x3, -x1 + 2 x2 + 2 x3); U(B*_1) = ['4', '3']\nSection 2  30 random matrices: matrix -> map -> matrix is identity\nSection 3  [D]_(1,x,x^2,x^3) = [['0', '1', '0', '0'], ['0', '0', '2', '0'], ['0', '0', '0', '3'], ['0', '0', '0', '0']]\nSection 3  [D]_(1,x,x^2/2,x^3/6) = [['0', '1', '0', '0'], ['0', '0', '1', '0'], ['0', '0', '0', '1'], ['0', '0', '0', '0']]\nSection 3  [T]_(e2,e1,e3) = [['2', '0', '1'], ['1', '1', '1'], ['0', '0', '3']]\nSection 4  dim L(F^3, F^2) = mn = 6\nSection 5  [S o T] = [['1', '-1', '1'], ['1', '-3', '-1']]\nSection 6  T(x) = x A^T verified on 125 row vectors\nSection 9  P = [['1', '1', '1'], ['0', '1', '1'], ['0', '0', '1']]\nSection 9  P^-1 A P = [['1', '0', '0'], ['0', '2', '0'], ['0', '0', '3']]\nSection 9  A^10 = [['1', '1023', '58025'], ['0', '1024', '58025'], ['0', '0', '59049']]\nSection 8  25 random invertible P: B' basis, [T]_B' = P^-1 A P\nSection 9  H = [['3', '3', '2'], ['-1', '-2', '-1'], ['0', '2', '0']]\nSection 10  A vs D: trace 6 det 6 charpoly ['1', '-6', '11', '-6']\nSection 10  G vs H: trace 1 det 2 charpoly ['1', '-1', '-1', '-2']\nSection 10  rank normal form of [T] = [['1', '0', '0'], ['0', '1', '0']]\nSection 10  rotation R is similar to diag(i, -i) over C only\nch09 laboratory: all assertions passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch10.py",
+      "sha256": "19580a0a210c7415d22240384269346723f3a53aefe9aa2071722bdfe805e5d6",
+      "exit_code": 0,
+      "stdout": "dual basis of B in Q^3 (rows):\n   ['1/2', '-1/2', '1/2']\n   ['1/2', '1/2', '-1/2']\n   ['-1/2', '1/2', '1/2']\ncoordinates of (3,1,2): ['2', '1', '0']\nf = 2x - y + 3z has coordinates in B*: ['5', '1', '2']\nannihilator of span(alpha1, alpha2): [['-1', '1', '1']]\ntrace on 2x2 matrices: rank 1, nullity 3\nVandermonde inverse for nodes (0, 1, 3)\n   ['1', '0', '0']\n   ['-4/3', '3/2', '-1/6']\n   ['1/3', '-1/2', '1/6']\ndual basis polynomials p_j (coefficients p0, p1, p2):\n   ['1', '-4/3', '1/3']\n   ['0', '3/2', '-1/2']\n   ['0', '-1/6', '1/6']\np(t_j) for p = 2 - x + 4x^2: ['2', '5', '35']\nprod (t_j - t_i) = 6\nrank of (1, x, x^2) as functions on F_2: 2\nev_1 separated from span(f_0..f_N) for N = 0..20: 21 cases\nRREF of the four spanning vectors of W (nonzero rows):\n   ['1', '0', '0', '5', '-5']\n   ['0', '1', '0', '-2', '3']\n   ['0', '0', '1', '1', '-1']\ndim W = 3\ndim W0 = 2\nbasis of W0 (one functional per free column):\n   ['-5', '2', '-1', '1', '0']\n   ['5', '-3', '1', '0', '1']\nconverse problem: r = 2 , dim W = 2\n   ['2', '-1', '1', '0']\n   ['-3', '1', '0', '1']\nall chapter 10 checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch11.py",
+      "sha256": "1b0c0f7b8e7596c8369c9edad4952883ebe3934f21f02460c6395c0727bca220",
+      "exit_code": 0,
+      "stdout": "rank T = 2 ; ker T basis [2 -1 1 0; -3 1 0 1]\nker T^t = (im T)^0 spanned by (-1, -1, 1)\n(ker T)^0 basis (rows) [1 3 1 0; 1 2 0 1]\ny=(1,2,3): g(y) = 0 (solvable); y=(1,2,4): g(y) = 1\ndim S + dim S^0 = 4 checked for subspaces of dimension 2, 1, 4, 0\ndual basis of f1..f4 in V: (1, 0, 0, 0) (-2, 1, 0, 0) (2, -1, 1, 0) (-3, 1, 0, 1)\n[T] in adapted bases = [1 2 0 0; 0 1 0 0; 0 0 0 0]\n[T^t] in dual bases  = [1 0 0; 2 1 0; 0 0 0; 0 0 0]\nT^t(gamma_3) = (0, 0, 0, 0)\nrank A = rank A^T over Q, F_2, F_3 (rank of N3: Q 3, F_3 2)\nT(x)=(x,0): ker T = 0 but ker T^t = (0, 1)\nT(x1,x2)=(x1,0): T^t g has row (a, 0) for g = (a, b)\n(S T)^t = T^t S^t: checked for S 2x3, T 3x4\nseparating functionals built for 4 nonzero vectors\nexercise data: ker A2^t spanned by (-2, 1); (ker A2)^0 by (1,2,3)\nall checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch12.py",
+      "sha256": "7f3d955d28a50d4c47e49aa594d0140967b81ff6743c582200440cb670d95349",
+      "exit_code": 0,
+      "stdout": "target (x-1)(x-2)^2 = ['1', '-5', '8', '-4']\nA charpoly coefficients: ['1', '-5', '8', '-4']\nB charpoly coefficients: ['1', '-5', '8', '-4']\ndet A = 4  tr A = 5  det B = 4  tr B = 5\nA: E_1 basis [['1/2', '0', '1']]  E_2 basis [['1/2', '1/2', '1']]\nA: sum of eigenspace dimensions = 2 < 3\nB: E_1 basis [['1', '-1/3', '1']]  E_2 basis [['2', '1', '0'], ['2', '0', '1']]\nP = [['3', '2', '2'], ['-1', '1', '0'], ['3', '0', '1']]  det P = -1\nP^-1 = [['-1', '2', '2'], ['-1', '3', '2'], ['3', '-6', '-5']]\nP^-1 B P = [['1', '0', '0'], ['0', '2', '0'], ['0', '0', '2']]\nrank(A-2I) = 2  rank(B-2I) = 1\n(A-I)(A-2I) = [['2', '0', '-1'], ['2', '0', '-1'], ['4', '0', '-2']]\nk = 10  max|A^k|/2^k = 18.001953125  max|B^k|/2^k = 5.994140625\nk = 20  max|A^k|/2^k = 38.00000190734863  max|B^k|/2^k = 5.999994277954102\nA^10 = [['10241', '1023', '-5120'], ['10240', '1024', '-5120'], ['18434', '2046', '-9216']]\nB^10 = [['4093', '-6138', '-6138'], ['-1023', '3070', '2046'], ['3069', '-6138', '-5114']]\nrotation charpoly: ['1', '0', '1']\nR(1,-i) = i(1,-i) and R(1,i) = -i(1,i) verified\ncharpoly(S^-1 A S) = charpoly(A);  S^-1 (1,0,2) is a 1-eigenvector\n4x4 charpoly: ['1', '-4', '-24', '63', '169']  tr = 4  det = 169\nJordan block: algebraic multiplicity 2, geometric 1\nC eigenvectors: [['1', '0', '0'], ['1', '1', '0'], ['1/2', '1', '1']]\nP_C^-1 C P_C = [['1', '0', '0'], ['0', '2', '0'], ['0', '0', '3']]\np(x) = x^2-3x+1: p(B)v = p(c)v on all three eigenvectors\nK charpoly x^2-2: no rational root; real eigenvalues +-sqrt 2\nB2 = S diag(1,2,2) S^-1 = [['3/2', '1/2', '-1/2'], ['0', '2', '0'], ['-1/2', '1/2', '3/2']]  is similar to B\nall assertions passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch13.py",
+      "sha256": "d9a5b12c1006f448166b5f0bded2a7b2feb9930964d422ca43eae80fdf9eb6cc",
+      "exit_code": 0,
+      "stdout": "c_A = -4*x^0 + 8*x^1 + -5*x^2 + 1*x^3\ndim E_c for A: {1: 1, 2: 2}  for B: {1: 1, 2: 1}\nf(1) = 11  f(2) = 59\nP^-1 A P = [['1', '0', '0'], ['0', '2', '0'], ['0', '0', '2']]\nm_A = 2*x^0 + -3*x^1 + 1*x^2  powers inspected: 3\nm_B = -4*x^0 + 8*x^1 + -5*x^2 + 1*x^3  powers inspected: 4\nmult of 2 in c_A, m_A: 2 1\nranks of p_i(A): [1, 2]  p_1 = 2*x^0 + -1*x^1\nA^12 row 1: ['16381', '-24570', '-24570']\nm_R = 1*x^0 + 1*x^2\nall checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch14.py",
+      "sha256": "98d218d1059f97934d016f8f0ac4f49a77ddd430a7fe5659f279a81759fa6301",
+      "exit_code": 0,
+      "stdout": "2x2: c = [-2, -5, 1]  A^-1 = [[Fraction(-2, 1), Fraction(1, 1)], [Fraction(3, 2), Fraction(-1, 2)]]\n4x4: c = [0, 0, -4, 0, 1]  m = [0, -4, 0, 1]\nA^2 = [[2, 0, 2, 0], [0, 2, 0, 2], [2, 0, 2, 0], [0, 2, 0, 2]]\n(alg, geom) at 0, 2, -2: {0: (2, 2), 2: (1, 1), -2: (1, 1)}  det P = -8\nx^10 mod m = [0, 0, 256]\n3x3: c = [-2, 1, -2, 1]  det = 2\n3x3 inverse = [['-7/2', '1/2', '2'], ['-4', '1', '2'], ['-5', '0', '3']]\nnumpy eigenvalues: [0.-1.j 2.+0.j 0.+1.j]\nAB vs BA trials: 450  minimal polynomials differ: 28\ngeometric <= algebraic checks: 474  strict: 159\nall chapter 14 checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch15.py",
+      "sha256": "88598e405eef1564f5342437905c94aa028b982c7d5f6d36c1214c451da5312c",
+      "exit_code": 0,
+      "stdout": "block form P^-1 A P = [2 1 1 0; 0 3 0 1; 0 0 2 1; 0 0 0 2]\n(A-2I)^2(A-3I) first row (1, -1, 1, -1) ; m_T=(x-2)^3(x-3)\nconductor of e4: x^4 - 9x^3 + 30x^2 - 44x + 24\nconductor of e4: x^3 - 7x^2 + 16x - 12\nconductor of e4: x^2 - 4x + 4\nconductor of e4: 1\ntriangular basis (1, 1, 0, 0) (-3, -3, 1, 1) (-1, -2, -3, -1) (1, 0, 0, 0)\ntriangular matrix [2 1 0 0; 0 2 1 0; 0 0 2 1; 0 0 0 3]\nT^t on W^0: [1 -1; 1 3], char poly (x-2)^2\ninvariant lines of the rotation over F_5: [(1, 2), (1, 3)]\ninvariant lines of the rotation over F_2: [(1, 1)]\nconductor of e4 into E_3: x^3 - 6x^2 + 12x - 8\nall checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch16.py",
+      "sha256": "7bd8a274efe4decd8213d6e192bd6de45d7861d46b156c880a4f5506d2edc69e",
+      "exit_code": 0,
+      "stdout": "A = [['0', '1', '0'], ['2', '-2', '2'], ['2', '-3', '2']]\nminimal polynomial of A: 1*x^3\ndim ker A = 1 (n = 3)\ntriangular form in (a1, a2, a3): [['0', '1', '1'], ['0', '0', '1'], ['0', '0', '0']]\nconductor basis: [['2', '0', '-2'], ['0', '2', '2'], ['1', '0', '0']]\ntriangular form in conductor basis: [['0', '1', '0'], ['0', '0', '1'], ['0', '0', '0']]\nconductor of e1 into span(a1): 1*x^2\nE = [['1', '0', '0'], ['-4', '5', '-4'], ['-5', '5', '-4']]\nminimal polynomial of E: 1*x^2 + -1*x^1\nA        m=1*x^3                        triangulable=True  diagonalizable=False\nE        m=1*x^2 + -1*x^1               triangulable=True  diagonalizable=True\nF        m=1*x^2 + -5*x^1 + 6*x^0       triangulable=True  diagonalizable=True\nJ        m=1*x^3 + -9*x^2 + 24*x^1 + -20*x^0 triangulable=True  diagonalizable=False\nS        m=1*x^2 + -1*x^0               triangulable=True  diagonalizable=True\nRot      m=1*x^2 + 1*x^0                triangulable=False diagonalizable=False\nzero     m=1*x^1                        triangulable=True  diagonalizable=True\nscalar   m=1*x^1 + -7*x^0               triangulable=True  diagonalizable=True\nJordan2  m=1*x^2 + -2*x^1 + 1*x^0       triangulable=True  diagonalizable=False\nJ eigenvalues used in order: ['2', '2', '5', '5']\nRot: no triangulating basis over Q (m = x^2 + 1)\nRot over C: eigenvalues [0.+1.j 0.-1.j]\nover F_2: M^2 = I, M != I, (M - I)^2 = 0, so m = (x - 1)^2\nT(x - 1/2) = 1/2*x^2 + -1/2*x^1  value at 1/2: -1/8\nA E != E A; the two nilpotents share no eigenvector\nderivative: m_D = x^(n+1) over Q, x^min(n+1,p) mod p\nlab checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch17.py",
+      "sha256": "0777b43343c00e1eb7a9087014c49b2541372c5600393ed4eb92e8351c870a6f",
+      "exit_code": 0,
+      "stdout": "three lines in Q^2: pairwise zero intersection, not independent\nE1 = [0 -1 1; -1 0 1; -1 -1 2]\nE2 = [1 1 -1; 1 1 -1; 1 1 -1]\nE1 + E2 = I, E1 E2 = E2 E1 = 0, ranks 2 and 1, traces 2 and 1\nP^{-1} A P = [2 1 0; 0 2 0; 0 0 3]\ndim E_2 = 1, dim E_3 = 1; ker (A - 2I)^2 = W1 has dimension 2\nspan(e1) is not A-invariant: A e1 = (2, 1, 0); A E != E A\nlecture example E = [2/3 -1/3; -2/3 1/3]\nM = S + K with S = [1 3 5; 3 5 7; 5 7 10] and K = [0 -1 -2; 1 0 -1; 2 1 0]\nsymmetrizer on M_2: trace 3 = rank 3\nexercise 2: E = [1/3 1/3 1/3; 2/3 2/3 2/3; 0 0 0]\nover F_2: I + I + I = I with I*I != 0; trace argument needs char 0\nprojections on F_2^2: 8 (I has trace 0 but rank 2)\nexercise 1: components (3,4,7) and (-2,-2,-2); A^10 -> -118098\nm_A = (x-2)^2 (x-3): annihilates A, no proper divisor does\nall checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch18.py",
+      "sha256": "ceb4ff1f657f9bf11f9667d1f4c1b375500a0c9d72cebe4092cf9090dfbc7851",
+      "exit_code": 0,
+      "stdout": "[T]_B = [1 0 0; 0 3 0; 0 0 3]\nE1 = [0 0 1; 0 0 1; 0 0 1]\nE2 = [1 0 -1; 0 1 -1; 0 0 0]\nA E1 = E1 A and A E2 = E2 A: True\nA^10 = [59049 0 -59048; 0 59049 -59048; 0 0 1]\ng(1), g(3) = -1 21\np1(x) = -1/2*x^1 + 3/2*x^0 ; p2(x) = 1/2*x^1 + -1/2*x^0\nm_A = 1*x^2 + -4*x^1 + 3*x^0 ; c_A = 1*x^3 + -7*x^2 + 15*x^1 + -9*x^0\nT = [-1 0 3; 0 7 -5; 0 0 2] has eigenvalues [2, -1, 7]\nm_T = 1*x^3 + -8*x^2 + 5*x^1 + 14*x^0\ninvariant W1 with non-invariant complement: A F1 != F1 A\nm_N = 1*x^3 + -7*x^2 + 16*x^1 + -12*x^0 = (x-2)^2 (x-3): not diagonalizable\nzero E_2 with c_2 = 5: 5 is not an eigenvalue of I\nc_1 = c_2 = 4: ker(T - 4I) has dimension 3, range E1 has dim 1\nS = [-1 0 3; 0 7 -5; 0 0 2] ; A^-1 = [1/3 0 2/3; 0 1/3 2/3; 0 0 1]\nall checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch19.py",
+      "sha256": "16faa79e2e69a09b1dc3f1c9879c5ee6d9427fc78ad8fdec94d1a4468520563e",
+      "exit_code": 0,
+      "stdout": "minimal polynomial      : x^5 + (-3)x^4 + x^3 + x^2 + 4\nf_1 = x^3 + x^2 + x + 1\nh_1 = (-17/225)x^4 + (32/225)x^3 + (32/225)x^2 + (32/225)x + 49/225\nf_2 = x^4 + (-4)x^3 + (5)x^2 + (-4)x + 4\nh_2 = (1/18)x^4 + (-2/9)x^3 + (5/18)x^2 + (-2/9)x + 2/9\nf_3 = x^3 + (-3)x^2 + 4\nh_3 = (1/50)x^4 + (2/25)x^3 + (-21/50)x^2 + (2/25)x + 14/25\nE_1, E_2, E_3 are the coordinate projections onto\n  span(e1,e2), span(e3), span(e4,e5): checked\ndim W_1, W_2, W_3       : [2, 1, 2]\nmin poly of T_1, T_2, T_3: ['x^2 + (-4)x + 4', 'x + 1', 'x^2 + 1']\nN^2 = 0, N != 0, SN = NS, S + N = M: checked\nN = [['0', '0', '0', '0', '0'], ['1', '0', '0', '0', '0'], ['0', '0', '0', '0', '0'], ['0', '0', '0', '0', '0'], ['0', '0', '0', '0', '0']]\nE_j(P M P^-1) = P E_j P^-1 and differs from E_j: checked\ndim ker(M-2I)           : 1\ndim ker q1, ker q2, sum : 2 2 3\nexercises 1, 2, 6: checked\nall assertions passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch20.py",
+      "sha256": "03f2517570744f0d7839b4822c4233e9734cd3a1b0f388476137af50a909fef4",
+      "exit_code": 0,
+      "stdout": "E1 = [['1', '-1', '0'], ['0', '0', '0'], ['2', '-2', '0']]\nD = [['1', '1', '0'], ['0', '2', '0'], ['-2', '2', '2']]\nN = [['2', '0', '-1'], ['2', '0', '-1'], ['4', '0', '-2']]\nJordan basis (1,0,2), (1,1,2), (1,1,1): checked\nsizes (3, 1, 1) nullity 3 m2 4 recovered {1: 2, 3: 1}\nsizes (3, 2) nullity 2 m2 4 recovered {2: 1, 3: 1}\nsizes (3, 2, 2) nullity 3 m2 6 recovered {2: 2, 3: 1}\nsizes (3, 3, 1) nullity 3 m2 5 recovered {1: 1, 3: 2}\nsizes (2, 2) nullity 2 m2 4 recovered {2: 2}\ncompanion of p1, last column: ['7', '4', '-6', '4'] ; two rational forms checked\nall checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch21.py",
+      "sha256": "2da5c084df193090f624f20a9557725c333a206378ba9da0e6df5de29a87e316",
+      "exit_code": 0,
+      "stdout": "Hilbert H3 = [[Fraction(1, 1), Fraction(1, 2), Fraction(1, 3)], [Fraction(1, 2), Fraction(1, 3), Fraction(1, 4)], [Fraction(1, 3), Fraction(1, 4), Fraction(1, 5)]]\nleading minors = [Fraction(1, 1), Fraction(1, 12), Fraction(1, 2160)]\ncos(1,x) = 0.866025, angle = 30.0000 degrees\n||1+x|| = 1.527525 <= 1.577350\nalphas = [[Fraction(1, 1), Fraction(0, 1), Fraction(0, 1)], [Fraction(-1, 2), Fraction(1, 1), Fraction(0, 1)], [Fraction(1, 6), Fraction(-1, 1), Fraction(1, 1)]]\n||alpha_k||^2 = [Fraction(1, 1), Fraction(1, 12), Fraction(1, 180)]  det H3 = 1/2160\ntwisted orthogonal slope y/x = 0.302776\n<x,y> = (3+1j)  by polarization = (3+1j)\nparallelogram gaps (l1, sup, l2): 4.0 -2 8.881784197001252e-16\nmax |Gram - I| for 7 trigonometric functions: 4.44e-16\nR^3 Gram-Schmidt: [[3, 0, 4], [-4, 0, 3], [0, 9, 0]]\ncos^2(x, x^2) = 15/16, angle = 14.4775 degrees\nall chapter 21 checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch22.py",
+      "sha256": "e68d251cd8c04ede91b73358525f87a0a83208ed05207a3303138433af4196ae",
+      "exit_code": 0,
+      "stdout": "exercise 2: x = 7/6, 3/2; exercise 5: coefficient 1/2\nalpha = (8/3, 1/3, 7/3)  beta - alpha = (-5/3, 5/3, 5/3)\n|beta|^2 = 21  |alpha|^2 = 38/3  |beta - alpha|^2 = 25/3\ndistance^2 = 25/3  distance = 2.886751\nnormal-equation coordinates in (u1, u2): (1/3, 7/3)\nE = (1/3) * [[2, 1, 1], [1, 2, -1], [1, -1, 2]]\nPythagorean identity verified at 81 points of W\nBessel sums: 9/2 38/3 21  |beta|^2 = 21\nline example: coefficient -1/11  alpha = (-3/11, -12/11, 1/11)\nnon-orthogonal projection: |beta - P beta|^2 = 2 against best-approximation distance^2 = 1\nGram-Schmidt in Q^4 gave ['(1, 1, 1, 1)', '(-3/2, -1/2, 1/2, 3/2)', '(3/2, -3/2, -3/2, 3/2)']\nc00 example: sqrt(6)/pi = 0.779697\n   n = 1  |e1 - w_n| = 1.0\n   n = 10  |e1 - w_n| = 0.80328\n   n = 100  |e1 - w_n| = 0.782066\n   n = 10000  |e1 - w_n| = 0.779721\n   n = 1000000  |e1 - w_n| = 0.779697\ncomplex check passed: residual orthogonal, Pythagoras holds\nall chapter 22 checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch23.py",
+      "sha256": "9e3b9a55a1a430ccedb731c21a398883fd06a7c6676ce42903c3436f679e9fa9",
+      "exit_code": 0,
+      "stdout": "representer of f(0): ['9', '-36', '30']\nrepresenter of f'(0): ['-36', '192', '-180']\n[D*] = [[-6, 2, 3], [12, -24, -26], [0, 30, 30]]\nprojection and weighted-adjoint examples verified\ncomplex representer, trace adjoints, decomposition verified\nall chapter 23 checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch24.py",
+      "sha256": "435cbf6240fd93cc2c97f4fd28acaf555462b07c0ae7c56bd58fee3f91c3f958",
+      "exit_code": 0,
+      "stdout": "running example: unitary, eigenpairs, A = L U verified\nbasis change, orthogonal forms, unitary family, 3x3 verified\nshift identities and exercise data verified\nall chapter 24 checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch25.py",
+      "sha256": "809e87199567736c3fcfc03905a55d4d27e82d59dbd9e34aa0523f9c99236a21",
+      "exit_code": 0,
+      "stdout": "S = 4 E1 + E2; S^10 entry (1,1) = 349526\ncomplex resolutions and normality tests verified\nall chapter 25 checks passed",
+      "stderr": ""
+    },
+    {
+      "file": "labs/ch26.py",
+      "sha256": "42f23cf52e906f3304c8d47283ea8c5b48b76a84544205d11ff028d46f23803a",
+      "exit_code": 0,
+      "stdout": "running example: sigma^2 = 45, 5; U D V^T = A\nrank-one example: sigma = 2 sqrt 3, U completed\nform matrices and basis independence verified\nexercise data verified\nall chapter 26 checks passed",
+      "stderr": ""
+    }
+  ],
+  "timestamp_links_checked": 260,
+  "local_links_checked": 1841,
+  "pending_planned_chapter_links": [],
+  "errors": [],
+  "versions": {
+    "Markdown": "3.8.2",
+    "beautifulsoup4": "4.14.3",
+    "numpy": "2.2.6",
+    "scipy": "1.16.0",
+    "playwright": "1.57.0",
+    "pycodestyle": "2.14.0",
+    "pyee": "13.0.0",
+    "greenlet": "3.2.3",
+    "soupsieve": "4.0",
+    "typing_extensions": "4.15.0"
+  },
+  "dependency_pins": [
+    {
+      "distribution": "Markdown",
+      "pinned_version": "3.8.2",
+      "installed_version": "3.8.2",
+      "matches": true
+    },
+    {
+      "distribution": "beautifulsoup4",
+      "pinned_version": "4.14.3",
+      "installed_version": "4.14.3",
+      "matches": true
+    },
+    {
+      "distribution": "numpy",
+      "pinned_version": "2.2.6",
+      "installed_version": "2.2.6",
+      "matches": true
+    },
+    {
+      "distribution": "scipy",
+      "pinned_version": "1.16.0",
+      "installed_version": "1.16.0",
+      "matches": true
+    },
+    {
+      "distribution": "playwright",
+      "pinned_version": "1.57.0",
+      "installed_version": "1.57.0",
+      "matches": true
+    },
+    {
+      "distribution": "pycodestyle",
+      "pinned_version": "2.14.0",
+      "installed_version": "2.14.0",
+      "matches": true
+    },
+    {
+      "distribution": "pyee",
+      "pinned_version": "13.0.0",
+      "installed_version": "13.0.0",
+      "matches": true
+    },
+    {
+      "distribution": "greenlet",
+      "pinned_version": "3.2.3",
+      "installed_version": "3.2.3",
+      "matches": true
+    },
+    {
+      "distribution": "soupsieve",
+      "pinned_version": "4.0.0",
+      "installed_version": "4.0",
+      "matches": true
+    },
+    {
+      "distribution": "typing_extensions",
+      "pinned_version": "4.15.0",
+      "installed_version": "4.15.0",
+      "matches": true
+    }
+  ],
+  "scope": "Mechanical structure, source/timestamp bounds, local links and fresh lab execution; not a new scientific review."
+}

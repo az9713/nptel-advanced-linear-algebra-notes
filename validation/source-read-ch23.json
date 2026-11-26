@@ -1,0 +1,84 @@
+{
+  "author": "author_b",
+  "chapter": "ch23",
+  "recordings": [
+    {
+      "position": 48,
+      "video_id": "DBoDKvOMl3o",
+      "normalized_text_sha256": "278b53f39f3301b24429953e8dab8cdf14da4e95bccf0082b256e0a83f4e8828",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "functionals given by inner products",
+        "representation theorem with proof and uniqueness",
+        "derivation of the coefficients",
+        "geometric description via the kernel"
+      ],
+      "clarifications": [
+        "The geometric formula needs a complex conjugate on the value of the functional"
+      ],
+      "original_constructions": [
+        "conjugate-linear bijection onto the dual"
+      ]
+    },
+    {
+      "position": 49,
+      "video_id": "lN_tuUFxovo",
+      "normalized_text_sha256": "0a3da90675685281d1d2734b568b3305b384b3ab105077f902f0935628209a5b",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "point evaluation has no representing polynomial",
+        "existence and linearity of the adjoint",
+        "matrix entries in an orthonormal basis"
+      ],
+      "clarifications": [
+        "The entry formula is A_kj equals the inner product of T e_j with e_k"
+      ],
+      "original_constructions": [
+        "general-basis formula"
+      ]
+    },
+    {
+      "position": 50,
+      "video_id": "OR00X0UhdmE",
+      "normalized_text_sha256": "ef2a088d33636cf785296f7653656f91432c6b98ef3218b898c9941a2434a740",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "representing polynomial for evaluation on quadratics",
+        "Gram-Schmidt on quadratics",
+        "orthogonal projection is self-adjoint, line example in three dimensions"
+      ],
+      "clarifications": [],
+      "original_constructions": [
+        "explicit representer at zero"
+      ]
+    },
+    {
+      "position": 51,
+      "video_id": "ycvgCq8Dx0Q",
+      "normalized_text_sha256": "c717bf1a35d885d6df493a9e715068cb4cd47e0229aa963936f76b6191e1cbb1",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "definition of adjoint and dependence on inner product",
+        "column vector and trace examples",
+        "multiplication and differentiation on polynomials",
+        "algebraic rules",
+        "decomposition into self-adjoint parts"
+      ],
+      "clarifications": [
+        "A complete argument that differentiation has no adjoint is supplied"
+      ],
+      "original_constructions": [
+        "kernel of the adjoint",
+        "exercises"
+      ]
+    }
+  ]
+}

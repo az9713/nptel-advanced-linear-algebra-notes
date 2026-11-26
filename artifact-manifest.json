@@ -1,0 +1,1449 @@
+{
+  "purpose": "Inventory public educational artifacts and their digests",
+  "self_verification": "This manifest excludes itself. Later live-publication evidence is a separate record, not a self-signed hash.",
+  "source_dependencies": [
+    "ivBzUfpal-g",
+    "hMkT19xNNRk",
+    "VsQSt1jqknk",
+    "5nsdoUfGpFE",
+    "aEF5PPbv8Oc",
+    "BQ6bUhF4tPM",
+    "mNB7cDaXshQ",
+    "wXhtEtJQx2U",
+    "rA7m8jQKtQ4",
+    "BJn7EqX2p0o",
+    "j_laym_mBaI",
+    "Pwk7p8WiCh0",
+    "VzuJgqY-ORo",
+    "4DXAx2Qc3DM",
+    "QIt8CporAVU",
+    "PpvRhe2QpjA",
+    "mB_27xaN1nU",
+    "PiG2BMkK3s4",
+    "PocfxH03Dgs",
+    "k7t7UkJ4z5g",
+    "Y6dbBjO73IQ",
+    "Rq3ruFHFic4",
+    "3InyDigc3Vk",
+    "42dHe_scp8k",
+    "qDCmg29dsgs",
+    "5GnTjNp0C4c",
+    "6wLBCQ12WvE",
+    "0pgdc_igMNw",
+    "z3langlkEHE",
+    "K-RIfSg3uWI",
+    "wTr4FJ6ogvM",
+    "kr-Jpj_GcgU",
+    "x2dU2iysRcQ",
+    "P5dUSimEXHk",
+    "HYudOaJ_gxE",
+    "FSrROxmVg0k",
+    "YmpfezqZGhU",
+    "eyIs2irRboE",
+    "Qra533N0-nw",
+    "B6C1-7Oc_e4",
+    "Q7XtHAR9jRc",
+    "f-YSQNvXrvM",
+    "fRCjsemJ9nk",
+    "xYXFAnXDED0",
+    "Yjx3j9IDn6o",
+    "wjR4wDkAnG4",
+    "x-NoTbaUUr4",
+    "DBoDKvOMl3o",
+    "lN_tuUFxovo",
+    "OR00X0UhdmE",
+    "ycvgCq8Dx0Q",
+    "BsQaLOtFezU",
+    "tyF49ajvS4A",
+    "s6zU8DC-YJ0",
+    "UeExjHRhiaI",
+    "3mRBrsR9UXA",
+    "ZL0UkkCrud0",
+    "yYlXk5C91UE",
+    "moaXD7Hfqfg",
+    "2byXhwHzR-0",
+    "NYo2wbePAnI"
+  ],
+  "artifacts": [
+    {
+      "path": ".gitattributes",
+      "bytes": 44,
+      "sha256": "b03bf1c11c57b7875b5180518c6b6e984da02f3b4d0e08de65b715c62a44c0e2",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": ".github/workflows/publish.yml",
+      "bytes": 2067,
+      "sha256": "aaa591710139d16a30ed16a946d780e2bd0726dfb6f1737e76051de4f1584d93",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 164,
+      "sha256": "6cdf7d8230fc75cacfa5e37690c3b983da3eeb1b1de04deb3c2e8c7618153aa3",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "analysis-ir.json",
+      "bytes": 89953,
+      "sha256": "bbc70cfdfe85cf3cfb8c9850dddf14fbedac41983176174daca2b747c89eab4b",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "assets/figures/linear-map.svg",
+      "bytes": 953,
+      "sha256": "946f363da96763da54949715e055d77f16924bb8ac1eec663b5d2640eafe7885",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "assets/figures/projection.svg",
+      "bytes": 1586,
+      "sha256": "6d41b9bbd018848b393b51a6906d88abbc2ed3d33e9e61868e78d4edee764490",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "assets/lab.js",
+      "bytes": 3036,
+      "sha256": "bffe184998f9d2a73dd243c762baac385a5ea46953998038964e5871f6cbc72f",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "assets/math-config.js",
+      "bytes": 999,
+      "sha256": "1727faa3fd18605c1d75a92949b24515d75a781fd6d8a53f54f5ee2dae60cd7a",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "assets/mathjax-LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "assets/mathjax-tex-svg.js",
+      "bytes": 2108580,
+      "sha256": "d4295dc33744836935c1399feece5159577b34c5c8ffb9f1c6324cd82e03a882",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "assets/reader.css",
+      "bytes": 8020,
+      "sha256": "601f8b7ca72544f4975799d4eab561936e2c24a837c0d80795f8864ec4ece4b6",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "assets/reader.js",
+      "bytes": 2341,
+      "sha256": "b6db4efe574188c09a3f413b4d6b9a610cf1fb9060a0554b912c2ac6c12ff034",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "assets/README.md",
+      "bytes": 1328,
+      "sha256": "606d109768b12173d68bd88ccbbff2ea2845e7cbaa324e1d5603a4989ee9ca29",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "assets/site-preview.png",
+      "bytes": 133633,
+      "sha256": "0a34966645a0ab4f013a6a790c79c28720f9b80b7bf6a91441fdb3d18cb7a15a",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "BOOK-STATE.yaml",
+      "bytes": 462,
+      "sha256": "b2a8f33ed49cdec8a913f310d385579285e2bc6d14431efee31345337d2f785c",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "book.json",
+      "bytes": 27673,
+      "sha256": "df14ecfa4cf9efb7a026f874ff38696ab4bdfb110632107c49fb07ced03c18c9",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch01.html",
+      "bytes": 76539,
+      "sha256": "5a140676d5ba3d1d26db5199e974312df272ad0c15a04ef3ee8a88ee306133bf",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch02.html",
+      "bytes": 54298,
+      "sha256": "0bacf3f7ea461aa0b6d2077a2b7e1d8873159dcd9fd8248ba811bc4ebb8023cb",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch03.html",
+      "bytes": 67026,
+      "sha256": "ac831aa03bdc161deb9ca7a2f21750f8eed8400d9dc043419110f4a1b984ff90",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch04.html",
+      "bytes": 41768,
+      "sha256": "e223f036783340a2597b0c7fcaf143e0fa63833a10c9c8e5a37a80cff3c78d98",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch05.html",
+      "bytes": 32850,
+      "sha256": "9afad1b2cbcff129b261d78bb3d28d4062a6c52bb1c0bae86d95a28ceb0845fd",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch06.html",
+      "bytes": 38414,
+      "sha256": "729ba15fca794235bbcde9f7e2e8fa49443b68c56c6cafa2ecf9956787324d51",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch07.html",
+      "bytes": 31065,
+      "sha256": "91ea8c6c458008579fb7f1f648a59aff6b1497b2219e8e44c3c0f017d3ffb5d7",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch08.html",
+      "bytes": 35875,
+      "sha256": "9cdfe97eb5da9c2a0ed1a9cbf12ddc2fcc0fecd7ad5292546db5694fcbcd0168",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch09.html",
+      "bytes": 41310,
+      "sha256": "f0e0ab0e0b7b8170c54fec35b6ca6a10baccc3d0d4cbb7c81ee1b6af5eb5a8c3",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch10.html",
+      "bytes": 35695,
+      "sha256": "72925c741fc6c71a4721a4bc8e3df345116bb64023ead3f277826e301a12d051",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch11.html",
+      "bytes": 58352,
+      "sha256": "fd3e0a208bf8e767545fddf332c6fc6867a0298f67c6bbad7764bd4110170146",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch12.html",
+      "bytes": 40016,
+      "sha256": "0efd69140c5706e0fac27774839145fd777598cf5c6c2d39b98e32104abcf295",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch13.html",
+      "bytes": 35784,
+      "sha256": "29e6b95d6433dd3e2be8653d8797df9e194f10a65f31d84ec64856e1f977c0e4",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch14.html",
+      "bytes": 33877,
+      "sha256": "13bce9633e697bf5af37cc794da8439761604f24b92edbf76631e0b669270f5c",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch15.html",
+      "bytes": 55363,
+      "sha256": "fcc47f41b9109c9d07eb2228e1157f249859761f305ba210227641ca05640e54",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch16.html",
+      "bytes": 64613,
+      "sha256": "9f4f3a5f45ca119bbd0620b67aa9f298efe646777a91f0ce85934c6358045c8f",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch17.html",
+      "bytes": 44233,
+      "sha256": "b40495145d1e6b5a36af8e43d204fbf4e3fb0159abdab5694ab9d03b44df9ec8",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch18.html",
+      "bytes": 37730,
+      "sha256": "a49ec48b84475aebce98c0d4e190fbbf0c32829bd2ba43c1c2d5545a37472bb2",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch19.html",
+      "bytes": 37785,
+      "sha256": "90220afd442f8a21b7ab9271db43b790d19e3b99933587646b085c529ef2d8ee",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch20.html",
+      "bytes": 41659,
+      "sha256": "c892aec515a1bb6482720a5423df094a0f12527542194d8ba4452fcf9da8cdcc",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch21.html",
+      "bytes": 44730,
+      "sha256": "b7e289f9a5aae1240c2d357fa61ea8713a67cfd4f5d5b224c29077d1e6172aea",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch22.html",
+      "bytes": 36341,
+      "sha256": "534eebf7cf1694e66d1f981b19ccbcb6d7394235a8a4b4e3bebbf4c3ba39546a",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch23.html",
+      "bytes": 30976,
+      "sha256": "f61abedffe94c32450b965be574dbd0bd8b9832ddd4a5229825075b31d0fc210",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch24.html",
+      "bytes": 32825,
+      "sha256": "d9f071ce694b503ba42e708054fdc264a235e65fcf0f9ac9bb4af1eed22cfb8f",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch25.html",
+      "bytes": 25463,
+      "sha256": "c9d5566c267cce5e01f4bfbb7e7dbc40b97703710eb78408b104d41fdc81fc90",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "ch26.html",
+      "bytes": 25912,
+      "sha256": "8ba71d616532a85ffdd19764a4c2adf3f8633053e2651fe765318e3bcc8c8567",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "chapters/ch01.json",
+      "bytes": 726,
+      "sha256": "4805d9e7cde4ec72c54353021fc2e7778d9d84e41b146db7d0ca3985bbfef60c",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch01.md",
+      "bytes": 53257,
+      "sha256": "96272f0538dae93c1902a4770a3143cc45094a6a6957d1a5eb3536da4339815c",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch02.json",
+      "bytes": 621,
+      "sha256": "b49b6e4d1af032926e03adbdaf31a6d9567b8b513e7199ed8a38334b715ceb79",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch02.md",
+      "bytes": 28846,
+      "sha256": "8024b0b77c3268715c2cfcb44e1936123f44cdcb55a3d8b4d920de09a6b46af0",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch03.json",
+      "bytes": 691,
+      "sha256": "0d80b1b2adabb5799d4fd6be3e6b940bc3ebf88a876d49cb0eafacb4a299ad40",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch03.md",
+      "bytes": 45844,
+      "sha256": "5c5b41d8342281542b9c6655e89ab939a29fff92e5191a56e01702edfa7e4012",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch04.json",
+      "bytes": 639,
+      "sha256": "8cbcf8eb11f3f0b8f48c9e962e5db2e39077ec73615aad13925412a9b27e4fe6",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch04.md",
+      "bytes": 23781,
+      "sha256": "6bba462638dbc175f323484e22c972020cabc095e036153e2c1c50c3658c3289",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch05.json",
+      "bytes": 644,
+      "sha256": "f69228ba50782d696b18f63c67d47ec673f70715eeb3e3d34c9f243927a2e365",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch05.md",
+      "bytes": 16965,
+      "sha256": "0cd97e85ad038f7e5ad52dff432eed0c6cd03851196fe13361f27dd3721918e3",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch06.json",
+      "bytes": 709,
+      "sha256": "43c3b4993c9f606fd697129e82013fe7beb7ca9bead7e9f110c5f3d4abfdf578",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch06.md",
+      "bytes": 18863,
+      "sha256": "d92dd7bb5c321ebd5e2fb8b160689383ef581fbe0ebc7b572f9111fd54541ed0",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch07.json",
+      "bytes": 639,
+      "sha256": "6f867eede98d834d6aeb267c4ce028aeab7fca1c23e7a2fa18d9e65aa020c3c1",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch07.md",
+      "bytes": 15946,
+      "sha256": "01b473c53c18c6b5aeeba614f162ae23c49579edf1bbedd81a96ea3d97b4e7ec",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch08.json",
+      "bytes": 663,
+      "sha256": "5a1c63eedce5f797097926e95a033e34373c2632aa55db4dc115b70a0ac12a05",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch08.md",
+      "bytes": 16934,
+      "sha256": "6bc0e27d305ca6b39783ebc75f53577de6ca050b731a5b92928af457d20e2981",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch09.json",
+      "bytes": 702,
+      "sha256": "84bb226582b907aa401e3dda3cf7286e92d62a19326b4b9d1f8f57562851cf12",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch09.md",
+      "bytes": 17649,
+      "sha256": "b59417951e67128d28162477aa63ec5247bc123273c872036b22fcbed982e55b",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch10.json",
+      "bytes": 594,
+      "sha256": "cb34137a6ea0adf3343cca084bda950b6e294ba2530e6fb4dbf458fc68246658",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch10.md",
+      "bytes": 15871,
+      "sha256": "fdd53685c8ee453a307d03a781ef9d7b34bc0ea04bf50a0cda2addd5b84b9f0a",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch11.json",
+      "bytes": 702,
+      "sha256": "b045ce089d0b9c7266ffc726292b778d39397899ff3f4a4d09966214177d78d3",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch11.md",
+      "bytes": 38909,
+      "sha256": "2d5748700c53cbc0ca29a62c5a31f8ace3f576084f7fc79d89ffa211b9d4f402",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch12.json",
+      "bytes": 664,
+      "sha256": "5f0488edb577c0e04216baa87c282b5c7f590b02e626758cc673d7fef4ddf017",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch12.md",
+      "bytes": 18335,
+      "sha256": "3bbf6e6253a37a6ed4e1d565504cd288737831d7cb12d240fee17648432b9bd2",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch13.json",
+      "bytes": 642,
+      "sha256": "488baf09d0371cbae7203a4734d495b84e0fb07aec7d455372f0e85bbe8950c9",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch13.md",
+      "bytes": 14302,
+      "sha256": "d72e88de967d9cc1c175dcf5e97c1910b0f20e313eb202441885bce6e0e6f3ac",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch14.json",
+      "bytes": 720,
+      "sha256": "20b6ba20b4e89578f6a9ca2d3154cf3f7356990cb2154159f61e9f1943315ad1",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch14.md",
+      "bytes": 14117,
+      "sha256": "157480017acd6cb9b90333d122d76886f92510ac363832e3dbe5bc6a1a4abb09",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch15.json",
+      "bytes": 933,
+      "sha256": "c4b279cf30ab62a6202adef70e489e4641c601a4c9cbcb1c60efced2f7213751",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch15.md",
+      "bytes": 32673,
+      "sha256": "0f77b111f53f384e9f8590072dda8de620693a5bd601a4512826d38a53bb8296",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch16.json",
+      "bytes": 855,
+      "sha256": "b8561ae63b84f04dd0c615e3ecd375c39fa984e9dcc4e7a644ad66656109e04b",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch16.md",
+      "bytes": 38101,
+      "sha256": "c16170d2d960b912296eb3816b2fea703ea017a6c0022814087a925bda86381f",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch17.json",
+      "bytes": 772,
+      "sha256": "70a5e474bf360fd4a8fb8d99a30b6a5b97aeefc05def8a5502dfcb049e18ee58",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch17.md",
+      "bytes": 23494,
+      "sha256": "908fe5720513dc64b239c09d261be167258bd8d453642e81efab8cf2b7fb6d3a",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch18.json",
+      "bytes": 776,
+      "sha256": "b1e46fffcb2440f76b41e7a0b073dbd0ca38bd374270e5db5c61363990607ea7",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch18.md",
+      "bytes": 18085,
+      "sha256": "9e8c9fa5ee22ecb3efe270468c6709f20956a9aee63c868ea5683c83478f05b5",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch19.json",
+      "bytes": 778,
+      "sha256": "63565ea5d147f17299f7f88c056e9ce9463a62b4abdc42e0f9605c24ba9bf91e",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch19.md",
+      "bytes": 16914,
+      "sha256": "a416f82c83fd190942bfeda40abaa0c54070f0c2b3d5b4564c6a774568c2f6dd",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch20.json",
+      "bytes": 875,
+      "sha256": "d079cd1eeffcff18ea11924abd5e980cec91d8cb70bda83b44e04f877e565a7c",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch20.md",
+      "bytes": 23161,
+      "sha256": "0ab1f9472dea096d8d0e321a6584f233cc6ab2f8be485ee29b5761d84dbaad6a",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch21.json",
+      "bytes": 855,
+      "sha256": "b98cc9f1f08e4f1e04fbeab57e54d938719a2fe7b2d4ff776a897f845353f3ed",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch21.md",
+      "bytes": 22174,
+      "sha256": "a771b12a33c44e22bd789743251cd88233ba9735c3e43d1fa5f371f7f8cf8ab1",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch22.json",
+      "bytes": 781,
+      "sha256": "7f9769e83ea53497205f48a2c4629828abe7418b3ccb4699cc60b0535d2f6c99",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch22.md",
+      "bytes": 16239,
+      "sha256": "0d480e8e37582d5041d13c186778ae244a0d26b85abd12b7f9c82a40c1a8dcb3",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch23.json",
+      "bytes": 937,
+      "sha256": "f528867f935d0050325e3ee3e1fd1d87b0742400b5bd328309d039c427412589",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch23.md",
+      "bytes": 16949,
+      "sha256": "92f2816d61d86c388a8739cf3c83016a65b8ef8d272ffc113a347903cda2f2c7",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch24.json",
+      "bytes": 804,
+      "sha256": "fc7cc659a783cf3ca00908a232ad506fefdbbc4394f41d351a1026b1e9c7062b",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch24.md",
+      "bytes": 18644,
+      "sha256": "8f347893097d3dcaba9fa5cd0e11f815abdc7efe862bdb94d63b32a23997f7ad",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch25.json",
+      "bytes": 754,
+      "sha256": "4d41f950f8190d62e6a7f8e557925e0d546425ce4e06ef26a2af4f1b00ad9d8c",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch25.md",
+      "bytes": 13789,
+      "sha256": "b8cb90bab26a96938a68be4a2bf9a1094ca4a9088c59bfb23efb1d90a53ede7c",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch26.json",
+      "bytes": 735,
+      "sha256": "2cf3c31077181c8a1c654b4dbf2730db5c88360c81422074134286a689124d38",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "chapters/ch26.md",
+      "bytes": 13975,
+      "sha256": "a070ccff0eb350d4107e9844608ae9afbb7ce922abede0b5380e81852c2ec662",
+      "purpose": "authored chapter source or metadata"
+    },
+    {
+      "path": "EDITOR_DOMAIN.md",
+      "bytes": 3785,
+      "sha256": "bca6c3abaf638e41d2ad39b1b4fb6e2e027da713efecb5b79b0bcf962d9e0d9c",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "figures/make_figures.py",
+      "bytes": 4645,
+      "sha256": "b40aeb969e341058eae58ad7081186ab633fdf9febc4e642850fc2d61ff2f273",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "index.html",
+      "bytes": 17418,
+      "sha256": "7a97f6822b879b5e28718769a9d3d68e2dbbf727b7c53d0776c419b92b47d1b5",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "labs/ch01.py",
+      "bytes": 11667,
+      "sha256": "c17f8cd55df49e343dc7275a4244dac29cae9abd444abb32e516693e9e91264a",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch02.py",
+      "bytes": 15278,
+      "sha256": "1cb935a65a089989dc06cc83c0a01802e83f16de4463798177b8b4e903d56052",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch03.py",
+      "bytes": 10621,
+      "sha256": "8c354c5558f3e35f65fe2c2e68cf72d15193d7922d16ed6e62c9709f50e77e68",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch04.py",
+      "bytes": 9162,
+      "sha256": "36ae43d590e01113265a6733bd68cf0d7db76f8c3f6cef7c761cf37d3f5c5d5f",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch05.py",
+      "bytes": 7263,
+      "sha256": "54617d8cee2c756c0b37ff0706cc746724f5178c2eeca22d29e027f3a53cba88",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch06.py",
+      "bytes": 10265,
+      "sha256": "002a47fcc442b99e3fd966e6a86c62e37ce14944afdb488d0c567a6f05d0c800",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch07.py",
+      "bytes": 6576,
+      "sha256": "e4af01939b1f6c78f397f67c5d287722965f414819aad947675cf0fe6da6f9f8",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch08.py",
+      "bytes": 9808,
+      "sha256": "af27eccb8a6363e90195a22924e9a961a92f6ae9d0d12897cac9506c82605213",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch09.py",
+      "bytes": 13517,
+      "sha256": "52172a12dd3262fc746602efb474d7820aa6259178bf73246f104f3fbf28e102",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch10.py",
+      "bytes": 10789,
+      "sha256": "19580a0a210c7415d22240384269346723f3a53aefe9aa2071722bdfe805e5d6",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch11.py",
+      "bytes": 9592,
+      "sha256": "1b0c0f7b8e7596c8369c9edad4952883ebe3934f21f02460c6395c0727bca220",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch12.py",
+      "bytes": 12216,
+      "sha256": "7f3d955d28a50d4c47e49aa594d0140967b81ff6743c582200440cb670d95349",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch13.py",
+      "bytes": 12345,
+      "sha256": "d9a5b12c1006f448166b5f0bded2a7b2feb9930964d422ca43eae80fdf9eb6cc",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch14.py",
+      "bytes": 10933,
+      "sha256": "98d218d1059f97934d016f8f0ac4f49a77ddd430a7fe5659f279a81759fa6301",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch15.py",
+      "bytes": 11869,
+      "sha256": "88598e405eef1564f5342437905c94aa028b982c7d5f6d36c1214c451da5312c",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch16.py",
+      "bytes": 16468,
+      "sha256": "7bd8a274efe4decd8213d6e192bd6de45d7861d46b156c880a4f5506d2edc69e",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch17.py",
+      "bytes": 11750,
+      "sha256": "0777b43343c00e1eb7a9087014c49b2541372c5600393ed4eb92e8351c870a6f",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch18.py",
+      "bytes": 10370,
+      "sha256": "ceb4ff1f657f9bf11f9667d1f4c1b375500a0c9d72cebe4092cf9090dfbc7851",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch19.py",
+      "bytes": 11737,
+      "sha256": "16faa79e2e69a09b1dc3f1c9879c5ee6d9427fc78ad8fdec94d1a4468520563e",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch20.py",
+      "bytes": 8673,
+      "sha256": "03f2517570744f0d7839b4822c4233e9734cd3a1b0f388476137af50a909fef4",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch21.py",
+      "bytes": 12217,
+      "sha256": "2da5c084df193090f624f20a9557725c333a206378ba9da0e6df5de29a87e316",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch22.py",
+      "bytes": 11148,
+      "sha256": "e68d251cd8c04ede91b73358525f87a0a83208ed05207a3303138433af4196ae",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch23.py",
+      "bytes": 4682,
+      "sha256": "9e3b9a55a1a430ccedb731c21a398883fd06a7c6676ce42903c3436f679e9fa9",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch24.py",
+      "bytes": 5072,
+      "sha256": "435cbf6240fd93cc2c97f4fd28acaf555462b07c0ae7c56bd58fee3f91c3f958",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch25.py",
+      "bytes": 2963,
+      "sha256": "809e87199567736c3fcfc03905a55d4d27e82d59dbd9e34aa0523f9c99236a21",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "labs/ch26.py",
+      "bytes": 3829,
+      "sha256": "42f23cf52e906f3304c8d47283ea8c5b48b76a84544205d11ff028d46f23803a",
+      "purpose": "executable educational computation"
+    },
+    {
+      "path": "numerical-lab.html",
+      "bytes": 10692,
+      "sha256": "04f653aef642081ce59b83007f17df415e0cc0c15e3ce6f883ae8d7901d53904",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "numerical-lab.md",
+      "bytes": 6065,
+      "sha256": "96c6273b1772e4b9890b596db2af8a8576e6c2ccb8201ababc11da3a90756776",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "overview.md",
+      "bytes": 1939,
+      "sha256": "f11685595b79eba6581262d0114fcde887fb5b5794250b99f08a5441b9eb819e",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "plan/book-spec.json",
+      "bytes": 7803,
+      "sha256": "d5780702881a82f51d226a6c4c0b72fe37f854b7e02b1fbb66d19bbb984028d7",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "plan/notation.md",
+      "bytes": 3694,
+      "sha256": "ed88d7a94f20cc195be036ec39846e9ac7059aee8a5b42bb81dfe93db252ceee",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "plan/outline.md",
+      "bytes": 2936,
+      "sha256": "b504f3284b14341bccdf18a0040a4894eb3d9068358751cda93dd2b775d32729",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "README.md",
+      "bytes": 7263,
+      "sha256": "a1ec3c1a97215e923a210686f051b714496dbae215987398085cfaab8f725a5f",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "references.html",
+      "bytes": 7821,
+      "sha256": "0a6077be433c639af05f231040796f688a2c1bce9c37d6bcbc1187526f9c542a",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "references.md",
+      "bytes": 3232,
+      "sha256": "e2ca09bdcd63769898616b35ef6ea9ffad8cbb4016a06980dd6dae2f8673f56d",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 177,
+      "sha256": "bc6e7ff78d238f4c2b868296106724d752c56bd508a70e079927dc9c0883aa8e",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "RIGHTS.md",
+      "bytes": 1054,
+      "sha256": "0122c89a8ee609993f426627a20454075c9a47e87aa92c0f2a2e886c8d543690",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 64232,
+      "sha256": "09a40107ca6af7122205ddc9e7147e0a0695cdff697c834e3912e2ce72956a09",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "source-map.html",
+      "bytes": 19175,
+      "sha256": "458277b40a5cbabe56a85eaeb74a960eda2f1eda38fa590ad1ca4163297e573f",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "study-guide.html",
+      "bytes": 10070,
+      "sha256": "93dd1e849cc242dc7e93b59f058d6c3d20371a6de0b8e40ece14c790a5279df8",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "study-guide.md",
+      "bytes": 4402,
+      "sha256": "6ea7de4e7016aa2f9ec5573f491d49b9b23e3d58c31f25a26e9e8b00b0b520d2",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "tools/acquire_sources.py",
+      "bytes": 6101,
+      "sha256": "646f8935736b5d16d079b1bc69554b00226ce583f9386057269d7cc6a2e45b33",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "tools/audit_book.py",
+      "bytes": 5293,
+      "sha256": "144c310d11d80a82ebdf5f7de4b2f3eb02449113e440f19602935054fdc30281",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "tools/browser_check.py",
+      "bytes": 9319,
+      "sha256": "b535a755403744b22347d7a9e42aa89b3f4055a255f3fcc459c7959fb372649a",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "tools/build.py",
+      "bytes": 13130,
+      "sha256": "2224a90334ecfcc2ad69cafe88eb996c6271398e4a4bbd15870aed47b275dfd7",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "tools/check.py",
+      "bytes": 13695,
+      "sha256": "acbb1e613c6a498e7d49e79181312759f88de881e7607760bb969738b40798af",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "tools/check_math_layout.py",
+      "bytes": 4465,
+      "sha256": "3cbf6443b62fd8543f49c52bf701315a5e0db47dcc0764eb7158d6ebd9c2472e",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "tools/package_metadata.py",
+      "bytes": 4956,
+      "sha256": "d5dac382858053d841d10396dd4b525d980c7cec621a1ca2796d56833b2dd0f0",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "tools/release_check.py",
+      "bytes": 6216,
+      "sha256": "4ab8f84b85444e4ab3ade6c0c58d53c3fbbc11c07fcd3b179f4203227be1d755",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "tools/verify_live.py",
+      "bytes": 5568,
+      "sha256": "c20e20882c6f18f9885b0272b1c704a7155e3c447d87a562a23b23b1779ff7ce",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    },
+    {
+      "path": "validation/book-audit.json",
+      "bytes": 12224,
+      "sha256": "c7629595b09b72fb25899f5e4617fcdda31482ca89ef346d5f1a8000902830b6",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/browser-checks.json",
+      "bytes": 17491,
+      "sha256": "ef83f52b638e20321fa295e8b05205c9a344117559e7373539ae278cb664ef76",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/package-checks.json",
+      "bytes": 37433,
+      "sha256": "d578b39a20fc6525f87a656a26e97d5599cdeb4c3ed686cabf859031e6c00e66",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/release-checks.json",
+      "bytes": 1773,
+      "sha256": "4f9323742f14fd21c735a108ece4340371e92597c333c3c670dd378a8409928c",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch01-r1.json",
+      "bytes": 745,
+      "sha256": "9c003dbc76863c63d386f6e4459c769882d30467feb4a51828c10061fa06c901",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch01-r1.md",
+      "bytes": 1004,
+      "sha256": "1e06d3d25206530d9098341ea1a5d6861b84aaed981604a86ad5c41f347367c6",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch02-r1.json",
+      "bytes": 987,
+      "sha256": "33df8a6109e3a79f255790eba390aff2bba72efec8ff6eae3f00d32f0f5fa4e5",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch02-r1.md",
+      "bytes": 1436,
+      "sha256": "1097f640eecba262993ddefc7fab876bb275747e8a1ce9dc8e76f72371f7b755",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch03-r1.json",
+      "bytes": 995,
+      "sha256": "1609a9d620737d056db9ee924602cf49b6b5a3da69429b1edb498bdae496d27b",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch03-r1.md",
+      "bytes": 1921,
+      "sha256": "498ca98d7a9523cea5569c496a3e507bd4986694f3c7dca1bc71b914c76824f6",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch04-r1.json",
+      "bytes": 740,
+      "sha256": "b03f6c64474ae521f07c9cfa1835b4e5f1570e36f426cfabc2b08ad7e6c2a924",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch04-r1.md",
+      "bytes": 1099,
+      "sha256": "f7b03a7a64aa018b46e0cbfd41f4d4a917293317841062c50bcc4d5924ebf991",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch05-r1.json",
+      "bytes": 731,
+      "sha256": "a959b9d6318ed33cd34935c925cac798a4b8804f033cda76d1f0ad4310dae5c5",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch05-r1.md",
+      "bytes": 584,
+      "sha256": "2a92dc42998837f1d7b7687af7df0a77d873e6309299fcf417e44d2d3b61f24e",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch06-r1.json",
+      "bytes": 1066,
+      "sha256": "430019fbd1b7d14759a2755aed7a38c6917771c2b1d5f857a08da8059fc53a54",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch06-r1.md",
+      "bytes": 2746,
+      "sha256": "1b1532b687e3e5d1205eadba9cc37d0ddfd8fcad39e8a04cfb7e1f6754f6bbd7",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch07-r1.json",
+      "bytes": 744,
+      "sha256": "84d23ce54f3978cf79d89e70981736852fc3d7b127568706286ee5204f5da204",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch07-r1.md",
+      "bytes": 956,
+      "sha256": "2be5c4a10ce2cc863f9cc7c2489d15b684648476a093de41e846b5f75375e975",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch08-r1.json",
+      "bytes": 751,
+      "sha256": "2a7b00ccf3007524cc54291f3753bec2d94804561bada9da35bc10c8f67488b2",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch08-r1.md",
+      "bytes": 1076,
+      "sha256": "734b079bd22d31eb0f02f4abc12a719cb9dd1fea3970d7546cbbee45113f9f89",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch09-r1.json",
+      "bytes": 744,
+      "sha256": "0ae8deb5cc5fc9d9c2f43938cd8615b7ecabb06500b22e8ab9b9cd47400367a5",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch09-r1.md",
+      "bytes": 673,
+      "sha256": "219397cea14e12d24b9aed800755cb465ad9b22f9946d1144bddc8a401588407",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch10-r1.json",
+      "bytes": 751,
+      "sha256": "dc40f2724e055411d0d28d8f3e1438ee374352c80b4a115b90c46ec6d435c3d0",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch10-r1.md",
+      "bytes": 934,
+      "sha256": "da9488c9ca8fc74010b916aa8ecc6eae1cf41321a33ca09a7f18e4b8a6a49b57",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch11-r1.json",
+      "bytes": 744,
+      "sha256": "bd353b016502554137fdbf03187ab66dacfdf51bdef9625f210df1ec0a4eabeb",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch11-r1.md",
+      "bytes": 1033,
+      "sha256": "0db58d03c88b5e1174bcc31fb9c703061f4d768a78291f24df248ccb886a5412",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch12-r1.json",
+      "bytes": 962,
+      "sha256": "0304a0f455ea78d93cbec1860177b18864c2d0b00a419e8578d9449fd5f0d86b",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch12-r1.md",
+      "bytes": 1722,
+      "sha256": "e1445e9b613219eafe6bd5018c5a326ed9307ab4f6779242a847b6cdbd084c76",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch13-r1.json",
+      "bytes": 744,
+      "sha256": "a01f4da74874fedb2790b3a4f03fb3763e5ad8718b0d3490d7c1da8357322e01",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch13-r1.md",
+      "bytes": 729,
+      "sha256": "479507f8780793ef137d861e94c78ca3a395c2f5583f9633418622097b74ba91",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch14-r1.json",
+      "bytes": 917,
+      "sha256": "5805b4a7a3a29ac7aa37e5e376e9b417b3267b189133547378c82372d9350376",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch14-r1.md",
+      "bytes": 1595,
+      "sha256": "df7f8f2e4005deb1cd598c6ea6785b19a69b5b6490dbc5ed8588224520050c2c",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch15-r1.json",
+      "bytes": 1131,
+      "sha256": "27e59f231621097e1af5d7bd925feeb629b1e59c33ff172afd7cd93d1ff9a417",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch15-r1.md",
+      "bytes": 836,
+      "sha256": "a4d9161151d2eaee1caa7839f80838239d3dfbebc90f1745ec48999d1a2b315a",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch16-r1.json",
+      "bytes": 1006,
+      "sha256": "56de5c4ee9a74f75b752e3e5138f55ecd82676900442bf5d20620463904e4bc7",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch16-r1.md",
+      "bytes": 1913,
+      "sha256": "8f937670c749e746cbba16a9db848bb542725bee3093db9e2fef9cca5a29cb4d",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch17-r1.json",
+      "bytes": 937,
+      "sha256": "2c3b6d5f80df20214f871459b1fdcc570e49208f93629c5bda4def8548bc91b4",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch17-r1.md",
+      "bytes": 1199,
+      "sha256": "7f902eefce0f4125768e9a0a76d039e3cf8e029667b7f823755a14be8bf0cc8d",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch18-r1.json",
+      "bytes": 804,
+      "sha256": "44fbbd2b9bc34aafe1f0f9569ec4e9a8820083f6d8d8cd074609d542416d50cf",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch18-r1.md",
+      "bytes": 472,
+      "sha256": "ec16ae7d269626156253649f8c35f41879f021413c28d219910aa0e99b7abd0d",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch19-r1.json",
+      "bytes": 804,
+      "sha256": "4fd14069d2e7ecba310c6c5b12548576bcd9d19b46d6650f2b906a61d57f5ce7",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch19-r1.md",
+      "bytes": 777,
+      "sha256": "1a510fc702d5c2f145f8b0b6ac33205dd7533ea3f9819842eaf5f9979db2ebe2",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch20-r1.json",
+      "bytes": 992,
+      "sha256": "0f5215090c736dada95439e3a1d583b4fd97dffd88139406924e04af220863b1",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch20-r1.md",
+      "bytes": 1751,
+      "sha256": "1d0e938f988f7035cf69ba0abc2ae76010d00f58831bcd894cba32530ed08c46",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch21-r1.json",
+      "bytes": 822,
+      "sha256": "af9cad2d0072d35b80faae54c46c4c9c83e25e653b868987a6bf55c71a7ef4a0",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch21-r1.md",
+      "bytes": 699,
+      "sha256": "3aeb0f6133892cb9187d74507ce29d55bcc62c34ee855c69175ba1e7b3b70be7",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch22-r1.json",
+      "bytes": 915,
+      "sha256": "2f114fc6f4b1f381e45061ac6ae5b2a879cfa4973cb27aaaf60c9ac61d3b2503",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch22-r1.md",
+      "bytes": 1193,
+      "sha256": "fba472cfa140dd0dfa6b39928f9aa66bfb0cb8e9c79b9d89f6b41e1f2ce34683",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch23-r1.json",
+      "bytes": 947,
+      "sha256": "84adf57f0ba983e2108cba1dc649e8a4be6a965082555a825e593baf2f1b755a",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch23-r1.md",
+      "bytes": 1217,
+      "sha256": "d347eaa86a74ef1b7e8d5eefa74cb33456e5cc0ce2a6763b15219deb648a46ef",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch24-r1.json",
+      "bytes": 822,
+      "sha256": "7a5513f89a5870197a9835f657a4a197b9e42de8483f896b4b7a96779b3424ad",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch24-r1.md",
+      "bytes": 473,
+      "sha256": "4f3d2376ac113a221bea2f17cc66a2ccb21515057ee0f8e761ea5562338c980f",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch25-r1.json",
+      "bytes": 816,
+      "sha256": "c2b9c2a358b5790270605ec0e50662925704e801ab0a2de851c41e3b806873c1",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch25-r1.md",
+      "bytes": 456,
+      "sha256": "ed4624c9b259aa96192a3ff73ddc39fc5c5ac369b2085036d71ce0cf4b71c016",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch26-r1.json",
+      "bytes": 804,
+      "sha256": "2a568ef9e5548988925b8e00402996942d34bea5bf3ec2de78a180ace9266edf",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/review-ch26-r1.md",
+      "bytes": 507,
+      "sha256": "09b875afa91282da0a89a30500df559e0e8f16fdbb3362adb83cd8700277f1c6",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch01.json",
+      "bytes": 2127,
+      "sha256": "6aee8fcd5c4c73567701c54bc93cf5a92173de4d7cc2606a21b0a02405888193",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch02.json",
+      "bytes": 988,
+      "sha256": "7b6d67f01dfcc0e6cc7911e6690fec4601be1aaee0cc83371cc4619b42b7c109",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch03.json",
+      "bytes": 1443,
+      "sha256": "238248ea7c744ebaaf3529d8c7cadca0ae61ce7673df76764ec1853118acc6fd",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch04.json",
+      "bytes": 1587,
+      "sha256": "fd81b30b2a8fe1d328881d4f2c49765fe61f9d26c0e7f0dbb27b040a9b6177c8",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch05.json",
+      "bytes": 838,
+      "sha256": "3eebef64a78dbf76afe69655d2c7eac37bae179771672c7bd2aa72cbcbefbe51",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch06.json",
+      "bytes": 1460,
+      "sha256": "fc97e8dde033a2cf53d481b44eecbc669e62e445cacc35cfc45f4fbca03e7548",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch07.json",
+      "bytes": 1476,
+      "sha256": "2ea866ac854ec2ace240502af11f5b5a2e4b4bdbcc8c63416166b3cae87a5387",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch08.json",
+      "bytes": 1995,
+      "sha256": "c2d9a0c38db8f2af0bcd6eac70d4a32ac61e748318885056a5992e7d48da1503",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch09.json",
+      "bytes": 1467,
+      "sha256": "19596e7f325e1c79b44fddceec477fa17df32c68d38261aff53d1655f9998e01",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch10.json",
+      "bytes": 2005,
+      "sha256": "6a34cad7d6570fabcf7865529b23635742d0462ad5dbb04c3da749356c5f63f2",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch11.json",
+      "bytes": 1384,
+      "sha256": "4bd32cf663485675f673ac0282822b95521fe9768b33395d82254caf0f830487",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch12.json",
+      "bytes": 1604,
+      "sha256": "6f15af2f30c6a39aa8523eddd535e54b25eaff982392726ad54f4db8df6a8729",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch13.json",
+      "bytes": 1535,
+      "sha256": "c14552d91458d7cc566f4aace00ef70fe411d25f3f14ae1026f85f91e621d569",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch14.json",
+      "bytes": 1415,
+      "sha256": "261cbe6f212b6cd3077a44ead44bf72dc4cc991c4613827f561b64ff26e1b3fb",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch15.json",
+      "bytes": 2797,
+      "sha256": "a94efc09322f19105960e0147e6e3caa80af94c7557ec7ca74d0e0c0e3c5f186",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch16.json",
+      "bytes": 1758,
+      "sha256": "09a2bc7a6cf39feb7f8c71714208847d0aa24ccc2bbd6daebbb751444e5175f1",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch17.json",
+      "bytes": 1694,
+      "sha256": "420ca8b1db108ffcab9f8e43d3027256d3316531905dfbca4c542391101518e3",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch18.json",
+      "bytes": 1580,
+      "sha256": "4da3316517fb4732b4aec4facb03a9faea663e1d431b7dc9b5eaa14e72dd0267",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch19.json",
+      "bytes": 1679,
+      "sha256": "1c6f521baf48b9cf4a08f20dc922122de5d239073235f45601088cb2475234e2",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch20.json",
+      "bytes": 2508,
+      "sha256": "dd811b689dee117d4df7f7f77ba543f05fb921924eee8515a396c2eaf83d970a",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch21.json",
+      "bytes": 3027,
+      "sha256": "490347bdc9dcc6d037a947a62bebb438773f389dfdf0894ef925432fc24dadc1",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch22.json",
+      "bytes": 1588,
+      "sha256": "265d5157c8dc415c10ffbf0c3d78e76b0a408866b98594d3a69cc2b4c2e146e4",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch23.json",
+      "bytes": 2919,
+      "sha256": "27bab5bf805244d53a2870239991e590980fae84220e4849578f51c2f678e8da",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch24.json",
+      "bytes": 2922,
+      "sha256": "25374e7dc4049219f255209e00db6dd95d6029f0420cec86f8915ec9e4ab3afd",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch25.json",
+      "bytes": 2148,
+      "sha256": "20026f8f05085abea55e35c079e789909035190412f55db43cefa898ecd468ad",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/source-read-ch26.json",
+      "bytes": 1691,
+      "sha256": "b6ed1366e7bc4c7798f97cacc2928c3ad16fad9882f9dbc636b6251ca4b31626",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "WORKFLOW.md",
+      "bytes": 3636,
+      "sha256": "5b2bba2de5787b99098a6652e1442c6df288e4861b5345f3523c28a2e0433572",
+      "purpose": "public reader, supporting content, asset, or rebuild input"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+ "author": "author_a",
+ "chapter": "ch09",
+ "recordings": [
+  {
+   "position": 17,
+   "video_id": "mB_27xaN1nU",
+   "normalized_text_sha256": "8ad6091fcab10fe24ad4ef59c4a10e198b12e569486f08ef29a2cfaefccfe337",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "matrix of a linear transformation relative to ordered bases",
+    "coordinate formula",
+    "matrix to transformation",
+    "examples F^3 to F^2 and differentiation",
+    "isomorphism between L(V,W) and matrices"
+   ],
+   "clarifications": [],
+   "original_constructions": [
+    "running matrix",
+    "composition theorem"
+   ]
+  },
+  {
+   "position": 18,
+   "video_id": "PiG2BMkK3s4",
+   "normalized_text_sha256": "1de02abcfc2f089d414cd8a1ff9eb9c1f96be05f3faf4e05b3d5cef2b5e3877d",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "transformation from a matrix and the row versus column convention",
+    "matrices of one operator in two bases",
+    "similarity P^{-1}AP",
+    "converse construction of a basis",
+    "3x3 example completed"
+   ],
+   "clarifications": [
+    "The spoken formula P times matrix times P^{-1} in the converse is stated in the direction proved here"
+   ],
+   "original_constructions": [
+    "invariants of similarity",
+    "rank normal form",
+    "exercises"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Row space and computations with subspaces",
+  "lectures": [10, 11],
+  "objectives": [
+    "Prove that row operations preserve the row space",
+    "Obtain a basis, coordinates and equations of a subspace from its echelon form",
+    "Describe every invertible matrix that reduces a given matrix",
+    "Solve membership, null space, solvability and intersection problems"
+  ],
+  "prerequisites": "Chapters 2 and 4: echelon forms, bases, dimension and coordinates.",
+  "source_scope": "The captions of Lectures 9 and 10 were read in full; the 5 by 5 running matrix and the small example of Section 3 are the matrices read out in those captions, and the extra theorems and exercises are original."
+}

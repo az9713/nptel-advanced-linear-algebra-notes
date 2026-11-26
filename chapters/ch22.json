@@ -1,0 +1,15 @@
+{
+  "title": "Orthogonal projection, Gram-Schmidt, and best approximation",
+  "lectures": [
+    47,
+    46
+  ],
+  "objectives": [
+    "Characterize best approximations by orthogonality",
+    "Compute projections by orthogonal bases and by normal equations",
+    "Prove the direct sum of a finite-dimensional subspace and its orthogonal complement",
+    "Prove Bessel's inequality and see where existence fails"
+  ],
+  "prerequisites": "Inner products, orthogonal sets and Gram-Schmidt (Chapter 21); projections (Chapter 17).",
+  "source_scope": "The captions of the two recordings (positions 47 and 46) were read in full. The line example comes from the first; the running plane, normal equations, the infinite-dimensional counterexample, laboratory and exercises are original."
+}

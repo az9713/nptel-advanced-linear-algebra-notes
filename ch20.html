@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Applications of primary decomposition: diagonalizable plus nilpotent parts · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html" aria-current=page>20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>20. Applications of primary decomposition: diagonalizable plus nilpotent parts</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=B6C1-7Oc_e4">Recording 40</a>, <a href="https://www.youtube.com/watch?v=Q7XtHAR9jRc">Recording 41</a>, <a href="https://www.youtube.com/watch?v=f-YSQNvXrvM">Recording 42</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Solve linear initial value problems with generalized eigenvector chains</li><li>Prove existence and uniqueness of the diagonalizable-plus-nilpotent splitting</li><li>Prove the cyclic decomposition for a prime-power minimal polynomial</li><li>Compute Jordan and rational canonical forms</li></ul>
+<p><strong>Prerequisites:</strong> The primary decomposition theorem (Chapter 19), diagonalizability and direct sums (Chapters 16 to 18).</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch20.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-linear-initial-value-problems-0015">1. Linear initial value problems 00:15</a></li><li><a href="#2-generalized-eigenvectors-and-chains-1945">2. Generalized eigenvectors and chains 19:45</a></li><li><a href="#3-solutions-from-a-chain-0636">3. Solutions from a chain 06:36</a></li><li><a href="#4-the-diagonalizable-and-nilpotent-parts-1925">4. The diagonalizable and nilpotent parts 19:25</a></li><li><a href="#5-cyclic-subspaces-and-companion-matrices-1502">5. Cyclic subspaces and companion matrices 15:02</a></li><li><a href="#6-the-cyclic-decomposition-for-a-prime-power-3922">6. The cyclic decomposition for a prime power 39:22</a></li><li><a href="#7-nilpotent-operators-and-jordan-nilpotent-blocks-2227">7. Nilpotent operators and Jordan nilpotent blocks 22:27</a></li><li><a href="#8-the-jordan-canonical-form-3817">8. The Jordan canonical form 38:17</a></li><li><a href="#9-the-rational-canonical-form-2546">9. The rational canonical form 25:46</a></li><li><a href="#10-executable-check">10. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Consider the system of three differential equations $X'(t)=AX(t)$, $X(0)=X_0$, with</p>
+<p>$$A=\begin{pmatrix}3&amp;1&amp;-1\\2&amp;2&amp;-1\\2&amp;2&amp;0\end{pmatrix}.$$</p>
+<p>This matrix is the first running example of <a href="ch12.html">Chapter 12</a>, where it could not be diagonalized and where its powers grew like $k\,2^k$. Its minimal polynomial is $(x-1)(x-2)^2$. If $A$ had a basis of eigenvectors $u_i$ with eigenvalues $c_i$, the solutions would be combinations of $e^{c_it}u_i$. It has only two independent eigenvectors, so a third solution is missing. This chapter supplies it. The same structure then describes every operator: first as a diagonalizable operator plus a nilpotent one, and finally as a block diagonal matrix of a fixed shape.</p>
+<p><strong>Conventions.</strong> $F$ is a field, $V$ is a finite-dimensional vector space over $F$, and $T$ is a linear operator on $V$ with minimal polynomial $m_T$. A subspace is <em>$T$-invariant</em> if $T$ maps it into itself. An operator $N$ is <em>nilpotent</em> if $N^r=0$ for some $r\ge1$; the least such $r$ is its <em>index</em>. The <em>primary decomposition theorem</em> (<a href="ch19.html">Chapter 19</a>) says that if $m_T=p_1^{r_1}\cdots p_k^{r_k}$ with distinct monic irreducible $p_i$, then $V=W_1\oplus\cdots\oplus W_k$ with $W_i=\ker p_i(T)^{r_i}$ invariant, the minimal polynomial of $T$ on $W_i$ is $p_i^{r_i}$, and the projections $E_i$ on the $W_i$ are polynomials in $T$.</p>
+<h2 id="1-linear-initial-value-problems-0015">1. Linear initial value problems <a href="https://www.youtube.com/watch?v=B6C1-7Oc_e4&amp;t=15s">00:15</a></h2>
+<p>Let $A\in\mathbb{C}^{n\times n}$ be constant. We look for differentiable functions $X:\mathbb{R}\to\mathbb{C}^n$ with $X'=AX$. Substituting $X(t)=e^{\lambda t}u$ with a constant vector $u$ gives $\lambda e^{\lambda t}u=e^{\lambda t}Au$. Since $e^{\lambda t}\ne0$, this is a solution exactly when $(A-\lambda I)u=0$. A nonzero solution of this form is an eigenvector $u$ times $e^{\lambda t}$.</p>
+<p><strong>A system with too few eigenvectors</strong> <a href="https://www.youtube.com/watch?v=B6C1-7Oc_e4&amp;t=392s">06:32</a>. Let $B=\begin{pmatrix}-2&amp;1\\0&amp;-2\end{pmatrix}$. Its only eigenvalue is $-2$, and its eigenvectors are the multiples of $v_1=(1,0)$. One solution is $X_1=e^{-2t}v_1$. Guided by the repeated-root case of a single differential equation, try $X_2=e^{-2t}(tu+v)$. Then</p>
+<p>$$X_2'=e^{-2t}\big(-2tu-2v+u\big),\qquad BX_2=e^{-2t}\big(tBu+Bv\big).$$</p>
+<p>Comparing the coefficients of $te^{-2t}$ and $e^{-2t}$ gives $(B+2I)u=0$ and $(B+2I)v=u$. Take $u=v_1$ and $v=v_2=(0,1)$. So $X_2=e^{-2t}(tv_1+v_2)$ is a second solution. Since $X_1(0)=v_1$ and $X_2(0)=v_2$ are independent, $c_1X_1+c_2X_2$ meets every initial value. The vector $v_2$ is not an eigenvector, but $(B+2I)^2v_2=0$.</p>
+<h2 id="2-generalized-eigenvectors-and-chains-1945">2. Generalized eigenvectors and chains <a href="https://www.youtube.com/watch?v=B6C1-7Oc_e4&amp;t=1185s">19:45</a></h2>
+<p><strong>Definition 2.1.</strong> Let $\lambda\in F$ be an eigenvalue of $T$. A vector $v$ is a <em>generalized eigenvector of rank $r$</em> for $\lambda$ if $(T-\lambda I)^rv=0$ and $(T-\lambda I)^{r-1}v\ne0$.</p>
+<p>Rank $1$ means an ordinary eigenvector. Given $v$ of rank $r$, put $v_r=v$ and $v_{i}=(T-\lambda I)v_{i+1}$ for $i=r-1,\dots,1$. Then $v_i=(T-\lambda I)^{r-i}v$, and with $v_0=0$,</p>
+<p>$$(T-\lambda I)v_i=v_{i-1},\qquad\text{that is,}\qquad Tv_i=\lambda v_i+v_{i-1}\quad(1\le i\le r).$$</p>
+<p>The list $(v_1,\dots,v_r)$ is the <em>chain</em> generated by $v$. Its first member is an eigenvector.</p>
+<p><strong>Lemma 2.2.</strong> A chain is linearly independent.</p>
+<p><em>Proof.</em> Suppose $\sum_{i=1}^ra_iv_i=0$ with some $a_i\ne0$, and let $j$ be the largest such index. Apply $(T-\lambda I)^{j-1}$. It sends $v_i$ to $0$ for $i&lt;j$ and sends $v_j$ to $v_1$. So $a_jv_1=0$. But $v_1=(T-\lambda I)^{r-1}v\ne0$, a contradiction. $\square$</p>
+<p>For $B$ above, $(v_1,v_2)$ is a chain for $\lambda=-2$. For the running matrix $A$ and $\lambda=2$, the vector $w=(1,1,1)$ has $(A-2I)w=(1,1,2)=u$ and $(A-2I)u=0$. So $(u,w)$ is a chain of length $2$.</p>
+<h2 id="3-solutions-from-a-chain-0636">3. Solutions from a chain <a href="https://www.youtube.com/watch?v=Q7XtHAR9jRc&amp;t=396s">06:36</a></h2>
+<p><strong>Theorem 3.1.</strong> Let $(v_1,\dots,v_r)$ be a chain of $A\in\mathbb{C}^{n\times n}$ for $\lambda$. For $1\le j\le r$ the functions</p>
+<p>$$X_j(t)=e^{\lambda t}\sum_{i=1}^{j}\frac{t^{j-i}}{(j-i)!}\,v_i$$</p>
+<p>solve $X'=AX$, and they are linearly independent.</p>
+<p><em>Proof.</em> Differentiating,</p>
+<p>$$X_j'=\lambda X_j+e^{\lambda t}\sum_{i=1}^{j-1}\frac{t^{j-i-1}}{(j-i-1)!}v_i .$$</p>
+<p>On the other side, $Av_i=\lambda v_i+v_{i-1}$ with $v_0=0$, so</p>
+<p>$$AX_j=\lambda X_j+e^{\lambda t}\sum_{i=2}^{j}\frac{t^{j-i}}{(j-i)!}v_{i-1}.$$</p>
+<p>Replacing $i$ by $i+1$ in the last sum shows that the two expressions agree. At $t=0$ we have $X_j(0)=v_j$, which are independent by Lemma 2.2. A linear relation among the functions would give the same relation at $t=0$. $\square$</p>
+<p>The factorials are needed: without them the derivative of $t^{j-i}$ leaves an unwanted factor $j-i$.</p>
+<p><strong>On the running example.</strong> The eigenvector for $1$ is $u_1=(1,0,2)$. Three independent solutions are</p>
+<p>$$e^{t}u_1,\qquad e^{2t}u,\qquad e^{2t}(tu+w).$$</p>
+<p>Their values at $t=0$ form the basis $(u_1,u,w)$ of $\mathbb{C}^3$.</p>
+<p><strong>A six-dimensional pattern</strong> <a href="https://www.youtube.com/watch?v=Q7XtHAR9jRc&amp;t=25s">00:25</a>. Let $A\in\mathbb{C}^{6\times6}$ have characteristic polynomial $(x-\lambda_1)^2(x-\lambda_2)^4$ and minimal polynomial $(x-\lambda_1)(x-\lambda_2)^3$ with $\lambda_1\ne\lambda_2$. The factor for $\lambda_1$ is simple, so $\ker(A-\lambda_1I)$ has dimension $2$: two eigenvector solutions. The exponent $3$ for $\lambda_2$ guarantees a chain of length $3$, giving three solutions. The primary component has dimension $4$, so one more independent eigenvector for $\lambda_2$ remains. Section 8 shows that this count is forced.</p>
+<h2 id="4-the-diagonalizable-and-nilpotent-parts-1925">4. The diagonalizable and nilpotent parts <a href="https://www.youtube.com/watch?v=Q7XtHAR9jRc&amp;t=1165s">19:25</a></h2>
+<p><strong>Theorem 4.1.</strong> Suppose $m_T=(x-c_1)^{r_1}\cdots(x-c_k)^{r_k}$ with distinct $c_i\in F$. There are unique operators $D$ and $N$ with $T=D+N$, $D$ diagonalizable, $N$ nilpotent and $DN=ND$. Both are polynomials in $T$.</p>
+<p><em>Proof. Existence.</em> <a href="ch19.html">Chapter 19</a> gives it: $D=\sum c_iE_i$ and $N=T-D$ are polynomials in $T$, $D$ is diagonalizable, and $N^r=\sum(T-c_iI)^rE_i=0$ for $r\ge\max r_i$.</p>
+<p><em>Uniqueness.</em> Let $T=D'+N'$ with the same properties. Then $D'$ commutes with $N'$ and so with $T=D'+N'$, hence with every polynomial in $T$, in particular with $D$ and $N$. The same holds for $N'$. Now</p>
+<p>$$D-D'=N'-N.$$</p>
+<p>The right side is a difference of commuting nilpotent operators. If $N^a=0$ and $(N')^b=0$, every term of the binomial expansion of $(N'-N)^{a+b}$ contains $N^a$ or $(N')^b$, so $N'-N$ is nilpotent. On the left, $D$ and $D'$ are commuting diagonalizable operators, so they have a common basis of eigenvectors (<a href="ch16.html">Chapter 16</a>, Exercise 6), and $D-D'$ is diagonal in it. A diagonal matrix that is nilpotent is zero. So $D=D'$ and $N=N'$. $\square$</p>
+<p>The hinge of uniqueness is that an operator which is both diagonalizable and nilpotent is $0$. The requirement $DN=ND$ cannot be dropped (Exercise 4).</p>
+<p><strong>On the running example.</strong> Here $E_1=(A-2I)^2$ is the projection onto $\ker(A-I)$, since the polynomial $(x-2)^2$ takes the value $1$ at $x=1$ and vanishes to order $2$ at $x=2$. Then $D=E_1+2(I-E_1)=2I-E_1$ and $N=A-D$:</p>
+<p>$$D=\begin{pmatrix}1&amp;1&amp;0\\0&amp;2&amp;0\\-2&amp;2&amp;2\end{pmatrix},\qquad N=\begin{pmatrix}2&amp;0&amp;-1\\2&amp;0&amp;-1\\4&amp;0&amp;-2\end{pmatrix},\qquad N^2=0,\quad DN=ND.$$</p>
+<p><strong>All solutions at once.</strong> Over $\mathbb{C}$ define</p>
+<p>$$\Phi(t)=\sum_{i=1}^ke^{c_it}\Big(\sum_{s=0}^{r_i-1}\frac{t^s}{s!}(A-c_iI)^s\Big)E_i .$$</p>
+<p><strong>Theorem 4.2.</strong> The problem $X'=AX$, $X(0)=X_0$ has exactly one solution, $X(t)=\Phi(t)X_0$.</p>
+<p><em>Proof.</em> Write $\Phi(t)=\sum_ie^{c_it}Q_i(t)E_i$ with $Q_i(t)=\sum_{s&lt;r_i}t^sN_i^s/s!$ and $N_i=A-c_iI$, so $N_i^{r_i}E_i=0$. Then $Q_i'(t)E_i=N_iQ_i(t)E_i$, because the extra top term contains $N_i^{r_i}E_i=0$. Hence $\Phi'=\sum_ie^{c_it}(c_iI+N_i)Q_iE_i=A\Phi$, and $\Phi(0)=\sum E_i=I$. So $\Phi(t)X_0$ is a solution. For uniqueness, note that $\Phi(-t)\Phi(t)=\sum_iQ_i(-t)Q_i(t)E_i$, since $E_iE_j=0$ for $i\ne j$. By the binomial theorem the coefficient of $N_i^s/s!$ in $Q_i(-t)Q_i(t)$ is $(t-t)^s$ for $s&lt;r_i$, and higher powers vanish on $\operatorname{im}E_i$. So $\Phi(-t)\Phi(t)=I$. Now let $X$ be any solution. All factors of $\Phi(-t)$ are polynomials in $A$ and commute with $A$, and $\frac{d}{dt}\Phi(-t)=-A\Phi(-t)$. So $\frac{d}{dt}\big(\Phi(-t)X(t)\big)=-A\Phi(-t)X+\Phi(-t)AX=0$. Hence $\Phi(-t)X(t)=X(0)=X_0$, and $X(t)=\Phi(t)X_0$. $\square$</p>
+<h2 id="5-cyclic-subspaces-and-companion-matrices-1502">5. Cyclic subspaces and companion matrices <a href="https://www.youtube.com/watch?v=f-YSQNvXrvM&amp;t=902s">15:02</a></h2>
+<p>The decomposition into $D$ and $N$ needs a polynomial that splits. To describe operators over every field we use subspaces generated by one vector.</p>
+<p><strong>Definition 5.1.</strong> For $\alpha\in V$, the <em>$T$-cyclic subspace</em> generated by $\alpha$ is $Z(\alpha;T)=\{f(T)\alpha:f\in F[x]\}$. The <em>$T$-annihilator</em> of $\alpha$ is the monic generator $p_\alpha$ of the ideal $\{f:f(T)\alpha=0\}$. If $Z(\alpha;T)=V$, then $\alpha$ is a <em>cyclic vector</em>.</p>
+<p>$Z(\alpha;T)$ is a subspace, and it is $T$-invariant because $Tf(T)\alpha=(xf)(T)\alpha$.</p>
+<p><strong>Theorem 5.2.</strong> Let $\alpha\ne0$ and $p_\alpha=x^k+a_{k-1}x^{k-1}+\cdots+a_0$. Then $(\alpha,T\alpha,\dots,T^{k-1}\alpha)$ is a basis of $Z(\alpha;T)$, the restriction of $T$ to $Z(\alpha;T)$ has minimal polynomial $p_\alpha$, and its matrix in this basis is the <em>companion matrix</em> of $p_\alpha$,</p>
+<p>$$C(p_\alpha)=\begin{pmatrix}0&amp;0&amp;\cdots&amp;0&amp;-a_0\\1&amp;0&amp;\cdots&amp;0&amp;-a_1\\0&amp;1&amp;\cdots&amp;0&amp;-a_2\\\vdots&amp;&amp;\ddots&amp;&amp;\vdots\\0&amp;0&amp;\cdots&amp;1&amp;-a_{k-1}\end{pmatrix}.$$</p>
+<p><em>Proof.</em> Divide $f$ by $p_\alpha$: $f=qp_\alpha+s$ with $\deg s&lt;k$. Then $f(T)\alpha=s(T)\alpha$, so the $k$ vectors span. A nontrivial relation among them would be a nonzero polynomial of degree below $k$ in the ideal, which is impossible. For the minimal polynomial: $g(T)$ vanishes on $Z(\alpha;T)$ exactly when $g(T)\alpha=0$, since $g(T)f(T)\alpha=f(T)g(T)\alpha$. The matrix follows from $T(T^i\alpha)=T^{i+1}\alpha$ for $i&lt;k-1$ and $T(T^{k-1}\alpha)=-\sum_ia_iT^i\alpha$. $\square$</p>
+<h2 id="6-the-cyclic-decomposition-for-a-prime-power-3922">6. The cyclic decomposition for a prime power <a href="https://www.youtube.com/watch?v=f-YSQNvXrvM&amp;t=2362s">39:22</a></h2>
+<p><strong>Theorem 6.1.</strong> Let $p$ be monic irreducible of degree $d$ and $m_T=p^r$. Then $V=Z(\alpha_1;T)\oplus\cdots\oplus Z(\alpha_q;T)$ for some nonzero $\alpha_i$.</p>
+<p>The proof needs one fact. If $\beta\in\ker p(T)$ and $\beta\ne0$, its annihilator is $p$. For $\beta_1,\dots,\beta_s\in\ker p(T)$ we call them <em>$p$-independent</em> if $\sum g_i(T)\beta_i=0$ forces $p\mid g_i$ for all $i$. For $g\in F[x]$ let $[g]$ be its <em>residue class</em> modulo $p$, the set of all $g+hp$ with $h\in F[x]$. Sums and products of classes, computed on any representatives, do not depend on the choice, and the classes form a commutative ring $F[x]/(p)$. It is a field $K$: if $[g]\ne0$, then $p$ does not divide $g$. The ideal of all $ag+bp$ is generated by one monic polynomial, which divides the irreducible $p$ and also $g$, so it is $1$. Hence $ag+bp=1$ for some $a,b\in F[x]$, and $[a][g]=1$. The rule $[g]\beta=g(T)\beta$ is well defined on $\ker p(T)$, because $p(T)\beta=0$, and it makes $\ker p(T)$ a vector space over $K$. So $p$-independence is linear independence over $K$, and every $p$-independent set in $\ker p(T)$ extends to a $K$-basis.</p>
+<p><em>Proof of Theorem 6.1.</em> Induct on $\dim V$; for $V=0$ there is nothing to prove. Let $U=\operatorname{im}p(T)$. It is invariant, and it is smaller than $V$, since $p(T)$ is nilpotent. On $U$ the minimal polynomial divides $p^r$. By induction, $U=\bigoplus_jZ(u_j;T)$ with $u_j\ne0$ and annihilators $p^{e_j}$. Choose $v_j$ with $p(T)v_j=u_j$, and put $z_j=p(T)^{e_j}v_j=p(T)^{e_j-1}u_j$. Then $z_j$ is a nonzero element of $\ker p(T)$ in $Z(u_j;T)$. Because the $Z(u_j;T)$ form a direct sum, the $z_j$ are $p$-independent. Extend them to a $K$-basis of $\ker p(T)$ by vectors $w_1,\dots,w_s$. We claim that $V$ is the direct sum of the $Z(v_j;T)$ and the $Z(w_l;T)$.</p>
+<p><em>Independence.</em> Suppose $\sum_jf_j(T)v_j+\sum_lh_l(T)w_l=0$. Apply $p(T)$. The second sum dies, and $\sum_jf_j(T)u_j=0$. By directness in $U$, $f_j(T)u_j=0$, so $f_j=g_jp^{e_j}$. Then $f_j(T)v_j=g_j(T)z_j$, and the original relation reads $\sum_jg_j(T)z_j+\sum_lh_l(T)w_l=0$. It lies in $\ker p(T)$, and the $z_j,w_l$ are $p$-independent. So $p$ divides every $g_j$ and $h_l$. Hence every term $f_j(T)v_j$ and $h_l(T)w_l$ is zero.</p>
+<p><em>Spanning.</em> Let $S$ be the sum. Then $p(T)S$ contains every $Z(u_j;T)$, so $p(T)S=U$. Also $\ker p(T)\subseteq S$, since it is spanned over $K$ by the $z_j$ and $w_l$, and $z_j\in Z(v_j;T)$. Given $\alpha\in V$, there is $\sigma\in S$ with $p(T)\sigma=p(T)\alpha$. Then $\alpha-\sigma\in\ker p(T)\subseteq S$, so $\alpha\in S$. $\square$</p>
+<p>The hinge is the lifting step: each cyclic summand of the smaller space $\operatorname{im}p(T)$ is the image of a longer cyclic summand upstairs, and the summands that die under $p(T)$ come from a basis of the kernel.</p>
+<p><strong>Corollary 6.2 (uniqueness of the exponents).</strong> In any such decomposition, the number of summands with annihilator $p^e$, $e\ge i$, is $(\dim\ker p(T)^i-\dim\ker p(T)^{i-1})/d$. So the multiset of annihilators depends only on $T$.</p>
+<p><em>Proof.</em> Kernels split over invariant direct sums. On one summand $Z$ with annihilator $p^e$, $p(T)^if(T)\alpha=0$ exactly when $p^{e-i}\mid f$ (for $i\le e$). By Theorem 5.2 the space of such $f(T)\alpha$ has dimension $di$. So on $Z$, $\dim\ker p(T)^i=d\min(i,e)$, and the difference between $i$ and $i-1$ is $d$ if $e\ge i$ and $0$ otherwise. $\square$</p>
+<h2 id="7-nilpotent-operators-and-jordan-nilpotent-blocks-2227">7. Nilpotent operators and Jordan nilpotent blocks <a href="https://www.youtube.com/watch?v=Q7XtHAR9jRc&amp;t=1347s">22:27</a></h2>
+<p>Take $p=x$, so $T=N$ is nilpotent. Here $d=1$. A cyclic subspace with annihilator $x^e$ has the basis $(N^{e-1}\alpha,\dots,N\alpha,\alpha)$, a chain for the eigenvalue $0$. In this order $N$ sends each basis vector to the one before it, so its matrix is</p>
+<p>$$J_e=\begin{pmatrix}0&amp;1&amp;&amp;\\&amp;0&amp;\ddots&amp;\\&amp;&amp;\ddots&amp;1\\&amp;&amp;&amp;0\end{pmatrix}\in F^{e\times e},$$</p>
+<p>the <em>Jordan nilpotent block</em>, with ones just above the diagonal. It satisfies $J_e^e=0$ and $J_e^{e-1}\ne0$.</p>
+<p><strong>Theorem 7.1</strong> <a href="https://www.youtube.com/watch?v=f-YSQNvXrvM&amp;t=25s">00:25</a>. Every nilpotent operator $N$ of index $r$ has a matrix $\operatorname{diag}(J_{e_1},\dots,J_{e_q})$ with $r=e_1\ge e_2\ge\cdots\ge e_q$. The number of blocks is $q=\dim\ker N$, and with $\mu_i=\dim\ker N^i$ the number of blocks of size exactly $i$ is</p>
+<p>$$2\mu_i-\mu_{i-1}-\mu_{i+1}.$$</p>
+<p><em>Proof.</em> Existence is Theorem 6.1 with $p=x$. By Corollary 6.2 the number of blocks of size at least $i$ is $\mu_i-\mu_{i-1}$. For $i=1$ this gives $q=\mu_1$. The number of size exactly $i$ is $(\mu_i-\mu_{i-1})-(\mu_{i+1}-\mu_i)$. The largest block has size $r$ because $N^s$ vanishes exactly when every $J_{e}^s$ does. $\square$</p>
+<p><strong>Two examples</strong> <a href="https://www.youtube.com/watch?v=f-YSQNvXrvM&amp;t=270s">04:30</a>. Let $N_1,N_2$ be nilpotent operators on $F^5$, both of index $3$. If $\operatorname{rank}N_1=2$, then $N_1$ has $5-2=3$ blocks, one of size $3$, and the others must be $1$ and $1$. If $\operatorname{rank}N_2=3$, then $N_2$ has $2$ blocks, of sizes $3$ and $2$. The index alone does not decide the form.</p>
+<h2 id="8-the-jordan-canonical-form-3817">8. The Jordan canonical form <a href="https://www.youtube.com/watch?v=Q7XtHAR9jRc&amp;t=2297s">38:17</a></h2>
+<p>For $c\in F$ the <em>Jordan block</em> of size $e$ is $J_e(c)=cI_e+J_e$.</p>
+<p><strong>Theorem 8.1.</strong> Suppose $m_T$ splits, $m_T=\prod(x-c_i)^{r_i}$. There is a basis in which the matrix of $T$ is block diagonal with Jordan blocks $J_e(c_i)$. For each $c_i$:</p>
+<ol>
+<li>the largest block has size $r_i$, the exponent in $m_T$;</li>
+<li>the sizes add up to the algebraic multiplicity of $c_i$;</li>
+<li>the number of blocks equals the geometric multiplicity $\dim\ker(T-c_iI)$.</li>
+</ol>
+<p>The blocks are determined by $T$ up to their order.</p>
+<p><em>Proof.</em> Apply Theorem 7.1 to the nilpotent operator $T-c_iI$ on the primary component $W_i$, whose index is $r_i$. The matrix of $T$ on $W_i$ is $c_iI$ plus the nilpotent form. Concatenate the bases. Item 1 is the index; item 2 is $\dim W_i$, which is the algebraic multiplicity (<a href="ch19.html">Chapter 19</a>); item 3 is $\dim\ker$ of $T-c_iI$ on $W_i$, and $\ker(T-c_iI)\subseteq W_i$. For uniqueness, the sizes are given by the formula of Theorem 7.1 in terms of $\dim\ker(T-c_iI)^s$. $\square$</p>
+<p><strong>On the running example.</strong> The basis $(u_1,u,w)$ gives</p>
+<p>$$P^{-1}AP=\begin{pmatrix}1&amp;0&amp;0\\0&amp;2&amp;1\\0&amp;0&amp;2\end{pmatrix},\qquad P=\begin{pmatrix}1&amp;1&amp;1\\0&amp;1&amp;1\\2&amp;2&amp;1\end{pmatrix}.$$</p>
+<p>The six-dimensional pattern of Section 3 is now forced: blocks $J_1(\lambda_1),J_1(\lambda_1),J_3(\lambda_2),J_1(\lambda_2)$.</p>
+<p><strong>Listing the possible forms.</strong> Let $c_T=(x-1)^3(x-2)^4$ and $m_T=(x-1)^3(x-2)^2$. For eigenvalue $1$ there is one block $J_3(1)$. For eigenvalue $2$ the sizes add to $4$ with largest size $2$: either $2+2$ or $2+1+1$. So there are exactly two forms. The geometric multiplicity of $2$ is $2$ in the first and $3$ in the second. A value of $4$ is impossible: it would mean four blocks of size $1$, and then the exponent of $x-2$ in $m_T$ would be $1$.</p>
+<h2 id="9-the-rational-canonical-form-2546">9. The rational canonical form <a href="https://www.youtube.com/watch?v=f-YSQNvXrvM&amp;t=1546s">25:46</a></h2>
+<p>When $m_T$ does not split, blocks with a single eigenvalue do not exist, but companion blocks do.</p>
+<p><strong>Theorem 9.1.</strong> Let $m_T=p_1^{r_1}\cdots p_k^{r_k}$. There is a basis in which $T$ has the block diagonal matrix with blocks $C(p_i^{e_{ij}})$, where $r_i=e_{i1}\ge e_{i2}\ge\cdots$ for each $i$. These exponents are determined by $T$.</p>
+<p><em>Proof.</em> Split $V$ into primary components, apply Theorem 6.1 to each, and use Theorem 5.2 on each cyclic summand. The largest exponent is $r_i$ because the minimal polynomial of a direct sum is the least common multiple. Uniqueness is Corollary 6.2. $\square$</p>
+<p>This matrix is a <em>rational canonical form</em> of $T$. It is built with field operations from the factorization of $m_T$, and it needs no roots. Some books use a different normalization, grouping blocks into <em>invariant factors</em>.</p>
+<p><strong>An eight-dimensional example</strong> <a href="https://www.youtube.com/watch?v=f-YSQNvXrvM&amp;t=2814s">46:54</a>. Over $\mathbb{Q}$, let $\dim V=8$ and $m_T=p_1p_2^2$ with $p_1=x^4-4x^3+6x^2-4x-7$ and $p_2=x-3$. Note that $p_1=(x-1)^4-8$, which is irreducible over $\mathbb{Q}$. It has no rational root. With $y=x-1$, a factorization $y^4-8=(y^2+by+c)(y^2-by+d)$ over $\mathbb{Q}$ needs $c+d=b^2$, $b(d-c)=0$ and $cd=-8$. If $b=0$, then $d=-c$ and $c^2=8$; if $b\ne0$, then $c=d$ and $c^2=-8$. Neither has a rational solution. The block $C(p_1)$ has size $4$ and occurs at least once. A second copy would need all $8$ dimensions and leave no room for $p_2^2$. So $C(p_1)$ occurs once, and the remaining $4$ dimensions carry blocks $C(p_2^{e})$ with largest $e=2$. Two possibilities remain:</p>
+<p>$$C(p_1)\oplus C(p_2^2)\oplus C(p_2^2)\qquad\text{or}\qquad C(p_1)\oplus C(p_2^2)\oplus C(p_2)\oplus C(p_2),$$</p>
+<p>with</p>
+<p>$$C(p_1)=\begin{pmatrix}0&amp;0&amp;0&amp;7\\1&amp;0&amp;0&amp;4\\0&amp;1&amp;0&amp;-6\\0&amp;0&amp;1&amp;4\end{pmatrix},\quad C(p_2^2)=\begin{pmatrix}0&amp;-9\\1&amp;6\end{pmatrix},\quad C(p_2)=(3).$$</p>
+<p>Over $\mathbb{R}$ the polynomial $p_1$ factors further, and the form changes with it.</p>
+<h2 id="10-executable-check">10. Executable check</h2>
+<p><a href="labs/ch20.py">The chapter laboratory</a> uses exact fractions. It checks $E_1$, $D$, $N$, the Jordan basis and the identity $A^kw=2^kw+k2^{k-1}u$; the chain relations for $B$; the block-count formula and the chain basis of Theorem 6.1 (for $p=x$) on random nilpotent matrices of several shapes; the two rational forms of Section 9; and the matrices of Exercises 4 and 5. It does not integrate differential equations numerically, and it tests finitely many matrices; the general statements are proved above.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Initial value.) Solve $X'=AX$ for the running matrix with $X(0)=(0,0,1)$.</li>
+<li>(Forms.) List all Jordan forms with characteristic polynomial $(x-5)^5$ and minimal polynomial $(x-5)^3$, with the geometric multiplicity of each.</li>
+<li>(Invariants.) Find two nilpotent $7\times7$ matrices with the same characteristic polynomial, the same minimal polynomial and the same geometric multiplicity that are not similar.</li>
+<li>(Commutation.) Write $T=\begin{pmatrix}1&amp;1\\0&amp;2\end{pmatrix}$ as diagonalizable plus nilpotent in two ways, and say which one Theorem 4.1 describes.</li>
+<li>(Fields.) Let $T$ on $\mathbb{Q}^4$ have $m_T=x^2+1$. Find its rational canonical form over $\mathbb{Q}$ and its Jordan form over $\mathbb{C}$.</li>
+<li>(Cyclic vectors.) Prove that $T$ has a cyclic vector if and only if $\deg m_T=\dim V$.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>Expand $X(0)$ in the basis $(u_1,u,w)$ with $u_1=(1,0,2)$, $u=(1,1,2)$, $w=(1,1,1)$. One finds $(0,0,1)=u-w$. By Theorem 3.1 the solution with $X(0)=u$ is $e^{2t}u$ and with $X(0)=w$ is $e^{2t}(tu+w)$. So $X(t)=e^{2t}\big((1-t)u-w\big)=e^{2t}(-t,\,-t,\,1-2t)$. Check: at $t=0$ this is $(0,0,1)$, and $X'(0)=(-1,-1,0)$ equals the third column of $A$, which is $(-1,-1,0)$.</p>
+</li>
+<li>
+<p>The sizes add to $5$ and the largest is $3$: either $3+2$ or $3+1+1$. The geometric multiplicity is the number of blocks, $2$ or $3$.</p>
+</li>
+<li>
+<p>Take Jordan nilpotent forms with block sizes $(3,2,2)$ and $(3,3,1)$. Both have characteristic polynomial $x^7$, minimal polynomial $x^3$ and three blocks, so geometric multiplicity $3$. But $\dim\ker N^2=\sum\min(2,e)$ is $6$ for the first and $5$ for the second, and similar matrices have equal values of this number. So they are not similar.</p>
+</li>
+<li>
+<p>First, $T=\operatorname{diag}(1,2)+\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix}$, with the first diagonalizable and the second nilpotent. These do not commute: the two products are $\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix}$ and $\begin{pmatrix}0&amp;2\\0&amp;0\end{pmatrix}$. Second, $T$ has distinct eigenvalues $1,2$, so it is diagonalizable and $T=T+0$. The second pair commutes, and it is the one of Theorem 4.1.</p>
+</li>
+<li>
+<p>The polynomial $x^2+1$ is irreducible over $\mathbb{Q}$ and has degree $2$, so $\dim V=4$ gives two cyclic summands, each with annihilator $x^2+1$: the form is $C(x^2+1)\oplus C(x^2+1)$ with $C(x^2+1)=\begin{pmatrix}0&amp;-1\\1&amp;0\end{pmatrix}$. Over $\mathbb{C}$, regarding the same matrix as an operator on $\mathbb{C}^4$, $m_T=(x-i)(x+i)$ has distinct roots, so the Jordan form is diagonal. The characteristic polynomial $(x^2+1)^2$ shows that it is $\operatorname{diag}(i,i,-i,-i)$.</p>
+</li>
+<li>
+<p>If $V=Z(\alpha;T)$, then by Theorem 5.2 the minimal polynomial of $T$ is $p_\alpha$ of degree $\dim V$. Conversely, let $\deg m_T=\dim V$. In each primary component $W_i$ choose $v_i$ with annihilator exactly $p_i^{r_i}$; one exists because $p_i(T)^{r_i-1}$ does not vanish on $W_i$. Put $\alpha=\sum v_i$. If $f(T)\alpha=0$, then each $f(T)v_i=0$, since $f(T)v_i\in W_i$ and the sum is direct. So every $p_i^{r_i}$ divides $f$, hence $m_T$ divides $f$. Thus $p_\alpha=m_T$ and $\dim Z(\alpha;T)=\deg m_T=\dim V$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, the chapters on elementary canonical forms and on the rational and Jordan forms.</li>
+<li>Steven Roman, <em>Advanced Linear Algebra</em>, 3rd ed., Springer GTM 135, the chapters on the structure of a linear operator.</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., open access at https://linear.axler.net/, the chapter on operators on complex vector spaces.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch20.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 20 laboratory: diagonalizable plus nilpotent, canonical forms.
+
+Exact arithmetic over Q (fractions.Fraction).  A matrix is a list of
+rows, a vector a list.  The laboratory checks the running example (the
+3 x 3 matrix with minimal polynomial (x-1)(x-2)^2), the chain relations
+behind the solutions of X&#x27; = AX, the nilpotent block counts, the chain
+basis built by induction on random nilpotent matrices, companion
+matrices, and the computations of the exercises.
+&quot;&quot;&quot;
+from fractions import Fraction
+import random
+
+
+def Q(rows):
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def vec(*xs):
+    return [Fraction(x) for x in xs]
+
+
+def eye(n):
+    return [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def zeros(n):
+    return [[Fraction(0)] * n for _ in range(n)]
+
+
+def mul(A, B):
+    return [[sum((a * b for a, b in zip(r, c)), Fraction(0))
+             for c in zip(*B)] for r in A]
+
+
+def add(A, B, c=1):
+    return [[x + c * y for x, y in zip(r, s)] for r, s in zip(A, B)]
+
+
+def apply(A, v):
+    return [sum((a * x for a, x in zip(r, v)), Fraction(0)) for r in A]
+
+
+def power(A, k):
+    out = eye(len(A))
+    for _ in range(k):
+        out = mul(out, A)
+    return out
+
+
+def cols(vectors):
+    return [list(r) for r in zip(*vectors)]
+
+
+def rref(A):
+    R = [r[:] for r in A]
+    piv, r = [], 0
+    for c in range(len(R[0]) if R else 0):
+        s = next((i for i in range(r, len(R)) if R[i][c] != 0), None)
+        if s is None:
+            continue
+        R[r], R[s] = R[s], R[r]
+        R[r] = [x / R[r][c] for x in R[r]]
+        for i in range(len(R)):
+            if i != r and R[i][c] != 0:
+                f = R[i][c]
+                R[i] = [x - f * y for x, y in zip(R[i], R[r])]
+        piv.append(c)
+        r += 1
+        if r == len(R):
+            break
+    return R, piv
+
+
+def rank(vectors):
+    return len(rref(cols(vectors))[1]) if vectors else 0
+
+
+def nullspace(A):
+    R, piv = rref(A)
+    n = len(A[0])
+    basis = []
+    for f in (c for c in range(n) if c not in piv):
+        x = [Fraction(0)] * n
+        x[f] = Fraction(1)
+        for row, p in zip(R, piv):
+            x[p] = -row[f]
+        basis.append(x)
+    return basis
+
+
+def solve(vectors, b):
+    &quot;&quot;&quot;Coefficients x with sum x_j vectors[j] = b (vectors independent).&quot;&quot;&quot;
+    M = [list(row) + [y] for row, y in zip(cols(vectors), b)]
+    R, piv = rref(M)
+    k = len(vectors)
+    assert k not in piv, &#x27;b is not in the span&#x27;
+    x = [Fraction(0)] * k
+    for row, p in zip(R, piv):
+        x[p] = row[k]
+    return x
+
+
+def inverse(A):
+    n = len(A)
+    R, piv = rref([r + e for r, e in zip(A, eye(n))])
+    assert piv[:n] == list(range(n))
+    return [r[n:] for r in R]
+
+
+def nullity(A):
+    return len(nullspace(A))
+
+
+def jordan(blocks):
+    &quot;&quot;&quot;Block diagonal matrix of Jordan blocks given as (c, size).&quot;&quot;&quot;
+    n = sum(s for _, s in blocks)
+    J = zeros(n)
+    at = 0
+    for c, s in blocks:
+        for i in range(s):
+            J[at + i][at + i] = Fraction(c)
+            if i + 1 &lt; s:
+                J[at + i][at + i + 1] = Fraction(1)
+        at += s
+    return J
+
+
+def block_counts(N):
+    &quot;&quot;&quot;Number of nilpotent blocks of each size, from the nullities.&quot;&quot;&quot;
+    n = len(N)
+    m = [nullity(power(N, i)) for i in range(n + 2)]
+    return {i: 2 * m[i] - m[i - 1] - m[i + 1]
+            for i in range(1, n + 1) if 2 * m[i] - m[i - 1] - m[i + 1]}
+
+
+def chain_basis(N, space):
+    &quot;&quot;&quot;Chains [v, Nv, ...] forming a basis of the invariant span(space).
+
+    This is the induction of the chapter: build chains for N(space),
+    lift each head one step, then complete the chain ends to a basis of
+    the kernel of N inside the space.
+    &quot;&quot;&quot;
+    if not space:
+        return []
+    images = [apply(N, v) for v in space]
+    piv = rref(cols(images))[1]
+    image = [images[j] for j in piv]
+    assert len(image) &lt; len(space), &#x27;N is not nilpotent on the space&#x27;
+    chains = []
+    for chain in chain_basis(N, image):
+        head = chain[0]
+        coef = solve(image, head)
+        lift = [sum(c * space[piv[i]][t] for i, c in enumerate(coef))
+                for t in range(len(head))]
+        assert apply(N, lift) == head
+        chains.append([lift] + chain)
+    ends = [c[-1] for c in chains]
+    # kernel of N restricted to span(space)
+    kernel = [[sum(c * space[i][t] for i, c in enumerate(z))
+               for t in range(len(space[0]))]
+              for z in nullspace(cols(images))]
+    for w in kernel:
+        if rank(ends + [w]) &gt; len(ends):
+            ends.append(w)
+            chains.append([w])
+    return chains
+
+
+def companion(coeffs):
+    &quot;&quot;&quot;Companion matrix of x^k + a_{k-1} x^{k-1} + ... + a_0.
+
+    coeffs lists a_0, ..., a_{k-1}.
+    &quot;&quot;&quot;
+    k = len(coeffs)
+    C = zeros(k)
+    for i in range(1, k):
+        C[i][i - 1] = Fraction(1)
+    for i in range(k):
+        C[i][k - 1] = Fraction(-coeffs[i])
+    return C
+
+
+def block_diag(*blocks):
+    n = sum(len(b) for b in blocks)
+    M = zeros(n)
+    at = 0
+    for b in blocks:
+        for i in range(len(b)):
+            for j in range(len(b)):
+                M[at + i][at + j] = b[i][j]
+        at += len(b)
+    return M
+
+
+def poly_at(coeffs, A):
+    &quot;&quot;&quot;p(A) for p given by coefficients, constant term first.&quot;&quot;&quot;
+    out = zeros(len(A))
+    for c in reversed(coeffs):
+        out = add(mul(out, A), eye(len(A)), Fraction(c))
+    return out
+
+
+def main():
+    # running example
+    A = Q([[3, 1, -1], [2, 2, -1], [2, 2, 0]])
+    one = eye(3)
+    M2 = add(A, one, -2)
+    E1 = mul(M2, M2)
+    E2 = add(one, E1, -1)
+    D = add(E1, E2, 2)
+    N = add(A, D, -1)
+    assert mul(E1, E1) == E1 and mul(E1, E2) == zeros(3)
+    assert mul(D, N) == mul(N, D) and mul(N, N) == zeros(3) != N
+    assert E1 == Q([[1, -1, 0], [0, 0, 0], [2, -2, 0]])
+    assert D == Q([[1, 1, 0], [0, 2, 0], [-2, 2, 2]])
+    assert N == Q([[2, 0, -1], [2, 0, -1], [4, 0, -2]])
+    print(&#x27;E1 =&#x27;, [[str(x) for x in r] for r in E1])
+    print(&#x27;D =&#x27;, [[str(x) for x in r] for r in D])
+    print(&#x27;N =&#x27;, [[str(x) for x in r] for r in N])
+    u1, u, w = vec(1, 0, 2), vec(1, 1, 2), vec(1, 1, 1)
+    assert apply(A, u1) == u1
+    assert apply(M2, u) == vec(0, 0, 0) and apply(M2, w) == u
+    P = cols([u1, u, w])
+    J = jordan([(1, 1), (2, 2)])
+    assert mul(A, P) == mul(P, J)
+    for k in range(1, 12):
+        lhs = apply(power(A, k), w)
+        assert lhs == [2**k * b + k * 2**(k - 1) * a for a, b in zip(u, w)]
+    assert solve([u1, u, w], vec(0, 0, 1)) == [0, 1, -1]
+    print(&#x27;Jordan basis (1,0,2), (1,1,2), (1,1,1): checked&#x27;)
+
+    # first recording: the 2 x 2 system
+    B = Q([[-2, 1], [0, -2]])
+    v1, v2 = vec(1, 0), vec(0, 1)
+    assert apply(add(B, eye(2), 2), v2) == v1
+    assert apply(add(B, eye(2), 2), v1) == vec(0, 0)
+
+    # nilpotent block counts: sizes (3,1,1) and (3,2)
+    random.seed(20)
+    for sizes in ((3, 1, 1), (3, 2), (3, 2, 2), (3, 3, 1), (2, 2)):
+        n = sum(sizes)
+        J = jordan([(0, s) for s in sizes])
+        while True:
+            S = Q([[random.randint(-2, 2) for _ in range(n)]
+                   for _ in range(n)])
+            if rank(cols(S)) == n:
+                break
+        Nm = mul(mul(S, J), inverse(S))
+        expected = {s: sizes.count(s) for s in set(sizes)}
+        assert block_counts(Nm) == expected
+        chains = chain_basis(Nm, eye(n))
+        assert sorted(map(len, chains)) == sorted(sizes)
+        assert rank([v for c in chains for v in c]) == n
+        for c in chains:
+            assert [apply(Nm, v) for v in c] == c[1:] + [[0] * n]
+        print(&#x27;sizes&#x27;, sizes, &#x27;nullity&#x27;, nullity(Nm), &#x27;m2&#x27;,
+              nullity(mul(Nm, Nm)), &#x27;recovered&#x27;, expected)
+
+    # rational forms: p1 = (t-1)^4 - 8, p2 = t - 3 on an 8-dim space
+    p1 = [-7, -4, 6, -4, 1]
+    C1 = companion(p1[:-1])
+    C2 = companion([9, -6])
+    c3 = companion([-3])
+    assert poly_at(p1, C1) == zeros(4)
+    for M in (block_diag(C1, C2, C2), block_diag(C1, C2, c3, c3)):
+        a = poly_at(p1, M)
+        b = add(M, eye(8), -3)
+        assert mul(a, mul(b, b)) == zeros(8)
+        assert mul(a, b) != zeros(8) and mul(b, b) != zeros(8)
+    print(&#x27;companion of p1, last column:&#x27;,
+          [str(r[-1]) for r in C1], &#x27;; two rational forms checked&#x27;)
+    # (t-1)^4 = 8 has no rational root
+    assert all((Fraction(a, 7) - 1)**4 != 8 for a in range(-60, 61))
+
+    # exercise 4: non-commuting split of [[1,1],[0,2]]
+    T = Q([[1, 1], [0, 2]])
+    Dg, Ng = Q([[1, 0], [0, 2]]), Q([[0, 1], [0, 0]])
+    assert add(Dg, Ng) == T and mul(Dg, Ng) != mul(Ng, Dg)
+    # exercise 5: two copies of x^2 + 1
+    R = block_diag(companion([1, 0]), companion([1, 0]))
+    assert mul(R, R) == add(zeros(4), eye(4), -1)
+    print(&#x27;all checks passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch19.html">Previous: The primary decomposition theorem</a><a rel="next" href="ch21.html">Next: Inner products, norms, and the Cauchy-Schwarz inequality</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

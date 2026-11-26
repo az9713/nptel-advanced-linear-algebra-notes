@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Normal operators and spectral resolution · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html" aria-current=page>25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>25. Normal operators and spectral resolution</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=3mRBrsR9UXA">Recording 56</a>, <a href="https://www.youtube.com/watch?v=ZL0UkkCrud0">Recording 57</a>, <a href="https://www.youtube.com/watch?v=yYlXk5C91UE">Recording 58</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Prove that self-adjoint operators have orthonormal eigenbases</li><li>Relate eigenvectors of a normal operator and its adjoint</li><li>Prove Schur&#x27;s theorem and the spectral theorem</li><li>Compute spectral resolutions and polynomials of operators</li></ul>
+<p><strong>Prerequisites:</strong> Adjoints (Chapter 23), unitary and self-adjoint operators (Chapter 24), eigenvalues and projections.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch25.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-a-self-adjoint-operator-has-an-eigenvector-0025">1. A self-adjoint operator has an eigenvector 00:25</a></li><li><a href="#2-invariant-subspaces-and-their-complements-1600">2. Invariant subspaces and their complements 16:00</a></li><li><a href="#3-orthonormal-eigenbases-for-self-adjoint-operators-2338">3. Orthonormal eigenbases for self-adjoint operators 23:38</a></li><li><a href="#4-eigenvectors-of-a-normal-operator-1031">4. Eigenvectors of a normal operator 10:31</a></li><li><a href="#5-triangular-and-normal-means-diagonal-1807">5. Triangular and normal means diagonal 18:07</a></li><li><a href="#6-schurs-theorem-0233">6. Schur&#x27;s theorem 02:33</a></li><li><a href="#7-the-spectral-theorem-2147">7. The spectral theorem 21:47</a></li><li><a href="#8-polynomials-in-a-normal-operator-3044">8. Polynomials in a normal operator 30:44</a></li><li><a href="#9-executable-check">9. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Consider the symmetric matrix</p>
+<p>$$S=\begin{pmatrix}2&amp;1&amp;1\\1&amp;2&amp;1\\1&amp;1&amp;2\end{pmatrix}.$$</p>
+<p>What is $S^{10}$? Is there a matrix $R$ with $R^2=S$? Both questions become trivial once $\mathbb{R}^3$ has an orthonormal basis of eigenvectors of $S$, because then $S$ only stretches mutually perpendicular directions: here by $4$ along $(1,1,1)$ and by $1$ on the plane perpendicular to it. This chapter determines exactly which operators behave in this way. Over $\mathbb{C}$ they are the normal operators, those that commute with their adjoint; over $\mathbb{R}$ they are the self-adjoint ones. The matrix $S$ is the running example (an original choice).</p>
+<p><strong>Conventions.</strong> $V$ is an inner product space over $F=\mathbb{R}$ or $\mathbb{C}$, with $\langle\cdot,\cdot\rangle$ linear in the first argument, and <strong>finite-dimensional of dimension $n\ge1$</strong> unless stated. $T^*$ is the adjoint, $\langle T\alpha,\beta\rangle=\langle\alpha,T^*\beta\rangle$, whose matrix in an orthonormal basis is the conjugate transpose (<a href="ch23.html">Chapter 23</a>). $T$ is <em>self-adjoint</em> if $T^*=T$, <em>unitary</em> if $T^*=T^{-1}$, and <em>normal</em> if $TT^*=T^*T$. A matrix $A$ is <em>Hermitian</em> if $A^*=A$, <em>normal</em> if $AA^*=A^*A$, <em>unitary</em> if $A^*A=I$.</p>
+<p>We recall from <a href="ch24.html">Chapter 24</a>: self-adjoint and unitary operators are normal; the eigenvalues of a self-adjoint operator are real, with orthogonal eigenvectors for different eigenvalues.</p>
+<h2 id="1-a-self-adjoint-operator-has-an-eigenvector-0025">1. A self-adjoint operator has an eigenvector <a href="https://www.youtube.com/watch?v=3mRBrsR9UXA&amp;t=25s">00:25</a></h2>
+<p><strong>Theorem 1.1.</strong> A self-adjoint operator on $V$ has an eigenvector.</p>
+<p><em>Proof.</em> Let $A$ be the matrix of $T$ in an orthonormal basis; then $A^*=A$. The polynomial $\det(xI-A)$ has degree $n\ge1$, so it has a root $c\in\mathbb{C}$, and there is a nonzero $X\in\mathbb{C}^n$ with $AX=cX$. The operator $X\mapsto AX$ on $\mathbb{C}^n$ is self-adjoint, so $c$ is real. If $F=\mathbb{C}$, $X$ gives an eigenvector of $T$. If $F=\mathbb{R}$, then $A-cI$ is a <em>real</em> matrix that is singular, so it has a nonzero kernel vector in $\mathbb{R}^n$. $\square$</p>
+<p>Where the hypotheses enter <a href="https://www.youtube.com/watch?v=3mRBrsR9UXA&amp;t=481s">08:01</a>: over $\mathbb{C}$ every operator has an eigenvector, self-adjoint or not. Over $\mathbb{R}$ self-adjointness is what makes the root real. A quarter turn of $\mathbb{R}^2$ has no eigenvector.</p>
+<p><strong>Infinite dimension</strong> <a href="https://www.youtube.com/watch?v=3mRBrsR9UXA&amp;t=692s">11:32</a>. Let $V=C[0,1]$, the continuous complex functions, with $\langle f,g\rangle=\int_0^1f\bar g$, and $(Tf)(t)=tf(t)$. Then $\langle Tf,g\rangle=\int tf\bar g=\langle f,Tg\rangle$, so $T$ is self-adjoint. If $Tf=cf$, then $(t-c)f(t)=0$ for all $t$, so $f(t)=0$ except possibly at $t=c$, and by continuity $f=0$. So $T$ has no eigenvector.</p>
+<h2 id="2-invariant-subspaces-and-their-complements-1600">2. Invariant subspaces and their complements <a href="https://www.youtube.com/watch?v=3mRBrsR9UXA&amp;t=960s">16:00</a></h2>
+<p><strong>Lemma 2.1.</strong> If $W$ is a $T$-invariant subspace ($TW\subseteq W$), then $W^{\perp}$ is $T^*$-invariant.</p>
+<p><em>Proof.</em> For $\alpha\in W$ and $\beta\in W^{\perp}$, $\langle\alpha,T^*\beta\rangle=\langle T\alpha,\beta\rangle=0$ because $T\alpha\in W$. $\square$</p>
+<h2 id="3-orthonormal-eigenbases-for-self-adjoint-operators-2338">3. Orthonormal eigenbases for self-adjoint operators <a href="https://www.youtube.com/watch?v=3mRBrsR9UXA&amp;t=1418s">23:38</a></h2>
+<p><strong>Theorem 3.1.</strong> If $T$ is self-adjoint, then $V$ has an orthonormal basis of eigenvectors of $T$.</p>
+<p><em>Proof.</em> Induct on $n$. By Theorem 1.1 there is a unit eigenvector $\alpha_1$; this settles $n=1$. For $n\gt1$ let $W=\operatorname{span}(\alpha_1)$. It is $T$-invariant, so $W^{\perp}$ is invariant under $T^*=T$ (Lemma 2.1). The restriction of $T$ to $W^{\perp}$ is self-adjoint, and $\dim W^{\perp}=n-1$. By induction $W^{\perp}$ has an orthonormal eigenbasis $\alpha_2,\dots,\alpha_n$. Since $V=W\oplus W^{\perp}$, the list $\alpha_1,\dots,\alpha_n$ is the required basis. $\square$</p>
+<p>The hinge is Lemma 2.1: removing one eigenvector leaves a space on which $T$ still acts, with the same property.</p>
+<p><strong>Corollary 3.2</strong> <a href="https://www.youtube.com/watch?v=ZL0UkkCrud0&amp;t=26s">00:26</a>. For a Hermitian $A\in\mathbb{C}^{n\times n}$ there is a unitary $P$ with $P^{-1}AP$ real diagonal. For a real symmetric $A$, $P$ can be chosen real orthogonal.</p>
+<p><em>Proof.</em> Apply Theorem 3.1 to $X\mapsto AX$ on $F^n$, and let the columns of $P$ be the orthonormal eigenvectors. Then $AP=PD$ and $P^*P=I$. $\square$</p>
+<p><strong>On the running example.</strong> $S(1,1,1)^{\mathsf T}=4(1,1,1)^{\mathsf T}$, and every vector with coordinate sum $0$ is fixed. The eigenvectors $(1,-1,0)$ and $(1,0,-1)$ for the eigenvalue $1$ are <em>not</em> orthogonal: inside an eigenspace one must still apply Gram–Schmidt. This gives $(1,-1,0)$ and $(1,1,-2)$, so</p>
+<p>$$P=\begin{pmatrix}1/\sqrt3&amp;1/\sqrt2&amp;1/\sqrt6\\1/\sqrt3&amp;-1/\sqrt2&amp;1/\sqrt6\\1/\sqrt3&amp;0&amp;-2/\sqrt6\end{pmatrix},\qquad P^{\mathsf T}SP=\operatorname{diag}(4,1,1).$$</p>
+<h2 id="4-eigenvectors-of-a-normal-operator-1031">4. Eigenvectors of a normal operator <a href="https://www.youtube.com/watch?v=ZL0UkkCrud0&amp;t=631s">10:31</a></h2>
+<p><strong>Lemma 4.1.</strong> If $T$ is normal, then $\|T\alpha\|=\|T^*\alpha\|$ for all $\alpha$.</p>
+<p><em>Proof.</em> $\|T\alpha\|^2=\langle\alpha,T^*T\alpha\rangle=\langle\alpha,TT^*\alpha\rangle=\|T^*\alpha\|^2$. $\square$</p>
+<p><strong>Theorem 4.2.</strong> Let $T$ be normal and $c\in F$. Then $T\alpha=c\alpha$ if and only if $T^*\alpha=\bar c\,\alpha$.</p>
+<p><em>Proof.</em> The operator $T-cI$ has the adjoint $T^*-\bar cI$, and the two commute because $T$ and $T^*$ do. So $T-cI$ is normal, and Lemma 4.1 gives $\|(T-cI)\alpha\|=\|(T^*-\bar cI)\alpha\|$. One side vanishes exactly when the other does. $\square$</p>
+<p>So a normal operator and its adjoint share their eigenvectors, with conjugate eigenvalues.</p>
+<h2 id="5-triangular-and-normal-means-diagonal-1807">5. Triangular and normal means diagonal <a href="https://www.youtube.com/watch?v=ZL0UkkCrud0&amp;t=1087s">18:07</a></h2>
+<p><strong>Theorem 5.1.</strong> Let the matrix $A$ of $T$ in an orthonormal basis $(\alpha_1,\dots,\alpha_n)$ be upper triangular. Then $T$ is normal if and only if $A$ is diagonal.</p>
+<p><em>Proof.</em> Diagonal matrices commute with their conjugate transposes, which gives one direction. Let $T$ be normal. Upper triangularity gives $T\alpha_1=A_{11}\alpha_1$. By Theorem 4.2, $T^*\alpha_1=\overline{A_{11}}\alpha_1$. But the matrix of $T^*$ is $A^*$, so $T^*\alpha_1=\sum_j\overline{A_{1j}}\alpha_j$. Comparing, $A_{1j}=0$ for $j\gt1$. Now column $2$ of $A$ has only the entry $A_{22}$ left, so $T\alpha_2=A_{22}\alpha_2$, and the same argument clears the rest of row $2$. Continue row by row. $\square$</p>
+<h2 id="6-schurs-theorem-0233">6. Schur's theorem <a href="https://www.youtube.com/watch?v=yYlXk5C91UE&amp;t=153s">02:33</a></h2>
+<p><strong>Theorem 6.1.</strong> Let $V$ be a finite-dimensional <strong>complex</strong> inner product space and $T$ an operator. Some orthonormal basis gives $T$ an upper triangular matrix.</p>
+<p><em>Proof.</em> Induct on $n$; $n=1$ is clear. The operator $T^*$ has a unit eigenvector $\alpha$, since the field is $\mathbb{C}$. Then $\operatorname{span}(\alpha)$ is $T^*$-invariant, so $W=\{\alpha\}^{\perp}$ is invariant under $(T^*)^*=T$ (Lemma 2.1). By induction $W$ has an orthonormal basis $\alpha_1,\dots,\alpha_{n-1}$ in which $T|_W$ is upper triangular. Append $\alpha$ as the last vector. The first $n-1$ columns of the matrix of $T$ come from $T|_W$ and have last entry $0$, and the last column is arbitrary. So the matrix is upper triangular. $\square$</p>
+<p>The eigenvector is taken from $T^*$, not from $T$, so that it can be placed <em>last</em>. <a href="ch24.html">Chapter 24</a> obtained the same theorem by orthonormalizing a triangularizing basis.</p>
+<p><strong>Corollary 6.2</strong> <a href="https://www.youtube.com/watch?v=yYlXk5C91UE&amp;t=849s">14:09</a>. For every $A\in\mathbb{C}^{n\times n}$ there is a unitary $U$ with $U^{-1}AU$ upper triangular.</p>
+<p><em>Proof.</em> Apply the theorem to $X\mapsto AX$ on $\mathbb{C}^n$ and take the basis vectors as the columns of $U$. $\square$</p>
+<h2 id="7-the-spectral-theorem-2147">7. The spectral theorem <a href="https://www.youtube.com/watch?v=yYlXk5C91UE&amp;t=1307s">21:47</a></h2>
+<p><strong>Theorem 7.1.</strong> Let $T$ be a normal operator on a finite-dimensional complex inner product space, or a self-adjoint operator on a finite-dimensional real one. Let $c_1,\dots,c_k$ be its distinct eigenvalues, $W_j=\ker(T-c_jI)$, and $E_j$ the orthogonal projection on $W_j$. Then</p>
+<ol>
+<li>$W_i\perp W_j$ for $i\ne j$, and $V=W_1\oplus\dots\oplus W_k$;</li>
+<li>$I=E_1+\dots+E_k$, $E_iE_j=0$ for $i\ne j$, and $E_j^2=E_j=E_j^*$;</li>
+<li>$T=c_1E_1+\dots+c_kE_k$.</li>
+</ol>
+<p><em>Proof.</em> There is an orthonormal basis of eigenvectors: in the complex case by Theorems 6.1 and 5.1, in the real case by Theorem 3.1. Hence the $W_j$ span $V$. For orthogonality let $\alpha\in W_i$, $\beta\in W_j$, $i\ne j$. By Theorem 4.2, $T^*\beta=\overline{c_j}\beta$, so $c_i\langle\alpha,\beta\rangle=\langle T\alpha,\beta\rangle=\langle\alpha,T^*\beta\rangle=c_j\langle\alpha,\beta\rangle$. As $c_i\ne c_j$, $\langle\alpha,\beta\rangle=0$. So every $\alpha$ is uniquely $\alpha_1+\dots+\alpha_k$ with $\alpha_j\in W_j$, and orthogonality shows $\alpha_j=E_j\alpha$. This gives part 2 (orthogonal projections are self-adjoint). Applying $T$ to $\alpha=\sum_jE_j\alpha$ gives $T\alpha=\sum_jc_jE_j\alpha$. $\square$</p>
+<p>The formula in part 3 is the <em>spectral resolution</em> of $T$, and $I=\sum E_j$ the corresponding resolution of the identity.</p>
+<p><strong>The converse.</strong> If $V$ has an orthonormal eigenbasis of $T$, then $T$ is normal, and over $\mathbb{R}$ self-adjoint (<a href="ch24.html">Chapter 24</a>). So the theorem is a characterization in both cases.</p>
+<h2 id="8-polynomials-in-a-normal-operator-3044">8. Polynomials in a normal operator <a href="https://www.youtube.com/watch?v=yYlXk5C91UE&amp;t=1844s">30:44</a></h2>
+<p>Since $E_iE_j=\delta_{ij}E_j$ (where $\delta_{ij}$ is $1$ if $i=j$ and $0$ otherwise), $T^r=\sum_jc_j^rE_j$ for every $r\ge0$, and therefore for every polynomial $f$ over $F$:</p>
+<p>$$f(T)=\sum_{j=1}^kf(c_j)\,E_j .$$</p>
+<p><strong>Corollary 8.1.</strong> Each $E_j$ is a polynomial in $T$: with the <em>Lagrange polynomial</em></p>
+<p>$$e_j(x)=\prod_{i\ne j}\frac{x-c_i}{c_j-c_i},\qquad e_j(c_i)=\delta_{ij},$$</p>
+<p>one has $E_j=e_j(T)$. (For $k=1$ the empty product is $1$.)</p>
+<p><strong>On the running example.</strong> $c_1=4$, $c_2=1$, $e_1=(x-1)/3$ and $e_2=(4-x)/3$. With $J$ the matrix of all ones,</p>
+<p>$$E_1=\frac13J,\qquad E_2=I-\frac13J,\qquad S=4E_1+E_2 .$$</p>
+<p>Now the opening questions are answered: $S^{10}=4^{10}E_1+E_2$, and $R=2E_1+E_2=I+\tfrac13J$ satisfies $R^2=S$.</p>
+<p><strong>A complex normal example.</strong> $C=\begin{pmatrix}1&amp;-1\\1&amp;1\end{pmatrix}$ commutes with $C^{\mathsf T}$ and is neither symmetric nor unitary. Over $\mathbb{C}$ its eigenvalues are $1\pm i$, with orthogonal eigenvectors $(\pm i,1)$, and
+$$C=(1+i)\,\frac12\begin{pmatrix}1&amp;i\\-i&amp;1\end{pmatrix}+(1-i)\,\frac12\begin{pmatrix}1&amp;-i\\i&amp;1\end{pmatrix}.$$
+Over $\mathbb{R}$ it has no eigenvector, so normality alone does not suffice there.</p>
+<h2 id="9-executable-check">9. Executable check</h2>
+<p><a href="labs/ch25.py">The chapter laboratory</a> computes exactly. It verifies the resolution of $S$, the Lagrange formula, $S^{10}$ and the square root, the Gram–Schmidt step inside the eigenspace, the resolution of $C$ over complex numbers with rational parts, a norm test separating normal from non-normal matrices, and the exercise data. It does not check the general theorems or the infinite-dimensional example.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) Find the spectral resolution of $A=\begin{pmatrix}2&amp;1+i\\1-i&amp;3\end{pmatrix}$.</li>
+<li>(Square roots.) Find all self-adjoint $R$ that are of the form $aE_1+bE_2$ and satisfy $R^2=S$.</li>
+<li>(Spectrum decides the type.) For a normal operator on a complex space show that it is self-adjoint exactly when all eigenvalues are real, and unitary exactly when all have modulus $1$.</li>
+<li>(Kernels.) For a normal $T$ show $\ker T=\ker T^*$ and $\ker T^2=\ker T$.</li>
+<li>(The adjoint as a polynomial.) For a normal operator on a complex space show that $T^*=f(T)$ for some polynomial $f$, and deduce that every operator commuting with $T$ commutes with $T^*$.</li>
+<li>(Boundary.) Show that $M=\begin{pmatrix}1&amp;1\\0&amp;2\end{pmatrix}$ is diagonalizable but has no orthonormal basis of eigenvectors.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>$\det(xI-A)=x^2-5x+4$, so $c=1,4$. Lagrange gives $E_{(1)}=(4I-A)/3$ and $E_{(4)}=(A-I)/3$:
+$$E_{(1)}=\frac13\begin{pmatrix}2&amp;-1-i\\-1+i&amp;1\end{pmatrix},\qquad E_{(4)}=\frac13\begin{pmatrix}1&amp;1+i\\1-i&amp;2\end{pmatrix},$$
+and $A=E_{(1)}+4E_{(4)}$.</p>
+</li>
+<li>
+<p>$R^2=a^2E_1+b^2E_2$. Comparing with $4E_1+E_2$ after multiplying by $E_1$ and by $E_2$ gives $a=\pm2$, $b=\pm1$. All four are self-adjoint because $a,b$ are real. Only $a=2,b=1$ has all eigenvalues positive. (There are further square roots not of this form, since $E_2$ has rank $2$.)</p>
+</li>
+<li>
+<p>By Theorem 7.1, $T=\sum c_jE_j$ and $T^*=\sum\overline{c_j}E_j$. So $T^*=T$ exactly when $\sum(\overline{c_j}-c_j)E_j=0$; multiplying by $E_i$ shows $\overline{c_i}=c_i$. Similarly $T^*T=\sum|c_j|^2E_j$ equals $I=\sum E_j$ exactly when every $|c_j|=1$, and in finite dimension $T^*T=I$ implies unitarity.</p>
+</li>
+<li>
+<p>The first equality is Lemma 4.1. For the second, $\ker T\subseteq\ker T^2$ is clear. If $T^2\alpha=0$, then $\beta=T\alpha$ lies in $\ker T=\ker T^*$. So $\|\beta\|^2=\langle T\alpha,\beta\rangle=\langle\alpha,T^*\beta\rangle=0$.</p>
+</li>
+<li>
+<p>Take $f=\sum_j\overline{c_j}\,e_j$. Then $f(c_i)=\overline{c_i}$, so $f(T)=\sum\overline{c_i}E_i=T^*$. If $UT=TU$, then $U$ commutes with every polynomial in $T$, in particular with $T^*$.</p>
+</li>
+<li>
+<p>The eigenvalues $1,2$ are distinct, so $M$ is diagonalizable. The eigenspaces are spanned by $(1,0)$ and $(1,1)$, whose inner product is $1$. Every eigenvector is a multiple of one of them, so no two eigenvectors form an orthonormal basis. Consistently, $MM^{\mathsf T}\ne M^{\mathsf T}M$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, the chapters on operators on inner product spaces.</li>
+<li>Steven Roman, <em>Advanced Linear Algebra</em>, 3rd ed., Springer GTM 135, the chapter on structure theory for normal operators.</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., open access at https://linear.axler.net/, the chapter on the spectral theorem.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch25.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 25 laboratory: spectral resolutions.
+
+Exact arithmetic.  Rational matrices use fractions.Fraction.  Complex
+matrices with integer or half-integer entries use Python complex, which is
+exact for these values.  The general theorems are proved in the chapter;
+this file checks the printed instances.
+&quot;&quot;&quot;
+from fractions import Fraction as Fr
+
+import numpy as np
+
+
+def mul(a, b):
+    return [[sum(a[i][k] * b[k][j] for k in range(len(b)))
+             for j in range(len(b[0]))] for i in range(len(a))]
+
+
+def comb(c, a, d, b):
+    return [[c * x + d * y for x, y in zip(r, s)] for r, s in zip(a, b)]
+
+
+def running_example():
+    n = range(3)
+    eye = [[Fr(int(i == j)) for j in n] for i in n]
+    s = [[Fr(2 if i == j else 1) for j in n] for i in n]
+    e1 = [[Fr(1, 3) for j in n] for i in n]
+    e2 = comb(1, eye, -1, e1)
+    zero = [[0] * 3 for i in n]
+    assert mul(e1, e1) == e1 and mul(e2, e2) == e2
+    assert mul(e1, e2) == zero
+    assert comb(4, e1, 1, e2) == s
+    assert comb(Fr(1, 3), s, Fr(-1, 3), eye) == e1
+    assert comb(Fr(-1, 3), s, Fr(4, 3), eye) == e2
+    power = eye
+    for _ in range(10):
+        power = mul(power, s)
+    assert power == comb(4 ** 10, e1, 1, e2)
+    for a in (2, -2):
+        for b in (1, -1):
+            r = comb(a, e1, b, e2)
+            assert mul(r, r) == s
+    assert comb(2, e1, 1, e2) == comb(1, eye, 1, e1)
+    u, w = [1, -1, 0], [1, 0, -1]
+    dot = sum(x * y for x, y in zip(u, w))
+    v = [y - Fr(dot, 2) * x for x, y in zip(u, w)]
+    assert dot == 1 and [2 * x for x in v] == [1, 1, -2]
+    for x in ([1, 1, 1], u, [1, 1, -2]):
+        lam = 4 if x == [1, 1, 1] else 1
+        assert [sum(p * q for p, q in zip(row, x)) for row in s] == [
+            lam * t for t in x]
+    print(&#x27;S = 4 E1 + E2; S^10 entry (1,1) =&#x27;, power[0][0])
+
+
+def complex_examples():
+    c = np.array([[1, -1], [1, 1]])
+    assert np.array_equal(c @ c.T, c.T @ c)
+    p = np.array([[1, 1j], [-1j, 1]]) / 2
+    q = p.conj()
+    assert np.array_equal((1 + 1j) * p + (1 - 1j) * q, c)
+    assert np.array_equal(p @ p, p) and np.array_equal(p @ q, 0 * p)
+    for sign in (1, -1):
+        v = np.array([sign * 1j, 1])
+        assert np.array_equal(c @ v, (1 + sign * 1j) * v)
+    a = np.array([[2, 1 + 1j], [1 - 1j, 3]])
+    eye = np.eye(2)
+    e1, e4 = (4 * eye - a) / 3, (a - eye) / 3
+    assert np.allclose(e1 + 4 * e4, a)
+    assert np.allclose(e1 @ e1, e1) and np.allclose(e1 @ e4, 0)
+    assert np.allclose(3 * e1, [[2, -1 - 1j], [-1 + 1j, 1]])
+    m = np.array([[1, 1], [0, 2]])
+    assert not np.array_equal(m @ m.T, m.T @ m)
+    assert np.array_equal(m @ [1, 1], [2, 2])
+    x = np.array([0, 1])
+    assert np.vdot(m @ x, m @ x) != np.vdot(m.T @ x, m.T @ x)
+    assert np.vdot(c @ x, c @ x) == np.vdot(c.T @ x, c.T @ x)
+    print(&#x27;complex resolutions and normality tests verified&#x27;)
+
+
+def main():
+    running_example()
+    complex_examples()
+    print(&#x27;all chapter 25 checks passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch24.html">Previous: Inner-product-space isomorphisms and unitary operators</a><a rel="next" href="ch26.html">Next: Singular value decomposition and forms on inner product spaces</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

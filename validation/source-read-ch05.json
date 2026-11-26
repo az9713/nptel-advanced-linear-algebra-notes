@@ -1,0 +1,30 @@
+{
+ "author": "author_a",
+ "chapter": "ch05",
+ "recordings": [
+  {
+   "position": 9,
+   "video_id": "rA7m8jQKtQ4",
+   "normalized_text_sha256": "e30f2fda4084844394d06df9ae7f5330208d9d753b9e1af7fb340cf64b8da459",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "recall of coordinate matrices",
+    "change-of-basis relation X = P X'",
+    "invertibility of P",
+    "example with two ordered bases of F^3",
+    "converse: invertible P determines a second ordered basis"
+   ],
+   "clarifications": [
+    "The lecture asks listeners to check the example algebra; it is verified here"
+   ],
+   "original_constructions": [
+    "polynomial running example",
+    "second example in Q^3",
+    "counting corollary",
+    "exercises"
+   ]
+  }
+ ]
+}

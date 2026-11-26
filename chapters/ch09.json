@@ -1,0 +1,12 @@
+{
+  "title": "Matrix representation of linear transformations and similarity",
+  "lectures": [17, 18],
+  "objectives": [
+    "Compute the matrix of a linear map relative to ordered bases",
+    "Prove that representation is a linear isomorphism that turns composition into product",
+    "Derive the change-of-basis and similarity formulas",
+    "Use invariants to separate non-similar matrices"
+  ],
+  "prerequisites": "Chapters 5, 7 and 8: coordinates, linear maps and their algebra, and determinants.",
+  "source_scope": "The captions of Lectures 16 and 17 were read in full; the second numerical computation completes an example left open there, and the running matrix and exercises are original."
+}

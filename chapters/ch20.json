@@ -1,0 +1,16 @@
+{
+  "title": "Applications of primary decomposition: diagonalizable plus nilpotent parts",
+  "lectures": [
+    40,
+    41,
+    42
+  ],
+  "objectives": [
+    "Solve linear initial value problems with generalized eigenvector chains",
+    "Prove existence and uniqueness of the diagonalizable-plus-nilpotent splitting",
+    "Prove the cyclic decomposition for a prime-power minimal polynomial",
+    "Compute Jordan and rational canonical forms"
+  ],
+  "prerequisites": "The primary decomposition theorem (Chapter 19), diagonalizability and direct sums (Chapters 16 to 18).",
+  "source_scope": "The captions of the three recordings (positions 40 to 42) were read in full. The 2 by 2 system and the six- and eight-dimensional examples follow them; the running matrix is from Chapter 12; the proofs of the canonical-form theorems, the laboratory and the exercises are original."
+}

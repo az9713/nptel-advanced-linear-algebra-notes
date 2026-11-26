@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Invariant direct sums and block-diagonal operators · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html" aria-current=page>18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>18. Invariant direct sums and block-diagonal operators</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=FSrROxmVg0k">Recording 36</a>, <a href="https://www.youtube.com/watch?v=YmpfezqZGhU">Recording 37</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Prove that invariant summands are detected by commuting projections</li><li>Write a diagonalizable operator in spectral form and compute polynomials of it</li><li>Express the spectral projections as Lagrange polynomials in the operator</li><li>Prove that a spectral form implies diagonalizability</li></ul>
+<p><strong>Prerequisites:</strong> Direct sums and projections (Chapter 17), eigenvalues and diagonalizability (Chapters 12, 13 and 16).</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch18.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-invariant-summands-0025">1. Invariant summands 00:25</a></li><li><a href="#2-invariance-means-commuting-with-the-projections-0908">2. Invariance means commuting with the projections 09:08</a></li><li><a href="#3-diagonalizable-operators-the-spectral-form-1926">3. Diagonalizable operators: the spectral form 19:26</a></li><li><a href="#4-powers-and-polynomials-2716">4. Powers and polynomials 27:16</a></li><li><a href="#5-the-projections-are-polynomials-in-the-operator-2952">5. The projections are polynomials in the operator 29:52</a></li><li><a href="#6-the-converse-a-spectral-form-proves-diagonalizability-0922">6. The converse: a spectral form proves diagonalizability 09:22</a></li><li><a href="#7-where-the-hypotheses-bind">7. Where the hypotheses bind</a></li><li><a href="#8-executable-check">8. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Let $T$ be the operator on $\mathbb{Q}^3$ whose standard matrix is</p>
+<p>$$A=\begin{pmatrix}3&amp;0&amp;-2\\0&amp;3&amp;-2\\0&amp;0&amp;1\end{pmatrix}.$$</p>
+<p>This matrix is the running example of the chapter (an original construction). Suppose we need $A^{10}$, or $A^{-1}$, or a square root of $A$. Repeated multiplication gives the first, row reduction the second, and neither suggests how to get the third. There is a better route. We shall find two fixed matrices $E_1$ and $E_2$ with</p>
+<p>$$A=E_1+3E_2,\qquad A^{10}=E_1+3^{10}E_2 .$$</p>
+<p>The same two matrices give every polynomial in $A$. They are projections that split $\mathbb{Q}^3$ into two subspaces that $T$ does not mix. This chapter studies such splittings: when the summands of a direct sum are invariant, how that is detected by the projections, and what happens when $T$ merely rescales each summand.</p>
+<p><strong>Conventions.</strong> $F$ is a field, $V$ is a vector space over $F$, and $T\in\mathcal{L}(V)$ is a linear operator on $V$. Finite dimension is assumed only where it is stated. $I$ is the identity. A subspace $W$ is <em>$T$-invariant</em> if $T(W)\subseteq W$. From <a href="ch17.html">Chapter 17</a>: a direct sum $V=W_1\oplus\cdots\oplus W_k$ means that every $\alpha\in V$ has exactly one expression $\alpha=\alpha_1+\cdots+\alpha_k$ with $\alpha_i\in W_i$. The operators $E_i\alpha=\alpha_i$ satisfy</p>
+<p>$$E_i^2=E_i,\qquad E_iE_j=0\ (i\ne j),\qquad E_1+\cdots+E_k=I,\qquad\operatorname{im}E_i=W_i,\tag{0.1}$$</p>
+<p>and conversely, operators with $E_iE_j=0$ for $i\ne j$ and $\sum E_i=I$ are projections whose ranges form a direct sum equal to $V$. We call $E_1,\dots,E_k$ the <em>projections of the decomposition</em>.</p>
+<h2 id="1-invariant-summands-0025">1. Invariant summands <a href="https://www.youtube.com/watch?v=FSrROxmVg0k&amp;t=25s">00:25</a></h2>
+<p>Suppose $V=W_1\oplus\cdots\oplus W_k$ and every $W_i$ is $T$-invariant. Each restriction $T_i:W_i\to W_i$, $T_i\alpha=T\alpha$, is an operator on $W_i$, and</p>
+<p>$$T\alpha=T_1\alpha_1+\cdots+T_k\alpha_k .$$</p>
+<p>The behaviour of $T$ is therefore the behaviour of $k$ smaller operators placed side by side. If $V$ is finite-dimensional, $\mathcal{B}_i$ is an ordered basis of $W_i$ with $d_i$ elements and $\mathcal{B}=(\mathcal{B}_1,\dots,\mathcal{B}_k)$, then</p>
+<p>$$[T]_{\mathcal{B}}=\begin{pmatrix}A_1&amp;&amp;0\\&amp;\ddots&amp;\\0&amp;&amp;A_k\end{pmatrix},\qquad A_i=[T_i]_{\mathcal{B}_i}\in F^{d_i\times d_i},\qquad\sum_id_i=\dim V,$$</p>
+<p>as shown in <a href="ch17.html">Chapter 17</a>. Such a matrix is <em>block diagonal</em>.</p>
+<p><strong>On the running example.</strong> Let $b_1=(1,1,1)$, $b_2=(1,0,0)$ and $b_3=(0,1,0)$, writing columns as tuples. These are linearly independent. Direct multiplication gives $Ab_1=b_1$, $Ab_2=3b_2$ and $Ab_3=3b_3$. So $W_1=\operatorname{span}(b_1)$ and $W_2=\operatorname{span}(b_2,b_3)$ are invariant, $\mathbb{Q}^3=W_1\oplus W_2$, and in the basis $(b_1,b_2,b_3)$ the matrix of $T$ is $\operatorname{diag}(1,3,3)$.</p>
+<h2 id="2-invariance-means-commuting-with-the-projections-0908">2. Invariance means commuting with the projections <a href="https://www.youtube.com/watch?v=FSrROxmVg0k&amp;t=548s">09:08</a></h2>
+<p>To test invariance of the summands without choosing bases, we use the projections.</p>
+<p><strong>Theorem 2.1.</strong> Let $V=W_1\oplus\cdots\oplus W_k$ with projections $E_1,\dots,E_k$, and let $T\in\mathcal{L}(V)$. Then every $W_i$ is $T$-invariant if and only if $TE_i=E_iT$ for every $i$. The dimension of $V$ may be infinite.</p>
+<p><em>Proof.</em> Suppose $T$ commutes with every $E_i$. Let $\alpha\in W_i$. Then $\alpha=E_i\alpha$, so $T\alpha=TE_i\alpha=E_iT\alpha$, which lies in $\operatorname{im}E_i=W_i$.</p>
+<p>Suppose every $W_i$ is invariant. Fix $j$ and $\alpha\in V$. By $\sum_iE_i=I$,</p>
+<p>$$T\alpha=\sum_{i=1}^kTE_i\alpha .$$</p>
+<p>Each term $TE_i\alpha$ lies in $W_i$, because $E_i\alpha\in W_i$ and $W_i$ is invariant. So this is the decomposition of $T\alpha$, and its $j$th component is $TE_j\alpha$. But the $j$th component of any vector $\gamma$ is $E_j\gamma$. Hence $E_jT\alpha=TE_j\alpha$. $\square$</p>
+<p>The hinge of the second part is uniqueness in a direct sum: once each summand of an expression is known to lie in the right subspace, the expression is the decomposition. Invariance of <em>all</em> summands is needed. With only $W_j$ invariant, the terms $TE_i\alpha$ with $i\ne j$ may leak into $W_j$.</p>
+<p><strong>Corollary 2.2.</strong> For a projection $E$ and an operator $T$, we have $TE=ET$ if and only if both $\operatorname{im}E$ and $\ker E$ are $T$-invariant.</p>
+<p><em>Proof.</em> Apply Theorem 2.1 to $V=\operatorname{im}E\oplus\ker E$, whose projections are $E$ and $I-E$. An operator commutes with $E$ exactly when it commutes with $I-E$. $\square$</p>
+<p><strong>On the running example.</strong> The projections on $W_1$ and $W_2$ are obtained by keeping the corresponding coordinates in the basis $(b_1,b_2,b_3)$:</p>
+<p>$$E_1=\begin{pmatrix}0&amp;0&amp;1\\0&amp;0&amp;1\\0&amp;0&amp;1\end{pmatrix},\qquad E_2=\begin{pmatrix}1&amp;0&amp;-1\\0&amp;1&amp;-1\\0&amp;0&amp;0\end{pmatrix}.$$</p>
+<p>One checks (0.1), and one checks $AE_1=E_1A$ and $AE_2=E_2A$, as Theorem 2.1 predicts. Concretely, $E_1(x,y,z)=z\,b_1$ and $E_2(x,y,z)=(x-z,y-z,0)$.</p>
+<h2 id="3-diagonalizable-operators-the-spectral-form-1926">3. Diagonalizable operators: the spectral form <a href="https://www.youtube.com/watch?v=FSrROxmVg0k&amp;t=1166s">19:26</a></h2>
+<p>An operator on a finite-dimensional space is <em>diagonalizable</em> if $V$ has a basis of eigenvectors. Let $c_1,\dots,c_k$ be the distinct eigenvalues of $T$ and $W_i=\ker(T-c_iI)$ the eigenspaces. Eigenspaces for distinct eigenvalues are independent (<a href="ch17.html">Chapter 17</a>), and when $T$ is diagonalizable they span $V$. So $V=W_1\oplus\cdots\oplus W_k$.</p>
+<p><strong>Theorem 3.1.</strong> Let $\dim V$ be finite and $T$ diagonalizable with distinct eigenvalues $c_1,\dots,c_k$, and let $E_i$ be the projections of the eigenspace decomposition. Then, besides (0.1) with every $E_i\ne0$,</p>
+<p>$$T=c_1E_1+c_2E_2+\cdots+c_kE_k .$$</p>
+<p><em>Proof.</em> For $\alpha\in V$ we have $\alpha=\sum_iE_i\alpha$ with $E_i\alpha\in W_i$, so $TE_i\alpha=c_iE_i\alpha$. Hence $T\alpha=\sum_iTE_i\alpha=\sum_ic_iE_i\alpha$. Each $E_i$ is nonzero because its range, an eigenspace of an eigenvalue, is nonzero. $\square$</p>
+<p>We call this the <em>spectral form</em> of $T$. Every operator satisfying the hypotheses of Section 1 splits into restrictions. What is special here is that each restriction is a scalar, $T_i=c_iI_{W_i}$. For an operator that is not diagonalizable, one can still have $I=\sum E_i$ with invariant ranges, but not $T=\sum c_iE_i$.</p>
+<p><strong>On the running example.</strong> The eigenvalues are $1$ and $3$ with eigenspaces $W_1$ and $W_2$. So $A=1\cdot E_1+3\cdot E_2$, which one verifies entry by entry.</p>
+<h2 id="4-powers-and-polynomials-2716">4. Powers and polynomials <a href="https://www.youtube.com/watch?v=FSrROxmVg0k&amp;t=1636s">27:16</a></h2>
+<p><strong>Theorem 4.1.</strong> Let $T=\sum_ic_iE_i$ where the $E_i$ satisfy $E_i^2=E_i$, $E_iE_j=0$ for $i\ne j$, and $\sum E_i=I$. Then for every $g\in F[x]$,</p>
+<p>$$g(T)=g(c_1)E_1+\cdots+g(c_k)E_k .$$</p>
+<p><em>Proof.</em> In $T^2=\sum_{i,j}c_ic_jE_iE_j$ the cross terms vanish and $E_i^2=E_i$, so $T^2=\sum c_i^2E_i$. By induction $T^r=\sum c_i^rE_i$ for $r\ge1$, and for $r=0$ the formula is $I=\sum E_i$. A polynomial is a linear combination of powers, and the right side is linear in the values. $\square$</p>
+<p><strong>On the running example.</strong> $A^{10}=E_1+3^{10}E_2=E_1+59049\,E_2$. For $g(x)=x^3-2x$ we get $g(1)=-1$ and $g(3)=21$, so $A^3-2A=-E_1+21E_2$. Since $1$ and $3$ are nonzero, the operator $B=E_1+\tfrac13E_2$ satisfies $AB=(E_1+3E_2)(E_1+\tfrac13E_2)=E_1+E_2=I$. So $A^{-1}=B$. Over $\mathbb{R}$, the operator $S=E_1+\sqrt3\,E_2$ satisfies $S^2=A$: this is the square root of the opening.</p>
+<h2 id="5-the-projections-are-polynomials-in-the-operator-2952">5. The projections are polynomials in the operator <a href="https://www.youtube.com/watch?v=FSrROxmVg0k&amp;t=1792s">29:52</a></h2>
+<p>The projections were built from eigenvectors. They can be computed from $T$ alone, with no eigenvector in sight. For distinct scalars $c_1,\dots,c_k$ define the <em>Lagrange polynomials</em></p>
+<p>$$p_j(x)=\prod_{i\ne j}\frac{x-c_i}{c_j-c_i}.$$</p>
+<p>Each $p_j$ has degree $k-1$, and $p_j(c_i)=\delta_{ij}$, where $\delta_{ij}$ is $1$ if $i=j$ and $0$ otherwise. Distinctness makes the denominators nonzero.</p>
+<p><strong>Theorem 5.1.</strong> Under the hypotheses of Theorem 4.1 with distinct $c_i$, $E_j=p_j(T)$ for every $j$.</p>
+<p><em>Proof.</em> By Theorem 4.1, $p_j(T)=\sum_ip_j(c_i)E_i=\sum_i\delta_{ij}E_i=E_j$. $\square$</p>
+<p>Consequently each $E_j$ commutes with $T$ and with every operator that commutes with $T$.</p>
+<p><strong>Corollary 5.2.</strong> If in addition every $E_i$ is nonzero, then $g(T)=0$ exactly when $g(c_i)=0$ for all $i$. Hence the minimal polynomial of $T$ is $m_T=(x-c_1)\cdots(x-c_k)$.</p>
+<p><em>Proof.</em> If $g(c_i)=0$ for all $i$, then $g(T)=0$ by Theorem 4.1. Conversely, if $g(T)=0$, multiply $\sum_ig(c_i)E_i=0$ by $E_j$ to get $g(c_j)E_j=0$. Since $E_j\ne0$, $g(c_j)=0$. The monic polynomial of least degree vanishing at the distinct points $c_1,\dots,c_k$ is their product. $\square$</p>
+<p><strong>On the running example.</strong> With $c_1=1$ and $c_2=3$ the polynomials are $p_1(x)=\frac{3-x}{2}$ and $p_2(x)=\frac{x-1}{2}$. Then $E_1=\tfrac12(3I-A)$ and $E_2=\tfrac12(A-I)$, matching the matrices of Section 2. The minimal polynomial is $(x-1)(x-3)$, while the characteristic polynomial is $(x-1)(x-3)^2$. The formula for $p_j$ divides by $c_1-c_2=-2$, so over a field in which $2=0$ the two eigenvalues would coincide and the example would change character.</p>
+<h2 id="6-the-converse-a-spectral-form-proves-diagonalizability-0922">6. The converse: a spectral form proves diagonalizability <a href="https://www.youtube.com/watch?v=YmpfezqZGhU&amp;t=562s">09:22</a></h2>
+<p>Theorem 3.1 says that a diagonalizable operator has a spectral form. The converse <a href="https://www.youtube.com/watch?v=YmpfezqZGhU&amp;t=416s">06:56</a> holds, and it identifies all the data.</p>
+<p><strong>Theorem 6.1.</strong> Let $V$ be a vector space over $F$ and $T\in\mathcal{L}(V)$. Suppose there are <em>distinct</em> scalars $c_1,\dots,c_k$ and <em>nonzero</em> operators $E_1,\dots,E_k$ with</p>
+<ol>
+<li>$T=c_1E_1+\cdots+c_kE_k$,</li>
+<li>$I=E_1+\cdots+E_k$,</li>
+<li>$E_iE_j=0$ for $i\ne j$.</li>
+</ol>
+<p>Then each $E_i$ is a projection, $c_1,\dots,c_k$ are exactly the eigenvalues of $T$, $\operatorname{im}E_i=\ker(T-c_iI)$, and $V$ is the direct sum of the eigenspaces. In particular, if $\dim V$ is finite, $T$ is diagonalizable.</p>
+<p><em>Proof.</em> <strong>Projections.</strong> Multiply 2 by $E_j$. By 3 only one term survives: $E_j=E_j^2$.</p>
+<p><strong>Each $c_j$ is an eigenvalue.</strong> From 1 and 3, $TE_j=\sum_ic_iE_iE_j=c_jE_j$, that is, $(T-c_jI)E_j=0$. Since $E_j\ne0$, some $\beta$ has $\alpha=E_j\beta\ne0$, and $(T-c_jI)\alpha=0$. The same equation shows $\operatorname{im}E_j\subseteq\ker(T-c_jI)$.</p>
+<p><strong>There are no other eigenvalues.</strong> Suppose $T\alpha=c\alpha$ with $\alpha\ne0$. By 1 and 2,</p>
+<p>$$0=(T-cI)\alpha=\sum_i(c_i-c)E_i\alpha .$$</p>
+<p>Apply $E_j$: by 3 and $E_j^2=E_j$, we get $(c_j-c)E_j\alpha=0$ for every $j$. Since $\alpha=\sum_jE_j\alpha\ne0$, some $E_j\alpha$ is nonzero, and for that $j$ we get $c=c_j$.</p>
+<p><strong>The ranges are the whole eigenspaces.</strong> Let $\alpha\in\ker(T-c_jI)$. The computation just made, with $c=c_j$, gives $(c_i-c_j)E_i\alpha=0$ for every $i$. For $i\ne j$ the scalar is nonzero because the $c_i$ are distinct, so $E_i\alpha=0$. Then $\alpha=\sum_iE_i\alpha=E_j\alpha\in\operatorname{im}E_j$.</p>
+<p><strong>Direct sum.</strong> By <a href="ch17.html">Chapter 17</a>, conditions 2 and 3 give $V=\operatorname{im}E_1\oplus\cdots\oplus\operatorname{im}E_k$, and each summand is an eigenspace. In finite dimension, the union of bases of the summands is a basis of eigenvectors. $\square$</p>
+<p>The hinge is to apply a projection to the equation $(T-cI)\alpha=0$: it separates one equation in $V$ into $k$ scalar equations, one in each summand.</p>
+<p><strong>Corollary 6.2 (uniqueness).</strong> The spectral form of a diagonalizable operator with distinct coefficients and nonzero projections is unique.</p>
+<p><em>Proof.</em> By Theorem 6.1, the $c_i$ must be the eigenvalues of $T$, and by Theorem 5.1, $E_i=p_i(T)$. Both are determined by $T$. $\square$</p>
+<p><strong>A second example.</strong> Keep the basis $(b_1,b_2,b_3)$ and let $F_1,F_2,F_3$ be the projections on the three lines. Then $S=2F_1-F_2+7F_3$ satisfies the hypotheses of Theorem 6.1, with $F_1=E_1$ and $F_2+F_3=E_2$. So $S$ is diagonalizable with eigenvalues $2,-1,7$, each eigenspace a line, and by Corollary 5.2, $m_S=(x-2)(x+1)(x-7)$. In the standard basis,</p>
+<p>$$S=\begin{pmatrix}-1&amp;0&amp;3\\0&amp;7&amp;-5\\0&amp;0&amp;2\end{pmatrix}.$$</p>
+<h2 id="7-where-the-hypotheses-bind">7. Where the hypotheses bind</h2>
+<p><strong>A complement that is not invariant.</strong> In the running example, the line $\operatorname{span}(e_1)$, with $e_1=(1,0,0)$, is invariant, and $\mathbb{Q}^3=\operatorname{span}(e_1)\oplus\operatorname{span}(e_2,e_3)$. But the plane is not invariant, since $Ae_3=(-2,-2,1)$ has a nonzero first coordinate. By Theorem 2.1 the projection on $\operatorname{span}(e_1)$ along the plane cannot commute with $A$, and it does not.</p>
+<p><strong>Invariant summands without a spectral form.</strong> Let</p>
+<p>$$N=\begin{pmatrix}2&amp;1&amp;0\\0&amp;2&amp;0\\0&amp;0&amp;3\end{pmatrix}.$$</p>
+<p>The subspaces $\operatorname{span}(e_1,e_2)$ and $\operatorname{span}(e_3)$ are invariant, the matrix is block diagonal, and the projections commute with $N$. Yet $N$ is not diagonalizable: its minimal polynomial is $(x-2)^2(x-3)$, which has a repeated factor. The first block is as far as this decomposition goes. Describing what remains inside such blocks is the subject of <a href="ch19.html">Chapter 19</a> and <a href="ch20.html">Chapter 20</a>.</p>
+<p><strong>Nonzero projections.</strong> Take $E_1=I$, $E_2=0$, $c_1=1$, $c_2=5$. Conditions 1 to 3 hold for $T=I$, but $5$ is not an eigenvalue.</p>
+<p><strong>Distinct scalars.</strong> Take the running projections with $c_1=c_2=4$. Then $T=4I$ satisfies 1 to 3, but $\ker(T-4I)=V$ is larger than $\operatorname{im}E_1$.</p>
+<p><strong>Characteristic.</strong> No restriction on the characteristic of $F$ is used in Theorems 2.1 to 6.1. Only the distinctness of the $c_i$ as elements of $F$ matters. Integers that are distinct may coincide in $F$.</p>
+<h2 id="8-executable-check">8. Executable check</h2>
+<p><a href="labs/ch18.py">The chapter laboratory</a> uses exact fractions. It checks the block form of $A$, the projections and identities (0.1), the commutation with $A$, the powers $A^n=E_1+3^nE_2$, the value of $g(A)$, the Lagrange formulas, the minimal and characteristic polynomials, the second example with three summands, and the boundary cases of Section 7. It verifies finite examples only.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) For the running example, write $A^{-1}$ and $A^2-4A+3I$ using $E_1,E_2$, and give both as explicit matrices.</li>
+<li>(Construction.) Compute $F_1,F_2,F_3$ for the basis $(b_1,b_2,b_3)$, check the matrix $S$ of Section 6, and recover $F_1$ as a polynomial in $S$.</li>
+<li>(Hypotheses.) Show by examples that in Theorem 6.1 the identification $\operatorname{im}E_i=\ker(T-c_iI)$ can fail if the scalars are not distinct, and that $c_i$ need not be an eigenvalue if $E_i=0$. Where does the proof use each hypothesis?</li>
+<li>(Commutant.) Let $\dim V=n$ and let $T$ have $n$ distinct eigenvalues. Prove that an operator $S$ commutes with $T$ if and only if $S=g(T)$ for some polynomial $g$.</li>
+<li>(Blocks.) For the matrix $N$ of Section 7, find the projection onto $\operatorname{span}(e_3)$ along $\operatorname{span}(e_1,e_2)$ as a polynomial in $N$.</li>
+<li>(Infinite dimension.) Let $F$ have characteristic different from $2$ and let $T$ on $F[x]$ be $(Tp)(x)=p(-x)$. Find nonzero projections $E_1,E_2$ and scalars satisfying the hypotheses of Theorem 6.1, and describe the eigenspaces.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>By Theorem 4.1, or directly from $(E_1+3E_2)(E_1+\tfrac13E_2)=I$, we have $A^{-1}=E_1+\tfrac13E_2$. Adding the matrices,</li>
+</ol>
+<p>$$A^{-1}=\begin{pmatrix}1/3&amp;0&amp;2/3\\0&amp;1/3&amp;2/3\\0&amp;0&amp;1\end{pmatrix}.$$</p>
+<p>For $g(x)=x^2-4x+3=(x-1)(x-3)$ both values $g(1),g(3)$ vanish, so $g(A)=g(1)E_1+g(3)E_2=0$. This is the minimal polynomial.</p>
+<ol start="2">
+<li>
+<p>A vector $(x,y,z)$ has coordinates $c_1=z$, $c_2=x-z$, $c_3=y-z$ in $(b_1,b_2,b_3)$. So $F_1(x,y,z)=z(1,1,1)$, $F_2(x,y,z)=(x-z,0,0)$ and $F_3(x,y,z)=(0,y-z,0)$. Then $2F_1-F_2+7F_3$ sends $(x,y,z)$ to $(2z-(x-z),\,2z+7(y-z),\,2z)=(-x+3z,\,7y-5z,\,2z)$, which is the displayed $S$. By Theorem 5.1, $F_1=p_1(S)$ with the Lagrange polynomial for the eigenvalue $2$ among $2,-1,7$:
+$$p_1(x)=\frac{(x+1)(x-7)}{(2+1)(2-7)}=-\frac{(x+1)(x-7)}{15}.$$</p>
+</li>
+<li>
+<p>With $E_1=I$, $E_2=0$, $c_1=1$, $c_2=5$ the conditions hold for $T=I$, and $5$ is not an eigenvalue. The step "some $\beta$ has $E_j\beta\ne0$" is where $E_j\ne0$ is used. With $E_1,E_2$ the running projections and $c_1=c_2=4$, we have $T=4(E_1+E_2)=4I$, and $\ker(T-4I)=\mathbb{Q}^3$ has dimension $3$, while $\operatorname{im}E_1$ has dimension $1$. The proof of the inclusion $\ker(T-c_jI)\subseteq\operatorname{im}E_j$ divides by $c_i-c_j$, which is where distinctness is used.</p>
+</li>
+<li>
+<p>If $S=g(T)$ then $S$ commutes with $T$. Conversely, let $ST=TS$. Each eigenspace $W_i=\ker(T-c_iI)$ is one-dimensional, because there are $n$ of them, they are nonzero, and they are independent in an $n$-dimensional space. If $v_i$ spans $W_i$, then $T(Sv_i)=S(Tv_i)=c_iSv_i$, so $Sv_i\in W_i$ and $Sv_i=s_iv_i$ for a scalar $s_i$. Choose $g$ with $g(c_i)=s_i$, namely $g=\sum_is_ip_i$. Then $g(T)v_i=g(c_i)v_i=s_iv_i=Sv_i$ for every $i$. The $v_i$ form a basis, so $S=g(T)$.</p>
+</li>
+<li>
+<p>The matrix $N$ is not diagonalizable, so Theorem 5.1 does not apply, and we look for $p$ with $p(N)=\operatorname{diag}(0,0,1)$. On the first block $N_1=\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix}$ we need $p(N_1)=0$, which holds if $(x-2)^2$ divides $p$. On the second block, the number $3$, we need $p(3)=1$. The polynomial $p(x)=(x-2)^2$ does both, since $p(3)=1$. So the projection is $(N-2I)^2$. Direct computation confirms $(N-2I)^2=\operatorname{diag}(0,0,1)$.</p>
+</li>
+<li>
+<p>Let $E_1p=\tfrac12\big(p(x)+p(-x)\big)$ and $E_2p=\tfrac12\big(p(x)-p(-x)\big)$. Then $E_1+E_2=I$. The range of $E_1$ consists of even polynomials and that of $E_2$ of odd polynomials, and $E_1E_2=E_2E_1=0$ because the even part of an odd polynomial is $0$ and conversely. Both are nonzero, since $E_1 1=1$ and $E_2x=x$. Also $T=E_1-E_2$, with $c_1=1\ne c_2=-1$ because $2\ne0$. By Theorem 6.1 the only eigenvalues are $\pm1$, the eigenspaces are the even and the odd polynomials, and $F[x]$ is their direct sum. Both are infinite-dimensional.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, the chapter on elementary canonical forms.</li>
+<li>Steven Roman, <em>Advanced Linear Algebra</em>, 3rd ed., Springer GTM 135, the chapter on direct sums.</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., open access at https://linear.axler.net/, the chapter on eigenvalues and eigenvectors.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch18.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 18 laboratory: invariant direct sums and block-diagonal operators.
+
+Exact arithmetic over Q (fractions.Fraction).  A matrix is a list of rows,
+a vector is a list, a polynomial is a list of coefficients from degree 0
+upward.  Every routine returns new objects and never changes its input.
+
+What the checks cover: the chapter&#x27;s running operator on Q^3, the
+commutation criterion, the spectral form T = c1 E1 + c2 E2, the Lagrange
+formula E_j = p_j(T), the converse theorem on a second example, and three
+boundary cases.  They verify finite examples only; they prove no theorem.
+&quot;&quot;&quot;
+from fractions import Fraction
+
+
+def Q(rows):
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def eye(n):
+    return [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def zeros(m, n):
+    return [[Fraction(0)] * n for _ in range(m)]
+
+
+def matmul(A, B):
+    return [[sum(A[i][k] * B[k][j] for k in range(len(B)))
+             for j in range(len(B[0]))] for i in range(len(A))]
+
+
+def matadd(A, B):
+    return [[a + b for a, b in zip(r, s)] for r, s in zip(A, B)]
+
+
+def scale(c, A):
+    return [[Fraction(c) * a for a in row] for row in A]
+
+
+def matsub(A, B):
+    return matadd(A, scale(-1, B))
+
+
+def trace(A):
+    return sum(A[i][i] for i in range(len(A)))
+
+
+def column(A, j):
+    return [row[j] for row in A]
+
+
+def matvec(A, v):
+    return [sum(a * x for a, x in zip(row, v)) for row in A]
+
+
+def rref(A):
+    &quot;&quot;&quot;Row-reduced echelon form and the list of pivot columns.&quot;&quot;&quot;
+    R = [row[:] for row in A]
+    pivots = []
+    r = 0
+    for c in range(len(R[0]) if R else 0):
+        p = next((i for i in range(r, len(R)) if R[i][c] != 0), None)
+        if p is None:
+            continue
+        R[r], R[p] = R[p], R[r]
+        R[r] = [x / R[r][c] for x in R[r]]
+        for i in range(len(R)):
+            if i != r and R[i][c] != 0:
+                f = R[i][c]
+                R[i] = [x - f * y for x, y in zip(R[i], R[r])]
+        pivots.append(c)
+        r += 1
+        if r == len(R):
+            break
+    return R, pivots
+
+
+def rank(A):
+    return len(rref(A)[1])
+
+
+def nullspace(A):
+    &quot;&quot;&quot;A basis (list of vectors) of {x : A x = 0}.&quot;&quot;&quot;
+    R, pivots = rref(A)
+    n = len(A[0])
+    basis = []
+    for f in (c for c in range(n) if c not in pivots):
+        v = [Fraction(0)] * n
+        v[f] = Fraction(1)
+        for r, p in enumerate(pivots):
+            v[p] = -R[r][f]
+        basis.append(v)
+    return basis
+
+
+def inverse(A):
+    n = len(A)
+    aug = [row + e for row, e in zip(A, eye(n))]
+    R, pivots = rref(aug)
+    assert pivots[:n] == list(range(n)), &#x27;matrix is singular&#x27;
+    return [row[n:] for row in R]
+
+
+def is_invariant(A, vectors):
+    &quot;&quot;&quot;True when A maps span(vectors) into span(vectors).&quot;&quot;&quot;
+    base = [list(v) for v in vectors]
+    image = base + [matvec(A, v) for v in vectors]
+    return rank(image) == rank(base)
+
+
+# Polynomials: coefficient lists, lowest degree first.
+
+def poly_mul(f, g):
+    out = [Fraction(0)] * (len(f) + len(g) - 1)
+    for i, a in enumerate(f):
+        for j, b in enumerate(g):
+            out[i + j] += a * b
+    return out
+
+
+def poly_at_matrix(f, A):
+    &quot;&quot;&quot;f(A) by Horner&#x27;s rule.&quot;&quot;&quot;
+    n = len(A)
+    out = zeros(n, n)
+    for c in reversed(f):
+        out = matadd(matmul(out, A), scale(c, eye(n)))
+    return out
+
+
+def lagrange(cs, j):
+    &quot;&quot;&quot;p_j(x) = product over i != j of (x - c_i)/(c_j - c_i).&quot;&quot;&quot;
+    p = [Fraction(1)]
+    for i, ci in enumerate(cs):
+        if i != j:
+            d = Fraction(cs[j]) - ci
+            p = poly_mul(p, [-Fraction(ci) / d, 1 / d])
+    return p
+
+
+def charpoly(A):
+    &quot;&quot;&quot;Faddeev-LeVerrier: monic det(xI - A), lowest degree first.&quot;&quot;&quot;
+    n = len(A)
+    coeffs = [Fraction(0)] * (n + 1)
+    coeffs[n] = Fraction(1)
+    M = zeros(n, n)
+    for k in range(1, n + 1):
+        M = matadd(matmul(A, M), scale(coeffs[n - k + 1], eye(n)))
+        coeffs[n - k] = -trace(matmul(A, M)) / k
+    return coeffs
+
+
+def min_poly(A):
+    &quot;&quot;&quot;Monic polynomial of least degree d with A^d in span(I..A^(d-1)).&quot;&quot;&quot;
+    n = len(A)
+    powers = [eye(n)]
+    for d in range(1, n * n + 1):
+        powers.append(matmul(powers[-1], A))
+        flat = [[x for row in P for x in row] for P in powers]
+        cols = [[flat[k][i] for k in range(len(flat))]
+                for i in range(n * n)]
+        null = nullspace(cols)
+        if null:
+            v = null[0]
+            return [x / v[-1] for x in v]
+    raise AssertionError(&#x27;no dependency found&#x27;)
+
+
+def poly_from_roots(roots):
+    p = [Fraction(1)]
+    for r in roots:
+        p = poly_mul(p, [-Fraction(r), Fraction(1)])
+    return p
+
+
+def poly_str(f):
+    terms = []
+    for k in range(len(f) - 1, -1, -1):
+        if f[k] != 0:
+            terms.append(&#x27;%s*x^%d&#x27; % (f[k], k))
+    return &#x27; + &#x27;.join(terms)
+
+
+def show(M):
+    &quot;&quot;&quot;Compact text for a matrix with integer or Fraction entries.&quot;&quot;&quot;
+    return &#x27;[&#x27; + &#x27;; &#x27;.join(&#x27; &#x27;.join(str(x) for x in row)
+                           for row in M) + &#x27;]&#x27;
+
+
+def diag_selector(n, idx):
+    D = zeros(n, n)
+    for i in idx:
+        D[i][i] = Fraction(1)
+    return D
+
+
+def is_zero(A):
+    return all(x == 0 for row in A for x in row)
+
+
+def commutes(A, B):
+    return matmul(A, B) == matmul(B, A)
+
+
+# ---------------------------------------------------------------------
+# 1. The running operator T on Q^3, in the standard basis.
+A = Q([[3, 0, -2], [0, 3, -2], [0, 0, 1]])
+b1, b2, b3 = [1, 1, 1], [1, 0, 0], [0, 1, 0]
+P = Q([[1, 1, 0], [1, 0, 1], [1, 0, 0]])  # columns b1, b2, b3
+Pinv = inverse(P)
+assert [column(P, j) for j in range(3)] == Q([b1, b2, b3])
+
+# W1 = span(b1) and W2 = span(b2, b3) are invariant; matrix is block-diag.
+assert is_invariant(A, Q([b1])) and is_invariant(A, Q([b2, b3]))
+D = matmul(Pinv, matmul(A, P))
+assert D == Q([[1, 0, 0], [0, 3, 0], [0, 0, 3]])
+print(&#x27;[T]_B =&#x27;, show(D))
+
+# 2. The projections of V = W1 + W2 along the decomposition.
+E1 = matmul(P, matmul(diag_selector(3, [0]), Pinv))
+E2 = matmul(P, matmul(diag_selector(3, [1, 2]), Pinv))
+assert E1 == Q([[0, 0, 1], [0, 0, 1], [0, 0, 1]])
+assert E2 == Q([[1, 0, -1], [0, 1, -1], [0, 0, 0]])
+assert matmul(E1, E1) == E1 and matmul(E2, E2) == E2
+assert is_zero(matmul(E1, E2)) and is_zero(matmul(E2, E1))
+assert matadd(E1, E2) == eye(3)
+assert rank(E1) == 1 and rank(E2) == 2
+print(&#x27;E1 =&#x27;, show(E1))
+print(&#x27;E2 =&#x27;, show(E2))
+
+# 3. Commutation criterion: A commutes with E1, E2.
+assert commutes(A, E1) and commutes(A, E2)
+print(&#x27;A E1 = E1 A and A E2 = E2 A: True&#x27;)
+
+# 4. Spectral form and powers.
+assert matadd(E1, scale(3, E2)) == A
+for n in (2, 5, 10):
+    An = eye(3)
+    for _ in range(n):
+        An = matmul(An, A)
+    assert An == matadd(E1, scale(3 ** n, E2))
+print(&#x27;A^10 =&#x27;, show(matadd(E1, scale(3 ** 10, E2))))
+
+# g(x) = x^3 - 2x gives g(A) = g(1) E1 + g(3) E2 = -E1 + 21 E2.
+g = Q([[0, -2, 0, 1]])[0]
+assert poly_at_matrix(g, A) == matadd(scale(-1, E1), scale(21, E2))
+print(&#x27;g(1), g(3) =&#x27;, 1 - 2, 27 - 6)
+
+# 5. Lagrange polynomials give the projections.
+cs = [1, 3]
+p1, p2 = lagrange(cs, 0), lagrange(cs, 1)
+assert p1 == [Fraction(3, 2), Fraction(-1, 2)]
+assert p2 == [Fraction(-1, 2), Fraction(1, 2)]
+assert poly_at_matrix(p1, A) == E1 and poly_at_matrix(p2, A) == E2
+print(&#x27;p1(x) =&#x27;, poly_str(p1), &#x27;; p2(x) =&#x27;, poly_str(p2))
+
+# Minimal and characteristic polynomials of A.
+assert min_poly(A) == poly_from_roots([1, 3])
+assert charpoly(A) == poly_from_roots([1, 3, 3])
+print(&#x27;m_A =&#x27;, poly_str(min_poly(A)), &#x27;; c_A =&#x27;, poly_str(charpoly(A)))
+
+# 6. Converse theorem on a second example with three summands.
+cs3 = [2, -1, 7]
+Es = [matmul(P, matmul(diag_selector(3, [i]), Pinv)) for i in range(3)]
+T = zeros(3, 3)
+for c, E in zip(cs3, Es):
+    T = matadd(T, scale(c, E))
+total = zeros(3, 3)
+for E in Es:
+    total = matadd(total, E)
+assert total == eye(3)
+for i in range(3):
+    for j in range(3):
+        if i != j:
+            assert is_zero(matmul(Es[i], Es[j]))
+    assert matmul(Es[i], Es[i]) == Es[i] and rank(Es[i]) == 1
+    kernel = nullspace(matsub(T, scale(cs3[i], eye(3))))
+    assert len(kernel) == rank(Es[i])
+    assert is_zero(matmul(matsub(T, scale(cs3[i], eye(3))), Es[i]))
+assert charpoly(T) == poly_from_roots(cs3)
+assert min_poly(T) == poly_from_roots(cs3)
+print(&#x27;T =&#x27;, show(T), &#x27;has eigenvalues&#x27;, cs3)
+print(&#x27;m_T =&#x27;, poly_str(min_poly(T)))
+
+# 7. Boundary: W1 = span(e1) is invariant, W2 = span(e2, e3) is not.
+e1, e2, e3 = [1, 0, 0], [0, 1, 0], [0, 0, 1]
+assert is_invariant(A, Q([e1])) and not is_invariant(A, Q([e2, e3]))
+F1 = diag_selector(3, [0])
+assert not commutes(A, F1)
+print(&#x27;invariant W1 with non-invariant complement: A F1 != F1 A&#x27;)
+
+# 8. Boundary: invariant decomposition, block-diagonal, not diagonalizable.
+N = Q([[2, 1, 0], [0, 2, 0], [0, 0, 3]])
+assert is_invariant(N, Q([e1, e2])) and is_invariant(N, Q([e3]))
+G1, G2 = diag_selector(3, [0, 1]), diag_selector(3, [2])
+assert commutes(N, G1) and commutes(N, G2)
+mN = min_poly(N)
+assert mN == poly_from_roots([2, 2, 3])
+assert charpoly(N) == poly_from_roots([2, 2, 3])
+# m_N is the lcm of the minimal polynomials of the blocks (x-2)^2, (x-3).
+assert min_poly(N) == poly_mul(poly_from_roots([2, 2]), [-3, 1])
+# T = a G1 + b G2 is impossible: it is diagonal, N is not.
+assert N[0][1] != 0
+print(&#x27;m_N =&#x27;, poly_str(mN), &#x27;= (x-2)^2 (x-3): not diagonalizable&#x27;)
+
+# 9. Boundary: converse needs nonzero E_i and distinct c_i.
+T_id = matadd(matadd(E1, E2), scale(5, zeros(3, 3)))  # 5 * (zero E)
+assert T_id == eye(3)
+assert charpoly(T_id) == poly_from_roots([1, 1, 1])  # 5 is not a root
+T_eq = matadd(scale(4, E1), scale(4, E2))
+assert T_eq == scale(4, eye(3))
+assert len(nullspace(matsub(T_eq, scale(4, eye(3))))) == 3
+assert rank(E1) == 1  # ker(T - 4I) has dimension 3, range E1 has 1
+print(&#x27;zero E_2 with c_2 = 5: 5 is not an eigenvalue of I&#x27;)
+print(&#x27;c_1 = c_2 = 4: ker(T - 4I) has dimension 3, range E1 has dim 1&#x27;)
+# Section 6 matrix S and the exercises.
+S = matadd(matadd(scale(2, Es[0]), scale(-1, Es[1])), scale(7, Es[2]))
+assert S == Q([[-1, 0, 3], [0, 7, -5], [0, 0, 2]]) and S == T
+Ainv = matadd(E1, scale(Fraction(1, 3), E2))
+assert matmul(A, Ainv) == eye(3)
+assert Ainv == [[Fraction(1, 3), 0, Fraction(2, 3)],
+                [0, Fraction(1, 3), Fraction(2, 3)], [0, 0, 1]]
+q1 = [x / -15 for x in poly_from_roots([-1, 7])]
+assert poly_at_matrix(q1, S) == Es[0]
+M2 = matsub(N, scale(2, eye(3)))
+assert matmul(M2, M2) == diag_selector(3, [2])
+print(&#x27;S =&#x27;, show(S), &#x27;; A^-1 =&#x27;, show(Ainv))
+print(&#x27;all checks passed&#x27;)
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch17.html">Previous: Direct-sum decompositions and projections</a><a rel="next" href="ch19.html">Next: The primary decomposition theorem</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

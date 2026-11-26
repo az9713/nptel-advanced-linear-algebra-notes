@@ -1,0 +1,12 @@
+{
+  "title": "Annihilators, the double dual, and the transpose of a linear map",
+  "lectures": [22, 23],
+  "objectives": [
+    "Prove that a finite-dimensional space is canonically isomorphic to its double dual",
+    "Show that every basis of the dual space is a dual basis",
+    "Relate kernel and range of the transpose to annihilators",
+    "Prove that the matrix of the transpose is the transposed matrix"
+  ],
+  "prerequisites": "Chapters 7, 9 and 10: rank-nullity, matrices of linear maps and dual bases.",
+  "source_scope": "The captions of Lectures 21 and 22 were read in full; the running matrix, the solvability criterion, the infinite-dimensional examples and the exercises are original."
+}

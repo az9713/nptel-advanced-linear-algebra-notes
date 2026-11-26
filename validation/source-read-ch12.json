@@ -1,0 +1,51 @@
+{
+ "author": "author_a",
+ "chapter": "ch12",
+ "recordings": [
+  {
+   "position": 24,
+   "video_id": "42dHe_scp8k",
+   "normalized_text_sha256": "06d17b6494794d65a97b38f524733750bf8aa4160dfae90bc48986fa5c880b55",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "eigenvalue and eigenvector of operators and matrices",
+    "characteristic polynomial and equation",
+    "eigenspace is a subspace",
+    "similar matrices have the same characteristic polynomial",
+    "rotation example",
+    "3 by 3 matrix with eigenvalues 1,2,2 and eigenvectors"
+   ],
+   "clarifications": [
+    "The spoken sign convention det(A-cI) is replaced by det(xI-A)"
+   ],
+   "original_constructions": [
+    "theorems on coefficients"
+   ]
+  },
+  {
+   "position": 25,
+   "video_id": "qDCmg29dsgs",
+   "normalized_text_sha256": "26d55e39655716eb04603e6b231b3eca5e2393bd18feb6ceebbd82187b0b1950",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "integral operator with no eigenvalue",
+    "differential operator with eigenvalue a",
+    "second 3 by 3 matrix and its diagonalization",
+    "questions about diagonal form",
+    "definition of diagonalizable and multiplicities"
+   ],
+   "clarifications": [
+    "Differentiation needs the space of smooth functions to be an operator"
+   ],
+   "original_constructions": [
+    "growth comparison of powers",
+    "independence and multiplicity theorems",
+    "exercises"
+   ]
+  }
+ ]
+}

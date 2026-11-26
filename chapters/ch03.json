@@ -1,0 +1,12 @@
+{
+  "title": "Vector spaces and subspaces: the axioms that make linear combinations work",
+  "lectures": [5, 6],
+  "objectives": [
+    "State the vector space axioms and derive their basic consequences",
+    "Verify or refute that a set with two operations is a vector space",
+    "Apply the one-step subspace test to null spaces, spans, intersections and sums",
+    "Decide when a union or a sum of subspaces is a subspace or a direct sum"
+  ],
+  "prerequisites": "Chapters 1 and 2: fields, row reduction and solution sets.",
+  "source_scope": "The captions of Lectures 4 and 5 were read in full; the running matrix, the boundary examples, several proofs and the exercises are original."
+}

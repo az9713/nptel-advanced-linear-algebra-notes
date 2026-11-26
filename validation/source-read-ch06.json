@@ -1,0 +1,48 @@
+{
+ "author": "author_a",
+ "chapter": "ch06",
+ "recordings": [
+  {
+   "position": 10,
+   "video_id": "BJn7EqX2p0o",
+   "normalized_text_sha256": "d9d4083d72562203a2188cb26eea7aca4f823db0af632a2668ac8d770a16bd80",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "row space definition",
+    "row space of PA is contained in that of A",
+    "equality for invertible P",
+    "nonzero rows of the echelon form are a basis",
+    "coordinates equal pivot entries",
+    "echelon example of Section 3"
+   ],
+   "clarifications": [],
+   "original_constructions": []
+  },
+  {
+   "position": 11,
+   "video_id": "j_laym_mBaI",
+   "normalized_text_sha256": "dc46427b317ae9360f5f8726bd99cfc8781b86a3365619512297a845a3d4062b",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "worked problem: P with PA=R and its non-uniqueness",
+    "basis of row space and coordinates",
+    "general element and equations",
+    "null space and its basis",
+    "solvability conditions for AX=Y"
+   ],
+   "clarifications": [
+    "The entries of the 5 by 5 matrix are read out in the caption and are used as the running example"
+   ],
+   "original_constructions": [
+    "classification of all P",
+    "row rank equals column rank",
+    "intersection example",
+    "exercises"
+   ]
+  }
+ ]
+}

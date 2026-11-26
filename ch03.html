@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Vector spaces and subspaces: the axioms that make linear combinations work · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html" aria-current=page>03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>03. Vector spaces and subspaces: the axioms that make linear combinations work</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=aEF5PPbv8Oc">Recording 5</a>, <a href="https://www.youtube.com/watch?v=BQ6bUhF4tPM">Recording 6</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>State the vector space axioms and derive their basic consequences</li><li>Verify or refute that a set with two operations is a vector space</li><li>Apply the one-step subspace test to null spaces, spans, intersections and sums</li><li>Decide when a union or a sum of subspaces is a subspace or a direct sum</li></ul>
+<p><strong>Prerequisites:</strong> Chapters 1 and 2: fields, row reduction and solution sets.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch03.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-from-solving-mathplaceholder000038end-to-abstract-vector-spaces-0025">1. From solving $AX=Y$ to abstract vector spaces 00:25</a></li><li><a href="#2-the-axioms-of-a-vector-space-0314">2. The axioms of a vector space 03:14</a></li><li><a href="#3-first-examples-mathplaceholder000156end-and-a-field-over-a-subfield-1555">3. First examples: $F^n$ and a field over a subfield 15:55</a></li><li><a href="#4-function-spaces-and-polynomials-2850">4. Function spaces and polynomials 28:50</a></li><li><a href="#5-subspaces-and-the-one-step-test-0048">5. Subspaces and the one-step test 00:48</a></li><li><a href="#6-null-spaces-solution-sets-and-spaces-of-matrices-2508">6. Null spaces, solution sets, and spaces of matrices 25:08</a></li><li><a href="#7-linear-combinations-and-span-3241">7. Linear combinations and span 32:41</a></li><li><a href="#8-intersections-and-unions-4101">8. Intersections and unions 41:01</a></li><li><a href="#9-sums-of-subspaces-4720">9. Sums of subspaces 47:20</a></li><li><a href="#10-executable-check">10. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Fix the real $3\times 4$ matrix</p>
+<p>$$A=\begin{pmatrix}1&amp;1&amp;0&amp;-1\\0&amp;0&amp;1&amp;2\\1&amp;1&amp;1&amp;1\end{pmatrix}$$</p>
+<p>and ask two questions about the system $AX=Y$. Here $X$ and $Y$ are columns, and a superscript $\mathsf T$ denotes transpose, so that $(2,3,5)^{\mathsf T}$ is the column with entries $2,3,5$. For which right-hand sides $Y\in\mathbb{R}^3$ does a solution exist? And what does the set of solutions look like when one exists? Row reduction, as developed in <a href="ch01.html">Chapter 1</a> and <a href="ch02.html">Chapter 2</a>, answers each instance. For $Y=(2,3,5)^{\mathsf T}$ the vector $X=(2,0,3,0)^{\mathsf T}$ is a solution. For $Y=(2,3,4)^{\mathsf T}$ there is none, because the third row of $A$ is the sum of the first two rows, so any solution would force $4=2+3$. The homogeneous system $AX=0$ has the solutions $(-s+t,\,s,\,-2t,\,t)^{\mathsf T}$ for arbitrary $s,t$.</p>
+<p>Three patterns appear in these answers, and none of them is about numbers. First, the sum of two solutions of $AX=0$ is a solution, and so is any scalar multiple of a solution. Second, this fails for $AX=Y$ with $Y=(2,3,5)^{\mathsf T}$: the sum of two solutions solves $AX=2Y$, and the zero vector is not a solution at all. Third, the set of right-hand sides $Y$ for which a solution exists is itself closed under sums and scalar multiples, since $AX=Y$ and $AX'=Y'$ give $A(X+X')=Y+Y'$. One set lives in $\mathbb{R}^4$ and the other in $\mathbb{R}^3$, yet they obey the same two closure laws. The same laws govern the solutions of a linear differential equation, the sequences satisfying a linear recurrence, and the symmetric matrices, none of which are columns of numbers.</p>
+<p>This chapter isolates the rules that produce these patterns. Section 1 explains why the geometric picture of vectors must be replaced by an algebraic one. Section 2 gives the axioms of a vector space and derives from them the facts that every later proof uses. Sections 3 and 4 supply the standard examples and the non-examples that mark each axiom's role. Sections 5 to 9 develop subspaces, linear combinations, span, intersections, unions and sums, which are the tools that describe sets like the solution set and the solvable right-hand sides above. Throughout, $F$ denotes a field: a set with addition and multiplication that obey the usual rules and in which every nonzero element has a reciprocal. Examples are $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$ and the field $\mathbb{F}_p=\{0,1,\dots,p-1\}$ with arithmetic modulo a prime $p$. The running example is the matrix $A$ above with $F=\mathbb{Q}$, together with the two subspaces $W_1=\{X: AX=0\}$ and $W_2=\{X\in\mathbb{Q}^4: x_2=x_4\}$ of $\mathbb{Q}^4$. Every number quoted for it is reproduced by <a href="labs/ch03.py">the chapter laboratory</a>, which is introduced in Section 10.</p>
+<h2 id="1-from-solving-mathplaceholder000038end-to-abstract-vector-spaces-0025">1. From solving $AX=Y$ to abstract vector spaces <a href="https://www.youtube.com/watch?v=aEF5PPbv8Oc&amp;t=25s">00:25</a></h2>
+<p>Let $A$ be an $m\times n$ matrix over $F$ with columns $c_1,\dots,c_n\in F^m$, and let $X=(x_1,\dots,x_n)^{\mathsf T}$. The $i$-th entry of $AX$ is $\sum_j a_{ij}x_j$, and the $i$-th entry of $\sum_j x_jc_j$ is the same sum. Hence</p>
+<p>$$AX=x_1c_1+x_2c_2+\cdots+x_nc_n .$$</p>
+<p>A <strong>linear combination</strong> of vectors $c_1,\dots,c_n$ is an expression $x_1c_1+\cdots+x_nc_n$ with scalars $x_j$. The displayed identity says that $AX=Y$ has a solution exactly when $Y$ is a linear combination of the columns of $A$, and that a solution lists the coefficients. For $m\le 3$ this can be drawn: two non-parallel arrows in the plane combine to reach every point of the plane, while two parallel arrows reach only a line. For $m&gt;3$ no drawing is available, and arrows are not the objects of interest anyway. The question "is $Y$ a combination of these columns" uses only two operations, adding vectors and multiplying a vector by a scalar, together with the rules these operations obey.</p>
+<p>The remedy is to keep those operations and rules and discard everything else. A <strong>vector</strong> will be any element of a set equipped with these two operations, not necessarily a column of numbers and not necessarily something with a length or a direction. Lengths and angles belong to the inner-product spaces of <a href="ch21.html">Chapter 21</a>; nothing in the present chapter has them. The <strong>scalars</strong> will be the elements of an arbitrary field $F$. With this generality, a polynomial of degree at most $n$, a function on a set, and a matrix are all vectors, and every theorem proved from the rules applies to all of them.</p>
+<h2 id="2-the-axioms-of-a-vector-space-0314">2. The axioms of a vector space <a href="https://www.youtube.com/watch?v=aEF5PPbv8Oc&amp;t=194s">03:14</a></h2>
+<p><strong>Definition 2.1.</strong> Let $F$ be a field. A <strong>vector space over $F$</strong> is a nonempty set $V$ together with two operations: a <strong>vector addition</strong> $V\times V\to V$, written $(u,v)\mapsto u+v$, and a <strong>scalar multiplication</strong> $F\times V\to V$, written $(c,u)\mapsto cu$. The elements of $V$ are called vectors. The following hold for all $u,v,w\in V$ and all $c,c_1,c_2\in F$.</p>
+<ul>
+<li>(A1) Associativity of addition: $(u+v)+w=u+(v+w)$.</li>
+<li>(A2) Zero vector: some element $\mathbf{0}\in V$ satisfies $u+\mathbf{0}=u$ for every $u$.</li>
+<li>(A3) Additive inverse: for each $u$ some element $-u\in V$ satisfies $u+(-u)=\mathbf{0}$.</li>
+<li>(A4) Commutativity of addition: $u+v=v+u$.</li>
+<li>(S1) Distributivity over scalar addition: $(c_1+c_2)u=c_1u+c_2u$.</li>
+<li>(S2) Distributivity over vector addition: $c(u+v)=cu+cv$.</li>
+<li>(S3) Compatibility with field multiplication: $(c_1c_2)u=c_1(c_2u)$.</li>
+<li>(S4) Unit: $1u=u$, where $1$ is the multiplicative identity of $F$.</li>
+</ul>
+<p>The statement that $+$ and scalar multiplication are operations into $V$ contains two further axioms, the closure axioms: $u+v\in V$ and $cu\in V$. Counted this way there are ten axioms: five that make $(V,+)$ an <em>abelian group</em> (a set with a closed, associative, commutative operation that has an identity element and inverses), and five that govern scalar multiplication. Closure deserves to be named because it is the one axiom that fails first when operations are restricted to a subset (Section 5) or when scalars are changed (Section 3).</p>
+<p>Two different additions appear in (S1): the $+$ between $c_1$ and $c_2$ is addition in $F$, and the $+$ between $c_1u$ and $c_2u$ is addition in $V$. Likewise the scalar $0\in F$ and the vector $\mathbf{0}\in V$ are different objects, which is why the zero vector is typeset in bold. Axiom (S3) is a kind of associativity but involves one product in $F$ and two scalar multiplications, so it is not an instance of (A1).</p>
+<h3 id="what-follows-from-the-axioms">What follows from the axioms</h3>
+<p>The next theorem collects the consequences that later proofs use without comment. The hinge is that (S1) and (S2) are the only axioms that connect the field to the group, so every statement mixing scalars and vectors must pass through them.</p>
+<p><strong>Theorem 2.2.</strong> Let $V$ be a vector space over $F$, let $u,v,w\in V$, and let $c\in F$.</p>
+<ol>
+<li>(Cancellation) If $u+w=v+w$, then $u=v$. If $w+u=w+v$, then $u=v$.</li>
+<li>The zero vector is unique.</li>
+<li>Each $u$ has exactly one additive inverse.</li>
+<li>$0u=\mathbf{0}$, where $0\in F$ on the left.</li>
+<li>$c\mathbf{0}=\mathbf{0}$.</li>
+<li>$(-1)u=-u$.</li>
+<li>If $cu=\mathbf{0}$, then $c=0$ or $u=\mathbf{0}$.</li>
+</ol>
+<p><strong>Proof.</strong> (1) Add $-w$ on the right of both sides of $u+w=v+w$. By (A1), (A3) and (A2), the left side becomes $(u+w)+(-w)=u+(w+(-w))=u+\mathbf{0}=u$, and likewise the right side becomes $v$. So $u=v$. The second form follows from the first by (A4).</p>
+<p>(2) Let $\mathbf{0}'$ also satisfy $u+\mathbf{0}'=u$ for all $u$. Taking $u=\mathbf{0}$ in the property of $\mathbf{0}'$ gives $\mathbf{0}+\mathbf{0}'=\mathbf{0}$. Taking $u=\mathbf{0}'$ in the property of $\mathbf{0}$ gives $\mathbf{0}'+\mathbf{0}=\mathbf{0}'$. By (A4) the two left sides are equal, so $\mathbf{0}=\mathbf{0}'$.</p>
+<p>(3) If $u+v=\mathbf{0}$ and $u+v'=\mathbf{0}$, then $u+v=u+v'$, and part (1) gives $v=v'$.</p>
+<p>(4) By (S1), $0u=(0+0)u=0u+0u$. Since also $0u=0u+\mathbf{0}$ by (A2), we have $0u+\mathbf{0}=0u+0u$, and cancellation leaves $\mathbf{0}=0u$.</p>
+<p>(5) By (S2), $c\mathbf{0}=c(\mathbf{0}+\mathbf{0})=c\mathbf{0}+c\mathbf{0}$, and cancellation gives $c\mathbf{0}=\mathbf{0}$ exactly as in (4).</p>
+<p>(6) By (S4), (S1) and part (4), $u+(-1)u=1u+(-1)u=(1+(-1))u=0u=\mathbf{0}$. So $(-1)u$ is an additive inverse of $u$, and by part (3) it is $-u$.</p>
+<p>(7) Suppose $cu=\mathbf{0}$ and $c\ne 0$. Then $c^{-1}$ exists in $F$, and by (S3), (S4) and part (5), $u=1u=(c^{-1}c)u=c^{-1}(cu)=c^{-1}\mathbf{0}=\mathbf{0}$. $\square$</p>
+<p>Part (2) justifies the phrase "the zero vector". In $F^n$ one finds the zero vector by solving $u+e=u$ for $e$ entry by entry; part (2) shows that no space can have a second solution. Part (6) is used at once in Section 5: it lets one produce $-u$ from scalar multiplication, so that a subset closed under scalars automatically contains additive inverses.</p>
+<h2 id="3-first-examples-mathplaceholder000156end-and-a-field-over-a-subfield-1555">3. First examples: $F^n$ and a field over a subfield <a href="https://www.youtube.com/watch?v=aEF5PPbv8Oc&amp;t=955s">15:55</a></h2>
+<p>For a positive integer $n$, let $F^n$ be the set of $n$-tuples $u=(u_1,\dots,u_n)$ with entries in $F$, written as columns when matrices act on them. Define</p>
+<p>$$u+v=(u_1+v_1,\dots,u_n+v_n),\qquad cu=(cu_1,\dots,cu_n).$$</p>
+<p><strong>Theorem 3.1.</strong> $F^n$ with these operations is a vector space over $F$, for every field $F$ and every $n\ge 1$.</p>
+<p><strong>Proof.</strong> Both operations produce $n$-tuples with entries in $F$, so closure holds. Two tuples are equal exactly when all their entries are equal, so each axiom is an equation that can be checked entry by entry, and each entry equation is a law of the field $F$. For (A1), the $i$-th entry of $(u+v)+w$ is $(u_i+v_i)+w_i$, which equals $u_i+(v_i+w_i)$, the $i$-th entry of $u+(v+w)$, by associativity in $F$. For (A4) the entries $u_i+v_i$ and $v_i+u_i$ agree by commutativity in $F$. For (A2) take $\mathbf{0}=(0,\dots,0)$, since $u_i+0=u_i$. For (A3) take $-u=(-u_1,\dots,-u_n)$, since $u_i+(-u_i)=0$. For (S1), the $i$-th entry of $(c_1+c_2)u$ is $(c_1+c_2)u_i=c_1u_i+c_2u_i$ by distributivity in $F$, and this is the $i$-th entry of $c_1u+c_2u$. (S2) is distributivity $c(u_i+v_i)=cu_i+cv_i$, (S3) is associativity $(c_1c_2)u_i=c_1(c_2u_i)$, and (S4) is $1u_i=u_i$. $\square$</p>
+<p>The proof verifies that the candidates satisfy the axioms; Theorem 2.2 then gives their uniqueness. The case $n=1$ shows that $F$ itself is a vector space over $F$: the vectors and the scalars are the same set, and scalar multiplication is multiplication in $F$.</p>
+<h3 id="changing-the-scalars-changes-the-space">Changing the scalars changes the space</h3>
+<p>A set can be a vector space over one field and fail to be one over another. The next result gives the standard situation. A <strong>subfield</strong> of a field $F$ is a subset $K$ that is a field under the operations of $F$, with the same $0$ and $1$. Examples are $\mathbb{Q}\subset\mathbb{R}\subset\mathbb{C}$.</p>
+<p><strong>Theorem 3.2.</strong> Let $K$ be a subfield of $F$. Then $F$ is a vector space over $K$, with vector addition equal to the addition of $F$ and scalar multiplication $K\times F\to F$ equal to the multiplication of $F$ restricted to $K$ in its first argument.</p>
+<p><strong>Proof.</strong> The addition of $F$ is associative, commutative, has a zero and has negatives, giving (A1) to (A4). The product of $c\in K$ and $u\in F$ lies in $F$, so scalar multiplication is an operation $K\times F\to F$. Axioms (S1) to (S4) are the distributive law, the associative law and the identity law of the field $F$, applied with $c_1,c_2,c\in K\subseteq F$. $\square$</p>
+<p>Hence $\mathbb{C}$ is a vector space over $\mathbb{R}$, and $\mathbb{R}$ is a vector space over $\mathbb{Q}$. The opposite direction fails: with the usual product, the set $\mathbb{R}$ is not a vector space over the scalar field $\mathbb{C}$. The failure is closure. Take $i\in\mathbb{C}$ and $1\in\mathbb{R}$; the product $i\cdot 1=i$ is not a real number, so $\mathbb{C}\times\mathbb{R}\to\mathbb{R}$ is not an operation. The set and the addition are unchanged; only the permitted scalars differ. The same set $\mathbb{C}$ with scalar field $\mathbb{C}$ and with scalar field $\mathbb{R}$ gives two different vector spaces, which <a href="ch04.html">Chapter 4</a> distinguishes by their dimension, the number of vectors in a basis (one and two respectively).</p>
+<h3 id="boundary-the-axiom-mathplaceholder000233end-is-not-redundant">Boundary: the axiom $1u=u$ is not redundant</h3>
+<p>One may suspect that (S4) follows from the others. It does not. On $F^n$ with its usual addition, define a new scalar multiplication by $c\cdot u=\mathbf{0}$ for all $c$ and $u$. This is an operation into $F^n$, so closure holds. Axioms (A1) to (A4) are unchanged. Axiom (S1) reads $\mathbf{0}=\mathbf{0}+\mathbf{0}$, (S2) reads $\mathbf{0}=\mathbf{0}+\mathbf{0}$, and (S3) reads $\mathbf{0}=\mathbf{0}$, all true. But $1\cdot u=\mathbf{0}\ne u$ whenever $u\ne\mathbf{0}$, so (S4) fails. The laboratory confirms by exhaustive search over $\mathbb{F}_3^2$ that this structure fails exactly (S4) and no other axiom. The example explains why (S4) is in the list: without it, scalar multiplication may discard the vector and Theorem 2.2(7) fails.</p>
+<h2 id="4-function-spaces-and-polynomials-2850">4. Function spaces and polynomials <a href="https://www.youtube.com/watch?v=aEF5PPbv8Oc&amp;t=1730s">28:50</a></h2>
+<p>Let $S$ be any set. Let $F^S$ denote the set of all functions $f:S\to F$, with the pointwise operations</p>
+<p>$$(f+g)(s)=f(s)+g(s),\qquad (cf)(s)=c\,f(s)\quad\text{for all }s\in S.$$</p>
+<p>The most familiar case is $S\subseteq\mathbb{R}$ with $F=\mathbb{R}$, the real functions of calculus.</p>
+<p><strong>Theorem 4.1.</strong> $F^S$ is a vector space over $F$.</p>
+<p><strong>Proof.</strong> The sum $f+g$ and the multiple $cf$ are again functions $S\to F$, so closure holds. Two functions are equal exactly when they agree at every $s\in S$. Therefore each axiom, being an equation between functions, reduces to an equation of field elements at each fixed $s$. For (S1): $((c_1+c_2)f)(s)=(c_1+c_2)f(s)=c_1f(s)+c_2f(s)=(c_1f+c_2f)(s)$, by distributivity in $F$. For (A1): $((f+g)+h)(s)=(f(s)+g(s))+h(s)=f(s)+(g(s)+h(s))=(f+(g+h))(s)$. The remaining axioms are checked in the same way. The zero vector is the constant function $s\mapsto 0$, and the inverse of $f$ is $s\mapsto -f(s)$. $\square$</p>
+<p>The argument is the entrywise proof of Theorem 3.1 with the index set $\{1,\dots,n\}$ replaced by $S$. In fact $F^n=F^{\{1,\dots,n\}}$, since a tuple is a function from its positions to $F$. Taking $S=\{1,\dots,m\}\times\{1,\dots,n\}$ shows that the set $F^{m\times n}$ of $m\times n$ matrices, with entrywise addition and scalar multiplication, is a vector space; no separate verification is needed. The case $S=\varnothing$ gives a set with one element, the zero space $\{\mathbf{0}\}$, which Definition 2.1 admits.</p>
+<h3 id="polynomials-of-bounded-degree">Polynomials of bounded degree</h3>
+<p>Fix an integer $n\ge 0$. Let $P_n(F)$ be the set of expressions $p=p_0+p_1x+\cdots+p_nx^n$ with coefficients $p_j\in F$. Two such expressions are equal exactly when all their coefficients are equal. Define</p>
+<p>$$p+q=(p_0+q_0)+(p_1+q_1)x+\cdots+(p_n+q_n)x^n,\qquad cp=cp_0+cp_1x+\cdots+cp_nx^n .$$</p>
+<p>The sum has degree at most $n$, because no power above $x^n$ appears, so closure holds. The map sending $p$ to its coefficient tuple $(p_0,\dots,p_n)$ is a bijection $P_n(F)\to F^{n+1}$ that carries each operation to the corresponding operation of $F^{n+1}$. Every axiom for $P_n(F)$ is therefore the same equation as the corresponding axiom for $F^{n+1}$, which Theorem 3.1 proved. So $P_n(F)$ is a vector space over $F$ with zero vector the polynomial all of whose coefficients vanish.</p>
+<p>Two cautions mark the boundary of this example. First, the polynomials of degree exactly $n$ with $n\ge 1$ do not form a vector space under these operations: $x^n$ and $1-x^n$ both have degree $n$, yet their sum is the polynomial $1$ of degree $0$, so closure fails, and the zero polynomial is excluded as well. Second, one often speaks of polynomial <em>functions</em>. Over $\mathbb{R}$, or any infinite field, an expression and its function determine each other. The reason is that a nonzero polynomial of degree at most $n$ has at most $n$ roots (elements $a$ with $p(a)=0$). To prove this, use induction on $n$; the case $n=0$ is a nonzero constant. If $p(a)=0$, then $p(x)=p(x)-p(a)=\sum_j p_j(x^j-a^j)$, and each $x^j-a^j$ with $j\ge1$ equals $(x-a)(x^{j-1}+ax^{j-2}+\cdots+a^{j-1})$. So $p(x)=(x-a)q(x)$ with $q$ nonzero of degree at most $n-1$, and every root of $p$ other than $a$ is a root of $q$, because a product of nonzero field elements is nonzero. Hence a nonzero polynomial cannot vanish at every element of an infinite set. Over a finite field this fails. In $\mathbb{F}_2$ the polynomial $x^2+x$ is not the zero polynomial, yet $0^2+0=0$ and $1^2+1=0$ in $\mathbb{F}_2$, so it defines the zero function. The vector space of coefficient tuples and the vector space of polynomial functions are then different spaces. The laboratory checks this example. It also checks that over $\mathbb{Q}$ a polynomial of degree at most $2$ is determined by its values at $0,1,2$: the matrix with rows $(1,s,s^2)$ for $s=0,1,2$ has <em>rank</em> $3$, where the rank of a matrix means the number of nonzero rows of its echelon form (<a href="ch02.html">Chapter 2</a>).</p>
+<h2 id="5-subspaces-and-the-one-step-test-0048">5. Subspaces and the one-step test <a href="https://www.youtube.com/watch?v=BQ6bUhF4tPM&amp;t=48s">00:48</a></h2>
+<p>Verifying ten axioms for each new set is tedious, and for many sets it is unnecessary, because the set sits inside a vector space already known. Let $V$ be a vector space over $F$.</p>
+<p><strong>Definition 5.1.</strong> A nonempty subset $W\subseteq V$ is a <strong>subspace</strong> of $V$ if $W$ is a vector space over $F$ under the addition and scalar multiplication of $V$ restricted to $W$.</p>
+<p>The phrase "restricted to $W$" carries content. For the restrictions to be operations on $W$, the sum of two elements of $W$ and the multiple of an element of $W$ must again lie in $W$. For example, with $V=F^2$ and $W=\{(x,0):x\in F\}$, the set of points on the horizontal axis, the sum $(x,0)+(x',0)=(x+x',0)$ and the multiple $c(x,0)=(cx,0)$ stay in $W$, and all ten axioms hold in $W$ because they hold in $V$. The following theorem turns this observation into a single test.</p>
+<p><strong>Theorem 5.2 (one-step subspace test).</strong> Let $W$ be a nonempty subset of a vector space $V$ over $F$. Then $W$ is a subspace of $V$ if and only if</p>
+<p>$$cu+v\in W\qquad\text{for all }u,v\in W\text{ and all }c\in F.$$</p>
+<p><strong>Proof.</strong> Suppose $W$ is a subspace. Closure of $W$ under scalar multiplication gives $cu\in W$, and closure under addition then gives $cu+v\in W$.</p>
+<p>Conversely, suppose $cu+v\in W$ for all $u,v\in W$ and $c\in F$. Choose any $w\in W$; $W$ is nonempty. Taking $c=-1$, $u=w$, $v=w$ gives $(-1)w+w\in W$. By Theorem 2.2(6), $(-1)w=-w$, so $(-1)w+w=\mathbf{0}$, and therefore $\mathbf{0}\in W$. Now take $v=\mathbf{0}$: for all $u\in W$ and $c\in F$ the vector $cu+\mathbf{0}=cu$ lies in $W$, so $W$ is closed under scalar multiplication. Take $c=1$: $1u+v=u+v\in W$ for all $u,v\in W$, so $W$ is closed under addition. The restrictions are therefore operations on $W$.</p>
+<p>It remains to check the axioms in $W$. The axioms (A1), (A4) and (S1) to (S4) are equations holding for all vectors and scalars in $V$, hence in particular for those in $W$. For (A2), $\mathbf{0}\in W$ and $u+\mathbf{0}=u$. For (A3), if $u\in W$ then $(-1)u\in W$ by closure, and $(-1)u=-u$ by Theorem 2.2(6), so $W$ contains the additive inverse of each of its elements. $\square$</p>
+<p>The hinge of the proof is the distinction between two kinds of axiom. An axiom stated as an equation for all elements transfers from $V$ to any subset on which the operations make sense, so it needs no check. An axiom that asserts existence, here (A2) and (A3), needs a witness inside $W$. Both witnesses come from scalar multiplication, namely $\mathbf{0}=0w$ and $-u=(-1)u$ (Theorem 2.2, parts (4) and (6)), and that is why closure under scalars suffices to supply them.</p>
+<p><strong>Corollary 5.3.</strong> Every subspace $W$ of $V$ contains $\mathbf{0}_V$, and the zero vector of $W$ is the zero vector of $V$.</p>
+<p>This gives the fastest negative test: a subset that does not contain $\mathbf{0}$ is not a subspace.</p>
+<h3 id="examples-and-non-examples">Examples and non-examples</h3>
+<p>The set $\{\mathbf{0}\}$ and the set $V$ itself are subspaces of $V$; these two are called <em>trivial</em>. For $\{\mathbf{0}\}$ the test reads $c\mathbf{0}+\mathbf{0}=\mathbf{0}$, which is Theorem 2.2(5). In $V=F^3$ the set $W=\{(0,x,y):x,y\in F\}$ is a subspace: for $u=(0,u_2,u_3)$ and $v=(0,v_2,v_3)$ we get $cu+v=(0,cu_2+v_2,cu_3+v_3)\in W$. Over $\mathbb{R}$ this is the $yz$-plane, and the $xz$-plane, the $xy$-plane and each coordinate axis are subspaces in the same way.</p>
+<p>Each hypothesis of the test can be seen to matter by a set that fails it.</p>
+<ul>
+<li>The line $\{(x,y)\in\mathbb{R}^2:x+y=1\}$ does not contain $\mathbf{0}$, so it is not a subspace (Corollary 5.3).</li>
+<li>The first quadrant $\{(x,y):x\ge 0,\,y\ge 0\}$ contains $\mathbf{0}$ and is closed under addition, but $(-1)(1,1)=(-1,-1)$ lies outside it. It is closed under nonnegative scalars only.</li>
+<li>The set $\{(x,y)\in\mathbb{R}^2:xy=0\}$, the union of the two coordinate axes, contains $\mathbf{0}$ and is closed under every scalar multiple, but $(1,0)+(0,1)=(1,1)$ leaves it. This set returns in Section 8.</li>
+<li>The integer lattice $\mathbb{Z}^2\subset\mathbb{R}^2$ contains $\mathbf{0}$ and is closed under addition and negation, but $\tfrac12(1,0)\notin\mathbb{Z}^2$.</li>
+<li>The set $\mathbb{Q}^2\subset\mathbb{R}^2$ is closed under addition and under rational scalars, so it is a subspace of $\mathbb{R}^2$ viewed as a vector space over $\mathbb{Q}$, but it is not a subspace of $\mathbb{R}^2$ over $\mathbb{R}$, since $\sqrt2\,(1,0)\notin\mathbb{Q}^2$. Whether a subset is a subspace depends on the field of scalars.</li>
+</ul>
+<p>A subspace of a subspace of $V$ is a subspace of $V$, because the condition of Theorem 5.2 refers only to the operations of $V$.</p>
+<h2 id="6-null-spaces-solution-sets-and-spaces-of-matrices-2508">6. Null spaces, solution sets, and spaces of matrices <a href="https://www.youtube.com/watch?v=BQ6bUhF4tPM&amp;t=1508s">25:08</a></h2>
+<p>The opening question can now be stated precisely. For an $m\times n$ matrix $A$ over $F$, let $N(A)=\{X\in F^n: AX=0\}$ be the <strong>null space</strong>, the set of solutions of the homogeneous system.</p>
+<p><strong>Theorem 6.1.</strong> $N(A)$ is a subspace of $F^n$.</p>
+<p><strong>Proof.</strong> The set is nonempty since $A0=0$. For $X_1,X_2\in N(A)$ and $c\in F$, the $i$-th entry of $A(cX_1+X_2)$ is $\sum_j a_{ij}(cx_{1j}+x_{2j})=c\sum_ja_{ij}x_{1j}+\sum_ja_{ij}x_{2j}$ by the distributive and commutative laws in $F$. In vector form $A(cX_1+X_2)=cAX_1+AX_2=c\cdot 0+0=0$. So $cX_1+X_2\in N(A)$, and Theorem 5.2 applies. $\square$</p>
+<p>Solutions of a non-homogeneous system are not a subspace but are described by $N(A)$.</p>
+<p><strong>Theorem 6.2.</strong> Let $Y\in F^m$ and suppose $X_0$ satisfies $AX_0=Y$. Then the set of all solutions of $AX=Y$ is $\{X_0+Z: Z\in N(A)\}$. If $Y\ne 0$ this set is not a subspace of $F^n$.</p>
+<p><strong>Proof.</strong> If $AX=Y$, then $A(X-X_0)=Y-Y=0$, so $X=X_0+Z$ with $Z=X-X_0\in N(A)$. Conversely $A(X_0+Z)=Y+0=Y$. If $Y\ne 0$, then $A0=0\ne Y$ shows that $0$ is not a solution, and Corollary 5.3 applies. $\square$</p>
+<p>For the running example, row reduction of $A$ gives the reduced rows $(1,1,0,-1)$ and $(0,0,1,2)$, with a zero third row because that row is the sum of the first two. The pivots are in columns $1$ and $3$, and the free variables are $x_2=s$ and $x_4=t$. Back-substitution gives $x_1=-s+t$ and $x_3=-2t$. Hence</p>
+<p>$$N(A)=\{s(-1,1,0,0)+t(1,0,-2,1): s,t\in\mathbb{Q}\}=W_1.$$</p>
+<p>Substituting the two spanning vectors confirms $A(-1,1,0,0)^{\mathsf T}=0$ and $A(1,0,-2,1)^{\mathsf T}=0$. For $Y=(2,3,5)^{\mathsf T}$ the particular solution $X_0=(2,0,3,0)^{\mathsf T}$ gives the full solution set $X_0+W_1$, which is a translate of $W_1$ that misses the origin. The question of which $Y$ are attainable is taken up in Section 7.</p>
+<h3 id="spaces-of-matrices-and-their-subspaces">Spaces of matrices and their subspaces</h3>
+<p>By Theorem 4.1 the set $F^{n\times n}$ of square matrices is a vector space. Consider its subset $\operatorname{Sym}_n(F)=\{A: A^{\mathsf T}=A\}$ of symmetric matrices, where $A^{\mathsf T}$ is the matrix with entries $(A^{\mathsf T})_{ij}=a_{ji}$. The set is nonempty (it contains $0$), and for symmetric $A_1,A_2$ and $c\in F$ the identity $(cA_1+A_2)^{\mathsf T}=cA_1^{\mathsf T}+A_2^{\mathsf T}=cA_1+A_2$ shows $cA_1+A_2\in\operatorname{Sym}_n(F)$. The same computation shows that the <strong>skew-symmetric</strong> matrices $\operatorname{Skew}_n(F)=\{A:A^{\mathsf T}=-A\}$ form a subspace, as do the upper triangular matrices and the matrices with zero diagonal sum. The invertible matrices do not: $I$ and $-I$ are invertible but $I+(-I)=0$ is not, and $0$ is not invertible either.</p>
+<h2 id="7-linear-combinations-and-span-3241">7. Linear combinations and span <a href="https://www.youtube.com/watch?v=BQ6bUhF4tPM&amp;t=1961s">32:41</a></h2>
+<p>Let $V$ be a vector space over $F$. A vector $\beta\in V$ is a <strong>linear combination</strong> of vectors $v_1,\dots,v_k\in V$ if there are scalars $c_1,\dots,c_k\in F$ with $\beta=c_1v_1+\cdots+c_kv_k$. Sums of more than two terms are unambiguous by (A1). For a subset $S\subseteq V$, finite or infinite, the <strong>span</strong> of $S$ is</p>
+<p>$$\operatorname{span}(S)=\{c_1v_1+\cdots+c_kv_k:\ k\ge 0,\ v_j\in S,\ c_j\in F\},$$</p>
+<p>with the empty combination ($k=0$) equal to $\mathbf{0}$, so that $\operatorname{span}(\varnothing)=\{\mathbf{0}\}$. A combination uses finitely many vectors even when $S$ is infinite, because an infinite sum has no meaning from the axioms alone. The next theorem says that it is the smallest subspace that contains $S$.</p>
+<p><strong>Theorem 7.1.</strong> Let $S\subseteq V$. Then $\operatorname{span}(S)$ is a subspace of $V$ containing $S$, and every subspace of $V$ that contains $S$ also contains $\operatorname{span}(S)$.</p>
+<p><strong>Proof.</strong> The set $\operatorname{span}(S)$ contains $\mathbf{0}$, and it contains each $v\in S$ as $1v$. Let $u$ and $v$ be in $\operatorname{span}(S)$. Any two finite combinations can be written over a common finite list $v_1,\dots,v_k$ of elements of $S$ by inserting terms with coefficient $0$, which change nothing by Theorem 2.2(4). So write $u=\sum_i x_iv_i$ and $v=\sum_iy_iv_i$. For $c\in F$, repeated use of (S2) and then (S3) gives $cu=\sum_i(cx_i)v_i$. Regrouping the sum $cu+v$ with (A1) and (A4), and combining each pair of terms in $v_i$ with (S1), gives</p>
+<p>$$cu+v=\sum_{i=1}^k(cx_i+y_i)\,v_i\in\operatorname{span}(S).$$</p>
+<p>By Theorem 5.2, $\operatorname{span}(S)$ is a subspace. Now let $U$ be any subspace containing $S$. A subspace is closed under scalar multiples and sums, so by induction on $k$ every combination $\sum_{i=1}^kc_iv_i$ with $v_i\in S\subseteq U$ lies in $U$. Hence $\operatorname{span}(S)\subseteq U$. $\square$</p>
+<p>The padding with zero coefficients is what justifies writing $u$ and $v$ over one list; without it the two combinations may use different vectors and different numbers of terms. Two consequences follow immediately. If $W$ is a subspace then $\operatorname{span}(W)=W$, since $W$ is a subspace containing $W$. And $\operatorname{span}(\operatorname{span}(S))=\operatorname{span}(S)$. A subset $S$ with $\operatorname{span}(S)=V$ is said to <strong>span</strong> $V$.</p>
+<p>The span depends on the field. The set $S=\{1\}\subset\mathbb{R}$ has span $\mathbb{Q}$ when $\mathbb{R}$ is viewed as a vector space over $\mathbb{Q}$ and span $\mathbb{R}$ when it is viewed over $\mathbb{R}$.</p>
+<h3 id="returning-to-solvability">Returning to solvability</h3>
+<p>The identity of Section 1, $AX=x_1c_1+\cdots+x_nc_n$, now has a clean consequence.</p>
+<p><strong>Theorem 7.2.</strong> Let $A\in F^{m\times n}$ have columns $c_1,\dots,c_n$. The system $AX=Y$ has a solution if and only if $Y\in\operatorname{span}\{c_1,\dots,c_n\}$. In particular the set $C(A)=\{AX:X\in F^n\}$ of attainable right-hand sides is a subspace of $F^m$, called the <strong>column space</strong> of $A$.</p>
+<p><strong>Proof.</strong> A vector $X$ solves $AX=Y$ exactly when $Y=\sum_jx_jc_j$, and every combination of the columns arises from some $X$. The set of such combinations is $\operatorname{span}\{c_1,\dots,c_n\}$, a subspace by Theorem 7.1. $\square$</p>
+<p>In the running example the columns are $(1,0,1)$, $(1,0,1)$, $(0,1,1)$ and $(-1,2,1)$. The first two coincide. Every column satisfies $y_3=y_1+y_2$, and the equation $y_3=y_1+y_2$ is closed under combinations, so $C(A)\subseteq\{y:y_3=y_1+y_2\}$. Conversely a vector with $y_3=y_1+y_2$ equals $y_1(1,0,1)+y_2(0,1,1)$, which lies in the span. Hence</p>
+<p>$$C(A)=\{y\in\mathbb{Q}^3:\ y_3=y_1+y_2\}=\operatorname{span}\{(1,0,1),(0,1,1)\}.$$</p>
+<p>The vector $(2,3,5)$ satisfies $5=2+3$ and lies in $C(A)$; the vector $(2,3,4)$ does not, which is the same inconsistency found by elimination in the opening. The laboratory checks the equivalence "in the span of the columns if and only if $y_3=y_1+y_2$" on all $216$ integer vectors with entries from $-2$ to $3$. Representing a given $Y$ as a combination need not be unique, since $(1,0,1)$ appears twice among the columns here; the condition that removes this ambiguity is linear independence, the subject of <a href="ch04.html">Chapter 4</a>.</p>
+<h2 id="8-intersections-and-unions-4101">8. Intersections and unions <a href="https://www.youtube.com/watch?v=BQ6bUhF4tPM&amp;t=2461s">41:01</a></h2>
+<p><strong>Theorem 8.1.</strong> Let $\{W_i\}_{i\in I}$ be a nonempty family of subspaces of $V$. Then $\bigcap_{i\in I}W_i$ is a subspace of $V$.</p>
+<p><strong>Proof.</strong> Every $W_i$ contains $\mathbf{0}$ by Corollary 5.3, so the intersection is nonempty. If $u,v$ lie in the intersection and $c\in F$, then $cu+v$ lies in each $W_i$ by Theorem 5.2, hence in the intersection. $\square$</p>
+<p>The statement covers every family, finite or infinite. With it, Theorem 7.1 says $\operatorname{span}(S)$ is the intersection of all subspaces containing $S$.</p>
+<p>In the running example, $W_1\cap W_2$ is the set of $X$ with $AX=0$ and $x_2-x_4=0$, which is the null space of the matrix obtained by adding the row $(0,1,0,-1)$ to $A$. This stacked matrix has rank $3$, so its null space is a line. From $W_1$ we have $x=(-s+t,s,-2t,t)$, and $x_2=x_4$ forces $s=t$, giving $x=s(0,1,-2,1)$. Hence</p>
+<p>$$W_1\cap W_2=\operatorname{span}\{(0,1,-2,1)\}.$$</p>
+<p>The laboratory computes this null space exactly. Stacking equations corresponds to intersecting solution sets, which is the reason that adding equations to a system can only shrink its solution set.</p>
+<h3 id="unions">Unions</h3>
+<p>The union of subspaces is far less well behaved. The union of two coordinate axes of $\mathbb{R}^3$ is not a subspace: with $u=(x,0,0)$ and $v=(0,y,0)$, both $x,y\ne 0$, the sum $(x,y,0)$ is on neither axis. By contrast, the union of the $xy$-plane and the $x$-axis is the $xy$-plane, a subspace. The exact criterion is the following theorem.</p>
+<p><strong>Theorem 8.2.</strong> Let $W_1$ and $W_2$ be subspaces of $V$. Then $W_1\cup W_2$ is a subspace of $V$ if and only if $W_1\subseteq W_2$ or $W_2\subseteq W_1$.</p>
+<p><strong>Proof.</strong> If $W_1\subseteq W_2$, the union is $W_2$, a subspace; the other case is symmetric. Conversely, suppose the union is a subspace and $W_1\not\subseteq W_2$. Choose $u\in W_1$ with $u\notin W_2$. Let $v\in W_2$ be arbitrary. The sum $u+v$ lies in the union. If $u+v\in W_2$, then $u=(u+v)+(-v)\in W_2$, contradicting the choice of $u$. So $u+v\in W_1$, and then $v=(u+v)+(-u)\in W_1$. Since $v\in W_2$ was arbitrary, $W_2\subseteq W_1$. $\square$</p>
+<p>The hinge is that one element outside $W_2$ can never be moved back into $W_2$ by adding an element of $W_2$, because $W_2$ is closed under sums and negatives. Consequently a vector space is never the union of two proper subspaces: if $V=W_1\cup W_2$ then the union is a subspace, so $W_1\subseteq W_2$ or the reverse, and the larger one equals $V$. In the running example, take $u=(-1,1,0,0)\in W_1$ and $w=(1,0,0,0)\in W_2$. Then $u+w=(0,1,0,0)$ is not in $W_1$, since $A(0,1,0,0)^{\mathsf T}=(1,0,1)^{\mathsf T}\ne 0$, and not in $W_2$, since $x_2=1\ne 0=x_4$. So $W_1\cup W_2$ is not a subspace, consistent with the theorem because neither of $W_1,W_2$ contains the other.</p>
+<h3 id="boundary-three-proper-subspaces-can-cover">Boundary: three proper subspaces can cover</h3>
+<p>The statement "not a union of two proper subspaces" does not extend to three. In $\mathbb{F}_2^2$ the four vectors are $(0,0),(1,0),(0,1),(1,1)$, and the three lines $\{(0,0),(1,0)\}$, $\{(0,0),(0,1)\}$ and $\{(0,0),(1,1)\}$ are proper subspaces whose union is the whole space. The laboratory confirms this, confirms that no two of the three suffice, and confirms for $\mathbb{F}_3^2$ that four lines cover the space while no three do. Exercise 4 shows that over an infinite field the statement does extend to any finite number of proper subspaces; the finiteness of $\mathbb{F}_2$ is what allows the cover.</p>
+<h2 id="9-sums-of-subspaces-4720">9. Sums of subspaces <a href="https://www.youtube.com/watch?v=BQ6bUhF4tPM&amp;t=2840s">47:20</a></h2>
+<p>Since a union is usually not a subspace, one builds the smallest subspace containing it. For subsets $S_1,\dots,S_k$ of $V$ the <strong>sum</strong> is</p>
+<p>$$S_1+\cdots+S_k=\{s_1+\cdots+s_k:\ s_i\in S_i\}.$$</p>
+<p>When each $S_i=W_i$ is a subspace this is called the sum of subspaces.</p>
+<p><strong>Theorem 9.1.</strong> Let $W_1,\dots,W_k$ be subspaces of $V$. Then $W_1+\cdots+W_k$ is a subspace. It contains each $W_i$, and it is contained in every subspace that contains all the $W_i$. Equivalently, $W_1+\cdots+W_k=\operatorname{span}(W_1\cup\cdots\cup W_k)$.</p>
+<p><strong>Proof.</strong> The sum contains $\mathbf{0}=\mathbf{0}+\cdots+\mathbf{0}$. Let $w=\sum_iw_i$ and $w'=\sum_iw_i'$ with $w_i,w_i'\in W_i$, and let $c\in F$. Using (S2), (A1) and (A4), $cw+w'=\sum_i(cw_i+w_i')$, and each $cw_i+w_i'$ lies in $W_i$ by Theorem 5.2. So the sum is a subspace. It contains $W_j$ because $w_j=\mathbf{0}+\cdots+w_j+\cdots+\mathbf{0}$. If $U$ is any subspace containing every $W_i$, closure under addition places every sum $\sum_iw_i$ in $U$. Finally the subspace $\operatorname{span}(\bigcup W_i)$ is, by Theorem 7.1, the smallest subspace containing the union, and the sum is the smallest subspace containing every $W_i$, which is the same condition; so the two coincide. $\square$</p>
+<p>When $W_1\subseteq W_2$ the sum is $W_2$, which equals the union. In every other case the sum properly enlarges the union by the missing sums, exactly the sums that Theorem 8.2 shows cannot all lie in the union.</p>
+<p>In the running example, $W_2$ contains $e_1=(1,0,0,0)$, $e_3=(0,0,1,0)$ and $(0,1,0,1)$, and $W_1$ contains $(-1,1,0,0)$. Then $e_2=(-1,1,0,0)+e_1$ lies in $W_1+W_2$, and $e_4=(0,1,0,1)-e_2$ does too. All four standard unit vectors lie in the sum, so $W_1+W_2=\mathbb{Q}^4$. The laboratory finds that the five spanning vectors have rank $4$, which agrees.</p>
+<h3 id="uniqueness-of-decompositions">Uniqueness of decompositions</h3>
+<p>The sum $W_1+W_2=\mathbb{Q}^4$ above is not a decomposition in which each vector has exactly one expression $w_1+w_2$: the vector $z=(0,1,-2,1)$ lies in $W_1\cap W_2$, so $z=z+\mathbf{0}=\mathbf{0}+z$ are two expressions of the same vector.</p>
+<p><strong>Proposition 9.2.</strong> Let $W_1,W_2$ be subspaces of $V$. Every vector of $W_1+W_2$ has exactly one expression $w_1+w_2$ with $w_i\in W_i$ if and only if $W_1\cap W_2=\{\mathbf{0}\}$.</p>
+<p><strong>Proof.</strong> Suppose $W_1\cap W_2=\{\mathbf{0}\}$ and $w_1+w_2=w_1'+w_2'$. Then $w_1-w_1'=w_2'-w_2$, a vector in both $W_1$ and $W_2$, hence $\mathbf{0}$, so $w_1=w_1'$ and $w_2=w_2'$. If instead some $z\ne\mathbf{0}$ lies in $W_1\cap W_2$, then $z+\mathbf{0}$ and $\mathbf{0}+z$ are two expressions of $z$. $\square$</p>
+<p>When the intersection is zero the sum is called a direct sum and written $W_1\oplus W_2$; <a href="ch17.html">Chapter 17</a> develops direct sums and projections. A standard case is the split of a square matrix into symmetric and skew-symmetric parts.</p>
+<p><strong>Proposition 9.3.</strong> Suppose $1+1\ne 0$ in $F$. Then $F^{n\times n}=\operatorname{Sym}_n(F)+\operatorname{Skew}_n(F)$ and $\operatorname{Sym}_n(F)\cap\operatorname{Skew}_n(F)=\{0\}$.</p>
+<p><strong>Proof.</strong> Let $h=(1+1)^{-1}\in F$. For any matrix $M$, put $S=h(M+M^{\mathsf T})$ and $K=h(M-M^{\mathsf T})$. Then $S^{\mathsf T}=S$, $K^{\mathsf T}=-K$, and $S+K=h(2M)=M$. If $M$ is both symmetric and skew-symmetric, then $M=M^{\mathsf T}=-M$, so $(1+1)M=0$, and Theorem 2.2(7) with $1+1\ne0$ gives $M=0$. $\square$</p>
+<p>The hypothesis is necessary. In $\mathbb{F}_2$ we have $-1=1$, so $\operatorname{Sym}_2(\mathbb{F}_2)=\operatorname{Skew}_2(\mathbb{F}_2)$, a set of $8$ matrices. Their sum is again these $8$, not all $16$ matrices of $\mathbb{F}_2^{2\times 2}$; for example $\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix}$ is not symmetric. The laboratory enumerates all $16$ matrices to confirm this. The same split over $\mathbb{Q}$ applied to $M=\begin{pmatrix}1&amp;2&amp;3\\0&amp;4&amp;5\\6&amp;7&amp;8\end{pmatrix}$ gives $S=\tfrac12(M+M^{\mathsf T})$ and $K=\tfrac12(M-M^{\mathsf T})$, which the laboratory verifies entry by entry. The dimension formula for $\dim(W_1+W_2)$ in terms of $\dim W_1$, $\dim W_2$ and $\dim(W_1\cap W_2)$ must wait for the dimension theory of <a href="ch04.html">Chapter 4</a>; in the running example it would read $4=2+3-1$.</p>
+<h2 id="10-executable-check">10. Executable check</h2>
+<p><a href="labs/ch03.py">The chapter laboratory</a> uses only the Python standard library. Part A works over $\mathbb{Q}$ with exact fractions. It row reduces $A$ and finds pivot columns $1$ and $3$ (written $0$ and $2$ in code, where indices start at zero), computes the basis $(-1,1,0,0)$, $(1,0,-2,1)$ of $N(A)$, solves $AX=(2,3,5)^{\mathsf T}$ with $X_0=(2,0,3,0)^{\mathsf T}$, and confirms that $AX=(2,3,4)^{\mathsf T}$ is inconsistent. It checks that the span of the columns of $A$ coincides with $\{y:y_3=y_1+y_2\}$ on $216$ integer vectors, that $W_1\cap W_2$ is spanned by $(0,1,-2,1)$, that $W_1$ and $W_2$ together span $\mathbb{Q}^4$, that $u+w=(0,1,0,0)$ escapes both subspaces, and that a $3\times 3$ rational matrix splits into symmetric and skew parts.</p>
+<p>Part B enumerates vector spaces over finite fields and tests statements by brute force. For $\mathbb{F}_3^2$ it verifies all ten axioms, and for all $511$ nonempty subsets it verifies that the one-step test of Theorem 5.2 agrees with the full definition of subspace, finding $6$ subspaces; for $\mathbb{F}_2^3$ the figures are $255$ subsets and $16$ subspaces. In both spaces it tests every pair of subspaces and finds that the union is a subspace exactly when the pair is nested ($9$ of $15$ pairs for $\mathbb{F}_3^2$, $50$ of $120$ for $\mathbb{F}_2^3$). It confirms the three-line cover of $\mathbb{F}_2^2$, the four-line cover of $\mathbb{F}_3^2$, that the scalar multiplication $c\cdot u=\mathbf{0}$ fails exactly (S4), that $x^2+x$ is the zero function on $\mathbb{F}_2$, and that $\operatorname{Sym}_2(\mathbb{F}_2)+\operatorname{Skew}_2(\mathbb{F}_2)$ has $8$ of $16$ elements.</p>
+<p>The laboratory verifies finite instances and specific numbers. It does not prove Theorems 2.2 to 9.1, which hold for all fields and all vector spaces; the exhaustive tests only exhibit them in small cases and exhibit the boundary examples. It does not touch infinite fields except through exact rational arithmetic on the matrix $A$, and it does not verify statements about $\mathbb{R}$ or $\mathbb{C}$ such as the failure of $\mathbb{R}$ as a vector space over $\mathbb{C}$.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>Prove that commutativity of vector addition (A4) follows from the other axioms. Hint: expand $(1+1)(u+v)$ in two ways using (S1), (S2), (S4) and associativity.</li>
+<li>In $\mathbb{Q}^3$ let $U=\operatorname{span}\{(1,2,3),(0,1,1)\}$ and $W=\{x:x_1-x_2+x_3=0\}$. Find $U\cap W$ and show that $U+W=\mathbb{Q}^3$, giving for each $x\in\mathbb{Q}^3$ an explicit expression $x=u+w$.</li>
+<li>Give a subset of $\mathbb{R}^2$ that is closed under scalar multiplication but not under addition, and a subset of $\mathbb{R}^2$ that is closed under addition and under additive inverses but not under scalar multiplication. Verify each claim.</li>
+<li>Let $F$ be an infinite field and $W_1,\dots,W_k$ proper subspaces of a vector space $V$ over $F$. Prove that $V\ne W_1\cup\cdots\cup W_k$. Identify where infiniteness is used and give a finite-field counterexample.</li>
+<li>Let $F^{\mathbb{N}}$ be the vector space of sequences $a=(a_0,a_1,a_2,\dots)$ over $F$, that is, $F^S$ with $S=\{0,1,2,\dots\}$. Show that $R=\{a: a_{n+2}=a_{n+1}+a_n\text{ for all }n\ge 0\}$ is a subspace, that each element of $R$ is determined by $(a_0,a_1)$, and that the set $R'$ defined by $a_{n+2}=a_{n+1}+a_n+1$ is not a subspace. State the general principle behind both results.</li>
+<li>Prove the modular law: if $W_1\subseteq W_3$ are subspaces of $V$ and $W_2$ is a subspace of $V$, then $W_1+(W_2\cap W_3)=(W_1+W_2)\cap W_3$. Then show with three distinct lines through the origin in $\mathbb{R}^2$ that the equality can fail when $W_1\subseteq W_3$ is dropped.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>Let $u,v\in V$ and compute $(1+1)(u+v)$ two ways. By (S1) and (S4), $(1+1)w=1w+1w=w+w$ for any $w$, so with $w=u+v$ the value is $(u+v)+(u+v)$, which by (A1) equals $u+(v+u)+v$. By (S2) the same vector is $(1+1)u+(1+1)v=(u+u)+(v+v)$, which by (A1) equals $u+(u+v)+v$. Hence $u+(v+u)+v=u+(u+v)+v$. Cancellation on both sides is needed, and (A4) may not be used. First we show that $-u$ is also a left inverse. Put $z=(-u)+u$. By (A1), (A3) and (A2), $z+z=(-u)+\big(u+(-u)\big)+u=\big((-u)+\mathbf 0\big)+u=(-u)+u=z$. Adding $-z$ on the right gives $z+\big(z+(-z)\big)=z+(-z)$, that is, $z=\mathbf 0$. Next, $\mathbf 0$ is also a left identity: $\mathbf 0+u=\big(u+(-u)\big)+u=u+\big((-u)+u\big)=u+\mathbf 0=u$. Now cancel $u$ on the left by adding $-u$ on the left, and cancel $v$ on the right by adding $-v$ on the right. This leaves $v+u=u+v$. The hinge is that two distributivity laws and the unit axiom force the group to be abelian.</p>
+</li>
+<li>
+<p>A vector of $U$ is $a(1,2,3)+b(0,1,1)=(a,2a+b,3a+b)$. Its value under $x_1-x_2+x_3$ is $a-(2a+b)+(3a+b)=2a$. So the vector is in $W$ exactly when $a=0$, that is, when it equals $b(0,1,1)$. Hence $U\cap W=\operatorname{span}\{(0,1,1)\}$ (the laboratory checks this on a grid). For the sum, put $\lambda(x)=x_1-x_2+x_3$ and $a=\lambda(x)/2$. Then $\lambda\bigl(x-a(1,2,3)\bigr)=\lambda(x)-a\lambda((1,2,3))=\lambda(x)-2a=0$, because $\lambda$ is additive and homogeneous and $\lambda((1,2,3))=1-2+3=2$. So $w=x-a(1,2,3)\in W$, and $x=a(1,2,3)+w$ with $a(1,2,3)\in U$. Therefore $U+W=\mathbb{Q}^3$. The expression is not unique, because $U\cap W\ne\{0\}$ (Proposition 9.2): one may add any multiple of $(0,1,1)$ to the $U$-part and subtract it from the $W$-part.</p>
+</li>
+<li>
+<p>The union of the coordinate axes $\{(x,y):xy=0\}$ is closed under scalar multiplication, since the multiple $(cx,cy)$ of $(x,y)$ satisfies $(cx)(cy)=c^2xy=0$. It is not closed under addition, since $(1,0)+(0,1)=(1,1)$ has product $1\ne 0$. The lattice $\mathbb{Z}^2$ is closed under addition, since integer entries add to integer entries, and under additive inverses, since $-m$ is an integer when $m$ is. It is not closed under real scalars, since $\tfrac12(1,0)=(\tfrac12,0)\notin\mathbb{Z}^2$. By Theorem 5.2 neither set is a subspace; the first fails because of $c=1$ with $u=(1,0)$ and $v=(0,1)$, the second because of $c=\tfrac12$ with $v=\mathbf{0}$.</p>
+</li>
+<li>
+<p>Suppose $V=W_1\cup\cdots\cup W_k$ with each $W_i\ne V$, and choose such a cover with $k$ minimal. Then $k\ge 2$, because a single proper subspace is not $V$, and by minimality no $W_i$ is contained in the union of the others. Hence there is $u\in W_1$ with $u\notin W_2\cup\cdots\cup W_k$, and there is $v\notin W_1$ because $W_1\ne V$. Consider the vectors $v+tu$ for $t\in F$. If $v+tu\in W_1$, then $v=(v+tu)-tu\in W_1$ because $u\in W_1$, which is false. So each $v+tu$ lies in one of $W_2,\dots,W_k$. Since $F$ is infinite and there are only $k-1$ subspaces, two distinct scalars $t\ne t'$ give vectors in the same $W_i$ with $i\ge 2$. Their difference $(t-t')u$ lies in $W_i$, and Theorem 2.2(7) with $t-t'\ne 0$ lets us multiply by $(t-t')^{-1}$ to get $u\in W_i$, contradicting the choice of $u$. Infiniteness of $F$ is used in the pigeonhole step: for a finite field the infinitely many values of $t$ are replaced by $|F|$ values, which may not exceed $k-1$. The counterexample is the three lines covering $\mathbb{F}_2^2$ in Section 8: $k=3$, and $|F|=2$ is not larger than $k-1=2$.</p>
+</li>
+<li>
+<p>The sequence space is a vector space by Theorem 4.1. The zero sequence is in $R$. For $a,b\in R$ and $c\in F$, the sequence $d=ca+b$ satisfies $d_{n+2}=ca_{n+2}+b_{n+2}=c(a_{n+1}+a_n)+(b_{n+1}+b_n)=d_{n+1}+d_n$, so $d\in R$ and Theorem 5.2 gives that $R$ is a subspace. If $a\in R$, then $a_2=a_1+a_0$, $a_3=a_2+a_1$, and so on, so by induction every term is determined by $a_0,a_1$. The map $a\mapsto(a_0,a_1)$ is therefore injective from $R$ to $F^2$, and surjective because any pair starts a sequence defined by the recurrence; it respects sums and scalar multiples, as the computation above shows. The set $R'$ does not contain the zero sequence, since $0=0+0+1$ fails, so it is not a subspace; as in Theorem 6.2, it is the translate of $R$ by one particular solution, for instance by the constant sequence $a_n=-1$, which satisfies $-1=-1-1+1$. The general principle: the set of solutions of a homogeneous equation that is linear in the unknown (here the unknown is the sequence) is a subspace, and the solutions of the inhomogeneous equation form a translate of it when nonempty. This generalizes Theorems 6.1 and 6.2 from $AX=0$ to any such equation.</p>
+</li>
+<li>
+<p>First, $W_1+(W_2\cap W_3)\subseteq(W_1+W_2)\cap W_3$: an element $w_1+z$ with $w_1\in W_1$ and $z\in W_2\cap W_3$ lies in $W_1+W_2$, and it lies in $W_3$ because $w_1\in W_1\subseteq W_3$ and $z\in W_3$. Second, take $x\in(W_1+W_2)\cap W_3$ and write $x=w_1+w_2$ with $w_i\in W_i$. Then $w_2=x-w_1$ lies in $W_3$, since $x\in W_3$ and $w_1\in W_1\subseteq W_3$. So $w_2\in W_2\cap W_3$ and $x\in W_1+(W_2\cap W_3)$. The hypothesis $W_1\subseteq W_3$ is used in both directions. For the failure, let $W_1,W_2,W_3$ be three distinct lines through the origin in $\mathbb{R}^2$. Then $W_2\cap W_3=\{\mathbf{0}\}$, so the left side is $W_1$. On the right, $W_1+W_2=\mathbb{R}^2$ because two non-parallel lines give every vector as a combination (Section 1), so the right side is $W_3$. Since $W_1\ne W_3$, the equality fails, and $W_1\not\subseteq W_3$ here.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Hoffman, K. and Kunze, R., <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, Chapter 2 (vector spaces).</li>
+<li>Axler, S., <em>Linear Algebra Done Right</em>, 4th ed., Springer, 2024, open access at https://linear.axler.net/, Chapter 1.</li>
+<li>Roman, S., <em>Advanced Linear Algebra</em>, 3rd ed., Springer, 2008, Chapter 1.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch03.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 3 laboratory: vector-space axioms, subspaces, span, sums.
+
+Part A works over the rational field Q with fractions.Fraction (exact
+row reduction, null spaces, span membership).  Part B enumerates small
+vector spaces over the prime fields F_2 and F_3 and tests statements
+exhaustively.  A vector is a tuple; a matrix is a list of rows.
+&quot;&quot;&quot;
+from fractions import Fraction
+from itertools import product, combinations
+
+
+def Q(rows):
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def rref(M):
+    &quot;&quot;&quot;Return (R, pivots): reduced row echelon form of M over Q.&quot;&quot;&quot;
+    R = [row[:] for row in M]
+    pivots, r = [], 0
+    for c in range(len(R[0])):
+        p = next((i for i in range(r, len(R)) if R[i][c] != 0), None)
+        if p is None:
+            continue
+        R[r], R[p] = R[p], R[r]
+        R[r] = [x / R[r][c] for x in R[r]]
+        for i in range(len(R)):
+            if i != r and R[i][c] != 0:
+                f = R[i][c]
+                R[i] = [a - f * b for a, b in zip(R[i], R[r])]
+        pivots.append(c)
+        r += 1
+        if r == len(R):
+            break
+    return R, pivots
+
+
+def rank(M):
+    return len(rref(M)[1])
+
+
+def matvec(A, x):
+    return tuple(sum((a * b for a, b in zip(row, x)), Fraction(0))
+                 for row in A)
+
+
+def nullspace(A):
+    &quot;&quot;&quot;Basis of {x : Ax = 0}, one vector per free column.&quot;&quot;&quot;
+    R, piv = rref(A)
+    n = len(A[0])
+    basis = []
+    for f in (c for c in range(n) if c not in piv):
+        x = [Fraction(0)] * n
+        x[f] = Fraction(1)
+        for row, c in zip(R, piv):
+            x[c] = -row[f]
+        basis.append(tuple(x))
+    return basis
+
+
+def solve(A, y):
+    &quot;&quot;&quot;One solution of Ax = y, or None when the system is inconsistent.&quot;&quot;&quot;
+    aug = [list(row) + [Fraction(b)] for row, b in zip(A, y)]
+    R, piv = rref(aug)
+    n = len(A[0])
+    if n in piv:
+        return None
+    x = [Fraction(0)] * n
+    for row, c in zip(R, piv):
+        x[c] = row[n]
+    return tuple(x)
+
+
+def columns(A):
+    return [tuple(row[j] for row in A) for j in range(len(A[0]))]
+
+
+def in_span(vectors, y):
+    &quot;&quot;&quot;Is y a linear combination of the vectors?  A linear system.&quot;&quot;&quot;
+    A = [[v[i] for v in vectors] for i in range(len(y))]
+    return solve(A, y) is not None
+
+
+def vec(*xs):
+    return tuple(Fraction(x) for x in xs)
+
+
+def parallel(u, v):
+    return rank([list(u), list(v)]) &lt;= 1
+
+
+# ---- Part A: the running example over Q --------------------------------
+A = Q([[1, 1, 0, -1], [0, 0, 1, 2], [1, 1, 1, 1]])
+B = Q([[0, 1, 0, -1]])
+Y_ok, Y_bad = vec(2, 3, 5), vec(2, 3, 4)
+
+
+def part_a():
+    R, piv = rref(A)
+    assert piv == [0, 2] and rank(A) == 2
+    print(&#x27;rank A =&#x27;, rank(A), &#x27;; pivot columns (from 0):&#x27;, piv)
+
+    N = nullspace(A)
+    assert N == [vec(-1, 1, 0, 0), vec(1, 0, -2, 1)]
+    assert all(matvec(A, z) == vec(0, 0, 0) for z in N)
+    print(&#x27;basis of N(A):&#x27;, [tuple(map(str, z)) for z in N])
+
+    x0 = solve(A, Y_ok)
+    assert matvec(A, x0) == Y_ok
+    assert matvec(A, vec(2, 0, 3, 0)) == Y_ok
+    assert solve(A, Y_bad) is None
+    assert matvec(A, vec(0, 0, 0, 0)) != Y_ok
+    for s, t in product(range(-2, 3), repeat=2):
+        z = tuple(s * a + t * b for a, b in zip(*N))
+        x = tuple(p + q for p, q in zip(x0, z))
+        assert matvec(A, x) == Y_ok
+    print(&#x27;AX=(2,3,5): solvable, x0 =&#x27;, tuple(map(str, x0)))
+    print(&#x27;AX=(2,3,4): inconsistent;  0 is not a solution of AX=Y&#x27;)
+
+    cols = columns(A)
+    assert len(set(cols)) == 3
+    for y in product(range(-2, 4), repeat=3):
+        y = vec(*y)
+        assert in_span(cols, y) == (y[2] == y[0] + y[1])
+    gens = [vec(1, 0, 1), vec(0, 1, 1)]
+    assert all(in_span(gens, c) for c in cols)
+    assert all(in_span(cols, g) for g in gens)
+    print(&#x27;column space = {y : y3 = y1 + y2}, checked on 216 integer y&#x27;)
+
+    stacked = A + B
+    assert rank(stacked) == 3
+    (m,) = nullspace(stacked)
+    assert parallel(m, vec(0, 1, -2, 1))
+    print(&#x27;W1 meet W2 = span of&#x27;, tuple(map(str, m)))
+
+    e = [vec(*(int(i == j) for j in range(4))) for i in range(4)]
+    W1b = N
+    W2b = [vec(1, 0, 0, 0), vec(0, 1, 0, 1), vec(0, 0, 1, 0)]
+    assert all(x[1] == x[3] for x in W2b)
+    total = rank([list(v) for v in W1b + W2b])
+    assert total == 4
+    assert all(in_span(W1b + W2b, ei) for ei in e)
+    print(&#x27;rank of W1 and W2 generators together =&#x27;, total, &#x27;(sum = Q^4)&#x27;)
+
+    u, w = vec(-1, 1, 0, 0), vec(1, 0, 0, 0)
+    s = tuple(a + b for a, b in zip(u, w))
+
+    def in_w1(x):
+        return matvec(A, x) == vec(0, 0, 0)
+
+    def in_w2(x):
+        return x[1] == x[3]
+
+    assert in_w1(u) and in_w2(w)
+    assert not (in_w1(s) or in_w2(s))
+    print(&#x27;union fails: u in W1, w in W2, u+w =&#x27;, tuple(map(str, s)))
+
+    M = Q([[1, 2, 3], [0, 4, 5], [6, 7, 8]])
+    n = 3
+    Sy = [[(M[i][j] + M[j][i]) / 2 for j in range(n)] for i in range(n)]
+    Sk = [[(M[i][j] - M[j][i]) / 2 for j in range(n)] for i in range(n)]
+    assert all(Sy[i][j] == Sy[j][i] for i in range(n) for j in range(n))
+    assert all(Sk[i][j] == -Sk[j][i] for i in range(n) for j in range(n))
+    assert all(Sy[i][j] + Sk[i][j] == M[i][j]
+               for i in range(n) for j in range(n))
+    print(&#x27;Sym + Skew split of a 3x3 matrix over Q: checked&#x27;)
+
+    U = [vec(1, 2, 3), vec(0, 1, 1)]
+    for a, b in product(range(-3, 4), repeat=2):
+        x = tuple(a * p + b * q for p, q in zip(*U))
+        assert (x[0] - x[1] + x[2] == 0) == (a == 0)
+    assert all(in_span(U, vec(0, t, t)) for t in range(-2, 3))
+    print(&#x27;exercise 2: U meet W = span{(0,1,1)}, checked on a grid&#x27;)
+
+
+# ---- Part B: finite spaces and exhaustive tests ------------------------
+def space(p, n):
+    return list(product(range(p), repeat=n))
+
+
+def make_ops(p):
+    def add(u, v):
+        return tuple((a + b) % p for a, b in zip(u, v))
+
+    def smul(c, u):
+        return tuple((c * a) % p for a in u)
+
+    return add, smul
+
+
+def failed_axioms(elems, add, smul, p):
+    &quot;&quot;&quot;Names of axioms that fail; closure is tested by membership.&quot;&quot;&quot;
+    E = set(elems)
+    bad = set()
+    if any(add(u, v) not in E for u in elems for v in elems):
+        bad.add(&#x27;A0&#x27;)
+    if any(smul(c, u) not in E for c in range(p) for u in elems):
+        bad.add(&#x27;S0&#x27;)
+    if bad:
+        return bad
+    if any(add(add(u, v), w) != add(u, add(v, w))
+           for u in elems for v in elems for w in elems):
+        bad.add(&#x27;A1&#x27;)
+    zeros = [e for e in elems if all(add(u, e) == u for u in elems)]
+    if not zeros:
+        bad.add(&#x27;A2&#x27;)
+    elif any(not any(add(u, v) == zeros[0] for v in elems)
+             for u in elems):
+        bad.add(&#x27;A3&#x27;)
+    if any(add(u, v) != add(v, u) for u in elems for v in elems):
+        bad.add(&#x27;A4&#x27;)
+    sc = range(p)
+    if any(smul((a + b) % p, u) != add(smul(a, u), smul(b, u))
+           for a in sc for b in sc for u in elems):
+        bad.add(&#x27;S1&#x27;)
+    if any(smul(c, add(u, v)) != add(smul(c, u), smul(c, v))
+           for c in sc for u in elems for v in elems):
+        bad.add(&#x27;S2&#x27;)
+    if any(smul((a * b) % p, u) != smul(a, smul(b, u))
+           for a in sc for b in sc for u in elems):
+        bad.add(&#x27;S3&#x27;)
+    if any(smul(1, u) != u for u in elems):
+        bad.add(&#x27;S4&#x27;)
+    return bad
+
+
+def one_step(W, add, smul, p):
+    return bool(W) and all(add(smul(c, u), v) in W
+                           for c in range(p) for u in W for v in W)
+
+
+def subspaces(elems, add, smul, p):
+    out = []
+    for r in range(1, len(elems) + 1):
+        for sub in combinations(elems, r):
+            W = set(sub)
+            if one_step(W, add, smul, p):
+                out.append(frozenset(W))
+    return out
+
+
+def part_b():
+    for p, n in ((3, 2), (2, 3)):
+        add, smul = make_ops(p)
+        V = space(p, n)
+        assert failed_axioms(V, add, smul, p) == set()
+        count, agree = 0, 0
+        for r in range(1, len(V) + 1):
+            for sub in combinations(V, r):
+                W = list(sub)
+                by_def = failed_axioms(W, add, smul, p) == set()
+                agree += by_def == one_step(set(W), add, smul, p)
+                count += 1
+        assert agree == count
+        subs = subspaces(V, add, smul, p)
+        print(&#x27;F_%d^%d: all axioms hold; one-step test agrees with the&#x27;
+              &#x27; definition on %d subsets; %d subspaces&#x27;
+              % (p, n, count, len(subs)))
+        assert len(subs) == {(3, 2): 6, (2, 3): 16}[(p, n)]
+        pairs = nested = 0
+        for W1, W2 in combinations(subs, 2):
+            is_sub = one_step(set(W1 | W2), add, smul, p)
+            assert is_sub == (W1 &lt;= W2 or W2 &lt;= W1)
+            pairs += 1
+            nested += is_sub
+        print(&#x27;   union of two subspaces is a subspace iff nested:&#x27;
+              &#x27; %d pairs, %d nested&#x27; % (pairs, nested))
+
+    add, smul = make_ops(2)
+    V = space(2, 2)
+    proper = [W for W in subspaces(V, add, smul, 2)
+              if 1 &lt; len(W) &lt; len(V)]
+    assert len(proper) == 3
+    assert set().union(*proper) == set(V)
+    assert not any(set().union(*pair) == set(V)
+                   for pair in combinations(proper, 2))
+    print(&#x27;F_2^2 is the union of 3 proper subspaces, not of 2&#x27;)
+
+    add3, smul3 = make_ops(3)
+    V3 = space(3, 2)
+    lines = [W for W in subspaces(V3, add3, smul3, 3) if len(W) == 3]
+    assert len(lines) == 4
+    assert not any(set().union(*t) == set(V3)
+                   for t in combinations(lines, 3))
+    assert set().union(*lines) == set(V3)
+    print(&#x27;F_3^2: 4 lines cover, no 3 of them do&#x27;)
+
+    def zero_smul(c, u):
+        return tuple(0 for _ in u)
+
+    add3, _ = make_ops(3)
+    bad = failed_axioms(space(3, 2), add3, zero_smul, 3)
+    assert bad == {&#x27;S4&#x27;}
+    print(&#x27;scalar multiplication c*u = 0 fails exactly:&#x27;, sorted(bad))
+
+    def poly_function(coeffs, p):
+        return tuple(sum(c * x ** k for k, c in enumerate(coeffs)) % p
+                     for x in range(p))
+
+    assert poly_function((0, 1, 1), 2) == (0, 0)
+    V = Q([[x ** k for k in range(3)] for x in (0, 1, 2)])
+    assert rank(V) == 3
+    print(&#x27;x^2 + x over F_2 is the zero function; over Q the evaluation&#x27;
+          &#x27; map on P_2 is injective (Vandermonde rank 3)&#x27;)
+
+    mats = list(product(range(2), repeat=4))
+
+    def transpose(m):
+        return (m[0], m[2], m[1], m[3])
+
+    sym = {m for m in mats if transpose(m) == m}
+    skew = {m for m in mats
+            if transpose(m) == tuple((-x) % 2 for x in m)}
+    total = {tuple((a + b) % 2 for a, b in zip(s, k))
+             for s in sym for k in skew}
+    assert sym == skew and len(sym) == 8 and len(total) == 8
+    assert len(total) &lt; len(mats)
+    print(&#x27;F_2^(2x2): Sym = Skew has 8 elements; Sym + Skew has 8 of 16&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    part_a()
+    part_b()
+    print(&#x27;ch03 laboratory: all assertions passed&#x27;)
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch02.html">Previous: Row-reduced echelon form: one canonical answer to every linear system</a><a rel="next" href="ch04.html">Next: Linear independence, basis, and the invariance of dimension</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

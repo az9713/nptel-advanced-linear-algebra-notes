@@ -1,0 +1,67 @@
+{
+ "author": "author_a",
+ "chapter": "ch08",
+ "recordings": [
+  {
+   "position": 14,
+   "video_id": "4DXAx2Qc3DM",
+   "normalized_text_sha256": "117ffbb0a16c61e230c28bd18a3bc70b07aa03536d5236386b73a47d66d9cf9a",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "sum and scalar multiple of linear maps",
+    "L(V,W) is a vector space",
+    "dimension mn via the maps E^{pq}"
+   ],
+   "clarifications": [],
+   "original_constructions": [
+    "running matrices"
+   ]
+  },
+  {
+   "position": 15,
+   "video_id": "QIt8CporAVU",
+   "normalized_text_sha256": "88147498cbdbb1a5ead97949ccfb250a128ea1e05ba40e09ae164caac92d921d",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "six basis maps from F^3 to F^2",
+    "composition of linear maps",
+    "UT defined while TU is not",
+    "linear operators and L(V) of dimension n^2",
+    "linear algebra axioms"
+   ],
+   "clarifications": [
+    "Associativity of composition is added to the listed algebra identities"
+   ],
+   "original_constructions": [
+    "non-commutativity and zero divisors"
+   ]
+  },
+  {
+   "position": 16,
+   "video_id": "PpvRhe2QpjA",
+   "normalized_text_sha256": "c72f789b7074c2a75c4d68a44c862b129d650f6af2f4f1f2d1a49ebde22b5fbf",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "invertible maps and linearity of the inverse",
+    "nonsingular maps",
+    "nonsingular iff independent sets go to independent sets",
+    "isomorphism",
+    "n-dimensional spaces are isomorphic to F^n"
+   ],
+   "clarifications": [
+    "Invertibility needs surjectivity in addition to nonsingularity unless dimensions agree"
+   ],
+   "original_constructions": [
+    "one-sided inverses",
+    "annihilating relation",
+    "exercises"
+   ]
+  }
+ ]
+}

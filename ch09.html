@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Matrix representation of linear transformations and similarity · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html" aria-current=page>09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>09. Matrix representation of linear transformations and similarity</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=mB_27xaN1nU">Recording 17</a>, <a href="https://www.youtube.com/watch?v=PiG2BMkK3s4">Recording 18</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Compute the matrix of a linear map relative to ordered bases</li><li>Prove that representation is a linear isomorphism that turns composition into product</li><li>Derive the change-of-basis and similarity formulas</li><li>Use invariants to separate non-similar matrices</li></ul>
+<p><strong>Prerequisites:</strong> Chapters 5, 7 and 8: coordinates, linear maps and their algebra, and determinants.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch09.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-the-matrix-of-a-linear-map-0453">1. The matrix of a linear map 04:53</a></li><li><a href="#2-every-matrix-is-the-matrix-of-one-map-1527">2. Every matrix is the matrix of one map 15:27</a></li><li><a href="#3-examples-1957">3. Examples 19:57</a></li><li><a href="#4-the-correspondence-is-a-linear-isomorphism-3239">4. The correspondence is a linear isomorphism 32:39</a></li><li><a href="#5-composition-corresponds-to-the-matrix-product">5. Composition corresponds to the matrix product</a></li><li><a href="#6-from-a-matrix-back-to-a-formula-and-the-row-convention-0025">6. From a matrix back to a formula, and the row convention 00:25</a></li><li><a href="#7-change-of-bases-similarity-1040">7. Change of bases: similarity 10:40</a></li><li><a href="#8-every-invertible-matrix-realizes-a-change-of-basis-2331">8. Every invertible matrix realizes a change of basis 23:31</a></li><li><a href="#9-the-running-example-and-a-second-computation-2741">9. The running example and a second computation 27:41</a></li><li><a href="#10-what-similarity-preserves-and-what-it-does-not">10. What similarity preserves and what it does not</a></li><li><a href="#11-executable-check">11. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Let $T:\mathbb{Q}^3\to\mathbb{Q}^3$ be given by $TX=AX$ with</p>
+<p>$$
+A=\begin{pmatrix}1&amp;1&amp;1\\0&amp;2&amp;1\\0&amp;0&amp;3\end{pmatrix}.
+$$</p>
+<p>This operator is the running example (an original construction). Suppose we need $T^{10}$, the effect of applying $T$ ten times. Multiplying $A$ by itself repeatedly is possible but gives no insight. The vectors</p>
+<p>$$
+\beta_1=(1,0,0),\quad\beta_2=(1,1,0),\quad\beta_3=(1,1,1)
+$$</p>
+<p>satisfy $T\beta_1=\beta_1$, $T\beta_2=2\beta_2$ and $T\beta_3=3\beta_3$. In the basis $(\beta_1,\beta_2,\beta_3)$, the operator only stretches three directions, and $T^{10}$ multiplies them by $1$, $2^{10}$ and $3^{10}$. The same operator has two very different tables of numbers. This chapter explains what such a table is, how it depends on the bases, and how the two tables are related.</p>
+<p>Throughout, $F$ is a field, $V$ and $W$ are finite-dimensional vector spaces over $F$ with $\dim V=n$ and $\dim W=m$ ($m,n\ge1$). An <em>ordered basis</em> is a basis listed in order, and $[\alpha]_{\mathcal{B}}\in F^n$ is the column of coordinates of $\alpha$ relative to $\mathcal{B}$ (<a href="ch05.html">Chapter 5</a>). A <em>linear operator</em> is a linear map $V\to V$. The superscript $\mathsf T$ on a row denotes the corresponding column.</p>
+<h2 id="1-the-matrix-of-a-linear-map-0453">1. The matrix of a linear map <a href="https://www.youtube.com/watch?v=mB_27xaN1nU&amp;t=293s">04:53</a></h2>
+<p>Fix ordered bases $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ of $V$ and $\mathcal{C}=(\beta_1,\dots,\beta_m)$ of $W$. A linear map $T:V\to W$ is determined by the images $T\alpha_j$, and each image has coordinates in $\mathcal{C}$:</p>
+<p>$$
+T\alpha_j=\sum_{i=1}^mM_{ij}\beta_i\qquad(j=1,\dots,n).
+$$</p>
+<p><strong>Definition.</strong> The $m\times n$ matrix $M=[T]_{\mathcal{C}\leftarrow\mathcal{B}}$ is the <em>matrix of $T$ relative to $\mathcal{B}$ and $\mathcal{C}$</em>. Its $j$th column is $[T\alpha_j]_{\mathcal{C}}$.</p>
+<p>Note that the number of rows is $\dim W$ and the number of columns is $\dim V$.</p>
+<p><strong>Theorem 1.1.</strong> For every $\alpha\in V$, $[T\alpha]_{\mathcal{C}}=[T]_{\mathcal{C}\leftarrow\mathcal{B}}\,[\alpha]_{\mathcal{B}}$. No other matrix has this property.</p>
+<p><strong>Proof.</strong> Let $[\alpha]_{\mathcal{B}}=(x_1,\dots,x_n)^{\mathsf T}$. By linearity,</p>
+<p>$$
+T\alpha=\sum_{j=1}^nx_jT\alpha_j=\sum_{j=1}^nx_j\sum_{i=1}^mM_{ij}\beta_i=\sum_{i=1}^m\Big(\sum_{j=1}^nM_{ij}x_j\Big)\beta_i .
+$$</p>
+<p>So the $i$th coordinate of $T\alpha$ is the $i$th entry of $M[\alpha]_{\mathcal{B}}$. If $N$ also satisfies the formula, apply it to $\alpha=\alpha_j$: since $[\alpha_j]_{\mathcal{B}}$ is the $j$th unit column, the $j$th column of $N$ equals $[T\alpha_j]_{\mathcal{C}}$, which is the $j$th column of $M$. $\square$</p>
+<p>The matrix thus replaces the abstract map by arithmetic on coordinates. It answers three questions: a representation exists whenever $V$ and $W$ are finite-dimensional; it is unique once the ordered bases are fixed; and it is computed column by column from the images of the basis vectors.</p>
+<h2 id="2-every-matrix-is-the-matrix-of-one-map-1527">2. Every matrix is the matrix of one map <a href="https://www.youtube.com/watch?v=mB_27xaN1nU&amp;t=927s">15:27</a></h2>
+<p><strong>Theorem 2.1.</strong> For every $M\in F^{m\times n}$ there is exactly one linear $T:V\to W$ with $[T]_{\mathcal{C}\leftarrow\mathcal{B}}=M$.</p>
+<p><strong>Proof.</strong> By <a href="ch07.html">Chapter 7</a> there is exactly one linear map $T$ with the prescribed values $T\alpha_j=\sum_iM_{ij}\beta_i$ on the basis $\mathcal{B}$. This is the condition that its matrix is $M$. $\square$</p>
+<p>For example, take $V=\mathbb{Q}^3$ with $\mathcal{B}^*=\big((1,1,1),(1,1,0),(1,0,0)\big)$, $W=\mathbb{Q}^2$ with $\mathcal{C}'=\big((1,0),(1,1)\big)$, and $M=\begin{pmatrix}1&amp;0&amp;2\\3&amp;1&amp;-1\end{pmatrix}$. The map $U$ with matrix $M$ sends the three basis vectors to $(4,3)$, $(1,1)$ and $(1,-1)$; for instance $1\cdot(1,0)+3\cdot(1,1)=(4,3)$. Solving for the coordinates of a general $x$ in $\mathcal{B}^*$ and applying $M$ gives $U(x)=(x_1+3x_3,\;-x_1+2x_2+2x_3)$.</p>
+<h2 id="3-examples-1957">3. Examples <a href="https://www.youtube.com/watch?v=mB_27xaN1nU&amp;t=1197s">19:57</a></h2>
+<p><strong>A map $\mathbb{Q}^3\to\mathbb{Q}^2$.</strong> Let $T_1(x)=(x_1-2x_2,\;x_2+x_3)$. In the standard bases, the columns are the images of $e_1,e_2,e_3$:</p>
+<p>$$
+[T_1]=\begin{pmatrix}1&amp;-2&amp;0\\0&amp;1&amp;1\end{pmatrix}.
+$$</p>
+<p>With $\mathcal{B}^*$ in the domain and the standard basis in the target, the images $T_1(1,1,1)=(-1,2)$, $T_1(1,1,0)=(-1,1)$, $T_1(1,0,0)=(1,0)$ give</p>
+<p>$$
+\begin{pmatrix}-1&amp;-1&amp;1\\2&amp;1&amp;0\end{pmatrix}.
+$$</p>
+<p>With $\mathcal{C}'$ in the target as well, the coordinates change again: $(-1,2)=-3(1,0)+2(1,1)$, and the matrix becomes $\begin{pmatrix}-3&amp;-2&amp;1\\2&amp;1&amp;0\end{pmatrix}$. One map, three matrices.</p>
+<p><strong>Differentiation.</strong> Let $P_3$ be the space of polynomials of degree at most $3$ over $\mathbb{Q}$ and $D$ the derivative, an operator on $P_3$. In $(1,x,x^2,x^3)$ we have $D1=0$, $Dx=1$, $Dx^2=2x$, $Dx^3=3x^2$, so</p>
+<p>$$
+[D]=\begin{pmatrix}0&amp;1&amp;0&amp;0\\0&amp;0&amp;2&amp;0\\0&amp;0&amp;0&amp;3\\0&amp;0&amp;0&amp;0\end{pmatrix}.
+$$</p>
+<p>In the basis $(1,x,x^2/2,x^3/6)$ the nonzero entries all become $1$. The operator satisfies $D^4=0$ but $D^3\neq0$.</p>
+<p><strong>The order of the basis matters.</strong> For the running operator, swapping the first two standard basis vectors, that is, using $(e_2,e_1,e_3)$, gives $\begin{pmatrix}2&amp;0&amp;1\\1&amp;1&amp;1\\0&amp;0&amp;3\end{pmatrix}$: rows 1, 2 and columns 1, 2 are exchanged. Also note that the identity map has matrix $I$ only when the same ordered basis is used on both sides.</p>
+<h2 id="4-the-correspondence-is-a-linear-isomorphism-3239">4. The correspondence is a linear isomorphism <a href="https://www.youtube.com/watch?v=mB_27xaN1nU&amp;t=1959s">32:39</a></h2>
+<p>Let $\mathcal{L}(V,W)$ be the space of linear maps $V\to W$.</p>
+<p><strong>Theorem 4.1.</strong> With $\mathcal{B},\mathcal{C}$ fixed, the map $\Psi:\mathcal{L}(V,W)\to F^{m\times n}$, $\Psi(T)=[T]_{\mathcal{C}\leftarrow\mathcal{B}}$, is an isomorphism of vector spaces.</p>
+<p><strong>Proof.</strong> Theorem 2.1 says that $\Psi$ is bijective. For linearity, let $T_1,T_2$ have matrices $A_1,A_2$ and $c\in F$. Then</p>
+<p>$$
+(cT_1+T_2)\alpha_j=c\sum_i(A_1)_{ij}\beta_i+\sum_i(A_2)_{ij}\beta_i=\sum_i\big(cA_1+A_2\big)_{ij}\beta_i .
+$$</p>
+<p>So $\Psi(cT_1+T_2)=c\Psi(T_1)+\Psi(T_2)$. $\square$</p>
+<p>Hence $\dim\mathcal{L}(V,W)=\dim F^{m\times n}=mn$, as in <a href="ch08.html">Chapter 8</a>: the maps whose matrices have a single entry $1$ form a basis. A statement about linear maps may therefore be computed with matrices, provided the bases stay fixed.</p>
+<h2 id="5-composition-corresponds-to-the-matrix-product">5. Composition corresponds to the matrix product</h2>
+<p><strong>Theorem 5.1.</strong> Let $T:V\to W$ and $S:W\to Z$ be linear, with $Z$ finite-dimensional and ordered basis $\mathcal{D}$. Then</p>
+<p>$$
+[ST]_{\mathcal{D}\leftarrow\mathcal{B}}=[S]_{\mathcal{D}\leftarrow\mathcal{C}}\,[T]_{\mathcal{C}\leftarrow\mathcal{B}} .
+$$</p>
+<p><strong>Proof.</strong> By Theorem 1.1 applied twice, $[ST\alpha]_{\mathcal{D}}=[S]_{\mathcal{D}\leftarrow\mathcal{C}}[T\alpha]_{\mathcal{C}}=[S]_{\mathcal{D}\leftarrow\mathcal{C}}[T]_{\mathcal{C}\leftarrow\mathcal{B}}[\alpha]_{\mathcal{B}}$. The matrix with this property is unique by Theorem 1.1. $\square$</p>
+<p>This explains the definition of the matrix product: it is exactly the rule that makes composition correspond to multiplication. For $S(y)=(y_1+y_2,\,y_1-y_2)$ after $T_1$,</p>
+<p>$$
+\begin{pmatrix}1&amp;1\\1&amp;-1\end{pmatrix}\begin{pmatrix}1&amp;-2&amp;0\\0&amp;1&amp;1\end{pmatrix}=\begin{pmatrix}1&amp;-1&amp;1\\1&amp;-3&amp;-1\end{pmatrix},
+$$</p>
+<p>which is the matrix of $x\mapsto(x_1-x_2+x_3,\;x_1-3x_2-x_3)$. In particular, for an operator $T$ on $V$ and one ordered basis, $[T^k]_{\mathcal{B}}=[T]_{\mathcal{B}}^k$.</p>
+<h2 id="6-from-a-matrix-back-to-a-formula-and-the-row-convention-0025">6. From a matrix back to a formula, and the row convention <a href="https://www.youtube.com/watch?v=PiG2BMkK3s4&amp;t=25s">00:25</a></h2>
+<p>For $V=F^n$ and $W=F^m$ with standard bases, a matrix $M$ gives back the map explicitly. If $F^n$ is written as columns, the map is $X\mapsto MX$. If $F^n$ is written as rows $x=(x_1,\dots,x_n)$, then transposing gives $x\mapsto xM^{\mathsf T}$. For $T_2(x)=(x_1+x_2+x_3,\;x_2+x_3)$ the matrix is $M=\begin{pmatrix}1&amp;1&amp;1\\0&amp;1&amp;1\end{pmatrix}$, and in row notation $T_2(x)=xM^{\mathsf T}$, while in column notation $T_2X=MX$. The two formulas describe one map. This book uses columns.</p>
+<h2 id="7-change-of-bases-similarity-1040">7. Change of bases: similarity <a href="https://www.youtube.com/watch?v=PiG2BMkK3s4&amp;t=640s">10:40</a></h2>
+<p>How does $[T]$ change when the bases change? Let $\mathcal{B}'$ and $\mathcal{C}'$ be new ordered bases, $P=P_{\mathcal{B}\leftarrow\mathcal{B}'}$ and $Q=P_{\mathcal{C}\leftarrow\mathcal{C}'}$ the change-of-basis matrices of <a href="ch05.html">Chapter 5</a>: $[\alpha]_{\mathcal{B}}=P[\alpha]_{\mathcal{B}'}$. Both are invertible.</p>
+<p><strong>Theorem 7.1.</strong> $[T]_{\mathcal{C}'\leftarrow\mathcal{B}'}=Q^{-1}[T]_{\mathcal{C}\leftarrow\mathcal{B}}P$. In particular, for an operator $T$ on $V$ and ordered bases $\mathcal{B},\mathcal{B}'$ of $V$,</p>
+<p>$$
+[T]_{\mathcal{B}'}=P^{-1}[T]_{\mathcal{B}}P,
+$$</p>
+<p>where $[T]_{\mathcal{B}}$ means $[T]_{\mathcal{B}\leftarrow\mathcal{B}}$.</p>
+<p><strong>Proof.</strong> Let $A=[T]_{\mathcal{C}\leftarrow\mathcal{B}}$. For every $\alpha\in V$,</p>
+<p>$$
+Q[T\alpha]_{\mathcal{C}'}=[T\alpha]_{\mathcal{C}}=A[\alpha]_{\mathcal{B}}=AP[\alpha]_{\mathcal{B}'}.
+$$</p>
+<p>Multiply by $Q^{-1}$: $[T\alpha]_{\mathcal{C}'}=Q^{-1}AP[\alpha]_{\mathcal{B}'}$. By the uniqueness part of Theorem 1.1, $Q^{-1}AP$ is the matrix of $T$ in the new bases. For an operator take $W=V$, $\mathcal{C}=\mathcal{B}$ and $\mathcal{C}'=\mathcal{B}'$, so $Q=P$. $\square$</p>
+<p><strong>Definition 7.2.</strong> Square matrices $A,B\in F^{n\times n}$ are <em>similar</em> over $F$ if $B=P^{-1}AP$ for an invertible $P\in F^{n\times n}$. Rectangular matrices $A,A'\in F^{m\times n}$ are <em>equivalent</em> if $A'=Q^{-1}AP$ with $P,Q$ invertible.</p>
+<p>Similarity is an equivalence relation: $A=I^{-1}AI$; $A=(P^{-1})^{-1}BP^{-1}$; and $R^{-1}(P^{-1}AP)R=(PR)^{-1}A(PR)$. So similar matrices are exactly the matrices that can represent one operator.</p>
+<p>For the maps of Section 3, with $P$ having columns $(1,1,1),(1,1,0),(1,0,0)$ and $Q=\begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}$, one gets $Q^{-1}[T_1]P=\begin{pmatrix}-3&amp;-2&amp;1\\2&amp;1&amp;0\end{pmatrix}$, as computed there.</p>
+<h2 id="8-every-invertible-matrix-realizes-a-change-of-basis-2331">8. Every invertible matrix realizes a change of basis <a href="https://www.youtube.com/watch?v=PiG2BMkK3s4&amp;t=1411s">23:31</a></h2>
+<p><strong>Theorem 8.1.</strong> Let $T$ be an operator on $V$, $\mathcal{B}$ an ordered basis, and $P$ invertible. There is an ordered basis $\mathcal{B}'$ with $[T]_{\mathcal{B}'}=P^{-1}[T]_{\mathcal{B}}P$.</p>
+<p><strong>Proof.</strong> By <a href="ch05.html">Chapter 5</a>, the vectors $\alpha_j'=\sum_iP_{ij}\alpha_i$ form an ordered basis $\mathcal{B}'$ whose change-of-basis matrix from $\mathcal{B}'$ to $\mathcal{B}$ is $P$. Now Theorem 7.1 applies. $\square$</p>
+<p>So if a matrix $B$ is similar to $[T]_{\mathcal{B}}$, then $B$ is the matrix of the same operator in some other basis.</p>
+<h2 id="9-the-running-example-and-a-second-computation-2741">9. The running example and a second computation <a href="https://www.youtube.com/watch?v=PiG2BMkK3s4&amp;t=1661s">27:41</a></h2>
+<p>For the running operator, $\mathcal{B}'=(\beta_1,\beta_2,\beta_3)$ has the change-of-basis matrix</p>
+<p>$$
+P=\begin{pmatrix}1&amp;1&amp;1\\0&amp;1&amp;1\\0&amp;0&amp;1\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1&amp;-1&amp;0\\0&amp;1&amp;-1\\0&amp;0&amp;1\end{pmatrix}.
+$$</p>
+<p>The relations $T\beta_k=k\beta_k$ say that $[T]_{\mathcal{B}'}=\operatorname{diag}(1,2,3)$, the diagonal matrix with these entries, and indeed $P^{-1}AP=\operatorname{diag}(1,2,3)$. Hence $A=P\operatorname{diag}(1,2,3)P^{-1}$ and, since the inner factors cancel,</p>
+<p>$$
+A^n=P\operatorname{diag}(1,2^n,3^n)P^{-1}=\begin{pmatrix}1&amp;2^n-1&amp;3^n-2^n\\0&amp;2^n&amp;3^n-2^n\\0&amp;0&amp;3^n\end{pmatrix}.
+$$</p>
+<p>For $n=10$ the entries are $1$, $1023$, $58025$ in the first row, $1024$ and $58025$ in the second, and $59049$ in the third.</p>
+<p><strong>A second example.</strong> Let $G=\begin{pmatrix}1&amp;2&amp;-1\\1&amp;0&amp;1\\2&amp;1&amp;0\end{pmatrix}$ be the matrix of an operator in the standard basis of $\mathbb{Q}^3$, and let $\mathcal{B}''=\big((1,1,1),(1,1,0),(1,0,0)\big)$. Compute $G\alpha$ for each new vector and express it in $\mathcal{B}''$ by solving $c_1+c_2+c_3$, $c_1+c_2$, $c_1$ equal to its three entries. For the first vector, $G(1,1,1)^{\mathsf T}=(2,2,3)^{\mathsf T}$, so $c_1=3$, $c_2=-1$, $c_3=0$. The other two columns give $(3,-2,2)$ and $(2,-1,0)$. So</p>
+<p>$$
+H=[T]_{\mathcal{B}''}=\begin{pmatrix}3&amp;3&amp;2\\-1&amp;-2&amp;-1\\0&amp;2&amp;0\end{pmatrix}.
+$$</p>
+<p>The change-of-basis matrix $P''$ has the new vectors as columns, and $H=P''^{-1}GP''$.</p>
+<h2 id="10-what-similarity-preserves-and-what-it-does-not">10. What similarity preserves and what it does not</h2>
+<p><strong>Proposition 10.1.</strong> Similar matrices have the same rank, trace, determinant and characteristic polynomial $\det(xI-A)$.</p>
+<p><strong>Proof.</strong> Let $B=P^{-1}AP$. Rank is the dimension of the range of the operator, which does not depend on the basis. For the determinant, multiplicativity gives $\det B=\det(P^{-1})\det A\det P=\det A$. For the characteristic polynomial, $xI-B=P^{-1}(xI-A)P$, so the same computation, over polynomial entries, gives $\det(xI-B)=\det(xI-A)$. The <em>trace</em> $\operatorname{tr}A$ is the sum of the diagonal entries; it is minus the coefficient of $x^{n-1}$ in $\det(xI-A)$, so it is preserved too. $\square$</p>
+<p>For the running example and its diagonal form, the trace is $6$, the determinant $6$ and the characteristic polynomial $x^3-6x^2+11x-6$. For $G$ and $H$ the trace is $1$ and the determinant $2$.</p>
+<p>The converse fails. The matrices $I$ and $J=\begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}$ have rank $2$, trace $2$, determinant $1$ and characteristic polynomial $(x-1)^2$. But $P^{-1}IP=I$ for every invertible $P$, so $I$ is similar only to itself.</p>
+<p><strong>Equivalence is weaker than similarity.</strong> When the two bases of $T:V\to W$ can be chosen independently, much more can be achieved. For $T_1$ of Section 3, choose $a_1=e_1$, $a_2=e_2$ and $a_3=(2,1,-1)$, which spans $\ker T_1$, and in $\mathbb{Q}^2$ the basis $(T_1a_1,T_1a_2)$. Then the matrix of $T_1$ is $\begin{pmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\end{pmatrix}$. Every linear map has such a <em>rank normal form</em> (Exercise 5), so equivalence remembers only the rank. For operators, where one basis serves both sides, the classification is much finer; it occupies <a href="ch12.html">Chapter 12</a> onward.</p>
+<p><strong>The field matters.</strong> The rotation $R=\begin{pmatrix}0&amp;-1\\1&amp;0\end{pmatrix}$ is not similar over $\mathbb{Q}$ or $\mathbb{R}$ to a diagonal matrix, since $x^2+1$ has no real root. Over $\mathbb{C}$, with $P=\begin{pmatrix}1&amp;1\\-i&amp;i\end{pmatrix}$, $P^{-1}RP=\operatorname{diag}(i,-i)$.</p>
+<h2 id="11-executable-check">11. Executable check</h2>
+<p><a href="labs/ch09.py">The chapter laboratory</a> computes the matrices of $T_1$ in three pairs of bases, the map with prescribed matrix, the matrices of differentiation, the composition formula, the row convention, the formula $P^{-1}AP=\operatorname{diag}(1,2,3)$ and the powers $A^n$ for $n\le11$, the matrix $H$, the invariants of Proposition 10.1, and the rank normal form, with exact fractions. It tests the converse of Section 8 on 25 random invertible matrices. These are instances; the theorems are proved above.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) Find the matrix of $T(x_1,x_2)=(x_2,x_1+x_2)$ relative to the basis $\big((1,1),(1,-1)\big)$ of $\mathbb{Q}^2$, in both domain and target.</li>
+<li>(Operator on polynomials.) Let $S$ on $P_2(\mathbb{Q})$ be $(Sp)(x)=p(x+1)$. Find $[S]$ in $(1,x,x^2)$, and show that $S$ is invertible.</li>
+<li>(Invariant.) Show that $\begin{pmatrix}1&amp;2\\3&amp;4\end{pmatrix}$ and $\begin{pmatrix}2&amp;0\\0&amp;3\end{pmatrix}$ are not similar.</li>
+<li>(Proof.) Prove that if $A$ and $B$ are similar, then $A^k$ and $B^k$ are similar for every $k\ge1$, and that $p(A)$ and $p(B)$ are similar for every polynomial $p$.</li>
+<li>(Rank normal form.) Prove that for every linear $T:V\to W$ of rank $r$ there are ordered bases making the matrix of $T$ equal to $\begin{pmatrix}I_r&amp;0\\0&amp;0\end{pmatrix}$.</li>
+<li>(Nilpotent.) Let $N$ be an operator on a two-dimensional space with $N\neq0$ and $N^2=0$. Show that some basis gives $N$ the matrix $\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix}$, and deduce that any two such $2\times2$ matrices are similar.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>$T(1,1)=(1,2)$. Solve $(1,2)=a(1,1)+b(1,-1)$: $a+b=1$, $a-b=2$, so $a=3/2$, $b=-1/2$. $T(1,-1)=(-1,0)$: $a+b=-1$, $a-b=0$, so $a=b=-1/2$. The matrix is $\begin{pmatrix}3/2&amp;-1/2\\-1/2&amp;-1/2\end{pmatrix}$. Check by the trace: the standard matrix $\begin{pmatrix}0&amp;1\\1&amp;1\end{pmatrix}$ has trace $1$, and $3/2-1/2=1$.</p>
+</li>
+<li>
+<p>$S1=1$, $Sx=x+1$, $Sx^2=x^2+2x+1$. So $[S]$ has columns $(1,0,0)$, $(1,1,0)$, $(1,2,1)$: rows $(1,1,1)$, $(0,1,2)$, $(0,0,1)$. It is upper triangular with ones on the diagonal, so its determinant is $1$ and it is invertible. Concretely, $S^{-1}p(x)=p(x-1)$.</p>
+</li>
+<li>
+<p>The first has trace $5$ and determinant $-2$; the second trace $5$ and determinant $6$. Similar matrices have equal determinants by Proposition 10.1, so they are not similar. The trace alone would not detect this.</p>
+</li>
+<li>
+<p>If $B=P^{-1}AP$, then $B^k=P^{-1}A(PP^{-1})A\cdots AP=P^{-1}A^kP$. For $p=\sum c_kx^k$ with $A^0=I$, linearity gives $p(B)=\sum c_kP^{-1}A^kP=P^{-1}p(A)P$.</p>
+</li>
+<li>
+<p>Let $(a_{r+1},\dots,a_n)$ be a basis of $\ker T$; its size is $n-r$ by rank-nullity. Extend it by $a_1,\dots,a_r$ to a basis of $V$. By the proof of rank-nullity (<a href="ch07.html">Chapter 7</a>), $Ta_1,\dots,Ta_r$ form a basis of $\operatorname{im}T$. Extend them to a basis $(Ta_1,\dots,Ta_r,b_{r+1},\dots,b_m)$ of $W$. In these bases the image of $a_j$ is the $j$th target vector for $j\le r$ and $0$ for $j\gt r$, which is the stated matrix.</p>
+</li>
+<li>
+<p>Since $N\neq0$, some $v$ has $Nv\neq0$. Then $(Nv,v)$ is independent: if $aNv+bv=0$, apply $N$ to get $bNv=0$ (since $N^2=0$), so $b=0$, and then $a=0$. So $(Nv,v)$ is a basis. $N(Nv)=0$ and $N(v)=Nv$, so the matrix is $\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix}$. If $A,B$ are $2\times2$ matrices, nonzero with square zero, each is similar to this matrix by what was shown, applied to $X\mapsto AX$ and $X\mapsto BX$; similarity is transitive, so $A$ and $B$ are similar.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, Chapter 3 (linear transformations).</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., Springer, 2024, open access at https://linear.axler.net/, Chapter 3.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch09.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 9 laboratory: matrices of linear maps, change of basis, similarity.
+
+Exact arithmetic over Q (fractions.Fraction).  A vector of F^k is a tuple,
+a matrix is a list of rows, an ordered basis is a list of vectors, and a
+linear map is a Python function from tuples to tuples.  Polynomials of
+degree at most 3 are stored as coefficient tuples (p0, p1, p2, p3).
+
+  coords(B, v)          the coordinate vector [v]_B
+  matrix_of(T, B, C)    the matrix [T]_{C&lt;-B}, column j = [T(B_j)]_C
+  map_from_matrix(M, B, C)   the map U with [U]_{C&lt;-B} = M
+  change_matrix(B, Bp)  P_{B&lt;-B&#x27;}, column j = [B&#x27;_j]_B
+
+The checks verify the chapter&#x27;s theorems on its examples.  They are
+evidence for those examples and for random small cases, not proofs.
+&quot;&quot;&quot;
+import random
+from fractions import Fraction as Fr
+
+
+def mat(rows):
+    return [[Fr(x) for x in row] for row in rows]
+
+
+def vec(*xs):
+    return tuple(Fr(x) for x in xs)
+
+
+def identity(n):
+    return [[Fr(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def transpose(A):
+    return [list(col) for col in zip(*A)]
+
+
+def matmul(A, B):
+    return [[sum(A[i][k] * B[k][j] for k in range(len(B)))
+             for j in range(len(B[0]))] for i in range(len(A))]
+
+
+def matvec(A, x):
+    return tuple(sum(a * b for a, b in zip(row, x)) for row in A)
+
+
+def matpow(A, k):
+    R = identity(len(A))
+    for _ in range(k):
+        R = matmul(R, A)
+    return R
+
+
+def inverse(A):
+    &quot;&quot;&quot;Gauss-Jordan inverse over Q; ValueError when A is singular.&quot;&quot;&quot;
+    n = len(A)
+    M = [list(A[i]) + identity(n)[i] for i in range(n)]
+    for c in range(n):
+        p = next((r for r in range(c, n) if M[r][c] != 0), None)
+        if p is None:
+            raise ValueError(&#x27;singular matrix&#x27;)
+        M[c], M[p] = M[p], M[c]
+        piv = M[c][c]
+        M[c] = [x / piv for x in M[c]]
+        for r in range(n):
+            if r != c and M[r][c] != 0:
+                f = M[r][c]
+                M[r] = [x - f * y for x, y in zip(M[r], M[c])]
+    return [row[n:] for row in M]
+
+
+def rank(A):
+    M = [list(r) for r in A]
+    rk, rows, cols = 0, len(M), len(M[0])
+    for c in range(cols):
+        p = next((r for r in range(rk, rows) if M[r][c] != 0), None)
+        if p is None:
+            continue
+        M[rk], M[p] = M[p], M[rk]
+        for r in range(rk + 1, rows):
+            f = M[r][c] / M[rk][c]
+            M[r] = [x - f * y for x, y in zip(M[r], M[rk])]
+        rk += 1
+    return rk
+
+
+def trace(A):
+    return sum(A[i][i] for i in range(len(A)))
+
+
+def det(A):
+    &quot;&quot;&quot;Determinant by Laplace expansion along row 0 (small matrices).&quot;&quot;&quot;
+    if len(A) == 1:
+        return A[0][0]
+    return sum((-1) ** j * A[0][j] *
+               det([r[:j] + r[j + 1:] for r in A[1:]])
+               for j in range(len(A)))
+
+
+def charpoly(A):
+    &quot;&quot;&quot;Coefficients of det(xI - A), highest degree first (Faddeev-LeVerrier).
+    &quot;&quot;&quot;
+    n = len(A)
+    coeffs, M = [Fr(1)], identity(n)
+    for k in range(1, n + 1):
+        AM = matmul(A, M)
+        c = -trace(AM) / k
+        coeffs.append(c)
+        M = [[AM[i][j] + (c if i == j else 0) for j in range(n)]
+             for i in range(n)]
+    return coeffs
+
+
+def basis_matrix(B):
+    &quot;&quot;&quot;Matrix whose columns are the vectors of the ordered basis B.&quot;&quot;&quot;
+    return transpose([list(b) for b in B])
+
+
+def coords(B, v):
+    &quot;&quot;&quot;[v]_B: solve sum_j c_j B_j = v (B must be a basis of F^k).&quot;&quot;&quot;
+    return matvec(inverse(basis_matrix(B)), v)
+
+
+def combine(B, c):
+    &quot;&quot;&quot;The vector sum_j c_j B_j.&quot;&quot;&quot;
+    return tuple(sum(cj * b[i] for cj, b in zip(c, B))
+                 for i in range(len(B[0])))
+
+
+def matrix_of(T, B, C):
+    &quot;&quot;&quot;[T]_{C&lt;-B}: column j is the coordinate vector [T(B_j)]_C.&quot;&quot;&quot;
+    cols = [coords(C, T(b)) for b in B]
+    return [[cols[j][i] for j in range(len(B))] for i in range(len(C))]
+
+
+def map_from_matrix(M, B, C):
+    &quot;&quot;&quot;The unique U with U(B_j) = sum_i M[i][j] C_i.&quot;&quot;&quot;
+    def U(v):
+        return combine(C, matvec(M, coords(B, v)))
+    return U
+
+
+def change_matrix(B, Bp):
+    &quot;&quot;&quot;P_{B&lt;-B&#x27;}: column j is [B&#x27;_j]_B, so [v]_B = P [v]_B&#x27;.&quot;&quot;&quot;
+    return transpose([list(coords(B, b)) for b in Bp])
+
+
+def grid(k, lo=-2, hi=2):
+    &quot;&quot;&quot;All integer vectors of F^k with entries in lo..hi.&quot;&quot;&quot;
+    out = [()]
+    for _ in range(k):
+        out = [t + (Fr(x),) for t in out for x in range(lo, hi + 1)]
+    return out
+
+
+def show(name, A):
+    print(name + &#x27; =&#x27;, [[str(x) for x in row] for row in A])
+
+
+# ---------------------------------------------------------------- Part 1
+# Section 1 and 3: T(x) = (x1 - 2 x2, x2 + x3) from F^3 to F^2.
+def T1(x):
+    return vec(x[0] - 2 * x[1], x[1] + x[2])
+
+
+E3 = [vec(1, 0, 0), vec(0, 1, 0), vec(0, 0, 1)]
+E2 = [vec(1, 0), vec(0, 1)]
+Bs = [vec(1, 1, 1), vec(1, 1, 0), vec(1, 0, 0)]
+Cp = [vec(1, 0), vec(1, 1)]
+
+A1 = matrix_of(T1, E3, E2)
+assert A1 == mat([[1, -2, 0], [0, 1, 1]])
+show(&#x27;Section 3  [T]_std&#x27;, A1)
+for x in grid(3):
+    # Theorem 1.1: [T x]_C = [T]_{C&lt;-B} [x]_B
+    assert coords(E2, T1(x)) == matvec(A1, coords(E3, x))
+
+A1s = matrix_of(T1, Bs, E2)
+assert A1s == mat([[-1, -1, 1], [2, 1, 0]])
+show(&#x27;Section 3  [T]_{std&lt;-B*}&#x27;, A1s)
+A1ss = matrix_of(T1, Bs, Cp)
+assert A1ss == mat([[-3, -2, 1], [2, 1, 0]])
+show(&#x27;Section 3  [T]_{C\&#x27;&lt;-B*}&#x27;, A1ss)
+
+# Section 7: equivalence formula A&#x27; = Q^-1 A P.
+P1 = change_matrix(E3, Bs)
+Q1 = change_matrix(E2, Cp)
+assert P1 == mat([[1, 1, 1], [1, 1, 0], [1, 0, 0]])
+assert Q1 == mat([[1, 1], [0, 1]])
+assert matmul(matmul(inverse(Q1), A1), P1) == A1ss
+assert matmul(A1, P1) == A1s
+
+# ---------------------------------------------------------------- Part 2
+# Section 2: every matrix is the matrix of exactly one map.
+M2 = mat([[1, 0, 2], [3, 1, -1]])
+U = map_from_matrix(M2, Bs, Cp)
+assert U(Bs[0]) == vec(4, 3)
+assert U(Bs[1]) == vec(1, 1)
+assert U(Bs[2]) == vec(1, -1)
+for x in grid(3):
+    assert U(x) == vec(x[0] + 3 * x[2], -x[0] + 2 * x[1] + 2 * x[2])
+assert matrix_of(U, Bs, Cp) == M2
+print(&#x27;Section 2  U(x) = (x1 + 3 x3, -x1 + 2 x2 + 2 x3); U(B*_1) =&#x27;,
+      [str(t) for t in U(Bs[0])])
+
+random.seed(9)
+for _ in range(30):
+    m, n = random.randint(1, 3), random.randint(1, 3)
+    M = mat([[random.randint(-3, 3) for _ in range(n)] for _ in range(m)])
+    Ei = [tuple(Fr(int(i == j)) for j in range(n)) for i in range(n)]
+    Fi = [tuple(Fr(int(i == j)) for j in range(m)) for i in range(m)]
+    assert matrix_of(map_from_matrix(M, Ei, Fi), Ei, Fi) == M
+print(&#x27;Section 2  30 random matrices: matrix -&gt; map -&gt; matrix is identity&#x27;)
+
+# ---------------------------------------------------------------- Part 3
+# Section 3: differentiation on polynomials of degree &lt;= 3.
+
+
+def D(p):
+    return vec(p[1], 2 * p[2], 3 * p[3], 0)
+
+
+Mono = [vec(1, 0, 0, 0), vec(0, 1, 0, 0), vec(0, 0, 1, 0), vec(0, 0, 0, 1)]
+Dm = matrix_of(D, Mono, Mono)
+assert Dm == mat([[0, 1, 0, 0], [0, 0, 2, 0], [0, 0, 0, 3], [0, 0, 0, 0]])
+Fact = [vec(1, 0, 0, 0), vec(0, 1, 0, 0), vec(0, 0, Fr(1, 2), 0),
+        vec(0, 0, 0, Fr(1, 6))]
+Nm = matrix_of(D, Fact, Fact)
+assert Nm == mat([[0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1], [0, 0, 0, 0]])
+Pd = change_matrix(Mono, Fact)
+assert matmul(matmul(inverse(Pd), Dm), Pd) == Nm
+assert matpow(Dm, 3) != mat([[0] * 4] * 4)
+assert matpow(Dm, 4) == mat([[0] * 4] * 4)
+show(&#x27;Section 3  [D]_(1,x,x^2,x^3)&#x27;, Dm)
+show(&#x27;Section 3  [D]_(1,x,x^2/2,x^3/6)&#x27;, Nm)
+
+# Section 3: the matrix depends on the order of the basis.
+A9 = mat([[1, 1, 1], [0, 2, 1], [0, 0, 3]])
+
+
+def T9(x):
+    return matvec(A9, x)
+
+
+Bsw = [E3[1], E3[0], E3[2]]
+Asw = matrix_of(T9, Bsw, Bsw)
+assert Asw == mat([[2, 0, 1], [1, 1, 1], [0, 0, 3]])
+show(&#x27;Section 3  [T]_(e2,e1,e3)&#x27;, Asw)
+# The identity operator has matrix I only when both bases are equal.
+assert matrix_of(lambda v: v, Bsw, E3) == mat([[0, 1, 0], [1, 0, 0],
+                                              [0, 0, 1]])
+
+# ---------------------------------------------------------------- Part 4
+# Section 4: Psi: L(V,W) -&gt; F^{m x n} is linear and bijective.
+
+
+def T2(x):
+    return vec(x[0] + x[1] + x[2], x[1] + x[2])
+
+
+A2 = matrix_of(T2, E3, E2)
+assert A2 == mat([[1, 1, 1], [0, 1, 1]])
+c = Fr(5, 3)
+Tc = (lambda x: tuple(c * a + b for a, b in zip(T1(x), T2(x))))
+assert matrix_of(Tc, E3, E2) == [[c * a + b for a, b in zip(r1, r2)]
+                                 for r1, r2 in zip(A1, A2)]
+
+
+def unit_map(p, q, m, n):
+    &quot;&quot;&quot;The map with matrix E^{pq}: B_q -&gt; C_p and B_j -&gt; 0 for j != q.&quot;&quot;&quot;
+    def Eq(x):
+        return tuple(x[q] if i == p else Fr(0) for i in range(m))
+    return Eq
+
+
+units = [(p, q) for p in range(2) for q in range(3)]
+mats = [matrix_of(unit_map(p, q, 2, 3), E3, E2) for p, q in units]
+flat = [[x for row in M for x in row] for M in mats]
+assert rank(flat) == 6          # six independent maps: dim L(F^3,F^2) = 6
+assert [flat[k][k] for k in range(6)] == [1] * 6
+print(&#x27;Section 4  dim L(F^3, F^2) = mn =&#x27;, len(units))
+
+# ---------------------------------------------------------------- Part 5
+# Section 5: composition corresponds to the matrix product.
+
+
+def S1(y):
+    return vec(y[0] + y[1], y[0] - y[1])
+
+
+AS = matrix_of(S1, E2, E2)
+assert AS == mat([[1, 1], [1, -1]])
+ST = matrix_of(lambda x: S1(T1(x)), E3, E2)
+assert ST == matmul(AS, A1) == mat([[1, -1, 1], [1, -3, -1]])
+show(&#x27;Section 5  [S o T]&#x27;, ST)
+assert matmul(Dm, Dm) == matrix_of(lambda p: D(D(p)), Mono, Mono)
+
+# ---------------------------------------------------------------- Part 6
+# Section 6: row-vector convention gives T(x) = x A^T.
+Arow = mat([[1, 1, 1], [0, 1, 1]])
+for x in grid(3):
+    assert T2(x) == tuple(matmul([list(x)], transpose(Arow))[0])
+print(&#x27;Section 6  T(x) = x A^T verified on&#x27;, len(grid(3)), &#x27;row vectors&#x27;)
+
+# ---------------------------------------------------------------- Part 7
+# Sections 7-9: change of basis and similarity on the running example.
+Bp = [vec(1, 0, 0), vec(1, 1, 0), vec(1, 1, 1)]
+P9 = change_matrix(E3, Bp)
+assert P9 == mat([[1, 1, 1], [0, 1, 1], [0, 0, 1]])
+P9i = inverse(P9)
+assert P9i == mat([[1, -1, 0], [0, 1, -1], [0, 0, 1]])
+D9 = matrix_of(T9, Bp, Bp)
+assert D9 == mat([[1, 0, 0], [0, 2, 0], [0, 0, 3]])
+assert D9 == matmul(matmul(P9i, A9), P9)            # Theorem 7.1
+assert A9 == matmul(matmul(P9, D9), P9i)
+assert matrix_of(lambda v: v, Bp, E3) == P9          # [I]_{std&lt;-B&#x27;}
+show(&#x27;Section 9  P&#x27;, P9)
+show(&#x27;Section 9  P^-1 A P&#x27;, D9)
+for n in range(0, 12):
+    An = matpow(A9, n)
+    assert An == [[1, 2 ** n - 1, 3 ** n - 2 ** n],
+                  [0, 2 ** n, 3 ** n - 2 ** n],
+                  [0, 0, 3 ** n]]
+    assert An == matmul(matmul(P9, matpow(D9, n)), P9i)
+show(&#x27;Section 9  A^10&#x27;, matpow(A9, 10))
+
+# The converse (Section 8): a basis built from an invertible P.
+for _ in range(25):
+    while True:
+        Pr = mat([[random.randint(-2, 2) for _ in range(3)]
+                  for _ in range(3)])
+        if det(Pr) != 0:
+            break
+    Bnew = [combine(E3, [Pr[i][j] for i in range(3)]) for j in range(3)]
+    assert rank([list(b) for b in Bnew]) == 3          # a basis
+    assert change_matrix(E3, Bnew) == Pr
+    assert matrix_of(T9, Bnew, Bnew) == \
+        matmul(matmul(inverse(Pr), A9), Pr)
+print(&#x27;Section 8  25 random invertible P: B\&#x27; basis, [T]_B\&#x27; = P^-1 A P&#x27;)
+
+# The exercise left open in the lecture: a second worked change of basis.
+G = mat([[1, 2, -1], [1, 0, 1], [2, 1, 0]])
+Bl = [vec(1, 1, 1), vec(1, 1, 0), vec(1, 0, 0)]
+H = matrix_of(lambda x: matvec(G, x), Bl, Bl)
+assert H == mat([[3, 3, 2], [-1, -2, -1], [0, 2, 0]])
+Pl = change_matrix(E3, Bl)
+assert H == matmul(matmul(inverse(Pl), G), Pl)
+show(&#x27;Section 9  H&#x27;, H)
+
+# ---------------------------------------------------------------- Part 8
+# Section 10: invariants, and what similarity does not preserve.
+for X, Y in ((A9, D9), (G, H)):
+    assert rank(X) == rank(Y) and trace(X) == trace(Y)
+    assert det(X) == det(Y) and charpoly(X) == charpoly(Y)
+print(&#x27;Section 10  A vs D: trace&#x27;, trace(A9), &#x27;det&#x27;, det(A9),
+      &#x27;charpoly&#x27;, [str(x) for x in charpoly(A9)])
+print(&#x27;Section 10  G vs H: trace&#x27;, trace(G), &#x27;det&#x27;, det(G),
+      &#x27;charpoly&#x27;, [str(x) for x in charpoly(G)])
+
+# Same characteristic polynomial and rank, yet not similar.
+I2 = identity(2)
+J2 = mat([[1, 1], [0, 1]])
+assert charpoly(I2) == charpoly(J2) and rank(I2) == rank(J2)
+for _ in range(50):
+    while True:
+        Pr = mat([[random.randint(-3, 3) for _ in range(2)]
+                  for _ in range(2)])
+        if det(Pr) != 0:
+            break
+    assert matmul(matmul(inverse(Pr), I2), Pr) == I2     # conjugates of I
+    assert I2 != J2
+
+# Equivalent but not similar: I and diag(1, 2) have the same rank 2.
+K2 = mat([[1, 0], [0, 2]])
+assert rank(I2) == rank(K2) and trace(I2) != trace(K2)
+
+# Rank normal form: bases with matrix [[I_r, 0], [0, 0]] for T1.
+a1, a2, a3 = vec(1, 0, 0), vec(0, 1, 0), vec(2, 1, -1)
+assert T1(a3) == vec(0, 0)                      # a3 spans ker T1
+Bn = [a1, a2, a3]
+Cn = [T1(a1), T1(a2)]
+Nrm = matrix_of(T1, Bn, Cn)
+assert Nrm == mat([[1, 0, 0], [0, 1, 0]])
+assert matmul(matmul(inverse(change_matrix(E2, Cn)), A1),
+              change_matrix(E3, Bn)) == Nrm
+show(&#x27;Section 10  rank normal form of [T]&#x27;, Nrm)
+
+# Field dependence: rotation by 90 degrees.
+R = [[0, -1], [1, 0]]
+assert charpoly(mat(R)) == mat([[1, 0, 1]])[0]    # x^2 + 1: no root in Q
+Pc = [[1, 1], [-1j, 1j]]
+Rc = [[complex(x) for x in r] for r in R]
+
+
+def cmul(A, B):
+    return [[sum(A[i][k] * B[k][j] for k in range(2)) for j in range(2)]
+            for i in range(2)]
+
+
+Pci = [[0.5, 0.5j], [0.5, -0.5j]]
+assert cmul(Pc, Pci) == [[1, 0], [0, 1]]
+assert cmul(cmul(Pci, Rc), Pc) == [[1j, 0], [0, -1j]]
+print(&#x27;Section 10  rotation R is similar to diag(i, -i) over C only&#x27;)
+
+print(&#x27;ch09 laboratory: all assertions passed&#x27;)
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch08.html">Previous: The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a rel="next" href="ch10.html">Next: Linear functionals, dual spaces, and dual bases</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

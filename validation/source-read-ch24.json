@@ -1,0 +1,89 @@
+{
+  "author": "author_b",
+  "chapter": "ch24",
+  "recordings": [
+    {
+      "position": 52,
+      "video_id": "BsQaLOtFezU",
+      "normalized_text_sha256": "3f42e7ac4996fbf87e89c11b67007ad366104126d3e294cd8144e8b6a589b7f2",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "maps preserving inner products",
+        "isomorphisms and four equivalent conditions",
+        "dimension criterion",
+        "coordinate isomorphism",
+        "weighted function example that is not onto"
+      ],
+      "clarifications": [
+        "The equivalence needs equal finite dimensions"
+      ],
+      "original_constructions": [
+        "inclusion counterexample"
+      ]
+    },
+    {
+      "position": 53,
+      "video_id": "tyF49ajvS4A",
+      "normalized_text_sha256": "983e872d40f9e5008a5eac6c25de8f9cc4da9e82808bf5b09257666135ea8145",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "unitary operators and group",
+        "adjoint equals inverse",
+        "unitary matrices and matrix criterion",
+        "orthogonal matrices",
+        "one and two dimensional cases"
+      ],
+      "clarifications": [
+        "Both one-sided identities are needed in infinite dimension"
+      ],
+      "original_constructions": [
+        "shift example",
+        "complete unitary two by two form"
+      ]
+    },
+    {
+      "position": 55,
+      "video_id": "UeExjHRhiaI",
+      "normalized_text_sha256": "8f0ac6c5828700e9bec4ea49bfed4d508da4f3409330a56660d24828b472e72c",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "unitary group",
+        "unique lower triangular factor with positive diagonal",
+        "existence by Gram-Schmidt and uniqueness"
+      ],
+      "clarifications": [
+        "The group property of the triangular matrices is argued"
+      ],
+      "original_constructions": [
+        "Schur consequence"
+      ]
+    },
+    {
+      "position": 54,
+      "video_id": "s6zU8DC-YJ0",
+      "normalized_text_sha256": "c7e83433488ea65faf4684cc8ec0d5df7c5d82f2855ec8fcc1340f0eca67d58b",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "three by three factorization family",
+        "orthonormal eigenbasis question",
+        "normal and self-adjoint operators",
+        "eigenvalues and eigenvectors of self-adjoint operators"
+      ],
+      "clarifications": [
+        "Sufficiency of normality holds over the complex numbers only"
+      ],
+      "original_constructions": [
+        "running example eigenbasis",
+        "exercises"
+      ]
+    }
+  ]
+}

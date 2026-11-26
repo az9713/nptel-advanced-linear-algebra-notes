@@ -1,0 +1,34 @@
+{
+ "reviewer": "author_a",
+ "slot": "r1",
+ "chapter": "ch22",
+ "disposition": "accepted",
+ "report": "validation/review-ch22-r1.md",
+ "scope": [
+  "manuscript",
+  "metadata",
+  "lab read and run",
+  "source ledger",
+  "all six solutions"
+ ],
+ "remaining_findings": [],
+ "accepted_files": {
+  "chapters/ch22.md": "0d480e8e37582d5041d13c186778ae244a0d26b85abd12b7f9c82a40c1a8dcb3",
+  "chapters/ch22.json": "7f9769e83ea53497205f48a2c4629828abe7418b3ccb4699cc60b0535d2f6c99",
+  "labs/ch22.py": "e68d251cd8c04ede91b73358525f87a0a83208ed05207a3303138433af4196ae"
+ },
+ "source_evidence": {
+  "caption_positions": [
+   47,
+   46
+  ],
+  "intervals_read": "both caption files read in full"
+ },
+ "limitations": [
+  "No comprehensive audiovisual audit",
+  "Not human certification or formal proof verification"
+ ],
+ "rechecks": [
+  "Recheck 1: the completeness sentence now requires a closed subspace. Pipeline check OK."
+ ]
+}

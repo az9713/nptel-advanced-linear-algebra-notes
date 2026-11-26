@@ -1,0 +1,49 @@
+{
+ "author": "author_a",
+ "chapter": "ch13",
+ "recordings": [
+  {
+   "position": 26,
+   "video_id": "5GnTjNp0C4c",
+   "normalized_text_sha256": "dd8e8ac5c3b5c957ceb1124d98937b3a1655d410437df878d4bd2df08294a9a3",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "block diagonal form of a diagonalizable operator",
+    "characteristic polynomial and eigenspace dimensions",
+    "f(T) on eigenvectors",
+    "sum of eigenspaces has additive dimension",
+    "example of a diagonalizable matrix"
+   ],
+   "clarifications": [],
+   "original_constructions": [
+    "second matrix B"
+   ]
+  },
+  {
+   "position": 27,
+   "video_id": "6wLBCQ12WvE",
+   "normalized_text_sha256": "60bf3fa83f4baa3420dfef89b0d9f34ae559b0b235f9ebfe291c5c0fbac25dd5",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "annihilating polynomials form an ideal",
+    "existence of an annihilating polynomial",
+    "minimal polynomial of operators and matrices",
+    "similar matrices share it",
+    "roots are the eigenvalues",
+    "diagonalizable implies product of distinct linear factors"
+   ],
+   "clarifications": [
+    "Divisibility of the characteristic polynomial needs Cayley-Hamilton and is deferred to Chapter 14"
+   ],
+   "original_constructions": [
+    "converse by Lagrange polynomials",
+    "infinite-dimensional boundary",
+    "exercises"
+   ]
+  }
+ ]
+}

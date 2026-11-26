@@ -1,0 +1,90 @@
+{
+  "author": "author_b",
+  "chapter": "ch21",
+  "recordings": [
+    {
+      "position": 43,
+      "video_id": "fRCjsemJ9nk",
+      "normalized_text_sha256": "0958feb9fdf21679f58ee1349e1262288d74fa5a7c1a6d6509cee70ceecc1360",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "definition of inner product",
+        "standard, matrix and function-space examples",
+        "pull-back along an injective map and coordinates",
+        "real and imaginary parts"
+      ],
+      "clarifications": [
+        "The conjugation axiom is needed for positivity over the complex numbers"
+      ],
+      "original_constructions": [
+        "failing endpoint rule",
+        "polynomial running example"
+      ]
+    },
+    {
+      "position": 44,
+      "video_id": "xYXFAnXDED0",
+      "normalized_text_sha256": "659d6e3c564aee89e5aa5ec1809de4b3d6def68756ce9a0945a88c8c6b589350",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "norm and quadratic form",
+        "parallelogram law and polarization",
+        "matrix of an inner product, Hermitian positive definite",
+        "converse construction",
+        "Hilbert matrix"
+      ],
+      "clarifications": [
+        "Positive definiteness is required; invertible Hermitian is not enough"
+      ],
+      "original_constructions": [
+        "norms violating the parallelogram law"
+      ]
+    },
+    {
+      "position": 61,
+      "video_id": "NYo2wbePAnI",
+      "normalized_text_sha256": "a2bc1b92d564f66171d7646acf75719daa46a2d929d0550be774d006afc9ebef",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "inner product spaces, Euclidean and unitary",
+        "norm properties, Cauchy-Schwarz, triangle inequality",
+        "sum and integral inequalities",
+        "orthogonality and a second inner product on the plane",
+        "sine and cosine"
+      ],
+      "clarifications": [
+        "Equality case of Cauchy-Schwarz stated precisely"
+      ],
+      "original_constructions": [
+        "angle on the polynomial example"
+      ]
+    },
+    {
+      "position": 45,
+      "video_id": "Yjx3j9IDn6o",
+      "normalized_text_sha256": "b3e6ead4318e5e6ab436335090c186ff4d0ae375b328ab1e830a6c3f06788041",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "orthogonal and orthonormal sets",
+        "trigonometric system",
+        "orthogonal sets are independent",
+        "Gram-Schmidt and a three-dimensional example"
+      ],
+      "clarifications": [
+        "Independence needs nonzero vectors"
+      ],
+      "original_constructions": [
+        "Gram-Schmidt on polynomials",
+        "exercises"
+      ]
+    }
+  ]
+}

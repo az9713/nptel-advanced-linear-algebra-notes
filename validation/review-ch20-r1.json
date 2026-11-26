@@ -1,0 +1,35 @@
+{
+ "reviewer": "author_a",
+ "slot": "r1",
+ "chapter": "ch20",
+ "disposition": "accepted",
+ "report": "validation/review-ch20-r1.md",
+ "scope": [
+  "manuscript",
+  "metadata",
+  "lab read and run",
+  "source ledger",
+  "all six solutions"
+ ],
+ "remaining_findings": [],
+ "accepted_files": {
+  "chapters/ch20.md": "0ab1f9472dea096d8d0e321a6584f233cc6ab2f8be485ee29b5761d84dbaad6a",
+  "chapters/ch20.json": "d079cd1eeffcff18ea11924abd5e980cec91d8cb70bda83b44e04f877e565a7c",
+  "labs/ch20.py": "03f2517570744f0d7839b4822c4233e9734cd3a1b0f388476137af50a909fef4"
+ },
+ "source_evidence": {
+  "caption_positions": [
+   40,
+   41,
+   42
+  ],
+  "intervals_read": "all three caption files read in full"
+ },
+ "limitations": [
+  "No comprehensive audiovisual audit",
+  "Not human certification or formal proof verification"
+ ],
+ "rechecks": [
+  "Recheck 1: residue classes, the field F[x]/(p) and the action on ker p(T) are now defined and proved; the narration sentence is gone. Pipeline check OK."
+ ]
+}

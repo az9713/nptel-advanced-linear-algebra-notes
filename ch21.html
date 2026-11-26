@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Inner products, norms, and the Cauchy-Schwarz inequality · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html" aria-current=page>21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>21. Inner products, norms, and the Cauchy-Schwarz inequality</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=fRCjsemJ9nk">Recording 43</a>, <a href="https://www.youtube.com/watch?v=xYXFAnXDED0">Recording 44</a>, <a href="https://www.youtube.com/watch?v=NYo2wbePAnI">Recording 61</a>, <a href="https://www.youtube.com/watch?v=Yjx3j9IDn6o">Recording 45</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Verify the inner product axioms and use the conjugation convention</li><li>Represent an inner product by a positive definite Gram matrix</li><li>Prove the Cauchy-Schwarz and triangle inequalities</li><li>Orthogonalize an independent list by Gram-Schmidt</li></ul>
+<p><strong>Prerequisites:</strong> Vector spaces, bases, coordinates and matrices over the real or complex numbers.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch21.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-the-definition-of-an-inner-product-0247">1. The definition of an inner product 02:47</a></li><li><a href="#2-standard-examples-0817">2. Standard examples 08:17</a></li><li><a href="#3-inner-products-pulled-back-along-a-map-2529">3. Inner products pulled back along a map 25:29</a></li><li><a href="#4-norm-and-polarization-0008">4. Norm and polarization 00:08</a></li><li><a href="#5-the-matrix-of-an-inner-product-1154">5. The matrix of an inner product 11:54</a></li><li><a href="#6-the-hilbert-matrix-2726">6. The Hilbert matrix 27:26</a></li><li><a href="#7-inner-product-spaces-and-the-two-inequalities-1016">7. Inner product spaces and the two inequalities 10:16</a></li><li><a href="#8-two-classical-inequalities-2157">8. Two classical inequalities 21:57</a></li><li><a href="#9-orthogonality-2508">9. Orthogonality 25:08</a></li><li><a href="#10-orthogonal-and-orthonormal-sets-0025">10. Orthogonal and orthonormal sets 00:25</a></li><li><a href="#11-orthogonal-sets-are-independent-1301">11. Orthogonal sets are independent 13:01</a></li><li><a href="#12-the-gramschmidt-process-1940">12. The Gram–Schmidt process 19:40</a></li><li><a href="#13-executable-check">13. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>How close is the function $x$ to a constant, and what is the angle between the functions $1$ and $x$ on the interval $[0,1]$? The vector space axioms cannot answer. They give sums and scalar multiples, but no lengths and no angles. Take the space $P_2$ of real polynomials of degree at most $2$, with the rule</p>
+<p>$$\langle p,q\rangle=\int_0^1p(t)\,q(t)\,dt .$$</p>
+<p>This space with this rule is the running example of the chapter (an original use of a rule that appears in the recordings for continuous functions). We shall find that $1$ and $x$ meet at an angle of exactly $30^\circ$, that the constant closest to $x$ in the resulting distance is $\tfrac12$, and that the basis $(1,x,x^2)$ can be replaced by one whose members are mutually perpendicular.</p>
+<p><strong>Conventions.</strong> Throughout this chapter $F$ is $\mathbb{R}$ or $\mathbb{C}$, and $V$ is a vector space over $F$. For $c\in\mathbb{C}$, $\bar c$ is the complex conjugate, $\operatorname{Re}c$ and $\operatorname{Im}c$ the real and imaginary parts, and $|c|=\sqrt{c\bar c}$. For a matrix $A$, $A^{*}=\overline{A}^{\mathsf T}$ is the conjugate transpose. Over $\mathbb{R}$ every bar can be erased.</p>
+<h2 id="1-the-definition-of-an-inner-product-0247">1. The definition of an inner product <a href="https://www.youtube.com/watch?v=fRCjsemJ9nk&amp;t=167s">02:47</a></h2>
+<p>The dot product $x_1y_1+x_2y_2+x_3y_3$ of $\mathbb{R}^3$ measures lengths and angles. We keep its essential properties as axioms.</p>
+<p><strong>Definition 1.1.</strong> An <em>inner product</em> on $V$ is a function $V\times V\to F$, written $(\alpha,\beta)\mapsto\langle\alpha,\beta\rangle$, such that for all $\alpha,\beta,\gamma\in V$ and $c\in F$:</p>
+<ol>
+<li>$\langle\alpha+\beta,\gamma\rangle=\langle\alpha,\gamma\rangle+\langle\beta,\gamma\rangle$;</li>
+<li>$\langle c\alpha,\beta\rangle=c\langle\alpha,\beta\rangle$;</li>
+<li>$\langle\beta,\alpha\rangle=\overline{\langle\alpha,\beta\rangle}$;</li>
+<li>$\langle\alpha,\alpha\rangle&gt;0$ if $\alpha\ne0$.</li>
+</ol>
+<p>Axiom 3 implies that $\langle\alpha,\alpha\rangle$ equals its own conjugate, so it is real, and axiom 4 makes sense. Axioms 1 to 3 give</p>
+<p>$$\langle\alpha,c\beta+\gamma\rangle=\bar c\,\langle\alpha,\beta\rangle+\langle\alpha,\gamma\rangle .$$</p>
+<p>So the inner product is linear in the first argument and <em>conjugate-linear</em> in the second. This book uses that convention throughout; physics texts often reverse it.</p>
+<p><strong>Why the conjugate is there.</strong> Suppose we asked for symmetry $\langle\beta,\alpha\rangle=\langle\alpha,\beta\rangle$ over $\mathbb{C}$. Then $\langle i\alpha,i\alpha\rangle=i^2\langle\alpha,\alpha\rangle=-\langle\alpha,\alpha\rangle$, so $\alpha$ and $i\alpha$ could not both have positive squared length. For instance the rule $x_1y_1+x_2y_2$ on $\mathbb{C}^2$ gives $0$ at $x=y=(1,i)$ although $x\ne0$.</p>
+<h2 id="2-standard-examples-0817">2. Standard examples <a href="https://www.youtube.com/watch?v=fRCjsemJ9nk&amp;t=497s">08:17</a></h2>
+<p><strong>The standard inner product</strong> on $F^n$ is</p>
+<p>$$\langle x,y\rangle=\sum_{j=1}^nx_j\overline{y_j}=y^{*}x .$$</p>
+<p>Linearity in $x$ and the conjugation rule are visible, and $\langle x,x\rangle=\sum|x_j|^2$ is positive for $x\ne0$.</p>
+<p><strong>Matrices</strong> <a href="https://www.youtube.com/watch?v=fRCjsemJ9nk&amp;t=816s">13:36</a>. On $F^{n\times n}$ put $\langle A,B\rangle=\sum_{i,j}A_{ij}\overline{B_{ij}}$. This is the standard inner product of $F^{n^2}$ applied to the entries. It can be written with the <em>trace</em>, the sum of the diagonal entries: $\langle A,B\rangle=\operatorname{tr}(AB^{*})$, because the $(i,i)$ entry of $AB^{*}$ is $\sum_kA_{ik}\overline{B_{ik}}$.</p>
+<p><strong>Continuous functions</strong> <a href="https://www.youtube.com/watch?v=fRCjsemJ9nk&amp;t=1379s">22:59</a>. On the space $C[0,1]$ of continuous $F$-valued functions on $[0,1]$ put</p>
+<p>$$\langle f,g\rangle=\int_0^1f(t)\overline{g(t)}\,dt .$$</p>
+<p>The integral is linear, and conjugation passes through it. For positivity, let $f\ne0$. Then $|f(t_0)|&gt;0$ at some point, and by continuity $|f|^2$ stays above a positive number on an interval around $t_0$ inside $[0,1]$. So $\int|f|^2&gt;0$. Continuity matters: a function that is nonzero at one point only has integral $0$. Restricting to $P_2$ gives the running example. There $\langle1,1\rangle=1$, $\langle1,x\rangle=\tfrac12$ and $\langle x,x\rangle=\tfrac13$.</p>
+<p><strong>A rule that fails.</strong> On $P_2$ the rule $p(0)q(0)+p(1)q(1)$ satisfies axioms 1 to 3, but the polynomial $x^2-x$ vanishes at $0$ and $1$. It is nonzero with $\langle p,p\rangle=0$, so axiom 4 fails.</p>
+<h2 id="3-inner-products-pulled-back-along-a-map-2529">3. Inner products pulled back along a map <a href="https://www.youtube.com/watch?v=fRCjsemJ9nk&amp;t=1529s">25:29</a></h2>
+<p><strong>Proposition 3.1.</strong> Let $W$ have an inner product and let $T:V\to W$ be linear and injective. Then $\langle\alpha,\beta\rangle_T=\langle T\alpha,T\beta\rangle$ is an inner product on $V$.</p>
+<p><em>Proof.</em> Axioms 1 to 3 follow from the linearity of $T$ and the axioms in $W$. If $\alpha\ne0$ then $T\alpha\ne0$ by injectivity, so $\langle T\alpha,T\alpha\rangle&gt;0$. $\square$</p>
+<p>Injectivity is used only in the last step, and it cannot be dropped: for $T(x_1,x_2)=x_1$, the vector $(0,1)$ gets squared length $0$.</p>
+<p><strong>Coordinates.</strong> If $V$ is finite-dimensional with ordered basis $\mathcal{B}$, the coordinate map $\alpha\mapsto[\alpha]_{\mathcal{B}}\in F^n$ is an injective linear map. So $V$ carries the inner product $\sum x_i\overline{y_i}$, where $x,y$ are the coordinates of $\alpha,\beta$. In this inner product the basis vectors have length $1$ and are mutually perpendicular. Every finite-dimensional real or complex space therefore has inner products, many of them. On $P_2$ with $\mathcal{B}=(1,x,x^2)$ this rule gives $\langle1,x\rangle=0$, while the integral gives $\tfrac12$. The inner product is extra structure that we choose.</p>
+<h2 id="4-norm-and-polarization-0008">4. Norm and polarization <a href="https://www.youtube.com/watch?v=xYXFAnXDED0&amp;t=8s">00:08</a></h2>
+<p><strong>Definition 4.1.</strong> The <em>norm</em> of $\alpha$ is $\|\alpha\|=\sqrt{\langle\alpha,\alpha\rangle}$. The function $\alpha\mapsto\|\alpha\|^2$ is the <em>quadratic form</em> of the inner product.</p>
+<p>Expanding with axioms 1 to 3,</p>
+<p>$$\|\alpha\pm\beta\|^2=\|\alpha\|^2\pm2\operatorname{Re}\langle\alpha,\beta\rangle+\|\beta\|^2 .$$</p>
+<p>Adding the two cases gives the <strong>parallelogram law</strong></p>
+<p>$$\|\alpha+\beta\|^2+\|\alpha-\beta\|^2=2\|\alpha\|^2+2\|\beta\|^2 .$$</p>
+<p>Subtracting them gives $\operatorname{Re}\langle\alpha,\beta\rangle=\tfrac14\big(\|\alpha+\beta\|^2-\|\alpha-\beta\|^2\big)$. Over $\mathbb{R}$ this recovers the whole inner product from lengths.</p>
+<p><strong>The complex case</strong> <a href="https://www.youtube.com/watch?v=xYXFAnXDED0&amp;t=535s">08:55</a>. Since $\langle\alpha,i\beta\rangle=-i\langle\alpha,\beta\rangle$, we have $\operatorname{Im}\langle\alpha,\beta\rangle=\operatorname{Re}\langle\alpha,i\beta\rangle$. So the imaginary part is also determined by lengths, and</p>
+<p>$$\langle\alpha,\beta\rangle=\frac14\sum_{n=1}^4i^n\,\|\alpha+i^n\beta\|^2 .$$</p>
+<p>This is the <strong>polarization identity</strong>. Consequently two inner products with the same norm are equal, over either field.</p>
+<p><strong>Not every length comes from an inner product.</strong> On $\mathbb{R}^2$ the lengths $|x_1|+|x_2|$ and $\max(|x_1|,|x_2|)$ violate the parallelogram law at $\alpha=(1,0)$, $\beta=(0,1)$: the left side minus the right side is $4$ for the first and $-2$ for the second. So no inner product produces them. (A theorem of analysis, not proved here, says conversely that a norm satisfying the parallelogram law comes from an inner product.)</p>
+<h2 id="5-the-matrix-of-an-inner-product-1154">5. The matrix of an inner product <a href="https://www.youtube.com/watch?v=xYXFAnXDED0&amp;t=714s">11:54</a></h2>
+<p>Let $\dim V=n$ and $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ an ordered basis. Define $G\in F^{n\times n}$ by</p>
+<p>$$G_{jk}=\langle\alpha_k,\alpha_j\rangle .$$</p>
+<p>Note the order of the indices. If $\alpha=\sum x_k\alpha_k$ and $\beta=\sum y_j\alpha_j$, then by linearity in the first argument and conjugate-linearity in the second,</p>
+<p>$$\langle\alpha,\beta\rangle=\sum_{j,k}x_k\overline{y_j}\langle\alpha_k,\alpha_j\rangle=\sum_{j,k}\overline{y_j}G_{jk}x_k=Y^{*}GX,$$</p>
+<p>where $X,Y$ are the coordinate columns. $G$ is the <em>matrix of the inner product</em> in $\mathcal{B}$, also called the <em>Gram matrix</em> of $\mathcal{B}$.</p>
+<p><strong>Definition 5.1.</strong> A matrix $G$ is <em>Hermitian</em> if $G^{*}=G$ and <em>positive definite</em> if it is Hermitian and $X^{*}GX&gt;0$ for every $X\ne0$.</p>
+<p><strong>Theorem 5.2.</strong> (a) The Gram matrix of an inner product is positive definite, hence invertible. (b) Conversely <a href="https://www.youtube.com/watch?v=xYXFAnXDED0&amp;t=1424s">23:44</a>, if $G$ is positive definite, then $\langle\alpha,\beta\rangle=Y^{*}GX$ is an inner product on $V$ whose Gram matrix in $\mathcal{B}$ is $G$.</p>
+<p><em>Proof.</em> (a) Axiom 3 gives $\overline{G_{jk}}=\overline{\langle\alpha_k,\alpha_j\rangle}=G_{kj}$, so $G$ is Hermitian. For $X\ne0$ the vector $\alpha$ is nonzero, so $X^{*}GX=\langle\alpha,\alpha\rangle&gt;0$. If $GX=0$ then $X^{*}GX=0$, so $X=0$; hence $G$ is invertible. (b) $Y^{*}GX$ is linear in $X$. Its conjugate is $(Y^{*}GX)^{*}=X^{*}G^{*}Y=X^{*}GY$, which is axiom 3. Axiom 4 is positive definiteness. Finally $e_j^{*}Ge_k=G_{jk}$. $\square$</p>
+<p>So, after a basis is fixed, inner products correspond exactly to positive definite matrices. Invertible and Hermitian is not enough: $\operatorname{diag}(1,-1)$ is both, and gives $(0,1)$ squared length $-1$.</p>
+<p><strong>On the running example.</strong> In $(1,x,x^2)$,</p>
+<p>$$H=\begin{pmatrix}1&amp;1/2&amp;1/3\\1/2&amp;1/3&amp;1/4\\1/3&amp;1/4&amp;1/5\end{pmatrix}.$$</p>
+<h2 id="6-the-hilbert-matrix-2726">6. The Hilbert matrix <a href="https://www.youtube.com/watch?v=xYXFAnXDED0&amp;t=1646s">27:26</a></h2>
+<p>The <em>Hilbert matrix</em> of size $n$ has the entries $A_{jk}=1/(j+k-1)$. Is it invertible? A direct elimination for general $n$ is unpleasant. Instead, observe that on the space $P_{n-1}$ with the integral inner product,</p>
+<p>$$\langle x^{k-1},x^{j-1}\rangle=\int_0^1t^{j+k-2}\,dt=\frac1{j+k-1}.$$</p>
+<p>So $A$ is the Gram matrix of the basis $(1,x,\dots,x^{n-1})$. By Theorem 5.2(a) it is positive definite and therefore invertible, for every $n$. The matrix $H$ above is the case $n=3$; its determinant is $1/2160$.</p>
+<h2 id="7-inner-product-spaces-and-the-two-inequalities-1016">7. Inner product spaces and the two inequalities <a href="https://www.youtube.com/watch?v=NYo2wbePAnI&amp;t=616s">10:16</a></h2>
+<p>An <em>inner product space</em> is a real or complex vector space together with one chosen inner product. A finite-dimensional real one is called <em>Euclidean</em>, and a complex one <em>unitary</em>.</p>
+<p><strong>Theorem 7.1.</strong> In an inner product space, for all $\alpha,\beta$ and $c\in F$:</p>
+<ol>
+<li>$\|c\alpha\|=|c|\,\|\alpha\|$;</li>
+<li>$\|\alpha\|&gt;0$ if $\alpha\ne0$;</li>
+<li>$|\langle\alpha,\beta\rangle|\le\|\alpha\|\,\|\beta\|$ (<strong>Cauchy–Schwarz</strong>), with equality exactly when $\alpha,\beta$ are linearly dependent;</li>
+<li>$\|\alpha+\beta\|\le\|\alpha\|+\|\beta\|$ (<strong>triangle inequality</strong>).</li>
+</ol>
+<p><em>Proof.</em> 1: $\|c\alpha\|^2=c\bar c\langle\alpha,\alpha\rangle$. 2 is axiom 4.</p>
+<p>3: If $\alpha=0$ both sides are $0$ and the vectors are dependent. Let $\alpha\ne0$ and put</p>
+<p>$$\gamma=\beta-\frac{\langle\beta,\alpha\rangle}{\|\alpha\|^2}\,\alpha .$$</p>
+<p>Then $\langle\gamma,\alpha\rangle=\langle\beta,\alpha\rangle-\langle\beta,\alpha\rangle=0$. Therefore $\langle\gamma,\gamma\rangle=\langle\gamma,\beta\rangle$, and</p>
+<p>$$0\le\|\gamma\|^2=\langle\gamma,\beta\rangle=\|\beta\|^2-\frac{|\langle\alpha,\beta\rangle|^2}{\|\alpha\|^2}.$$</p>
+<p>This is the inequality. Equality holds exactly when $\gamma=0$, that is, when $\beta$ is a multiple of $\alpha$.</p>
+<p>4: $\|\alpha+\beta\|^2=\|\alpha\|^2+2\operatorname{Re}\langle\alpha,\beta\rangle+\|\beta\|^2$, and $\operatorname{Re}\langle\alpha,\beta\rangle\le|\langle\alpha,\beta\rangle|\le\|\alpha\|\,\|\beta\|$. So the right side is at most $(\|\alpha\|+\|\beta\|)^2$. $\square$</p>
+<p>The hinge of part 3 is the choice of $\gamma$: it is what remains of $\beta$ after removing its part along $\alpha$. Section 12 turns this one step into an algorithm.</p>
+<p><strong>Angles.</strong> In a real inner product space, for nonzero $\alpha,\beta$, Cauchy–Schwarz places $\langle\alpha,\beta\rangle/(\|\alpha\|\|\beta\|)$ in $[-1,1]$. The <em>angle</em> between them is the number in $[0,\pi]$ with that cosine.</p>
+<p><strong>On the running example.</strong> $\cos\theta=\dfrac{1/2}{1\cdot\sqrt{1/3}}=\dfrac{\sqrt3}{2}$, so the angle between $1$ and $x$ is $30^\circ$. Also $\|1+x\|=\sqrt{7/3}\approx1.5275$, below $\|1\|+\|x\|\approx1.5774$.</p>
+<h2 id="8-two-classical-inequalities-2157">8. Two classical inequalities <a href="https://www.youtube.com/watch?v=NYo2wbePAnI&amp;t=1317s">21:57</a></h2>
+<p>Each inner product turns Cauchy–Schwarz into a concrete inequality. For the standard inner product on $F^n$:</p>
+<p>$$\Big|\sum_{j=1}^nx_j\overline{y_j}\Big|\le\Big(\sum_{j=1}^n|x_j|^2\Big)^{1/2}\Big(\sum_{j=1}^n|y_j|^2\Big)^{1/2}.$$</p>
+<p>For continuous functions on $[0,1]$:</p>
+<p>$$\Big|\int_0^1f\,\overline g\,dt\Big|\le\Big(\int_0^1|f|^2dt\Big)^{1/2}\Big(\int_0^1|g|^2dt\Big)^{1/2}.$$</p>
+<p>Neither needs a separate proof.</p>
+<h2 id="9-orthogonality-2508">9. Orthogonality <a href="https://www.youtube.com/watch?v=NYo2wbePAnI&amp;t=1508s">25:08</a></h2>
+<p><strong>Definition 9.1.</strong> Vectors $\alpha,\beta$ are <em>orthogonal</em> if $\langle\alpha,\beta\rangle=0$.</p>
+<p>By axiom 3 the relation is symmetric. The zero vector is orthogonal to every vector, and by axiom 4 it is the only vector orthogonal to itself. If $\alpha,\beta$ are orthogonal, then $\|\alpha+\beta\|^2=\|\alpha\|^2+\|\beta\|^2$ (<strong>Pythagoras</strong>). Over $\mathbb{R}$ the converse holds; over $\mathbb{C}$ it fails (Exercise 4).</p>
+<p><strong>Orthogonality depends on the inner product.</strong> In $\mathbb{R}^2$ with the standard inner product, $(-y,x)$ is orthogonal to $(x,y)$. Now take</p>
+<p>$$\langle(x_1,x_2),(y_1,y_2)\rangle=x_1y_1-x_2y_1-x_1y_2+4x_2y_2 .$$</p>
+<p>Its matrix $\begin{pmatrix}1&amp;-1\\-1&amp;4\end{pmatrix}$ has quadratic form $(x_1-x_2)^2+3x_2^2$, so it is positive definite. With $\alpha=(x,y)$ and $\beta=(-y,x)$,</p>
+<p>$$\langle\alpha,\beta\rangle=y^2+3xy-x^2 .$$</p>
+<p>So these two vectors are orthogonal here only when $y=\frac{-3\pm\sqrt{13}}{2}\,x$. The same pair is orthogonal for one inner product and, for other values of $(x,y)$, not for the other.</p>
+<p><strong>Functions</strong> <a href="https://www.youtube.com/watch?v=NYo2wbePAnI&amp;t=2042s">34:02</a>. In the real continuous functions on $[-\pi,\pi]$ with $\langle f,g\rangle=\int_{-\pi}^{\pi}fg$, the functions $\sin t$ and $\cos t$ are orthogonal, since $\sin t\cos t=\tfrac12\sin2t$ is odd.</p>
+<h2 id="10-orthogonal-and-orthonormal-sets-0025">10. Orthogonal and orthonormal sets <a href="https://www.youtube.com/watch?v=Yjx3j9IDn6o&amp;t=25s">00:25</a></h2>
+<p><strong>Definition 10.1.</strong> A set $S$ of vectors is <em>orthogonal</em> if every two distinct members are orthogonal. It is <em>orthonormal</em> if it is orthogonal and every member has norm $1$.</p>
+<p>The standard basis of $F^n$ is orthonormal for the standard inner product.</p>
+<p><strong>A trigonometric system</strong> <a href="https://www.youtube.com/watch?v=Yjx3j9IDn6o&amp;t=318s">05:18</a>. In $C[0,1]$ let $f_n(x)=\sqrt2\cos2\pi nx$ and $g_n(x)=\sqrt2\sin2\pi nx$ for $n\ge1$. The set $\{1,f_1,g_1,f_2,g_2,\dots\}$ is orthonormal. Each product of two members is, by the product-to-sum formulas, a combination of sines and cosines of $2\pi kx$ with integer $k$. For $k\ne0$ their integrals over $[0,1]$ vanish. A constant term $k=0$ appears only in the square of a member, where $f_n^2=1+\cos4\pi nx$ and $g_n^2=1-\cos4\pi nx$, both of integral $1$. This infinite orthonormal set is the starting point of Fourier series.</p>
+<h2 id="11-orthogonal-sets-are-independent-1301">11. Orthogonal sets are independent <a href="https://www.youtube.com/watch?v=Yjx3j9IDn6o&amp;t=781s">13:01</a></h2>
+<p><strong>Theorem 11.1.</strong> Let $\alpha_1,\dots,\alpha_n$ be nonzero orthogonal vectors. If $\beta=\sum_kc_k\alpha_k$, then</p>
+<p>$$c_k=\frac{\langle\beta,\alpha_k\rangle}{\|\alpha_k\|^2}.$$</p>
+<p>Consequently an orthogonal set of nonzero vectors is linearly independent.</p>
+<p><em>Proof.</em> Take the inner product with $\alpha_k$: $\langle\beta,\alpha_k\rangle=\sum_jc_j\langle\alpha_j,\alpha_k\rangle=c_k\|\alpha_k\|^2$, and $\|\alpha_k\|^2\ne0$. If $\beta=0$, every $c_k$ is $0$. For an infinite set, apply this to each finite subset. $\square$</p>
+<p>The word "nonzero" cannot be omitted, since the set $\{0\}$ is orthogonal and dependent. The formula is the practical gain: coordinates in an orthogonal basis need no linear system, only one inner product each.</p>
+<h2 id="12-the-gramschmidt-process-1940">12. The Gram–Schmidt process <a href="https://www.youtube.com/watch?v=Yjx3j9IDn6o&amp;t=1180s">19:40</a></h2>
+<p><strong>Theorem 12.1.</strong> Let $\beta_1,\dots,\beta_n$ be linearly independent in an inner product space. Define $\alpha_1=\beta_1$ and</p>
+<p>$$\alpha_{m+1}=\beta_{m+1}-\sum_{k=1}^m\frac{\langle\beta_{m+1},\alpha_k\rangle}{\|\alpha_k\|^2}\,\alpha_k .$$</p>
+<p>Then the $\alpha_k$ are nonzero and orthogonal, and $\operatorname{span}(\alpha_1,\dots,\alpha_m)=\operatorname{span}(\beta_1,\dots,\beta_m)$ for every $m\le n$.</p>
+<p><em>Proof.</em> Induct on $m$. The case $m=1$ is clear. Assume the claims for $m&lt;n$; the formula is then defined, since $\alpha_k\ne0$. If $\alpha_{m+1}=0$, then $\beta_{m+1}$ lies in $\operatorname{span}(\alpha_1,\dots,\alpha_m)=\operatorname{span}(\beta_1,\dots,\beta_m)$, contradicting independence. For $j\le m$, orthogonality of the earlier $\alpha_k$ leaves one term of the sum:</p>
+<p>$$\langle\alpha_{m+1},\alpha_j\rangle=\langle\beta_{m+1},\alpha_j\rangle-\frac{\langle\beta_{m+1},\alpha_j\rangle}{\|\alpha_j\|^2}\langle\alpha_j,\alpha_j\rangle=0 .$$</p>
+<p>Finally $\alpha_{m+1}-\beta_{m+1}$ lies in the earlier span, so the two spans of the first $m+1$ vectors coincide. $\square$</p>
+<p>Dividing each $\alpha_k$ by its norm gives an orthonormal list with the same spans. Hence <strong>every finite-dimensional inner product space has an orthonormal basis</strong>.</p>
+<p><strong>An example in $\mathbb{R}^3$</strong> <a href="https://www.youtube.com/watch?v=Yjx3j9IDn6o&amp;t=1831s">30:31</a>. Take $\beta_1=(3,0,4)$, $\beta_2=(-1,0,7)$, $\beta_3=(2,9,11)$ with the standard inner product. Then $\alpha_1=(3,0,4)$ with $\|\alpha_1\|^2=25$. Since $\langle\beta_2,\alpha_1\rangle=25$, $\alpha_2=\beta_2-\alpha_1=(-4,0,3)$. Since $\langle\beta_3,\alpha_1\rangle=50$ and $\langle\beta_3,\alpha_2\rangle=25$, $\alpha_3=\beta_3-2\alpha_1-\alpha_2=(0,9,0)$.</p>
+<p><strong>On the running example.</strong> Applied to $(1,x,x^2)$ with the integral inner product, the process gives</p>
+<p>$$\alpha_1=1,\qquad\alpha_2=x-\tfrac12,\qquad\alpha_3=x^2-x+\tfrac16,$$</p>
+<p>with squared norms $1,\ \tfrac1{12},\ \tfrac1{180}$. The second step answers the opening: $x=\tfrac12\cdot1+\alpha_2$ with $\alpha_2$ orthogonal to the constants. For any constant $c$, Pythagoras gives $\|x-c\|^2=\|\alpha_2\|^2+(\tfrac12-c)^2$, so the closest constant is $\tfrac12$, at squared distance $\tfrac1{12}$. <a href="ch22.html">Chapter 22</a> develops this into the theory of best approximation.</p>
+<h2 id="13-executable-check">13. Executable check</h2>
+<p><a href="labs/ch21.py">The chapter laboratory</a> uses exact fractions for the polynomial and rational examples and floating point, with stated tolerances, for the trigonometric and angle checks. It verifies $H$, its minors and determinant, the angle and the two inequalities, Gram–Schmidt on $P_2$ and on the $\mathbb{R}^3$ example, the polarization identity on a complex pair, the failure of the parallelogram law for two norms, the examples of Section 9, a finite part of the trigonometric system by sampling, and the exercise data. These are instances; the proofs above are general.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) In the running example find the norms of $x$ and $x^2$ and the angle between them.</li>
+<li>(Trace form.) For $\langle A,B\rangle=\operatorname{tr}(AB^{*})$ on $F^{n\times n}$, find $\|I\|$ and deduce $|\operatorname{tr}A|\le\sqrt n\,\|A\|$. When is there equality?</li>
+<li>(Classification.) Show that $G=\begin{pmatrix}a&amp;b\\\bar b&amp;d\end{pmatrix}$ with real $a,d$ is positive definite exactly when $a&gt;0$ and $ad-|b|^2&gt;0$.</li>
+<li>(Field dependence.) Show that in a complex inner product space $\|\alpha+\beta\|^2=\|\alpha\|^2+\|\beta\|^2$ holds exactly when $\operatorname{Re}\langle\alpha,\beta\rangle=0$, and give nonorthogonal vectors satisfying it.</li>
+<li>(Polarization.) For $x=(1,i)$ and $y=(2,1+i)$ in $\mathbb{C}^2$ compute $\langle x,y\rangle$ directly and recover its real and imaginary parts from norms.</li>
+<li>(Gram matrices.) For any vectors $v_1,\dots,v_m$ let $G_{jk}=\langle v_k,v_j\rangle$. Show that $X^{*}GX\ge0$ for all $X$ and that $G$ is invertible exactly when $v_1,\dots,v_m$ are independent.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>$\|x\|^2=\int_0^1t^2=\tfrac13$ and $\|x^2\|^2=\int_0^1t^4=\tfrac15$. Also $\langle x,x^2\rangle=\int_0^1t^3=\tfrac14$. So $\cos\theta=\frac{1/4}{\sqrt{1/15}}=\frac{\sqrt{15}}4$ and $\theta\approx14.48^\circ$. The two functions point in more similar directions than $1$ and $x$.</p>
+</li>
+<li>
+<p>$\|I\|^2=\operatorname{tr}(I)=n$. Since $\operatorname{tr}A=\operatorname{tr}(AI^{*})=\langle A,I\rangle$, Cauchy–Schwarz gives $|\operatorname{tr}A|\le\|A\|\,\|I\|=\sqrt n\,\|A\|$. By Theorem 7.1(3) equality holds exactly when $A$ and $I$ are dependent, that is, when $A$ is a scalar matrix.</p>
+</li>
+<li>
+<p>$G$ is Hermitian by its form. For $X=(x_1,x_2)$, $X^{*}GX=a|x_1|^2+2\operatorname{Re}(\bar x_1bx_2)+d|x_2|^2$. If $G$ is positive definite, $X=(1,0)$ gives $a&gt;0$. Then completing the square,
+$$X^{*}GX=a\Big|x_1+\frac{b}{a}x_2\Big|^2+\frac{ad-|b|^2}{a}\,|x_2|^2 .$$
+Choosing $x_2=1$ and $x_1=-b/a$ shows $ad-|b|^2&gt;0$. Conversely, if $a&gt;0$ and $ad-|b|^2&gt;0$, both terms are nonnegative, and they vanish together only if $x_2=0$ and then $x_1=0$.</p>
+</li>
+<li>
+<p>By the expansion of Section 4, $\|\alpha+\beta\|^2=\|\alpha\|^2+2\operatorname{Re}\langle\alpha,\beta\rangle+\|\beta\|^2$, which gives the equivalence. In $\mathbb{C}$ take $\alpha=1$, $\beta=i$: $\langle\alpha,\beta\rangle=1\cdot\overline{i}=-i$, with real part $0$ but not zero. Indeed $|1+i|^2=2=1+1$.</p>
+</li>
+<li>
+<p>$\langle x,y\rangle=1\cdot2+i\cdot\overline{(1+i)}=2+i(1-i)=3+i$. For the real part: $x+y=(3,1+2i)$ has squared norm $9+5=14$, and $x-y=(-1,-1)$ has squared norm $2$, so $\operatorname{Re}=\tfrac14(14-2)=3$. For the imaginary part: $x+iy=(1+2i,-1+2i)$ has squared norm $5+5=10$, and $x-iy=(1-2i,1)$ has squared norm $5+1=6$, so $\operatorname{Im}=\tfrac14(10-6)=1$.</p>
+</li>
+<li>
+<p>Put $w=\sum_kx_kv_k$. Then $X^{*}GX=\sum_{j,k}\overline{x_j}x_k\langle v_k,v_j\rangle=\langle w,w\rangle\ge0$. If $GX=0$ then $\langle w,w\rangle=0$, so $w=0$. If the $v_k$ are independent this forces $X=0$, so $G$ is invertible. If they are dependent, take $X\ne0$ with $w=0$; then $(GX)_j=\langle w,v_j\rangle=0$ for every $j$, so $G$ is not invertible.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, the chapter on inner product spaces.</li>
+<li>Steven Roman, <em>Advanced Linear Algebra</em>, 3rd ed., Springer GTM 135, the chapter on real and complex inner product spaces.</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., open access at https://linear.axler.net/, the chapter on inner product spaces.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch21.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 21 laboratory: inner products, norms, Cauchy-Schwarz.
+
+Exact arithmetic with fractions.Fraction for the polynomial space P_2
+(inner product: integral over [0, 1]) and for R^2, R^3.  Complex checks
+use Python complex numbers with small integer entries, which are exact
+in binary floating point.  Floating-point (numpy) is used only for the
+trigonometric orthonormality check, with an explicit tolerance.
+
+Conventions: the inner product is linear in the first argument and
+conjugate-linear in the second.  The Gram matrix of an ordered basis
+(b_1, ..., b_n) has entries G[j][k] = &lt;b_k, b_j&gt;, so that
+&lt;x, y&gt; = Y* G X for coordinate columns X and Y.
+&quot;&quot;&quot;
+from fractions import Fraction as Fr
+import math
+
+import numpy as np
+
+
+# ---------------------------------------------------------------- spaces
+def poly_ip(p, q):
+    &quot;&quot;&quot;&lt;p, q&gt; = integral over [0, 1] of p(x) q(x) dx.
+
+    A polynomial is a list of coefficients, constant term first.
+    &quot;&quot;&quot;
+    return sum(Fr(a) * Fr(b) / (i + j + 1)
+               for i, a in enumerate(p) for j, b in enumerate(q))
+
+
+def rdot(x, y):
+    &quot;&quot;&quot;Real standard inner product, exact on Fractions.&quot;&quot;&quot;
+    return sum(Fr(a) * Fr(b) for a, b in zip(x, y))
+
+
+# ------------------------------------------------------ exact linear algebra
+def det(m):
+    &quot;&quot;&quot;Determinant by fraction-exact elimination.&quot;&quot;&quot;
+    a = [[Fr(x) for x in row] for row in m]
+    n, d = len(a), Fr(1)
+    for c in range(n):
+        piv = next((r for r in range(c, n) if a[r][c] != 0), None)
+        if piv is None:
+            return Fr(0)
+        if piv != c:
+            a[c], a[piv] = a[piv], a[c]
+            d = -d
+        d *= a[c][c]
+        for r in range(c + 1, n):
+            f = a[r][c] / a[c][c]
+            a[r] = [x - f * y for x, y in zip(a[r], a[c])]
+    return d
+
+
+def leading_minors(m):
+    return [det([row[:k] for row in m[:k]]) for k in range(1, len(m) + 1)]
+
+
+def gram(basis, ip):
+    &quot;&quot;&quot;G[j][k] = &lt;b_k, b_j&gt; (the convention of Section 5).&quot;&quot;&quot;
+    n = len(basis)
+    return [[ip(basis[k], basis[j]) for k in range(n)] for j in range(n)]
+
+
+def gram_schmidt(betas, ip):
+    &quot;&quot;&quot;Orthogonalize linearly independent vectors (lists of Fractions).
+
+    Returns (alphas, C) with C[j][k] = &lt;beta_k, alpha_j&gt;/||alpha_j||^2
+    for j &lt; k, so that beta_k = alpha_k + sum_j C[j][k] alpha_j.
+    &quot;&quot;&quot;
+    alphas, n = [], len(betas)
+    coef = [[Fr(0)] * n for _ in range(n)]
+    for k, b in enumerate(betas):
+        a = [Fr(x) for x in b]
+        for j, aj in enumerate(alphas):
+            c = ip(b, aj) / ip(aj, aj)
+            coef[j][k] = c
+            a = [x - c * y for x, y in zip(a, aj)]
+        assert any(x != 0 for x in a), &#x27;dependent input&#x27;
+        alphas.append(a)
+    for k in range(n):
+        coef[k][k] = Fr(1)
+    return alphas, coef
+
+
+def matmul(a, b):
+    return [[sum(x * y for x, y in zip(row, col)) for col in zip(*b)]
+            for row in a]
+
+
+def transpose(a):
+    return [list(r) for r in zip(*a)]
+
+
+# --------------------------------------------------------------- checks
+def pad_add(u, v):
+    n = max(len(u), len(v))
+    u, v = list(u) + [0] * (n - len(u)), list(v) + [0] * (n - len(v))
+    return [Fr(a) + Fr(b) for a, b in zip(u, v)]
+
+
+def lp_norm(x, p):
+    if p == &#x27;inf&#x27;:
+        return max(abs(t) for t in x)
+    return sum(abs(t) ** p for t in x) ** (1 / p)
+
+
+def parallelogram_gap(norm, a, b):
+    s = [x + y for x, y in zip(a, b)]
+    d = [x - y for x, y in zip(a, b)]
+    return norm(s) ** 2 + norm(d) ** 2 - 2 * (norm(a) ** 2 + norm(b) ** 2)
+
+
+def nsq(z):
+    &quot;&quot;&quot;|z|^2 for a complex number, exact for small integer parts.&quot;&quot;&quot;
+    return z.real * z.real + z.imag * z.imag
+
+
+def cdot(x, y):
+    return sum(a * b.conjugate() for a, b in zip(x, y))
+
+
+def cnorm_sq(x):
+    return sum(nsq(a) for a in x)
+
+
+def bilinear_c2(x, y):
+    &quot;&quot;&quot;Bilinear (not conjugate-linear) form on C^2.&quot;&quot;&quot;
+    return x[0] * y[0] + x[1] * y[1]
+
+
+def endpoint_form(p, q):
+    &quot;&quot;&quot;p(0)q(0) + p(1)q(1) on coefficient lists of length 3.&quot;&quot;&quot;
+    return p[0] * q[0] + sum(p) * sum(q)
+
+
+def pullback_singular(a, b):
+    &quot;&quot;&quot;&lt;a, b&gt;_T = (Ta).(Tb) for the singular map T(x1, x2) = x1.&quot;&quot;&quot;
+    return a[0] * b[0]
+
+
+def apply(m, v):
+    return [sum(r[i] * v[i] for i in range(len(v))) for r in m]
+
+
+def pullback_invertible(a, b):
+    &quot;&quot;&quot;(Ma).(Mb) for M = [[1, 1], [0, 1]].&quot;&quot;&quot;
+    m = [[1, 1], [0, 1]]
+    return rdot(apply(m, a), apply(m, b))
+
+
+def twisted(a, b):
+    &quot;&quot;&quot;x1y1 - x1y2 - x2y1 + 4 x2y2 on R^2.&quot;&quot;&quot;
+    return a[0] * b[0] - a[0] * b[1] - a[1] * b[0] + 4 * a[1] * b[1]
+
+
+def n1(v):
+    return lp_norm(v, 1)
+
+
+def ninf(v):
+    return lp_norm(v, &#x27;inf&#x27;)
+
+
+def n2(v):
+    return lp_norm(v, 2)
+
+
+def main():
+    # ---- Section 1: why the conjugate is needed -----------------------
+    z = [1, 1j]
+    # bilinear fails
+    assert bilinear_c2(z, z) == 0 and z != [0, 0]
+    assert cdot(z, z) == 2                                # sesquilinear ok
+    r = [0, -1, 1]                                        # x^2 - x
+    # degenerate
+    assert endpoint_form(r, r) == 0 and r != [0, 0, 0]
+
+    # ---- running example P_2, integral inner product -------------------
+    mono = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+    H = gram(mono, poly_ip)
+    assert H == [[Fr(1, j + k + 1) for k in range(3)] for j in range(3)]
+    assert H[1][1] == Fr(1, 3) and H[2][2] == Fr(1, 5)
+    minors = leading_minors(H)
+    assert minors == [Fr(1), Fr(1, 12), Fr(1, 2160)]
+    assert det(H) == Fr(1, 2160)
+    print(&#x27;Hilbert H3 =&#x27;, H)
+    print(&#x27;leading minors =&#x27;, minors)
+
+    # norm, cosine, angle between 1 and x
+    one, xx = [1, 0, 0], [0, 1, 0]
+    assert poly_ip(one, xx) == Fr(1, 2)
+    assert poly_ip(xx, xx) == Fr(1, 3)
+    cos = float(poly_ip(one, xx)) / math.sqrt(float(poly_ip(xx, xx)))
+    assert abs(cos - math.sqrt(3) / 2) &lt; 1e-15
+    angle_deg = math.degrees(math.acos(cos))
+    assert abs(angle_deg - 30.0) &lt; 1e-9
+    print(&#x27;cos(1,x) = %.6f, angle = %.4f degrees&#x27; % (cos, angle_deg))
+    # Cauchy-Schwarz exactly, and the equality case
+    assert poly_ip(one, xx) ** 2 &lt;= poly_ip(one, one) * poly_ip(xx, xx)
+    assert Fr(1, 4) &lt; Fr(1, 3)
+    three_one = [3, 0, 0]
+    assert (poly_ip(one, three_one) ** 2
+            == poly_ip(one, one) * poly_ip(three_one, three_one))
+    # triangle inequality for 1 and x
+    s = pad_add(one, xx)
+    n_s = math.sqrt(float(poly_ip(s, s)))
+    assert poly_ip(s, s) == Fr(7, 3)
+    assert n_s &lt;= 1 + math.sqrt(1 / 3)
+    print(&#x27;||1+x|| = %.6f &lt;= %.6f&#x27; % (n_s, 1 + math.sqrt(1 / 3)))
+    # parallelogram law for the induced norm (exact)
+    d = [Fr(1), Fr(-1), Fr(0)]
+    lhs = poly_ip(s, s) + poly_ip(d, d)
+    rhs = 2 * (poly_ip(one, one) + poly_ip(xx, xx))
+    assert lhs == rhs == Fr(8, 3)
+
+    # ---- Gram-Schmidt on (1, x, x^2) -----------------------------------
+    alphas, C = gram_schmidt(mono, poly_ip)
+    assert alphas[0] == [1, 0, 0]
+    assert alphas[1] == [Fr(-1, 2), 1, 0]
+    assert alphas[2] == [Fr(1, 6), -1, 1]
+    dd = [poly_ip(a, a) for a in alphas]
+    assert dd == [Fr(1), Fr(1, 12), Fr(1, 180)]
+    for i in range(3):
+        for j in range(i):
+            assert poly_ip(alphas[i], alphas[j]) == 0
+    assert dd[0] * dd[1] * dd[2] == det(H)
+    D = [[dd[i] if i == j else Fr(0) for j in range(3)] for i in range(3)]
+    assert matmul(matmul(transpose(C), D), C) == H       # H = C^T D C
+    assert C == [[1, Fr(1, 2), Fr(1, 3)], [0, 1, 1], [0, 0, 1]]
+    print(&#x27;alphas =&#x27;, alphas)
+    print(&#x27;||alpha_k||^2 =&#x27;, dd, &#x27; det H3 =&#x27;, det(H))
+
+    # ---- the same space, another inner product (coordinate pullback) ----
+    assert rdot(one, xx) == 0 and poly_ip(one, xx) != 0
+    Gc = gram(mono, rdot)
+    assert Gc == [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+
+    # ---- Section 3 pullback: singular T gives only semi-definite -------
+    assert pullback_singular([0, 1], [0, 1]) == 0  # T singular
+    M = [[1, 1], [0, 1]]                                  # T invertible
+    GM = gram([[1, 0], [0, 1]], pullback_invertible)
+    assert GM == matmul(transpose(M), M) == [[1, 1], [1, 2]]
+    assert leading_minors(GM) == [1, 1]
+
+    # ---- Section 5: Gram matrix of R^2 twisted inner product ------------
+    Gt = [[Fr(1), Fr(-1)], [Fr(-1), Fr(4)]]
+    assert gram([[1, 0], [0, 1]], twisted) == Gt
+    assert leading_minors(Gt) == [1, 3]
+    for X, Y in (([2, 3], [5, -1]), ([1, 1], [1, 1])):
+        yGx = sum(Y[j] * Gt[j][k] * X[k] for j in range(2) for k in range(2))
+        assert yGx == twisted(X, Y)
+    # invertible and Hermitian but not positive definite
+    Gbad = [[1, 0], [0, -1]]
+    assert det(Gbad) != 0 and leading_minors(Gbad) == [1, -1]
+    # orthogonality is relative to the inner product
+    t = (-3 + math.sqrt(13)) / 2
+    alpha, beta = [1.0, t], [-t, 1.0]
+    val = (alpha[0] * beta[0] - alpha[0] * beta[1]
+           - alpha[1] * beta[0] + 4 * alpha[1] * beta[1])
+    assert abs(val) &lt; 1e-12
+    print(&#x27;twisted orthogonal slope y/x = %.6f&#x27; % t)
+
+    # ---- Section 4: polarization over C ----------------------------------
+    x, y = [1, 1j], [2, 1 + 1j]
+    ip_xy = cdot(x, y)
+    assert ip_xy == 3 + 1j
+
+    def sq(ws):
+        return cnorm_sq(ws)
+
+    pol = 0
+    for n in range(1, 5):
+        w = [a + (1j ** n) * b for a, b in zip(x, y)]
+        pol += (1j ** n) * sq(w)
+    assert pol / 4 == ip_xy
+    xp = [a + b for a, b in zip(x, y)]
+    xm = [a - b for a, b in zip(x, y)]
+    assert (sq(xp) - sq(xm)) / 4 == ip_xy.real == 3
+    xip = [a + 1j * b for a, b in zip(x, y)]
+    xim = [a - 1j * b for a, b in zip(x, y)]
+    assert sq(xip) == 10 and sq(xim) == 6
+    assert (sq(xip) - sq(xim)) / 4 == ip_xy.imag == 1
+    print(&#x27;&lt;x,y&gt; =&#x27;, ip_xy, &#x27; by polarization =&#x27;, pol / 4)
+
+    # ---- parallelogram law fails for l1 and sup norms ----------------------
+    e1, e2 = [1, 0], [0, 1]
+    assert parallelogram_gap(n1, e1, e2) == 4
+    assert parallelogram_gap(ninf, e1, e2) == -2
+    assert abs(parallelogram_gap(n2, e1, e2)) &lt; 1e-12
+    print(&#x27;parallelogram gaps (l1, sup, l2):&#x27;,
+          parallelogram_gap(n1, e1, e2), parallelogram_gap(ninf, e1, e2),
+          parallelogram_gap(n2, e1, e2))
+
+    # ---- Pythagoras and its converse over C
+    u, v = [1], [1j]
+    assert cdot(u, v) != 0                                # not orthogonal
+    assert cnorm_sq([a + b for a, b in zip(u, v)]) == 2 == (
+        cnorm_sq(u) + cnorm_sq(v))                        # equation holds
+
+    # ---- Section 10: trigonometric orthonormal system on [0, 1]
+    N = 64
+    xs = np.arange(N) / N
+    fam = [np.ones(N)]
+    for k in (1, 2, 3):
+        fam.append(np.sqrt(2) * np.cos(2 * np.pi * k * xs))
+        fam.append(np.sqrt(2) * np.sin(2 * np.pi * k * xs))
+    Gtrig = np.array([[np.dot(a, b) / N for b in fam] for a in fam])
+    assert np.allclose(Gtrig, np.eye(len(fam)), atol=1e-12)
+    print(&#x27;max |Gram - I| for 7 trigonometric functions: %.2e&#x27;
+          % np.abs(Gtrig - np.eye(len(fam))).max())
+
+    # ---- Section 12: the Gram-Schmidt example in R^3
+    b = [[3, 0, 4], [-1, 0, 7], [2, 9, 11]]
+    assert det(b) != 0
+    a, Cr = gram_schmidt(b, rdot)
+    assert a == [[3, 0, 4], [-4, 0, 3], [0, 9, 0]]
+    assert [rdot(t, t) for t in a] == [25, 25, 81]
+    assert Cr[0][1] == 1 and Cr[0][2] == 2 and Cr[1][2] == 1
+    print(&#x27;R^3 Gram-Schmidt:&#x27;, [[int(t) for t in r] for r in a])
+
+    # ---- Section 11: coefficients of an orthogonal expansion
+    beta = [Fr(2) * p + Fr(-3) * q for p, q in zip(a[0], a[1])]
+    coeffs = [rdot(beta, t) / rdot(t, t) for t in a]
+    assert coeffs == [2, -3, 0]
+    # dependent set is rejected by Gram-Schmidt
+    try:
+        gram_schmidt([[1, 0], [2, 0]], rdot)
+        raise SystemExit(&#x27;dependent input was accepted&#x27;)
+    except AssertionError:
+        pass
+    # ---- exercises ------------------------------------------------------
+    sq_ = [0, 0, 1]
+    c2 = poly_ip(xx, sq_) ** 2 / (poly_ip(xx, xx) * poly_ip(sq_, sq_))
+    assert poly_ip(xx, sq_) == Fr(1, 4) and c2 == Fr(15, 16)
+    deg = math.degrees(math.acos(math.sqrt(15) / 4))
+    assert abs(deg - 14.4775) &lt; 1e-3
+    print(&#x27;cos^2(x, x^2) = 15/16, angle = %.4f degrees&#x27; % deg)
+    # x - x^2/... : distance data used in the opening
+    best = [Fr(1, 2), 0, 0]
+    gap = pad_add(xx, [-c for c in best])
+    assert poly_ip(gap, one) == 0 and poly_ip(gap, gap) == Fr(1, 12)
+    print(&#x27;all chapter 21 checks passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch20.html">Previous: Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a rel="next" href="ch22.html">Next: Orthogonal projection, Gram-Schmidt, and best approximation</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

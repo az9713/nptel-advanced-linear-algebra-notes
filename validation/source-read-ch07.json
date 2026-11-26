@@ -1,0 +1,47 @@
+{
+ "author": "author_a",
+ "chapter": "ch07",
+ "recordings": [
+  {
+   "position": 12,
+   "video_id": "Pwk7p8WiCh0",
+   "normalized_text_sha256": "2db8784a5d9f2e3fca3d706a577285de1e2642b71a7b5ba5949105b8be66dbaf",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "definition of linear transformation",
+    "identity, matrix maps, integration",
+    "zero maps to zero and combinations are preserved",
+    "range, null space, rank, nullity",
+    "existence and uniqueness from values on a basis"
+   ],
+   "clarifications": [],
+   "original_constructions": [
+    "injectivity and solution-set proposition"
+   ]
+  },
+  {
+   "position": 13,
+   "video_id": "VzuJgqY-ORo",
+   "normalized_text_sha256": "bb35c45adb647880ead8f8dd36fc2127dfaac1c58d01e741bfde3a46799f899a",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "prescribed values with no linear map",
+    "rank-nullity theorem and need for finite dimension",
+    "row rank equals column rank",
+    "worked example on F^3 with range and null space conditions"
+   ],
+   "clarifications": [
+    "The spoken example formula matches the chapter's running map; its conditions were recomputed"
+   ],
+   "original_constructions": [
+    "infinite-dimensional counterexample",
+    "relation criterion",
+    "exercises"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Direct-sum decompositions and projections · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html" aria-current=page>17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>17. Direct-sum decompositions and projections</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=P5dUSimEXHk">Recording 34</a>, <a href="https://www.youtube.com/watch?v=HYudOaJ_gxE">Recording 35</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Prove the equivalent criteria for independent subspaces</li><li>Construct the projection on one summand along another</li><li>Characterize direct-sum decompositions by families of projections</li><li>Read the block-diagonal form from invariant summands</li></ul>
+<p><strong>Prerequisites:</strong> Bases, dimension, linear operators and invariant subspaces (Chapters 3, 4, 7 and 15).</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch17.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-independent-subspaces-0025">1. Independent subspaces 00:25</a></li><li><a href="#2-direct-sums-and-three-examples-2233">2. Direct sums and three examples 22:33</a></li><li><a href="#3-projections-3221">3. Projections 32:21</a></li><li><a href="#4-the-matrix-of-a-projection-0025">4. The matrix of a projection 00:25</a></li><li><a href="#5-the-projections-of-a-direct-sum-0350">5. The projections of a direct sum 03:50</a></li><li><a href="#6-invariant-summands-2414">6. Invariant summands 24:14</a></li><li><a href="#7-executable-check">7. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Let $T$ be the operator on $\mathbb{Q}^3$ with standard matrix</p>
+<p>$$A=\begin{pmatrix}2&amp;1&amp;0\\1&amp;3&amp;-1\\0&amp;1&amp;2\end{pmatrix}.$$</p>
+<p>This matrix is the running example of the chapter (an original construction). We write column vectors as tuples throughout. It is not diagonalizable: its eigenvalues are $2$ and $3$, and each has only a one-dimensional space of eigenvectors. Yet the action of $T$ still separates into two independent parts. Put</p>
+<p>$$p_1=(1,0,1),\qquad p_2=(0,1,1),\qquad p_3=(1,1,1).$$</p>
+<p>Then $Ap_1=2p_1$, $Ap_2=p_1+2p_2$ and $Ap_3=3p_3$. The plane $W_1=\operatorname{span}(p_1,p_2)$ and the line $W_2=\operatorname{span}(p_3)$ are each mapped into themselves, and every vector of $\mathbb{Q}^3$ is, in one way only, a vector of $W_1$ plus a vector of $W_2$. To study $T$ we may study its two pieces separately, one on a plane and one on a line.</p>
+<p>This chapter makes the splitting precise. It answers three questions. When do several subspaces fit together without overlap? Given such a splitting, how do we compute the part of a vector that lies in each piece? And how can a splitting be recognised from operators alone? The answer to the last two is the notion of a projection.</p>
+<p><strong>Conventions.</strong> $F$ is a field and $V$ is a vector space over $F$. Finite dimension is stated where it is used. $\mathcal{L}(V)$ is the space of linear operators on $V$, and $I$ is the identity operator. For $T\in\mathcal{L}(V)$, $\ker T$ is its null space and $\operatorname{im}T$ its range. For subspaces $W_1,\dots,W_k$ of $V$, their <em>sum</em> is $W_1+\cdots+W_k=\{\alpha_1+\cdots+\alpha_k:\alpha_i\in W_i\}$, a subspace of $V$ (<a href="ch03.html">Chapter 3</a>).</p>
+<h2 id="1-independent-subspaces-0025">1. Independent subspaces <a href="https://www.youtube.com/watch?v=P5dUSimEXHk&amp;t=25s">00:25</a></h2>
+<p><strong>Definition 1.1.</strong> Subspaces $W_1,\dots,W_k$ of $V$ are <em>independent</em> if the only way to write $0=\alpha_1+\cdots+\alpha_k$ with $\alpha_i\in W_i$ is $\alpha_1=\cdots=\alpha_k=0$.</p>
+<p>The definition copies the definition of linearly independent vectors, with whole subspaces in place of vectors and the coefficients absorbed into the $\alpha_i$. In particular, nonzero vectors $v_1,\dots,v_k$ are linearly independent exactly when the lines $\operatorname{span}(v_1),\dots,\operatorname{span}(v_k)$ are independent.</p>
+<p>Independence says that each element of the sum has only one expression. If $\alpha_1+\cdots+\alpha_k=\beta_1+\cdots+\beta_k$ with $\alpha_i,\beta_i\in W_i$, then $\sum_i(\alpha_i-\beta_i)=0$ with $\alpha_i-\beta_i\in W_i$, so $\alpha_i=\beta_i$. The converse is clear, since $0=0+\cdots+0$ is one expression of $0$.</p>
+<p><strong>Pairwise disjointness is not enough.</strong> For two subspaces, independence is the same as $W_1\cap W_2=0$: an equation $\alpha_1+\alpha_2=0$ says $\alpha_1=-\alpha_2\in W_1\cap W_2$. For three or more subspaces, it is not enough that every pair meets only in $0$. In $F^2$ take the three lines spanned by $(1,0)$, $(0,1)$ and $(1,1)$. Any two meet only in $0$. Yet</p>
+<p>$$(1,0)+(0,1)+(-1,-1)=0$$</p>
+<p>is a nontrivial expression of $0$. Three lines cannot be independent in a plane. The correct condition compares each subspace with the <em>sum</em> of the earlier ones.</p>
+<p><strong>Lemma 1.2.</strong> Let $W_1,\dots,W_k$ be subspaces of $V$ and $W=W_1+\cdots+W_k$. The following are equivalent.</p>
+<ul>
+<li>(a) $W_1,\dots,W_k$ are independent.</li>
+<li>(b) $W_j\cap(W_1+\cdots+W_{j-1})=0$ for every $j$ with $2\le j\le k$.</li>
+</ul>
+<p>If every $W_i$ is finite-dimensional, they are also equivalent to each of the following.</p>
+<ul>
+<li>(c) If $\mathcal{B}_i$ is an ordered basis of $W_i$, then the concatenated list $\mathcal{B}=(\mathcal{B}_1,\dots,\mathcal{B}_k)$ is an ordered basis of $W$.</li>
+<li>(d) $\dim W=\dim W_1+\cdots+\dim W_k$.</li>
+</ul>
+<p><em>Proof.</em> (a) implies (b). Let $\alpha\in W_j\cap(W_1+\cdots+W_{j-1})$. Write $\alpha=\alpha_1+\cdots+\alpha_{j-1}$ with $\alpha_i\in W_i$. Then</p>
+<p>$$\alpha_1+\cdots+\alpha_{j-1}+(-\alpha)+0+\cdots+0=0,$$</p>
+<p>an expression with the $j$th term $-\alpha\in W_j$. By (a) every term vanishes, so $\alpha=0$.</p>
+<p>(b) implies (a). Suppose $\alpha_1+\cdots+\alpha_k=0$ with $\alpha_i\in W_i$ and not all zero. Let $j$ be the largest index with $\alpha_j\ne0$. If $j=1$, the sum is $\alpha_1\ne0$, which is impossible. So $j\ge2$ and $\alpha_j=-(\alpha_1+\cdots+\alpha_{j-1})$ lies in $W_j\cap(W_1+\cdots+W_{j-1})$. By (b), $\alpha_j=0$, a contradiction.</p>
+<p>(a) implies (c). The list $\mathcal{B}$ spans $W$, because each $\alpha_i$ is a combination of $\mathcal{B}_i$. Suppose a linear combination of $\mathcal{B}$ is zero, and let $\alpha_i$ be the part of the combination that uses $\mathcal{B}_i$. Then $\alpha_i\in W_i$ and $\sum\alpha_i=0$, so each $\alpha_i=0$ by (a). Since $\mathcal{B}_i$ is linearly independent, all coefficients in $\alpha_i$ vanish.</p>
+<p>(c) implies (d) by counting the list. (d) implies (a). Choose bases $\mathcal{B}_i$. The concatenated list spans $W$ and has $\sum\dim W_i=\dim W$ members, so it is a basis of $W$ (<a href="ch04.html">Chapter 4</a>). If $\sum\alpha_i=0$ with $\alpha_i\in W_i$, expand each $\alpha_i$ in $\mathcal{B}_i$; the linear independence of the whole list makes every coefficient zero. $\square$</p>
+<p>The hinge of (b) implies (a) is the choice of the <em>last</em> nonzero term: it can be moved to one side, and everything on the other side comes from earlier subspaces. Condition (b) depends on the order of the subspaces only in appearance, since (a) does not depend on it.</p>
+<p><strong>On the three lines.</strong> The third line lies inside the sum of the first two, which is $F^2$, so (b) fails at $j=3$. Condition (d) fails too: $\dim W=2$ and the dimensions add to $3$.</p>
+<p><strong>On the running example.</strong> The list $(p_1,p_2,p_3)$ is linearly independent: the matrix $P$ with these columns has the inverse</p>
+<p>$$P^{-1}=\begin{pmatrix}0&amp;-1&amp;1\\-1&amp;0&amp;1\\1&amp;1&amp;-1\end{pmatrix}.$$</p>
+<p>By (c), $W_1$ and $W_2$ are independent and $W_1+W_2=\mathbb{Q}^3$.</p>
+<h2 id="2-direct-sums-and-three-examples-2233">2. Direct sums and three examples <a href="https://www.youtube.com/watch?v=P5dUSimEXHk&amp;t=1353s">22:33</a></h2>
+<p><strong>Definition 2.1.</strong> If $W_1,\dots,W_k$ are independent, their sum $W$ is called a <em>direct sum</em>, written $W=W_1\oplus\cdots\oplus W_k$.</p>
+<p>The symbol $\oplus$ asserts two things at once: that the sum is $W$, and that the summands are independent. The sum here is <em>internal</em>: all the $W_i$ are subspaces of one space. A direct sum decomposition of $V$ means $V=W_1\oplus\cdots\oplus W_k$. By Section 1 this says that every $\alpha\in V$ has exactly one expression $\alpha=\alpha_1+\cdots+\alpha_k$ with $\alpha_i\in W_i$. We call $\alpha_i$ the <em>component</em> of $\alpha$ in $W_i$.</p>
+<p><strong>Coordinate lines.</strong> If $(v_1,\dots,v_n)$ is a basis of $V$, then $V=\operatorname{span}(v_1)\oplus\cdots\oplus\operatorname{span}(v_n)$ by Lemma 1.2(c). Choosing a basis is the finest possible decomposition.</p>
+<p><strong>Symmetric and skew-symmetric matrices.</strong> The <em>characteristic</em> of a field is the least number $p\ge1$ for which the sum of $p$ copies of $1$ is $0$, or $0$ if there is no such number. Suppose the characteristic of $F$ is not $2$, so that $2$ has an inverse. Let $V=F^{n\times n}$, let $S$ be the subspace of symmetric matrices ($M^{\mathsf T}=M$) and $K$ the subspace of skew-symmetric matrices ($M^{\mathsf T}=-M$). Every $M$ splits as</p>
+<p>$$M=\tfrac12(M+M^{\mathsf T})+\tfrac12(M-M^{\mathsf T}),$$</p>
+<p>where the first term is symmetric and the second skew-symmetric, so $V=S+K$. If $M\in S\cap K$ then $M=-M$, so $2M=0$ and $M=0$. Hence $V=S\oplus K$. In characteristic $2$ we have $-M^{\mathsf T}=M^{\mathsf T}$, so $S=K$ and the decomposition fails.</p>
+<p><strong>Eigenspaces.</strong> Let $T\in\mathcal{L}(V)$ and let $c_1,\dots,c_k$ be distinct eigenvalues, with eigenspaces $E_{c_i}=\ker(T-c_iI)$. Then $E_{c_1},\dots,E_{c_k}$ are independent. Suppose $\alpha_1+\cdots+\alpha_k=0$ with $\alpha_i\in E_{c_i}$. Fix $j$ and let $q(x)=\prod_{i\ne j}(x-c_i)$. Since $T\alpha_i=c_i\alpha_i$, we have $q(T)\alpha_i=q(c_i)\alpha_i$. Applying $q(T)$ to the sum kills every term with $i\ne j$ and leaves $q(c_j)\alpha_j=0$. Since $q(c_j)\ne0$, $\alpha_j=0$. Suppose now that $\dim V$ is finite and that $c_1,\dots,c_k$ are all the distinct eigenvalues of $T$ in $F$. Then $E_{c_1}\oplus\cdots\oplus E_{c_k}$ is all of $V$ exactly when $V$ has a basis of eigenvectors, that is, when $T$ is diagonalizable (<a href="ch16.html">Chapter 16</a>).</p>
+<p><strong>On the running example.</strong> Here $E_2=\operatorname{span}(p_1)$ and $E_3=\operatorname{span}(p_3)$. Their sum is direct but has dimension $2$, not $3$. Eigenspaces alone do not decompose $\mathbb{Q}^3$. The plane $W_1$ is larger than $E_2$: it is the null space of $(A-2I)^2$.</p>
+<h2 id="3-projections-3221">3. Projections <a href="https://www.youtube.com/watch?v=P5dUSimEXHk&amp;t=1941s">32:21</a></h2>
+<p>To use a decomposition we need to extract components. The operators that do this satisfy one equation.</p>
+<p><strong>Definition 3.1.</strong> An operator $E\in\mathcal{L}(V)$ is a <em>projection</em> if $E^2=E$. Such an operator is also called <em>idempotent</em>.</p>
+<p><strong>Theorem 3.2.</strong> Let $E$ be a projection, $R=\operatorname{im}E$ and $N=\ker E$. Then</p>
+<ol>
+<li>$\alpha\in R$ if and only if $E\alpha=\alpha$;</li>
+<li>$V=R\oplus N$, and the component of $\alpha$ in $R$ is $E\alpha$, the component in $N$ is $\alpha-E\alpha$.</li>
+</ol>
+<p>No finiteness assumption is needed.</p>
+<p><em>Proof.</em> (1) If $\alpha=E\beta$, then $E\alpha=E^2\beta=E\beta=\alpha$. Conversely $\alpha=E\alpha$ exhibits $\alpha$ as a value of $E$. (2) Every $\alpha$ is $E\alpha+(\alpha-E\alpha)$. The first term lies in $R$. The second lies in $N$ because $E(\alpha-E\alpha)=E\alpha-E^2\alpha=0$. So $V=R+N$. If $\alpha\in R\cap N$, then $\alpha=E\alpha$ by (1) and $E\alpha=0$ since $\alpha\in N$. So $\alpha=0$. $\square$</p>
+<p>The hinge is part 1: a projection fixes everything it produces. We say that $E$ is the projection <em>on $R$ along $N$</em>.</p>
+<p><strong>Theorem 3.3.</strong> If $V=R\oplus N$, there is exactly one projection $E$ with $\operatorname{im}E=R$ and $\ker E=N$.</p>
+<p><em>Proof.</em> Each $\alpha$ has a unique expression $\alpha=\rho+\nu$ with $\rho\in R$, $\nu\in N$. Define $E\alpha=\rho$. Uniqueness of the expression makes $E$ well defined, and it makes $E$ linear: if $\alpha=\rho+\nu$ and $\alpha'=\rho'+\nu'$, then $c\alpha+\alpha'=(c\rho+\rho')+(c\nu+\nu')$ is the expression of $c\alpha+\alpha'$. Since the expression of $\rho$ is $\rho+0$, we get $E^2\alpha=E\rho=\rho=E\alpha$. Clearly $\operatorname{im}E=R$, and $E\alpha=0$ exactly when $\alpha=\nu\in N$. For uniqueness, any such projection satisfies $E\rho=\rho$ by Theorem 3.2(1) and $E\nu=0$, hence $E\alpha=\rho$. $\square$</p>
+<p>Both subspaces matter. The same range $R$ with a different complement $N$ gives a different projection.</p>
+<p><strong>An example in the plane</strong> <a href="https://www.youtube.com/watch?v=P5dUSimEXHk&amp;t=2302s">38:22</a>. Find the projection of $\mathbb{R}^2$ on $R=\operatorname{span}(1,-1)$ along $N=\operatorname{span}(1,2)$. We need $E(1,-1)=(1,-1)$ and $E(1,2)=0$. Expand the standard basis vectors in these two:</p>
+<p>$$e_1=\tfrac23(1,-1)+\tfrac13(1,2),\qquad e_2=-\tfrac13(1,-1)+\tfrac13(1,2).$$</p>
+<p>Applying $E$ keeps only the first terms: $Ee_1=\tfrac23(1,-1)$ and $Ee_2=-\tfrac13(1,-1)$. Hence</p>
+<p>$$[E]=\begin{pmatrix}2/3&amp;-1/3\\-2/3&amp;1/3\end{pmatrix},\qquad E(x,y)=\frac{2x-y}{3}\,(1,-1).$$</p>
+<p>One checks $[E]^2=[E]$ directly. The matrix is not symmetric: this projection is not the perpendicular projection on the line, because $(1,2)$ is not perpendicular to $(1,-1)$. Perpendicularity needs an inner product, which enters in <a href="ch22.html">Chapter 22</a>.</p>
+<h2 id="4-the-matrix-of-a-projection-0025">4. The matrix of a projection <a href="https://www.youtube.com/watch?v=HYudOaJ_gxE&amp;t=25s">00:25</a></h2>
+<p>Let $\dim V=n$, let $E$ be a projection of rank $r=\dim\operatorname{im}E$, and choose ordered bases $\mathcal{B}_1=(\alpha_1,\dots,\alpha_r)$ of $\operatorname{im}E$ and $\mathcal{B}_2=(\alpha_{r+1},\dots,\alpha_n)$ of $\ker E$. By Theorem 3.2 and Lemma 1.2(c), $\mathcal{B}=(\mathcal{B}_1,\mathcal{B}_2)$ is a basis of $V$. Since $E\alpha_i=\alpha_i$ for $i\le r$ and $E\alpha_i=0$ for $i&gt;r$,</p>
+<p>$$[E]_{\mathcal{B}}=\begin{pmatrix}I_r&amp;0\\0&amp;0\end{pmatrix},$$</p>
+<p>where $I_r$ is the $r\times r$ identity. So a projection is diagonalizable over every field, and two projections of the same rank are similar. The <em>trace</em> $\operatorname{tr}M$ of a square matrix is the sum of its diagonal entries; similar matrices have equal trace, because $\operatorname{tr}(XY)=\operatorname{tr}(YX)$. Hence $\operatorname{tr}E=r\cdot1$, the sum of $r$ copies of $1$ in $F$. In characteristic $0$ the trace of a projection is its rank. In characteristic $p$ the trace only records the rank modulo $p$.</p>
+<h2 id="5-the-projections-of-a-direct-sum-0350">5. The projections of a direct sum <a href="https://www.youtube.com/watch?v=HYudOaJ_gxE&amp;t=230s">03:50</a></h2>
+<p>Let $V=W_1\oplus\cdots\oplus W_k$ and define $E_j\alpha=\alpha_j$, the component of $\alpha$ in $W_j$. By Theorem 3.3, $E_j$ is the projection on $W_j$ along the sum of the other summands. The next theorem <a href="https://www.youtube.com/watch?v=HYudOaJ_gxE&amp;t=752s">12:32</a> says which families of operators arise in this way.</p>
+<p><strong>Theorem 5.1.</strong> (i) If $V=W_1\oplus\cdots\oplus W_k$, then the operators $E_1,\dots,E_k$ above satisfy</p>
+<ol>
+<li>$E_j^2=E_j$;</li>
+<li>$E_iE_j=0$ for $i\ne j$;</li>
+<li>$I=E_1+\cdots+E_k$;</li>
+<li>$\operatorname{im}E_j=W_j$.</li>
+</ol>
+<p>(ii) Conversely, if $E_1,\dots,E_k\in\mathcal{L}(V)$ satisfy 2 and 3, then each satisfies 1, and $V=\operatorname{im}E_1\oplus\cdots\oplus\operatorname{im}E_k$.</p>
+<p><em>Proof.</em> (i) Property 4 holds because every vector of $W_j$ is its own $j$th component. Properties 1 and 2: the vector $E_j\alpha$ lies in $W_j$, so its $j$th component is itself and its other components are $0$. Property 3 is the equation $\alpha=\alpha_1+\cdots+\alpha_k$.</p>
+<p>(ii) Multiply 3 by $E_j$: $E_j=\sum_iE_jE_i=E_j^2$ by 2. For every $\alpha$, property 3 gives $\alpha=\sum_iE_i\alpha$, so $V$ is the sum of the ranges. For independence, suppose $\alpha_1+\cdots+\alpha_k=0$ with $\alpha_i=E_i\beta_i$. Apply $E_j$. For $i\ne j$, $E_j\alpha_i=E_jE_i\beta_i=0$, and $E_j\alpha_j=E_j^2\beta_j=E_j\beta_j=\alpha_j$. So $\alpha_j=0$. $\square$</p>
+<p>The hinge of (ii) is that $E_j$ acts as a filter: it passes the $j$th term of a sum unchanged and removes all the others.</p>
+<p><strong>Condition 2 cannot be dropped in general.</strong> Over $\mathbb{F}_2=\{0,1\}$, the integers modulo $2$, take $V=\mathbb{F}_2^2$ and $E_1=E_2=E_3=I$. Each is a projection and $E_1+E_2+E_3=3I=I$. But the three ranges are all $V$, so their sum is not direct. Exercise 3 shows that in characteristic $0$ conditions 1 and 3 already force condition 2.</p>
+<p><strong>On the running example.</strong> In coordinates with respect to $(p_1,p_2,p_3)$, the projection $E_1$ on $W_1$ along $W_2$ keeps the first two coordinates. So $E_1=P\operatorname{diag}(1,1,0)P^{-1}$ and $E_2=P\operatorname{diag}(0,0,1)P^{-1}$:</p>
+<p>$$E_1=\begin{pmatrix}0&amp;-1&amp;1\\-1&amp;0&amp;1\\-1&amp;-1&amp;2\end{pmatrix},\qquad E_2=\begin{pmatrix}1&amp;1&amp;-1\\1&amp;1&amp;-1\\1&amp;1&amp;-1\end{pmatrix}.$$</p>
+<p>One checks $E_1+E_2=I$ and $E_1E_2=E_2E_1=0$, with ranks $2,1$ and traces $2,1$. The formula for $E_2$ reads $E_2(x,y,z)=(x+y-z)\,(1,1,1)$. So the plane $W_1$ is $\{x+y-z=0\}$, the null space of $E_2$, and for $v=(3,1,2)$ the components are $E_2v=(2,2,2)$ and $E_1v=(1,-1,0)$.</p>
+<h2 id="6-invariant-summands-2414">6. Invariant summands <a href="https://www.youtube.com/watch?v=HYudOaJ_gxE&amp;t=1454s">24:14</a></h2>
+<p>A decomposition helps to understand an operator $T$ when $T$ respects it. A subspace $W$ is <em>$T$-invariant</em> if $T(W)\subseteq W$, and then the <em>restriction</em> $T_W:W\to W$, $T_W\alpha=T\alpha$, is an operator on $W$ (<a href="ch15.html">Chapter 15</a>).</p>
+<p>Let $V=W_1\oplus\cdots\oplus W_k$ with every $W_i$ invariant under $T$, and write $T_i=T_{W_i}$. For $\alpha=\alpha_1+\cdots+\alpha_k$ with $\alpha_i\in W_i$, linearity gives</p>
+<p>$$T\alpha=T_1\alpha_1+\cdots+T_k\alpha_k.$$</p>
+<p>Since $T_i\alpha_i\in W_i$, this is the decomposition of $T\alpha$: the component of $T\alpha$ in $W_i$ depends only on the component of $\alpha$ in $W_i$. We say that $T$ is the <em>direct sum</em> of $T_1,\dots,T_k$.</p>
+<p><strong>Theorem 6.1</strong> <a href="https://www.youtube.com/watch?v=HYudOaJ_gxE&amp;t=1686s">28:06</a>. Let $\dim V$ be finite, $V=W_1\oplus\cdots\oplus W_k$ with all $W_i$ nonzero, $\mathcal{B}_i$ an ordered basis of $W_i$, $d_i=\dim W_i$ and $\mathcal{B}=(\mathcal{B}_1,\dots,\mathcal{B}_k)$. Then every $W_i$ is $T$-invariant if and only if $[T]_{\mathcal{B}}$ is block diagonal,</p>
+<p>$$[T]_{\mathcal{B}}=\begin{pmatrix}A_1&amp;0&amp;\cdots&amp;0\\0&amp;A_2&amp;\cdots&amp;0\\\vdots&amp;&amp;\ddots&amp;\vdots\\0&amp;0&amp;\cdots&amp;A_k\end{pmatrix},\qquad A_i\in F^{d_i\times d_i},$$</p>
+<p>and in that case $A_i=[T_i]_{\mathcal{B}_i}$.</p>
+<p><em>Proof.</em> The columns of $[T]_{\mathcal{B}}$ indexed by $\mathcal{B}_i$ hold the coordinates of $Tv$ for $v$ in $\mathcal{B}_i$. Such a vector $Tv$ lies in $W_i$ exactly when its coordinates outside the positions of $\mathcal{B}_i$ vanish, by uniqueness of coordinates. $W_i$ is invariant exactly when this holds for every $v\in\mathcal{B}_i$. The remaining entries are the coordinates of $T_iv$ in $\mathcal{B}_i$. $\square$</p>
+<p>Each $W_i$ must be invariant for the block of zeros to appear on both sides. If only $W_1$ is invariant, the matrix is block upper triangular, as in <a href="ch15.html">Chapter 15</a>, and the off-diagonal block records how the complement leaks into $W_1$.</p>
+<p><strong>On the running example.</strong> Both $W_1$ and $W_2$ are $A$-invariant, and</p>
+<p>$$P^{-1}AP=\begin{pmatrix}2&amp;1&amp;0\\0&amp;2&amp;0\\0&amp;0&amp;3\end{pmatrix}.$$</p>
+<p>The blocks are $\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix}$ and $(3)$. The first block cannot be diagonalized, but it has been isolated. By contrast $W_3=\operatorname{span}(e_1)$, with $e_1=(1,0,0)$, is also a complement of $W_1$, and it is not invariant, since $Ae_1=(2,1,0)$. The decomposition $W_1\oplus W_3$ does not split the operator. The projection $E$ on $W_3$ along $W_1$ satisfies $AE\ne EA$, whereas $E_1$ and $E_2$ commute with $A$. The general criterion, that all summands are invariant exactly when $T$ commutes with all the projections, is the subject of <a href="ch18.html">Chapter 18</a>.</p>
+<h2 id="7-executable-check">7. Executable check</h2>
+<p><a href="labs/ch17.py">The chapter laboratory</a> works with exact fractions. It checks the three-lines counterexample by both criteria; the inverse of $P$; the matrices $E_1,E_2$ with their identities, ranks and traces; the block form of $A$ and the commutation $AE_j=E_jA$; the eigenspace dimensions and $\ker(A-2I)^2=W_1$; the non-invariant complement; the plane example; the symmetric and skew-symmetric splitting of $3\times3$ matrices; the characteristic-$2$ counterexample; and the computations of the exercises. It tests particular matrices. The general statements rest on the proofs above.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) For the running example, find the components of $(1,2,5)$ in $W_1$ and $W_2$, and compute $A^{10}$ applied to the $W_2$ component.</li>
+<li>(Construction.) In $\mathbb{R}^3$ find the matrix of the projection on the line $\operatorname{span}(1,2,0)$ along the plane $x+y+z=0$. Check $E^2=E$ and compute the trace.</li>
+<li>(Converse in characteristic zero.) Let $\dim V$ be finite, let $F$ have characteristic $0$, and let $E_1,\dots,E_k$ be projections with $E_1+\cdots+E_k=I$. Prove that $E_iE_j=0$ for $i\ne j$. Where is characteristic $0$ used?</li>
+<li>(Trace and rank.) List all projections on $\mathbb{F}_2^2$, and show that the trace of each equals its rank only modulo $2$.</li>
+<li>(Polynomials.) Let $T$ be the direct sum of $T_1,\dots,T_k$ on a finite-dimensional space. Show that $p(T)$ is the direct sum of the $p(T_i)$ for every polynomial $p$, and deduce that the minimal polynomial of $T$ is the least common multiple of those of the $T_i$. Apply this to the running example.</li>
+<li>(A projection on a matrix space.) On $\mathbb{Q}^{2\times2}$ let $\Sigma(M)=\tfrac12(M+M^{\mathsf T})$. Show that $\Sigma$ is a projection, describe its range and null space, and find its matrix in the basis $(E_{11},E_{12},E_{21},E_{22})$ of matrix units, together with its trace.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>From $E_2(x,y,z)=(x+y-z)(1,1,1)$ the $W_2$ component of $(1,2,5)$ is $(1+2-5)(1,1,1)=(-2,-2,-2)$. The $W_1$ component is $(1,2,5)-(-2,-2,-2)=(3,4,7)$, and $3+4-7=0$ confirms that it lies in $W_1$. Since $(-2,-2,-2)=-2p_3$ is an eigenvector for $3$, $A^{10}$ multiplies it by $3^{10}=59049$, giving $(-118098,-118098,-118098)$.</p>
+</li>
+<li>
+<p>A vector $v=(x,y,z)$ must be written as $t(1,2,0)+n$ with $n$ in the plane. Applying the linear functional $x+y+z$ gives $x+y+z=3t$, because it vanishes on $n$. So $Ev=\frac{x+y+z}{3}(1,2,0)$, and</p>
+</li>
+</ol>
+<p>$$E=\frac13\begin{pmatrix}1&amp;1&amp;1\\2&amp;2&amp;2\\0&amp;0&amp;0\end{pmatrix}.$$</p>
+<p>Since $E(1,2,0)=\frac{3}{3}(1,2,0)=(1,2,0)$, we get $E^2v=Ev$ for every $v$. The trace is $\frac13+\frac23+0=1$, the rank. The complement is the plane, and the line is not perpendicular to it, so $E$ is not symmetric.</p>
+<ol start="3">
+<li>
+<p>Let $R_i=\operatorname{im}E_i$. From $I=\sum E_i$ every $\alpha$ is $\sum E_i\alpha$, so $V=R_1+\cdots+R_k$. Taking traces, $\operatorname{tr}I=\sum\operatorname{tr}E_i$. By Section 4, $\operatorname{tr}E_i$ is $\dim R_i$ copies of $1$, and $\operatorname{tr}I$ is $\dim V$ copies of $1$. In characteristic $0$ distinct integers stay distinct in $F$, so $\dim V=\sum\dim R_i$ as integers. By Lemma 1.2(d) the sum $V=R_1\oplus\cdots\oplus R_k$ is direct. Now take $\beta\in V$. The vector $E_j\beta$ lies in $R_j$ and has the two expressions $E_j\beta=\sum_iE_i(E_j\beta)$ and $E_j\beta$ alone in the $j$th place. By uniqueness in a direct sum, $E_i(E_j\beta)=0$ for $i\ne j$. Characteristic $0$ was used to turn an equality in $F$ into an equality of dimensions. In characteristic $2$ the three copies of $I$ on $\mathbb{F}_2^2$ give $\sum\dim R_i=6$, which agrees with $\dim V=2$ only modulo $2$.</p>
+</li>
+<li>
+<p>By Theorem 3.3 a projection is fixed by a decomposition $\mathbb{F}_2^2=R\oplus N$. Rank $0$ gives $0$, rank $2$ gives $I$. For rank $1$, $R$ and $N$ are two different lines. The space has three lines, spanned by $(1,0)$, $(0,1)$, $(1,1)$, so there are $3\cdot2=6$ ordered pairs, hence six projections of rank $1$, and eight projections in all. The trace of $0$ is $0$, matching rank $0$. A rank-$1$ projection is similar to $\operatorname{diag}(1,0)$ and has trace $1$, matching rank $1$. The identity has trace $1+1=0$ but rank $2$. So the trace equals the rank modulo $2$ in every case, and not as integers.</p>
+</li>
+<li>
+<p>Each $W_i$ is invariant under $T$, hence under every power and every polynomial in $T$, and $p(T)\alpha=p(T_i)\alpha$ for $\alpha\in W_i$. So $p(T)$ is the direct sum of the $p(T_i)$. A direct sum of operators is zero exactly when every summand is zero. Hence $p(T)=0$ if and only if each minimal polynomial $m_{T_i}$ divides $p$, that is, if and only if their least common multiple divides $p$. So $m_T=\operatorname{lcm}(m_{T_1},\dots,m_{T_k})$. In the running example the block $\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix}$ has minimal polynomial $(x-2)^2$, since subtracting $2I$ leaves a nonzero matrix with zero square. The block $(3)$ has $x-3$. Therefore $m_A=(x-2)^2(x-3)$.</p>
+</li>
+<li>
+<p>$\Sigma$ is linear. Its values are symmetric, and $\Sigma M=M$ for symmetric $M$, so $\Sigma^2=\Sigma$. The range is the space of symmetric matrices, of dimension $3$. The null space is $\{M:M^{\mathsf T}=-M\}$, the skew-symmetric matrices, of dimension $1$. On the matrix units, $\Sigma E_{11}=E_{11}$, $\Sigma E_{22}=E_{22}$ and $\Sigma E_{12}=\Sigma E_{21}=\tfrac12(E_{12}+E_{21})$. The matrix is</p>
+</li>
+</ol>
+<p>$$\begin{pmatrix}1&amp;0&amp;0&amp;0\\0&amp;1/2&amp;1/2&amp;0\\0&amp;1/2&amp;1/2&amp;0\\0&amp;0&amp;0&amp;1\end{pmatrix},$$</p>
+<p>with trace $1+\tfrac12+\tfrac12+1=3$, equal to the rank as Section 4 requires.</p>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, the chapter on elementary canonical forms.</li>
+<li>Steven Roman, <em>Advanced Linear Algebra</em>, 3rd ed., Springer GTM 135, the chapter on direct sums.</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., open access at https://linear.axler.net/, the chapter on vector spaces.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch17.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 17 laboratory: direct sums and projections.
+
+Exact arithmetic over Q (fractions.Fraction).  A matrix is a list of
+rows; a vector is a list.  The routines implement the chapter model:
+independence of subspaces by rank and by the criterion
+W_j meets W_1 + ... + W_{j-1} only in 0; the projection E onto R along
+N built from two bases; the projections E_j of a direct sum; and the
+block-diagonal matrix of an operator with invariant summands.
+Subspaces are given by lists of spanning vectors.
+&quot;&quot;&quot;
+from fractions import Fraction
+from itertools import product
+
+
+def Q(rows):
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def identity(n):
+    return [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def matmul(A, B):
+    return [[sum((A[i][k] * B[k][j] for k in range(len(B))), Fraction(0))
+             for j in range(len(B[0]))] for i in range(len(A))]
+
+
+def transpose(A):
+    return [list(col) for col in zip(*A)]
+
+
+def madd(A, B):
+    return [[x + y for x, y in zip(r, s)] for r, s in zip(A, B)]
+
+
+def msub(A, B):
+    return [[x - y for x, y in zip(r, s)] for r, s in zip(A, B)]
+
+
+def mscale(c, A):
+    return [[c * x for x in row] for row in A]
+
+
+def trace(A):
+    return sum((A[i][i] for i in range(len(A))), Fraction(0))
+
+
+def rref(A):
+    &quot;&quot;&quot;Reduced row echelon form and pivot columns, exact.&quot;&quot;&quot;
+    R = [row[:] for row in A]
+    pivots, r = [], 0
+    for c in range(len(R[0]) if R else 0):
+        p = next((i for i in range(r, len(R)) if R[i][c] != 0), None)
+        if p is None:
+            continue
+        R[r], R[p] = R[p], R[r]
+        R[r] = [x / R[r][c] for x in R[r]]
+        for i in range(len(R)):
+            if i != r and R[i][c] != 0:
+                R[i] = [x - R[i][c] * y for x, y in zip(R[i], R[r])]
+        pivots.append(c)
+        r += 1
+    return R, pivots
+
+
+def rank(A):
+    return len(rref(A)[1]) if A and A[0] else 0
+
+
+def nullspace(A):
+    &quot;&quot;&quot;Basis of {x : A x = 0}.&quot;&quot;&quot;
+    R, piv = rref(A)
+    n = len(A[0])
+    basis = []
+    for f in (c for c in range(n) if c not in piv):
+        x = [Fraction(0)] * n
+        x[f] = Fraction(1)
+        for row, p in zip(R, piv):
+            x[p] = -row[f]
+        basis.append(x)
+    return basis
+
+
+def inverse(A):
+    n = len(A)
+    aug = [row + e for row, e in zip(A, identity(n))]
+    R, piv = rref(aug)
+    assert piv[:n] == list(range(n)), &#x27;matrix is not invertible&#x27;
+    return [row[n:] for row in R]
+
+
+def span_dim(vectors):
+    &quot;&quot;&quot;Dimension of the span of a list of vectors.&quot;&quot;&quot;
+    return rank(vectors) if vectors else 0
+
+
+def independent_by_rank(bases):
+    &quot;&quot;&quot;Criterion (c): the concatenated bases are linearly independent.&quot;&quot;&quot;
+    flat = [v for B in bases for v in B]
+    return span_dim(flat) == len(flat)
+
+
+def independent_by_intersections(spans):
+    &quot;&quot;&quot;Criterion (b): dim(W_j meets W_1+...+W_{j-1}) = 0 for every j.
+
+    Uses dim(U meets S) = dim U + dim S - dim(U + S).
+    &quot;&quot;&quot;
+    for j in range(1, len(spans)):
+        S = [v for W in spans[:j] for v in W]
+        meet = span_dim(spans[j]) + span_dim(S) - span_dim(spans[j] + S)
+        if meet != 0:
+            return False
+    return True
+
+
+def projection(range_basis, null_basis):
+    &quot;&quot;&quot;E with E = identity on span(range_basis), E = 0 on span(null_basis).
+
+    E = P diag(I_r, 0) P^{-1}, with the vectors as columns of P.
+    &quot;&quot;&quot;
+    cols = range_basis + null_basis
+    n = len(cols)
+    P = transpose(cols)
+    D = [[Fraction(int(i == j and i &lt; len(range_basis)))
+          for j in range(n)] for i in range(n)]
+    return matmul(matmul(P, D), inverse(P))
+
+
+def apply(A, v):
+    return [sum((a * x for a, x in zip(row, v)), Fraction(0)) for row in A]
+
+
+def column_space_basis(A):
+    R, piv = rref(transpose(A))
+    return R[:len(piv)]
+
+
+def show(M):
+    return &#x27;[&#x27; + &#x27;; &#x27;.join(&#x27; &#x27;.join(str(x) for x in row)
+                           for row in M) + &#x27;]&#x27;
+
+
+I3 = identity(3)
+Z3 = [[Fraction(0)] * 3 for _ in range(3)]
+
+# 1. Pairwise zero intersection is not independence (three lines in Q^2).
+l1, l2, l3 = Q([[1, 0]])[0], Q([[0, 1]])[0], Q([[1, 1]])[0]
+for a, b in ((l1, l2), (l1, l3), (l2, l3)):
+    assert span_dim([a, b]) == 2          # each pair meets only in 0
+assert not independent_by_rank([[l1], [l2], [l3]])
+assert not independent_by_intersections([[l1], [l2], [l3]])
+assert l1[0] + l2[0] - l3[0] == 0 and l1[1] + l2[1] - l3[1] == 0
+print(&#x27;three lines in Q^2: pairwise zero intersection, not independent&#x27;)
+
+# 2. The running example: V = Q^3, W1 = span(p1, p2), W2 = span(p3).
+p1, p2, p3 = Q([[1, 0, 1]])[0], Q([[0, 1, 1]])[0], Q([[1, 1, 1]])[0]
+P = transpose([p1, p2, p3])
+Pinv = inverse(P)
+assert Pinv == Q([[0, -1, 1], [-1, 0, 1], [1, 1, -1]])
+assert independent_by_rank([[p1, p2], [p3]])
+assert independent_by_intersections([[p1, p2], [p3]])
+E1 = projection([p1, p2], [p3])
+E2 = projection([p3], [p1, p2])
+assert E2 == Q([[1, 1, -1], [1, 1, -1], [1, 1, -1]])
+assert E1 == Q([[0, -1, 1], [-1, 0, 1], [-1, -1, 2]])
+assert matmul(E1, E1) == E1 and matmul(E2, E2) == E2
+assert matmul(E1, E2) == Z3 and matmul(E2, E1) == Z3
+assert madd(E1, E2) == I3
+assert rank(E1) == 2 and rank(E2) == 1
+assert trace(E1) == 2 and trace(E2) == 1      # trace = rank
+assert apply(E2, p3) == p3 and apply(E2, p1) == [0, 0, 0]
+print(&#x27;E1 =&#x27;, show(E1))
+print(&#x27;E2 =&#x27;, show(E2))
+print(&#x27;E1 + E2 = I, E1 E2 = E2 E1 = 0, ranks 2 and 1, traces 2 and 1&#x27;)
+
+# E2 is not an orthogonal projection: it is not symmetric.
+assert transpose(E2) != E2
+# Null space of E2 is the plane x + y - z = 0 and equals W1.
+assert [r[:] for r in nullspace(E2)] != [] and span_dim(
+    nullspace(E2) + [p1, p2]) == 2
+# Range of E1 = null space of E2 (the complement rule).
+assert span_dim(column_space_basis(E1) + [p1, p2]) == 2
+
+# 3. The operator A with invariant summands W1 and W2.
+A = Q([[2, 1, 0], [1, 3, -1], [0, 1, 2]])
+assert apply(A, p1) == [2 * x for x in p1]
+assert apply(A, p2) == [x + 2 * y for x, y in zip(p1, p2)]
+assert apply(A, p3) == [3 * x for x in p3]
+B = matmul(matmul(Pinv, A), P)
+assert B == Q([[2, 1, 0], [0, 2, 0], [0, 0, 3]])
+assert matmul(A, E1) == matmul(E1, A) and matmul(A, E2) == matmul(E2, A)
+assert madd(matmul(A, E1), matmul(A, E2)) == A     # T = T E1 + T E2
+print(&#x27;P^{-1} A P =&#x27;, show(B))
+
+# A is not diagonalizable: eigenspaces E_2, E_3 have dimension 1 each.
+dim2 = len(nullspace(msub(A, mscale(Fraction(2), I3))))
+dim3 = len(nullspace(msub(A, mscale(Fraction(3), I3))))
+assert (dim2, dim3) == (1, 1)
+# The sum of the eigenspaces is direct but is a proper subspace.
+e2 = nullspace(msub(A, mscale(Fraction(2), I3)))
+e3 = nullspace(msub(A, mscale(Fraction(3), I3)))
+assert independent_by_rank([e2, e3]) and dim2 + dim3 &lt; 3
+# The invariant plane W1 is the kernel of (A - 2I)^2.
+M2 = msub(A, mscale(Fraction(2), I3))
+K = nullspace(matmul(M2, M2))
+assert len(K) == 2 and span_dim(K + [p1, p2]) == 2
+print(&#x27;dim E_2 = 1, dim E_3 = 1; ker (A - 2I)^2 = W1 has dimension 2&#x27;)
+
+# 4. A complement that is not invariant: W3 = span(e1).
+e1 = Q([[1, 0, 0]])[0]
+assert independent_by_rank([[p1, p2], [e1]])
+E3 = projection([e1], [p1, p2])
+assert E3 == Q([[1, 1, -1], [0, 0, 0], [0, 0, 0]])
+assert matmul(A, E3) != matmul(E3, A)
+assert apply(A, e1) == [2, 1, 0]
+print(&#x27;span(e1) is not A-invariant: A e1 = (2, 1, 0); A E != E A&#x27;)
+
+# 5. The two-dimensional example: range (1,-1), null space (1,2).
+E = projection([Q([[1, -1]])[0]], [Q([[1, 2]])[0]])
+assert E == Q([[Fraction(2, 3), Fraction(-1, 3)],
+               [Fraction(-2, 3), Fraction(1, 3)]])
+assert matmul(E, E) == E and rank(E) == 1
+assert apply(E, Q([[1, 2]])[0]) == [0, 0]
+assert apply(E, Q([[1, -1]])[0]) == Q([[1, -1]])[0]
+print(&#x27;lecture example E =&#x27;, show(E))
+
+# 6. Matrix of a projection in an adapted basis: diag(I_r, 0).
+assert matmul(matmul(Pinv, E1), P) == Q([[1, 0, 0], [0, 1, 0], [0, 0, 0]])
+
+# 7. Symmetric + skew-symmetric in M_3(Q): dimensions 6 and 3.
+n = 3
+
+
+def unit(i, j):
+    v = [Fraction(0)] * (n * n)
+    v[i * n + j] = Fraction(1)
+    return v
+
+
+sym = [[x + y for x, y in zip(unit(i, j), unit(j, i))]
+       for i in range(n) for j in range(i, n)]
+sym = [[x / 2 if i == j else x for x in v] for v, (i, j)
+       in zip(sym, [(i, j) for i in range(n) for j in range(i, n)])]
+skew = [[x - y for x, y in zip(unit(i, j), unit(j, i))]
+        for i in range(n) for j in range(i + 1, n)]
+assert (len(sym), len(skew)) == (6, 3)
+assert independent_by_rank([sym, skew]) and span_dim(sym + skew) == 9
+Mx = Q([[1, 2, 3], [4, 5, 6], [7, 8, 10]])
+S = mscale(Fraction(1, 2), madd(Mx, transpose(Mx)))
+K_ = mscale(Fraction(1, 2), msub(Mx, transpose(Mx)))
+assert S == Q([[1, 3, 5], [3, 5, 7], [5, 7, 10]])
+assert K_ == Q([[0, -1, -2], [1, 0, -1], [2, 1, 0]])
+assert madd(S, K_) == Mx and transpose(S) == S
+assert transpose(K_) == mscale(Fraction(-1), K_)
+print(&#x27;M = S + K with S =&#x27;, show(S), &#x27;and K =&#x27;, show(K_))
+
+# 8. Exercise 6: projection M -&gt; (M + M^T)/2 on M_2(Q), basis E11,E12,E21,E22.
+m = 2
+cols = []
+for idx in range(m * m):
+    Eij = [[Fraction(int(r * m + c == idx)) for c in range(m)]
+           for r in range(m)]
+    img = mscale(Fraction(1, 2), madd(Eij, transpose(Eij)))
+    cols.append([x for row in img for x in row])
+TS = transpose(cols)
+assert TS == Q([[1, 0, 0, 0],
+                [0, Fraction(1, 2), Fraction(1, 2), 0],
+                [0, Fraction(1, 2), Fraction(1, 2), 0],
+                [0, 0, 0, 1]])
+assert matmul(TS, TS) == TS and trace(TS) == 3 and rank(TS) == 3
+print(&#x27;symmetrizer on M_2: trace 3 = rank 3&#x27;)
+
+# 9. Exercise 2: R^3, range span(1,2,0), null plane x + y + z = 0.
+r_, n1, n2 = (Q([[1, 2, 0]])[0], Q([[1, -1, 0]])[0], Q([[0, 1, -1]])[0])
+Ex = projection([r_], [n1, n2])
+third = Fraction(1, 3)
+assert Ex == Q([[third, third, third], [2 * third] * 3, [0, 0, 0]])
+assert matmul(Ex, Ex) == Ex and trace(Ex) == 1
+print(&#x27;exercise 2: E =&#x27;, show(Ex))
+
+# 10. Characteristic 2: three copies of I on F_2^2.  E_j^2 = E_j and
+# E1 + E2 + E3 = 3 I = I, yet E_i E_j = I != 0 and V is not their direct
+# sum (3 * 2 = 6 &gt; 2 = dim V).
+I2 = [[1, 0], [0, 1]]
+tot = [[(3 * I2[i][j]) % 2 for j in range(2)] for i in range(2)]
+assert tot == I2 and I2 != [[0, 0], [0, 0]]
+assert 3 * 2 &gt; 2
+# Over Q the same three matrices give 3 I != I.
+assert mscale(Fraction(3), identity(2)) != identity(2)
+print(&#x27;over F_2: I + I + I = I with I*I != 0; trace argument needs char 0&#x27;)
+
+# 11. Exercise 4: every projection on F_2^2; trace = rank mod 2.
+vecs = list(product(range(2), repeat=2))
+found = []
+for e in product(range(2), repeat=4):
+    M = [[e[0], e[1]], [e[2], e[3]]]
+    M2_ = [[(M[i][0] * M[0][j] + M[i][1] * M[1][j]) % 2 for j in range(2)]
+           for i in range(2)]
+    if M2_ == M:
+        image = {tuple((r[0] * v[0] + r[1] * v[1]) % 2 for r in M)
+                 for v in vecs}
+        rk = {1: 0, 2: 1, 4: 2}[len(image)]
+        tr = (M[0][0] + M[1][1]) % 2
+        assert tr == rk % 2
+        found.append(rk)
+assert sorted(found) == [0] + [1] * 6 + [2]
+print(&#x27;projections on F_2^2: 8 (I has trace 0 but rank 2)&#x27;)
+
+# Exercise 1: components of (1, 2, 5), and A^10 on the W2 part.
+v = Q([[1, 2, 5]])[0]
+v2 = apply(E2, v)
+assert v2 == [-2, -2, -2] and apply(E1, v) == [3, 4, 7]
+for _ in range(10):
+    v2 = apply(A, v2)
+assert v2 == [-118098] * 3
+assert apply(E2, Q([[3, 1, 2]])[0]) == [2, 2, 2]
+assert apply(E1, Q([[3, 1, 2]])[0]) == [1, -1, 0]
+print(&#x27;exercise 1: components (3,4,7) and (-2,-2,-2); A^10 -&gt; -118098&#x27;)
+
+# 12. Exercise 5: p(A) acts block by block; m_A = lcm of block minimals.
+# On W1 the block is [[2,1],[0,2]] with minimal polynomial (x-2)^2; on
+# W2 it is [3] with minimal polynomial x-3.  So m_A = (x-2)^2 (x-3).
+M2x = msub(A, mscale(Fraction(2), I3))
+M3x = msub(A, mscale(Fraction(3), I3))
+assert matmul(matmul(M2x, M2x), M3x) == Z3
+assert matmul(M2x, M3x) != Z3 and matmul(M2x, M2x) != Z3
+print(&#x27;m_A = (x-2)^2 (x-3): annihilates A, no proper divisor does&#x27;)
+print(&#x27;all checks passed&#x27;)
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch16.html">Previous: Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a rel="next" href="ch18.html">Next: Invariant direct sums and block-diagonal operators</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

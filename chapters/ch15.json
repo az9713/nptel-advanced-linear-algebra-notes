@@ -1,0 +1,15 @@
+{
+  "title": "Invariant subspaces, conductors, and triangulability",
+  "lectures": [
+    30,
+    31
+  ],
+  "objectives": [
+    "Test invariance of a subspace and read the resulting block form",
+    "Relate the polynomials of a restriction to those of the operator",
+    "Compute conductors into invariant subspaces and prove their properties",
+    "Use the linear-conductor lemma and the flag form of triangularity"
+  ],
+  "prerequisites": "Bases, matrices of operators, eigenvalues, determinants, the minimal polynomial and the Cayley-Hamilton theorem (Chapters 4 to 14).",
+  "source_scope": "Read: the stored caption texts at positions 30 and 31. The stored text at position 30 duplicates the transpose lecture at position 23, so the invariant-subspace topics of that recording were taken from YouTube's automatic English captions for the same video. The running example, extended proofs, laboratory and exercises are original."
+}

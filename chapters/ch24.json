@@ -1,0 +1,17 @@
+{
+  "title": "Inner-product-space isomorphisms and unitary operators",
+  "lectures": [
+    52,
+    53,
+    55,
+    54
+  ],
+  "objectives": [
+    "Characterize isomorphisms of inner product spaces",
+    "Relate unitary operators to adjoints and unitary matrices",
+    "Factor an invertible matrix into triangular and unitary factors",
+    "Derive the necessary conditions for an orthonormal eigenbasis"
+  ],
+  "prerequisites": "Gram-Schmidt (Chapter 21) and adjoint operators (Chapter 23).",
+  "source_scope": "The captions of the four recordings (positions 52, 53, 55 and 54) were read in full. The weighted function-space example, matrix cases and the three-dimensional factorization family come from them; the running matrix, shift example, Schur consequence, laboratory and exercises are original."
+}

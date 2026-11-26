@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Linear transformations, null space, range, and the rank-nullity theorem · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html" aria-current=page>07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>07. Linear transformations, null space, range, and the rank-nullity theorem</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=Pwk7p8WiCh0">Recording 12</a>, <a href="https://www.youtube.com/watch?v=VzuJgqY-ORo">Recording 13</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Verify linearity and compute range and null space</li><li>Define a linear map by its values on a basis and test other prescriptions</li><li>Prove the rank-nullity theorem and its consequences</li><li>Deduce that row rank equals column rank</li></ul>
+<p><strong>Prerequisites:</strong> Chapters 2, 4 and 6: echelon forms, bases, dimension and row space.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch07.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-definition-0025">1. Definition 00:25</a></li><li><a href="#2-examples-0458">2. Examples 04:58</a></li><li><a href="#3-range-and-null-space-1553">3. Range and null space 15:53</a></li><li><a href="#4-a-linear-map-is-fixed-by-its-values-on-a-basis-2211">4. A linear map is fixed by its values on a basis 22:11</a></li><li><a href="#5-the-rank-nullity-theorem-0438">5. The rank-nullity theorem 04:38</a></li><li><a href="#6-rank-of-a-matrix-row-rank-equals-column-rank-2000">6. Rank of a matrix: row rank equals column rank 20:00</a></li><li><a href="#7-the-running-example-2944">7. The running example 29:44</a></li><li><a href="#8-executable-check">8. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Consider the map $T:\mathbb{Q}^3\to\mathbb{Q}^3$ given by</p>
+<p>$$
+T(x_1,x_2,x_3)=(x_1-x_2+2x_3,\;2x_1+x_2,\;-x_1-2x_2+2x_3).
+$$</p>
+<p>It is the running example of this chapter. Two questions about it control everything we may wish to do with it. Which outputs $(a,b,c)$ can occur? Which different inputs give the same output? The first question asks for the <em>range</em>, the second leads to the <em>null space</em>, the set of inputs sent to zero. They are linked: for this map the outputs form a plane (two dimensions), the inputs sent to zero form a line (one dimension), and $2+1=3$, the dimension of the input space. This is no accident. The <em>rank-nullity theorem</em> says that every linear map from a finite-dimensional space satisfies the same equation. This chapter defines linear maps, shows how freely they can be prescribed on a basis, proves the theorem, and draws from it the equality of the row rank and the column rank of a matrix.</p>
+<p>Throughout, $F$ is a field and $V,W$ are vector spaces over $F$. We write $\mathbf{0}_V$ and $\mathbf{0}_W$ for their zero vectors. Basis, dimension and coordinates are as in <a href="ch04.html">Chapter 4</a>.</p>
+<h2 id="1-definition-0025">1. Definition <a href="https://www.youtube.com/watch?v=Pwk7p8WiCh0&amp;t=25s">00:25</a></h2>
+<p><strong>Definition 1.1.</strong> A function $T:V\to W$ is a <em>linear transformation</em> (or <em>linear map</em>) if</p>
+<p>$$
+T(c\alpha+\beta)=cT\alpha+T\beta\qquad\text{for all }\alpha,\beta\in V,\ c\in F.\tag{1.1}
+$$</p>
+<p>On the left, the addition and scalar multiplication are those of $V$; on the right, those of $W$. The two spaces must be over the same field $F$, because the same scalar $c$ appears on both sides. We write $T\alpha$ for $T(\alpha)$. A linear map from $V$ to itself is a <em>linear operator</em> on $V$.</p>
+<p>Taking $c=1$ in (1.1) gives additivity, $T(\alpha+\beta)=T\alpha+T\beta$. Additivity with $\alpha=\beta=\mathbf{0}_V$ gives $T\mathbf{0}_V=T\mathbf{0}_V+T\mathbf{0}_V$, and cancelling gives $T\mathbf{0}_V=\mathbf{0}_W$. Then $\beta=\mathbf{0}_V$ in (1.1) gives homogeneity, $T(c\alpha)=cT\alpha$. Conversely additivity and homogeneity together give (1.1). By induction on $k$,</p>
+<p>$$
+T\Big(\sum_{i=1}^kc_i\alpha_i\Big)=\sum_{i=1}^kc_iT\alpha_i .\tag{1.2}
+$$</p>
+<p>So a linear map carries linear combinations to the same combinations of images. Note that $\mathbf{0}_V$ and $\mathbf{0}_W$ need not be the same object: a map from $F^3$ to $F^2$ sends the zero triple to the zero pair.</p>
+<h2 id="2-examples-0458">2. Examples <a href="https://www.youtube.com/watch?v=Pwk7p8WiCh0&amp;t=298s">04:58</a></h2>
+<p><strong>Identity and zero.</strong> The identity $I\alpha=\alpha$ on $V$ and the zero map $\alpha\mapsto\mathbf{0}_W$ are linear.</p>
+<p><strong>Matrix maps.</strong> Let $A\in F^{m\times n}$ and define $T_A:F^n\to F^m$ by $T_AX=AX$, with $F^n$ the columns of length $n$. Matrix multiplication distributes over sums and commutes with scalars, so $A(cX_1+X_2)=cAX_1+AX_2$. The running example is $T=T_A$ with</p>
+<p>$$
+A=\begin{pmatrix}1&amp;-1&amp;2\\2&amp;1&amp;0\\-1&amp;-2&amp;2\end{pmatrix}.
+$$</p>
+<p><strong>Integration.</strong> Let $V$ be the space of continuous real-valued functions on $\mathbb{R}$, which is infinite-dimensional, and let $(Tf)(x)=\int_0^xf(t)\,dt$. The function $Tf$ is again continuous, so $T:V\to V$. Linearity of the integral gives $T(cf+g)=cTf+Tg$.</p>
+<p><strong>Non-examples.</strong> The map $x\mapsto Ax+b$ with $b\neq0$ is not linear, because it sends $0$ to $b\neq0$. The map $(x_1,x_2)\mapsto x_1x_2$ sends $0$ to $0$ but is not linear: it sends $(1,1)$ to $1$ and $(2,2)$ to $4\neq2$.</p>
+<h2 id="3-range-and-null-space-1553">3. Range and null space <a href="https://www.youtube.com/watch?v=Pwk7p8WiCh0&amp;t=953s">15:53</a></h2>
+<p><strong>Definition 3.1.</strong> For a linear $T:V\to W$, the <em>range</em> is $\operatorname{im}T=\{T\alpha:\alpha\in V\}\subseteq W$ and the <em>null space</em> (or <em>kernel</em>) is $\ker T=\{\alpha\in V:T\alpha=\mathbf{0}_W\}\subseteq V$. When $\operatorname{im}T$ is finite-dimensional, $\operatorname{rank}T=\dim\operatorname{im}T$; when $\ker T$ is finite-dimensional, $\operatorname{nullity}T=\dim\ker T$.</p>
+<p><strong>Theorem 3.2.</strong> $\operatorname{im}T$ is a subspace of $W$ and $\ker T$ is a subspace of $V$.</p>
+<p><strong>Proof.</strong> Both contain zero. If $w_1=T\alpha_1$ and $w_2=T\alpha_2$, then $cw_1+w_2=T(c\alpha_1+\alpha_2)$ lies in the range. If $T\alpha_1=T\alpha_2=\mathbf{0}$, then $T(c\alpha_1+\alpha_2)=c\mathbf{0}+\mathbf{0}=\mathbf{0}$. $\square$</p>
+<p><strong>Proposition 3.3.</strong> $T$ is injective (different inputs give different outputs) if and only if $\ker T=\{\mathbf{0}\}$. More generally, if $T\alpha_0=\beta$, then the solutions of $T\alpha=\beta$ are exactly the vectors $\alpha_0+\gamma$ with $\gamma\in\ker T$.</p>
+<p><strong>Proof.</strong> $T\alpha=\beta=T\alpha_0$ holds exactly when $T(\alpha-\alpha_0)=\mathbf{0}$. This is the second claim. If the kernel is zero, the solution of $T\alpha=T\alpha_0$ is $\alpha_0$ alone, which is injectivity. If the kernel contains $\gamma\neq\mathbf{0}$, then $T\gamma=T\mathbf{0}$. $\square$</p>
+<p>Proposition 3.3 answers the second question of the opening: two inputs give the same output exactly when their difference lies in the null space.</p>
+<h2 id="4-a-linear-map-is-fixed-by-its-values-on-a-basis-2211">4. A linear map is fixed by its values on a basis <a href="https://www.youtube.com/watch?v=Pwk7p8WiCh0&amp;t=1331s">22:11</a></h2>
+<p><strong>Theorem 4.1.</strong> Let $V$ be finite-dimensional with ordered basis $(\alpha_1,\dots,\alpha_n)$, let $W$ be any vector space over $F$, and let $\beta_1,\dots,\beta_n\in W$ be arbitrary. There is exactly one linear map $T:V\to W$ with $T\alpha_i=\beta_i$ for all $i$.</p>
+<p><strong>Proof.</strong> <em>Existence.</em> Each $\alpha\in V$ has unique coordinates: $\alpha=\sum c_i\alpha_i$. Define $T\alpha=\sum c_i\beta_i$. Uniqueness of the coordinates makes this a well-defined function. If $\gamma=\sum d_i\alpha_i$, then $c\alpha+\gamma=\sum(cc_i+d_i)\alpha_i$, so</p>
+<p>$$
+T(c\alpha+\gamma)=\sum(cc_i+d_i)\beta_i=c\sum c_i\beta_i+\sum d_i\beta_i=cT\alpha+T\gamma .
+$$</p>
+<p>Taking $\alpha=\alpha_i$ gives $T\alpha_i=\beta_i$.</p>
+<p><em>Uniqueness.</em> Let $U:V\to W$ be linear with $U\alpha_i=\beta_i$. By (1.2), $U\big(\sum c_i\alpha_i\big)=\sum c_i\beta_i=T\big(\sum c_i\alpha_i\big)$. So $U=T$. $\square$</p>
+<p>The hinge is uniqueness of coordinates, which makes the definition legitimate. The vectors $\beta_i$ are completely free: they may be dependent, equal or zero, and $W$ may be infinite-dimensional.</p>
+<p><strong>When the given vectors are not a basis</strong> <a href="https://www.youtube.com/watch?v=VzuJgqY-ORo&amp;t=25s">00:25</a>. Is there a linear $T:\mathbb{R}^2\to\mathbb{R}^3$ with $T(1,1)=(1,1,0)$, $T(0,1)=(0,1,1)$ and $T(1,0)=(1,2,1)$? The first two inputs form a basis, so Theorem 4.1 gives exactly one $T$ with the first two values. But $(1,0)=(1,1)-(0,1)$, and linearity forces $T(1,0)=(1,1,0)-(0,1,1)=(1,0,-1)$. This is not $(1,2,1)$. No such $T$ exists. In general, prescribed values on a spanning list define a linear map exactly when every relation among the inputs also holds among the prescribed outputs.</p>
+<p><strong>Proposition 4.2.</strong> Let $\gamma_1,\dots,\gamma_k$ span $V$ and let $\beta_1,\dots,\beta_k\in W$. A linear $T$ with $T\gamma_i=\beta_i$ exists if and only if $\sum c_i\gamma_i=\mathbf{0}$ implies $\sum c_i\beta_i=\mathbf{0}$. It is then unique.</p>
+<p><strong>Proof.</strong> Necessity follows from (1.2) and $T\mathbf{0}=\mathbf{0}$. For sufficiency, define $T\big(\sum c_i\gamma_i\big)=\sum c_i\beta_i$. Two expressions of the same vector differ by a relation, so the condition makes $T$ well defined, and linearity follows as in Theorem 4.1. Uniqueness holds because the $\gamma_i$ span. $\square$</p>
+<h2 id="5-the-rank-nullity-theorem-0438">5. The rank-nullity theorem <a href="https://www.youtube.com/watch?v=VzuJgqY-ORo&amp;t=278s">04:38</a></h2>
+<p><strong>Theorem 5.1 (rank-nullity).</strong> Let $T:V\to W$ be linear with $\dim V=n$ finite. Then $\operatorname{im}T$ and $\ker T$ are finite-dimensional and</p>
+<p>$$
+\operatorname{rank}T+\operatorname{nullity}T=n .
+$$</p>
+<p>No assumption is made on $\dim W$.</p>
+<p><strong>Proof.</strong> $\ker T$ is a subspace of $V$, so it has a finite basis $(\alpha_1,\dots,\alpha_k)$ with $k\le n$. Extend it to a basis $(\alpha_1,\dots,\alpha_n)$ of $V$ (<a href="ch04.html">Chapter 4</a>). We show that $(T\alpha_{k+1},\dots,T\alpha_n)$ is a basis of $\operatorname{im}T$.</p>
+<p><em>Spanning.</em> Every element of the range is $T\alpha=T\big(\sum_{i=1}^nc_i\alpha_i\big)=\sum_{i=1}^nc_iT\alpha_i$, and $T\alpha_i=\mathbf{0}$ for $i\le k$. So $T\alpha=\sum_{i\gt k}c_iT\alpha_i$.</p>
+<p><em>Independence.</em> Suppose $\sum_{i\gt k}c_iT\alpha_i=\mathbf{0}$. By linearity $T\big(\sum_{i\gt k}c_i\alpha_i\big)=\mathbf{0}$, so $\sum_{i\gt k}c_i\alpha_i$ lies in $\ker T$. Hence there are $d_1,\dots,d_k$ with $\sum_{i\gt k}c_i\alpha_i=\sum_{i\le k}d_i\alpha_i$. This is a relation among the basis $(\alpha_1,\dots,\alpha_n)$, so all $c_i$ and all $d_i$ are zero.</p>
+<p>The range has a basis of $n-k$ elements, so $\operatorname{rank}T=n-\operatorname{nullity}T$. $\square$</p>
+<p>The hinge is the extension of a basis of the kernel. The extra vectors $\alpha_{k+1},\dots,\alpha_n$ span a subspace on which $T$ is injective, and its image is all of the range.</p>
+<p><strong>Corollary 5.2.</strong> Let $\dim V=\dim W=n$. A linear $T:V\to W$ is injective if and only if it is surjective (onto $W$).</p>
+<p><strong>Proof.</strong> $T$ is injective iff $\operatorname{nullity}T=0$ iff $\operatorname{rank}T=n$ iff $\operatorname{im}T=W$, since a subspace of $W$ with dimension $\dim W$ is $W$. $\square$</p>
+<p><strong>Boundary: infinite dimension.</strong> If $\dim V$ is infinite, the equation has no meaning as an equation between numbers, and the corollary fails. Let $V=\mathbb{Q}[x]$, the polynomials with rational coefficients, let $D$ be differentiation, and let $J$ be integration from $0$: $Jx^k=x^{k+1}/(k+1)$. Then $DJ=I$. So $D$ is surjective and $J$ is injective. But $D$ is not injective, since $D1=0$, and $J$ is not surjective, since every $Jp$ has zero constant term. Indeed $JD1=0\neq1$. The finiteness of $\dim V$ is used in the proof when we extend the basis of the kernel and count.</p>
+<h2 id="6-rank-of-a-matrix-row-rank-equals-column-rank-2000">6. Rank of a matrix: row rank equals column rank <a href="https://www.youtube.com/watch?v=VzuJgqY-ORo&amp;t=1200s">20:00</a></h2>
+<p>Let $A\in F^{m\times n}$. Its <em>row space</em> is the span of its rows in $F^n$, its <em>column space</em> the span of its columns $\beta_1,\dots,\beta_n$ in $F^m$. Their dimensions are the <em>row rank</em> and the <em>column rank</em> of $A$.</p>
+<p><strong>Theorem 6.1.</strong> The row rank of $A$ equals the column rank of $A$.</p>
+<p><strong>Proof.</strong> Consider $T_A:F^n\to F^m$. Since $AX=x_1\beta_1+\cdots+x_n\beta_n$, the range of $T_A$ is exactly the column space. So $\operatorname{rank}T_A$ is the column rank. The null space of $T_A$ is the solution space $S$ of $AX=0$. By Theorem 5.1,</p>
+<p>$$
+\text{column rank}+\dim S=n .
+$$</p>
+<p>Now let $R$ be the row-reduced echelon form of $A$ with $r$ nonzero rows. By <a href="ch06.html">Chapter 6</a>, $r$ is the row rank. By <a href="ch02.html">Chapter 2</a>, the solutions of $RX=0$, which are those of $AX=0$, are parametrized by $n-r$ free unknowns, and the basic solutions form a basis. So $\dim S=n-r$. Substituting, column rank $+(n-r)=n$, so the column rank equals $r$. $\square$</p>
+<p><a href="ch06.html">Chapter 6</a> proves the same equality by comparing column relations. The present proof shows it as a consequence of counting dimensions. The common value is the <em>rank</em> of $A$, and $\operatorname{rank}A=\operatorname{rank}T_A$. It follows that $\operatorname{rank}A=\operatorname{rank}A^{\mathsf T}$, where $A^{\mathsf T}$ is the transpose.</p>
+<h2 id="7-the-running-example-2944">7. The running example <a href="https://www.youtube.com/watch?v=VzuJgqY-ORo&amp;t=1784s">29:44</a></h2>
+<p><strong>Which vectors lie in the range?</strong> The vector $(a,b,c)$ lies in $\operatorname{im}T$ exactly when $AX=(a,b,c)^{\mathsf T}$ is solvable. Reduce the augmented matrix: $R_2\leftarrow R_2-2R_1$ gives $(0,3,-4\mid b-2a)$, and $R_3\leftarrow R_3+R_1$ gives $(0,-3,4\mid c+a)$. Adding the new row 2 to the new row 3 gives $(0,0,0\mid b+c-a)$. So the system is solvable exactly when</p>
+<p>$$
+a=b+c .
+$$</p>
+<p>The first two rows are independent, so $\operatorname{rank}T=2$. A basis of the range is formed by the first two columns of $A$, $(1,2,-1)$ and $(-1,1,-2)$, both of which satisfy $a=b+c$.</p>
+<p><strong>Which vectors lie in the null space?</strong> Solve $AX=0$: from the reduced rows, $x_1-x_2+2x_3=0$ and $3x_2-4x_3=0$. Taking $x_3=3$ gives $x_2=4$ and $x_1=-2$. So $\ker T$ is the line through $(-2,4,3)$, and $\operatorname{nullity}T=1$. Check: $T(-2,4,3)=(-2-4+6,\,-4+4,\,2-8+6)=(0,0,0)$.</p>
+<p>The theorem reads $2+1=3$. All inputs of the form $X+t(-2,4,3)$ have the same output.</p>
+<h2 id="8-executable-check">8. Executable check</h2>
+<p><a href="labs/ch07.py">The chapter laboratory</a> uses exact fractions. For the running example it computes the rank $2$, a null-space basis proportional to $(-2,4,3)$, the range basis and the condition $a-b-c=0$, and the row space. It verifies the rank-nullity theorem and the equality of row and column rank on 300 random matrices. It shows that the three prescribed values of Section 4 admit no linear map and that the forced value is $(1,0,-1)$, and checks $DJ=I$ and $JD\neq I$ on polynomials. These are finite checks; the proofs above are the general argument.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) Find the rank, nullity, a basis of the range and of the null space of $S:\mathbb{Q}^4\to\mathbb{Q}^3$, $S(x)=(x_1+x_2,\;x_2+x_3,\;x_1-x_3+x_4)$.</li>
+<li>(Existence.) For which values of $t\in\mathbb{Q}$ is there a linear $U:\mathbb{Q}^2\to\mathbb{Q}^2$ with $U(1,0)=(1,0)$, $U(0,1)=(0,1)$ and $U(2,3)=(2,t)$?</li>
+<li>(Dimension obstruction.) Show that there is no surjective linear map $\mathbb{Q}^2\to\mathbb{Q}^3$ and no injective linear map $\mathbb{Q}^3\to\mathbb{Q}^2$.</li>
+<li>(Field dependence.) Compute rank and nullity of $T_A$ for the running example over $\mathbb{F}_3$.</li>
+<li>(Proof.) Let $\dim V=n$ and let $T$ be a linear operator on $V$ with $T^2=0$. Prove that $\operatorname{rank}T\le n/2$.</li>
+<li>(Proof.) Let $\dim V$ be finite and $T$ a linear operator on $V$ with $\operatorname{rank}T^2=\operatorname{rank}T$. Prove that $\operatorname{im}T\cap\ker T=\{\mathbf{0}\}$.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>The matrix has rows $(1,1,0,0)$, $(0,1,1,0)$, $(1,0,-1,1)$. Subtract row 1 from row 3: $(0,-1,-1,1)$. Adding row 2 gives $(0,0,0,1)$. So there are three nonzero rows, the rank is $3$, and the range is all of $\mathbb{Q}^3$ with the basis $e_1,e_2,e_3$. By rank-nullity the nullity is $4-3=1$. Solving $x_1+x_2=0$, $x_2+x_3=0$, $x_4=0$ with $x_3=1$ gives $x_2=-1$, $x_1=1$. So $\ker S$ is spanned by $(1,-1,1,0)$.</p>
+</li>
+<li>
+<p>$(1,0),(0,1)$ is a basis, so there is exactly one $U$ with the first two values, namely the identity. Then $U(2,3)=2(1,0)+3(0,1)=(2,3)$. So a linear map exists exactly for $t=3$.</p>
+</li>
+<li>
+<p>By rank-nullity, a linear $U:\mathbb{Q}^2\to\mathbb{Q}^3$ has $\operatorname{rank}U\le2\lt3$, so it is not surjective. A linear $U:\mathbb{Q}^3\to\mathbb{Q}^2$ has $\operatorname{rank}U\le2$, so its nullity is at least $1$ and it is not injective.</p>
+</li>
+<li>
+<p>Over $\mathbb{F}_3$ the rows are $(1,2,2)$, $(2,1,0)$, $(2,1,2)$. Apply $R_2\leftarrow R_2-2R_1$: $(0,-3,-4)=(0,0,2)$. Apply $R_3\leftarrow R_3-2R_1$: $(0,-3,-2)=(0,0,1)$. The two new rows are proportional, so the rank is $2$ and the nullity $1$. The kernel: the reduced equations give $x_3=0$ and $x_1+2x_2=0$, so $x_1=x_2$. So it is spanned by $(1,1,0)$. The integer vector $(-2,4,3)$ reduces to $(1,1,0)$ modulo $3$, in agreement. The rank is the same as over $\mathbb{Q}$ here, although the kernel vector looks different.</p>
+</li>
+<li>
+<p>$T^2=0$ means $T(T\alpha)=\mathbf{0}$ for every $\alpha$, so $\operatorname{im}T\subseteq\ker T$. Hence $\operatorname{rank}T\le\operatorname{nullity}T=n-\operatorname{rank}T$, and $2\operatorname{rank}T\le n$.</p>
+</li>
+<li>
+<p>Let $U$ be the restriction of $T$ to $\operatorname{im}T$, viewed as a map $\operatorname{im}T\to V$. Its range is $T(\operatorname{im}T)=\operatorname{im}T^2$, and its null space is $\operatorname{im}T\cap\ker T$. Rank-nullity for $U$ reads $\dim\operatorname{im}T^2+\dim(\operatorname{im}T\cap\ker T)=\dim\operatorname{im}T$. By hypothesis $\dim\operatorname{im}T^2=\dim\operatorname{im}T$, so the intersection has dimension $0$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, Chapter 3 (linear transformations).</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., Springer, 2024, open access at https://linear.axler.net/, Chapter 3.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch07.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 7 laboratory: kernel, image, rank-nullity, prescribed values.
+
+Exact arithmetic over Q (fractions.Fraction).  A matrix is a list of
+rows; a vector is a list.  Routines return new objects and do not change
+their input.  The laboratory checks:
+
+* the running example A: image, kernel, rank 2, nullity 1;
+* rank + nullity = number of columns on 300 integer matrices, and
+  row rank = column rank on the same matrices;
+* the consistency criterion for prescribed values (the criterion of
+  Theorem 7.4), on one failing and one succeeding prescription;
+* the infinite-dimensional boundary: integration and differentiation of
+  polynomials.
+&quot;&quot;&quot;
+from fractions import Fraction
+import random
+
+
+def Q(rows):
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def rref(A):
+    &quot;&quot;&quot;Return (R, pivots): reduced row echelon form and pivot columns.&quot;&quot;&quot;
+    R = [row[:] for row in A]
+    m, n = len(R), len(R[0])
+    pivots, r = [], 0
+    for c in range(n):
+        p = next((i for i in range(r, m) if R[i][c] != 0), None)
+        if p is None:
+            continue
+        R[r], R[p] = R[p], R[r]
+        R[r] = [x / R[r][c] for x in R[r]]
+        for i in range(m):
+            if i != r and R[i][c] != 0:
+                f = R[i][c]
+                R[i] = [a - f * b for a, b in zip(R[i], R[r])]
+        pivots.append(c)
+        r += 1
+        if r == m:
+            break
+    return R, pivots
+
+
+def transpose(A):
+    return [list(col) for col in zip(*A)]
+
+
+def matvec(A, x):
+    return [sum(a * b for a, b in zip(row, x)) for row in A]
+
+
+def rank(A):
+    return len(rref(A)[1])
+
+
+def kernel_basis(A):
+    &quot;&quot;&quot;Basis of {x : A x = 0}, one vector per free column.&quot;&quot;&quot;
+    R, pivots = rref(A)
+    n = len(A[0])
+    basis = []
+    for f in (c for c in range(n) if c not in pivots):
+        x = [Fraction(0)] * n
+        x[f] = Fraction(1)
+        for row, p in zip(R, pivots):
+            x[p] = -row[f]
+        basis.append(x)
+    return basis
+
+
+def image_basis(A):
+    &quot;&quot;&quot;Pivot columns of A: a basis of the column space = image.&quot;&quot;&quot;
+    _, pivots = rref(A)
+    return [[row[c] for row in A] for c in pivots]
+
+
+def row_space_basis(A):
+    R, pivots = rref(A)
+    return R[:len(pivots)]
+
+
+def image_conditions(A):
+    &quot;&quot;&quot;Basis of the left null space: y with y^T A = 0.
+
+    v lies in the image iff y . v = 0 for every such y.&quot;&quot;&quot;
+    return kernel_basis(transpose(A))
+
+
+def prescription_exists(alphas, betas):
+    &quot;&quot;&quot;Theorem 7.4: T with T(alpha_i) = beta_i exists iff every linear
+    relation among the alphas holds among the betas.&quot;&quot;&quot;
+    cols = transpose(alphas)
+    for c in kernel_basis(cols):
+        total = [sum(ci * b[j] for ci, b in zip(c, betas))
+                 for j in range(len(betas[0]))]
+        if any(t != 0 for t in total):
+            return False
+    return True
+
+
+def poly_integrate(p):
+    &quot;&quot;&quot;J p: coefficients [a0, a1, ...] -&gt; integral from 0 to x.&quot;&quot;&quot;
+    return [Fraction(0)] + [a / (k + 1) for k, a in enumerate(p)]
+
+
+def poly_differentiate(p):
+    return [k * a for k, a in enumerate(p)][1:] or [Fraction(0)]
+
+
+def strip(p):
+    p = p[:]
+    while len(p) &gt; 1 and p[-1] == 0:
+        p.pop()
+    return p
+
+
+def main():
+    # --- running example (Sections 2 and 7) ---------------------------
+    A = Q([[1, -1, 2], [2, 1, 0], [-1, -2, 2]])
+    R, piv = rref(A)
+    r = len(piv)
+    ker = kernel_basis(A)
+    assert r == 2 and len(ker) == 1
+    assert ker[0] == [Fraction(-2, 3), Fraction(4, 3), 1]
+    v = [Fraction(-2), Fraction(4), Fraction(3)]
+    assert matvec(A, v) == [0, 0, 0]
+    img = image_basis(A)
+    assert img == [[1, 2, -1], [-1, 1, -2]]
+    ys = image_conditions(A)
+    assert len(ys) == 1
+    y = [Fraction(1), Fraction(-1), Fraction(-1)]
+    assert ys[0] == [-1, 1, 1] and [-t for t in ys[0]] == y
+    for col in transpose(A):
+        assert sum(a * b for a, b in zip(y, col)) == 0
+    assert rank(transpose(A)) == r
+    print(&#x27;A rank&#x27;, r, &#x27;nullity&#x27;, len(ker), &#x27;kernel&#x27;, [str(x) for x in v])
+    print(&#x27;R(A) pivots&#x27;, piv, &#x27;image basis&#x27;,
+          [[str(x) for x in c] for c in img])
+    print(&#x27;image condition y =&#x27;, [str(x) for x in y], &#x27;(a - b - c = 0)&#x27;)
+    print(&#x27;row space basis&#x27;, [[str(x) for x in w]
+                              for w in row_space_basis(A)])
+
+    # --- rank-nullity and row rank = column rank, random matrices -----
+    rng = random.Random(7)
+    seen = set()
+    for _ in range(300):
+        m, n = rng.randint(1, 5), rng.randint(1, 6)
+        B = Q([[rng.choice([-2, -1, 0, 0, 1, 2]) for _ in range(n)]
+               for _ in range(m)])
+        rb = rank(B)
+        assert rb + len(kernel_basis(B)) == n
+        assert rb == rank(transpose(B))
+        assert rb == len(image_basis(B)) == len(row_space_basis(B))
+        for x in kernel_basis(B):
+            assert all(t == 0 for t in matvec(B, x))
+        seen.add((n, rb))
+    print(&#x27;rank-nullity and row rank = column rank verified on 300&#x27;,
+          &#x27;matrices;&#x27;, len(seen), &#x27;distinct (n, rank) pairs&#x27;)
+
+    # --- prescribed values (Section 4) --------------------------------
+    alphas = Q([[1, 1], [0, 1], [1, 0]])
+    bad = Q([[1, 1, 0], [0, 1, 1], [1, 2, 1]])
+    good = Q([[1, 1, 0], [0, 1, 1], [1, 0, -1]])
+    assert not prescription_exists(alphas, bad)
+    assert prescription_exists(alphas, good)
+    print(&#x27;relation space of (1,1),(0,1),(1,0):&#x27;,
+          [[str(x) for x in c] for c in kernel_basis(transpose(alphas))])
+    t_e1 = [bad[0][j] - bad[1][j] for j in range(3)]
+    assert t_e1 == [1, 0, -1] and t_e1 != bad[2]
+    print(&#x27;forced T(1,0) =&#x27;, [str(x) for x in t_e1],
+          &#x27;prescribed&#x27;, [str(x) for x in bad[2]])
+    # unique map from the two basis vectors, as a matrix in standard basis
+    M = Q([[1, 0], [0, 1], [-1, 1]])
+    for a, b in zip(alphas, good):
+        assert matvec(M, a) == b
+    # prescribed images need not be independent: kernel appears
+    assert prescription_exists(Q([[1, 0], [0, 1]]), Q([[1, 2], [2, 4]]))
+    # affine map x -&gt; A x + b fails T(0) = 0, hence is not linear
+    assert matvec(A, [0, 0, 0])[0] + 1 != 0
+
+    # --- infinite-dimensional boundary (Section 5) --------------------
+    for p in ([Fraction(1)], Q([[3, 0, 2, 5]])[0], Q([[0, 1]])[0]):
+        assert strip(poly_differentiate(poly_integrate(p))) == strip(p)
+    one = [Fraction(1)]
+    assert strip(poly_integrate(poly_differentiate(one))) == [0]
+    assert strip(poly_integrate(poly_differentiate(one))) != one
+    print(&#x27;D J = identity on polynomials; J D (1) = 0 != 1:&#x27;,
+          &#x27;J is injective but not onto, D is onto but not injective&#x27;)
+    print(&#x27;ch07 laboratory: all assertions passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch06.html">Previous: Row space and computations with subspaces</a><a rel="next" href="ch08.html">Next: The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

@@ -1,0 +1,17 @@
+{
+  "title": "Inner products, norms, and the Cauchy-Schwarz inequality",
+  "lectures": [
+    43,
+    44,
+    61,
+    45
+  ],
+  "objectives": [
+    "Verify the inner product axioms and use the conjugation convention",
+    "Represent an inner product by a positive definite Gram matrix",
+    "Prove the Cauchy-Schwarz and triangle inequalities",
+    "Orthogonalize an independent list by Gram-Schmidt"
+  ],
+  "prerequisites": "Vector spaces, bases, coordinates and matrices over the real or complex numbers.",
+  "source_scope": "The captions of the four recordings (positions 43, 44, 61 and 45) were read in full. The standard examples, the Hilbert matrix, the twisted inner product, the trigonometric system and the three-dimensional Gram-Schmidt data come from them; the polynomial running example, extra proofs, laboratory and exercises are original."
+}

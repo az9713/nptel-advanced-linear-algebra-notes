@@ -1,0 +1,50 @@
+{
+  "author": "author_b",
+  "chapter": "ch26",
+  "recordings": [
+    {
+      "position": 59,
+      "video_id": "moaXD7Hfqfg",
+      "normalized_text_sha256": "a1f6aef189c58d8dc7e6e088e972c68bb02a39d0c2572a216cb5aa337acf2fae",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "A star A is positive semidefinite",
+        "singular value decomposition and construction of unitary factors",
+        "singular values",
+        "shapes of the diagonal factor",
+        "worked three by two example"
+      ],
+      "clarifications": [
+        "The captions do not speak the entries of the example matrix; it is reconstructed from the stated product, image vector and Gram-Schmidt vectors",
+        "The rank bound left open in the recording is proved"
+      ],
+      "original_constructions": [
+        "running two by two example"
+      ]
+    },
+    {
+      "position": 60,
+      "video_id": "2byXhwHzR-0",
+      "normalized_text_sha256": "15cdb73a647e2f24ac38a1d3d0fde8afc98d3b0116ae925983ff3943e8d34c7e",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "sesquilinear forms",
+        "correspondence with operators and isomorphism",
+        "inner product on forms",
+        "matrix of a form",
+        "Hermitian forms and principal axes"
+      ],
+      "clarifications": [
+        "Form and operator matrices are related by the Gram matrix"
+      ],
+      "original_constructions": [
+        "positivity criterion",
+        "exercises"
+      ]
+    }
+  ]
+}

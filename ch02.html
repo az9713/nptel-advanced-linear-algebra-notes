@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Row-reduced echelon form: one canonical answer to every linear system · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html" aria-current=page>02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>02. Row-reduced echelon form: one canonical answer to every linear system</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=5nsdoUfGpFE">Recording 4</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Compute the row-reduced echelon form and the matrix P with PA = R</li><li>Parametrize all solutions by the free unknowns</li><li>Decide consistency and certify inconsistency</li><li>Prove that the echelon form is unique and compare systems with it</li></ul>
+<p><strong>Prerequisites:</strong> Chapter 1: fields, elementary row operations, row equivalence.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch02.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-from-a-row-reduced-matrix-to-its-solutions-0025">1. From a row-reduced matrix to its solutions 00:25</a></li><li><a href="#2-the-definition-of-row-reduced-echelon-form-1103">2. The definition of row-reduced echelon form 11:03</a></li><li><a href="#3-every-matrix-has-an-echelon-form-1954">3. Every matrix has an echelon form 19:54</a></li><li><a href="#4-a-complete-reduction-2201">4. A complete reduction 22:01</a></li><li><a href="#5-the-solutions-of-a-homogeneous-system-2808">5. The solutions of a homogeneous system 28:08</a></li><li><a href="#6-nonhomogeneous-systems-and-the-consistency-condition-3623">6. Nonhomogeneous systems and the consistency condition 36:23</a></li><li><a href="#7-what-inconsistency-looks-like-4035">7. What inconsistency looks like 40:35</a></li><li><a href="#8-uniqueness-why-the-echelon-form-is-canonical">8. Uniqueness: why the echelon form is canonical</a></li><li><a href="#9-boundaries">9. Boundaries</a></li><li><a href="#10-executable-check">10. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Consider the matrix with rational entries</p>
+<p>$$
+A=\begin{pmatrix}0&amp;0&amp;0&amp;0&amp;1\\1&amp;2&amp;1&amp;7&amp;0\\2&amp;4&amp;1&amp;10&amp;1\\3&amp;6&amp;2&amp;17&amp;1\end{pmatrix}.
+$$</p>
+<p>It is the coefficient matrix of four equations in five unknowns, and it is the running example of this chapter (an original construction). <a href="ch01.html">Chapter 1</a> gives a procedure that turns $A$ into a row-reduced matrix without changing the solutions of $AX=0$. Applied to $A$, that procedure produces</p>
+<p>$$
+R_0=\begin{pmatrix}0&amp;0&amp;0&amp;0&amp;1\\1&amp;2&amp;0&amp;3&amp;0\\0&amp;0&amp;1&amp;4&amp;0\\0&amp;0&amp;0&amp;0&amp;0\end{pmatrix}.
+$$</p>
+<p>The matrix $R_0$ is not the only possible answer. Any reordering of its four rows is still row-reduced and still row-equivalent to $A$, and the four rows are distinct, so there are $4!=24$ such matrices. Suppose two people reduce two different systems and obtain two different row-reduced matrices. They cannot tell from the matrices alone whether the systems have different solutions. This chapter removes the freedom. It adds an ordering condition, proves that every matrix can be brought into the resulting <em>row-reduced echelon form</em>, and proves that only one such form exists for each matrix. From that form we read three things: the complete solution set of $AX=0$, the exact condition on $Y$ for $AX=Y$ to have a solution, and a test for whether two systems have the same solutions.</p>
+<p>Throughout, $F$ is an arbitrary field, $m$ and $n$ are positive integers, $F^{m\times n}$ is the set of $m\times n$ matrices over $F$, and $F^n$ is the set of column $n$-tuples. From <a href="ch01.html">Chapter 1</a> we use these facts. An <em>elementary row operation</em> scales a row by a nonzero scalar, adds a multiple of one row to a different row, or interchanges two rows. Each is multiplication on the left by an <em>elementary matrix</em>, which is <em>invertible</em>: a square matrix $B$ is invertible if some matrix $C$ of the same size satisfies $BC=CB=I$, where $I$ is the identity matrix. Two matrices are <em>row-equivalent</em> if a finite sequence of such operations leads from one to the other; this is an equivalence relation. If the augmented matrices $[A\mid Y]$ and $[B\mid Z]$ are row-equivalent, then $AX=Y$ and $BX=Z$ have the same solutions. A matrix is <em>row-reduced</em> if the first nonzero entry of each nonzero row (its <em>leading entry</em>) is $1$ and every column that holds a leading entry is zero elsewhere. Every matrix is row-equivalent to a row-reduced matrix.</p>
+<h2 id="1-from-a-row-reduced-matrix-to-its-solutions-0025">1. From a row-reduced matrix to its solutions <a href="https://www.youtube.com/watch?v=5nsdoUfGpFE&amp;t=25s">00:25</a></h2>
+<p>Read the equations of $R_0X=0$, where $X=(x_1,\dots,x_5)$:</p>
+<p>$$
+x_5=0,\qquad x_1+2x_2+3x_4=0,\qquad x_3+4x_4=0,\qquad 0=0.
+$$</p>
+<p>Each nonzero row contains one unknown that appears in no other equation: $x_5$ in the first row, $x_1$ in the second, $x_3$ in the third. These are the unknowns in the columns of the leading entries. Write $k_i$ for the column of the leading entry of row $i$; here $k_1=5$, $k_2=1$ and $k_3=3$. The remaining unknowns $x_2$ and $x_4$ occur in the equations but lead none of them. We can give them any values, and the three equations then fix $x_1$, $x_3$ and $x_5$:</p>
+<p>$$
+x_1=-2x_2-3x_4,\qquad x_3=-4x_4,\qquad x_5=0.
+$$</p>
+<p>So the solution set of $R_0X=0$, and therefore of $AX=0$, is</p>
+<p>$$
+\{\,x_2(-2,1,0,0,0)+x_4(-3,0,-4,1,0)\;:\;x_2,x_4\in\mathbb{Q}\,\}.
+$$</p>
+<p>Check with the third equation of $A$ and the second vector: $2(-3)+4\cdot0+1(-4)+10\cdot1+1\cdot0=0$.</p>
+<p>The reading works for every row-reduced matrix. It is awkward to state in general, because the leading columns $5,1,3$ come in no particular order. A computer program, or a proof about all matrices at once, needs to know where to look. That is the reason for the next definition.</p>
+<h2 id="2-the-definition-of-row-reduced-echelon-form-1103">2. The definition of row-reduced echelon form <a href="https://www.youtube.com/watch?v=5nsdoUfGpFE&amp;t=663s">11:03</a></h2>
+<p>A row is a <em>zero row</em> if all its entries are $0$ and a <em>nonzero row</em> otherwise.</p>
+<p><strong>Definition 2.1.</strong> A matrix $R\in F^{m\times n}$ is a <em>row-reduced echelon matrix</em> if</p>
+<ol>
+<li>$R$ is row-reduced;</li>
+<li>every zero row of $R$ lies below every nonzero row; and</li>
+<li>if rows $1,\dots,r$ are the nonzero rows and the leading entry of row $i$ is in column $k_i$, then $k_1\lt k_2\lt\cdots\lt k_r$.</li>
+</ol>
+<p>The columns $k_1,\dots,k_r$ are the <em>pivot columns</em> of $R$, and the other $n-r$ columns are its <em>free columns</em>. The unknowns $x_{k_1},\dots,x_{k_r}$ are the <em>pivot unknowns</em> and the others are the <em>free unknowns</em>. Always $0\le r\le m$ and $r\le n$, because the pivot columns are distinct.</p>
+<p>The three conditions can be written as formulas, which is convenient in proofs. Let $\delta_{ij}$ be $1$ if $i=j$ and $0$ if $i\neq j$ (the <em>Kronecker delta</em>). Then $R$ is a row-reduced echelon matrix with $r$ nonzero rows exactly when there are columns $k_1\lt\cdots\lt k_r$ such that</p>
+<ul>
+<li>$R_{ij}=0$ for all $j$ if $i\gt r$;</li>
+<li>$R_{ij}=0$ if $i\le r$ and $j\lt k_i$; and</li>
+<li>$R_{ik_j}=\delta_{ij}$ for $1\le i\le r$ and $1\le j\le r$.</li>
+</ul>
+<p>The first line says that the rows after row $r$ vanish. The second says that nothing in row $i$ precedes column $k_i$. The third says that column $k_j$ has a $1$ in row $j$ and $0$ in the other nonzero rows; together with the first line it has $0$ everywhere else. In particular row $i\le r$ is nonzero with leading entry $R_{ik_i}=1$.</p>
+<p>The zero matrix satisfies the definition with $r=0$, and the identity matrix satisfies it with $r=n$ and $k_i=i$. The matrix $R_0$ is row-reduced but fails condition 3, since $k_1=5\gt k_2=1$. Exchanging its first two rows gives leading columns $1,5,3$, which still fails. Exchanging rows 2 and 3 of that matrix then gives</p>
+<p>$$
+R=\begin{pmatrix}1&amp;2&amp;0&amp;3&amp;0\\0&amp;0&amp;1&amp;4&amp;0\\0&amp;0&amp;0&amp;0&amp;1\\0&amp;0&amp;0&amp;0&amp;0\end{pmatrix},
+$$</p>
+<p>a row-reduced echelon matrix with $r=3$ and $(k_1,k_2,k_3)=(1,3,5)$. The nonzero entries now form a staircase that descends to the right.</p>
+<p>Two smaller cases mark the boundaries of the definition. The matrix with rows $(1,2)$ and $(0,1)$ has a staircase shape, but it is not row-reduced, because column 2 holds the leading entry of row 2 and also the entry $2$. Many books call such a staircase a "row echelon form"; it is not what we mean here, and Exercise 5 shows that it is not unique. The matrix whose rows are $(0,0,0)$ and $(1,0,0)$ is row-reduced but has a zero row above a nonzero row, so it fails condition 2.</p>
+<h2 id="3-every-matrix-has-an-echelon-form-1954">3. Every matrix has an echelon form <a href="https://www.youtube.com/watch?v=5nsdoUfGpFE&amp;t=1194s">19:54</a></h2>
+<p><strong>Theorem 3.1.</strong> Every $A\in F^{m\times n}$ is row-equivalent to a row-reduced echelon matrix.</p>
+<p><strong>Proof.</strong> By <a href="ch01.html">Chapter 1</a>, $A$ is row-equivalent to a row-reduced matrix $M$. In $M$, two different nonzero rows cannot have their leading entries in the same column: that column holds a leading entry, so all its other entries are zero. Interchange rows until every zero row lies below every nonzero row. Then interchange nonzero rows until their leading columns increase from top to bottom; since the leading columns are distinct, this ordering exists, and every reordering of rows is a finite sequence of interchanges. Interchanges do not alter the contents of any row. The leading entries therefore remain $1$. The set of entries in each column is only rearranged, so each column that holds a leading entry still has that $1$ as its only nonzero entry. The result is row-reduced and satisfies conditions 2 and 3, and it is row-equivalent to $M$, hence to $A$. $\square$</p>
+<p>In practice one does not reduce first and sort afterwards. The <em>Gauss–Jordan procedure</em> does both at once. Set $t=1$. Scan the columns $j=1,2,\dots,n$ from left to right while $t\le m$.</p>
+<ol>
+<li>Look for a nonzero entry in column $j$ among rows $t,\dots,m$. If there is none, go to the next column.</li>
+<li>Interchange so that this entry is in row $t$.</li>
+<li>Scale row $t$ so that the entry becomes $1$.</li>
+<li>Subtract multiples of row $t$ from every other row, above and below, to make the rest of column $j$ zero.</li>
+<li>Record $k_t=j$ and increase $t$ by one.</li>
+</ol>
+<p>Why does the output satisfy the definition? After column $j$ has been processed, the following holds: the rows found so far form, in columns $1,\dots,j$, a row-reduced echelon matrix, and the rows not yet used are zero in columns $1,\dots,j$. A column with no entry in step 1 keeps the property, because the unused rows are zero there. When a pivot is found, row $t$ is zero in columns $1,\dots,j-1$, so steps 3 and 4 change nothing to the left of column $j$; they make column $j$ a unit column. So the property persists. If the scan stops because $t$ exceeds $m$, there are no unused rows, every earlier pivot column is already a unit column, and later columns carry no condition.</p>
+<h2 id="4-a-complete-reduction-2201">4. A complete reduction <a href="https://www.youtube.com/watch?v=5nsdoUfGpFE&amp;t=1321s">22:01</a></h2>
+<p>Apply the procedure to $A$. Here $R_i$ denotes row $i$ of the current matrix.</p>
+<div aria-label="Scrollable table" class="tablewrap" tabindex="0"><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Operations</th>
+<th>Resulting rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$R_1\leftrightarrow R_2$; $R_3\leftarrow R_3-2R_1$; $R_4\leftarrow R_4-3R_1$</td>
+<td>$(1,2,1,7,0)$, $(0,0,0,0,1)$, $(0,0,-1,-4,1)$, $(0,0,-1,-4,1)$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>none: rows 2 to 4 are zero in column 2</td>
+<td>unchanged</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$R_2\leftrightarrow R_3$; $R_2\leftarrow -R_2$; $R_1\leftarrow R_1-R_2$; $R_4\leftarrow R_4+R_2$</td>
+<td>$(1,2,0,3,1)$, $(0,0,1,4,-1)$, $(0,0,0,0,1)$, $(0,0,0,0,0)$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>none: rows 3 and 4 are zero in column 4</td>
+<td>unchanged</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$R_1\leftarrow R_1-R_3$; $R_2\leftarrow R_2+R_3$</td>
+<td>$(1,2,0,3,0)$, $(0,0,1,4,0)$, $(0,0,0,0,1)$, $(0,0,0,0,0)$</td>
+</tr>
+</tbody>
+</table></div>
+<p>The output is the matrix $R$ of Section 2. Applying the same nine operations to the identity matrix $I$ gives their product $P$, a matrix with $PA=R$:</p>
+<p>$$
+P=\begin{pmatrix}-1&amp;-1&amp;1&amp;0\\1&amp;2&amp;-1&amp;0\\1&amp;0&amp;0&amp;0\\0&amp;-1&amp;-1&amp;1\end{pmatrix}.
+$$</p>
+<p>The matrix $P$ is invertible, being a product of elementary matrices. Its last row records the fact that made the fourth row vanish: minus row 2 of $A$, minus row 3, plus row 4 equals zero.</p>
+<h2 id="5-the-solutions-of-a-homogeneous-system-2808">5. The solutions of a homogeneous system <a href="https://www.youtube.com/watch?v=5nsdoUfGpFE&amp;t=1688s">28:08</a></h2>
+<p>Let $R\in F^{m\times n}$ be a row-reduced echelon matrix with $r$ nonzero rows and pivot columns $k_1,\dots,k_r$, and let $J$ be the set of its free columns. By the formulas of Section 2, row $i\le r$ of $RX=0$ reads</p>
+<p>$$
+x_{k_i}+\sum_{j\in J}R_{ij}x_j=0,
+$$</p>
+<p>because the other pivot columns contribute nothing. The rows after row $r$ read $0=0$. In this sum only free columns $j\gt k_i$ can have $R_{ij}\neq0$.</p>
+<p><strong>Theorem 5.1.</strong> For each choice of values $x_j\in F$, $j\in J$, there is exactly one solution of $RX=0$ with those free values. For $j\in J$ let $X^{(j)}$ be the solution with $x_j=1$ and all other free unknowns $0$; explicitly, $x_{k_i}=-R_{ij}$. Then every solution is, in exactly one way,</p>
+<p>$$
+X=\sum_{j\in J}x_jX^{(j)}.
+$$</p>
+<p><strong>Proof.</strong> Given the free values, the $i$th equation determines $x_{k_i}=-\sum_{j\in J}R_{ij}x_j$ and contains no other pivot unknown, so there is one and only one solution. For the formula, the vector $\sum_{j\in J}x_jX^{(j)}$ has free coordinate $j$ equal to $x_j$, since $X^{(j)}$ is the only summand with a nonzero entry there. Its pivot coordinate $k_i$ is $-\sum_j x_jR_{ij}$. So it is the solution with the given free values. The coefficients are unique because they can be read from the free coordinates. $\square$</p>
+<p>Thus the solution set is in bijection with $F^{n-r}$. Over $\mathbb{F}_p$, the field of integers modulo a prime $p$, there are exactly $p^{n-r}$ solutions. For the running example $n=5$ and $r=3$, so two parameters describe all solutions, and the basic solutions are $X^{(2)}=(-2,1,0,0,0)$ and $X^{(4)}=(-3,0,-4,1,0)$. If we regard $A$ over $\mathbb{F}_3$, the same reduction applies modulo 3 (the only divisions were by $1$ and $-1$), and there are $3^2=9$ solutions.</p>
+<p>When $F=\mathbb{R}$, each nonzero equation of $AX=0$ is a <em>hyperplane</em> in $\mathbb{R}^n$, that is, the set of points that satisfy one linear equation with a nonzero coefficient row. All these hyperplanes pass through the origin, so the <em>zero solution</em> $X=0$, also called the trivial solution, always exists. The question is whether there are others.</p>
+<p><strong>Theorem 5.2.</strong> (a) If $m\lt n$, then $AX=0$ has a nonzero solution for every $A\in F^{m\times n}$. (b) If $A\in F^{n\times n}$, then $AX=0$ has only the zero solution if and only if $A$ is row-equivalent to the identity matrix $I$.</p>
+<p><strong>Proof.</strong> Take a row-reduced echelon matrix $R$ row-equivalent to $A$; the systems $AX=0$ and $RX=0$ have the same solutions. (a) We have $r\le m\lt n$, so there is a free column $j$, and $X^{(j)}$ is a solution with $j$th coordinate $1$. (b) If $A$ is row-equivalent to $I$, then $AX=0$ has the solutions of $IX=0$, only $X=0$. Conversely, if $AX=0$ has only the zero solution, then $R$ has no free column, so $r=n$. The $n$ pivot columns $k_1\lt\cdots\lt k_n$ among $1,\dots,n$ must be $k_i=i$, and then $R_{ij}=R_{ik_j}=\delta_{ij}$. So $R=I$, and $A$ is row-equivalent to $I$. (The form of $R$ does not depend on which echelon matrix we chose.) $\square$</p>
+<p>Part (a) needs no assumption on the field, and it is the fact on which the theory of dimension rests in <a href="ch04.html">Chapter 4</a>. Its hypothesis $m\lt n$ is sufficient but not necessary: two copies of the equation $x_1+x_2=0$ have $m=n=2$ and still have the nonzero solution $(1,-1)$.</p>
+<h2 id="6-nonhomogeneous-systems-and-the-consistency-condition-3623">6. Nonhomogeneous systems and the consistency condition <a href="https://www.youtube.com/watch?v=5nsdoUfGpFE&amp;t=2183s">36:23</a></h2>
+<p>Now let $AX=Y$ with $Y\in F^m$. Reduce the augmented matrix $[A\mid Y]$, using the operations that take $A$ to $R$. If $R=PA$ with $P$ the product of the elementary matrices, the augmented matrix becomes $[R\mid Z]$ with $Z=PY$. A system that is <em>consistent</em> has at least one solution; otherwise it is <em>inconsistent</em>.</p>
+<p><strong>Theorem 6.1.</strong> With $R=PA$ a row-reduced echelon matrix with $r$ nonzero rows, and $Z=PY=(z_1,\dots,z_m)$:</p>
+<ol>
+<li>$AX=Y$ is consistent if and only if $z_{r+1}=\cdots=z_m=0$.</li>
+<li>In that case, let $X_0$ have $x_{k_i}=z_i$ and all free coordinates $0$. Then the solutions of $AX=Y$ are exactly the vectors $X_0+H$ with $AH=0$.</li>
+</ol>
+<p><strong>Proof.</strong> The systems $AX=Y$ and $RX=Z$ have the same solutions. For $i\gt r$ the $i$th equation of $RX=Z$ is $0=z_i$, so a solution forces $z_i=0$. If all these $z_i$ vanish, then $X_0$ satisfies equation $i\le r$, which is $x_{k_i}+\sum_{j\in J}R_{ij}x_j=z_i$, and it satisfies the rest, which read $0=0$. This proves part 1. For part 2, if $AH=0$ then $A(X_0+H)=Y$. Conversely, if $AX=Y$, then $H=X-X_0$ satisfies $AH=Y-Y=0$. $\square$</p>
+<p>For the running example take $Y=(1,2,5,7)$. Then $Z=PY=(2,0,1,0)$. Here $r=3$ and $z_4=0$, so the system is consistent. $X_0=(2,0,0,0,1)$, and the full solution set is</p>
+<p>$$
+(2,0,0,0,1)+x_2(-2,1,0,0,0)+x_4(-3,0,-4,1,0).
+$$</p>
+<p>Direct substitution of $X_0$ into $A$ gives $(1,2,2\cdot2+1,3\cdot2+1)=(1,2,5,7)$. If the last right-hand side is changed to $8$, so that $Y=(1,2,5,8)$, then $z_4=-2-5+8=1$ and the fourth reduced equation is $0=1$. There is no solution.</p>
+<p>The condition $z_{r+1}=\cdots=z_m=0$ can be restated without reference to a particular reduction. Let $w$ be a row vector with $m$ entries.</p>
+<p><strong>Theorem 6.2.</strong> $AX=Y$ is consistent if and only if $wY=0$ for every row vector $w$ with $wA=0$.</p>
+<p><strong>Proof.</strong> If $AX=Y$ and $wA=0$, then $wY=w(AX)=(wA)X=0$. Conversely, for $i\gt r$ let $w$ be row $i$ of $P$. Then $wA$ is row $i$ of $PA=R$, which is zero. By hypothesis $wY=0$, and $wY=z_i$. So $z_{r+1}=\cdots=z_m=0$, and Theorem 6.1 gives a solution. $\square$</p>
+<p>A row vector with $wA=0$ and $wY\neq0$ is therefore a short certificate that no solution exists: anyone can check it with two multiplications, without repeating the elimination. For $Y=(1,2,5,8)$ one certificate is $w=(0,-1,-1,1)$, the last row of $P$. It satisfies $wA=0$ and $wY=1$, so combining the equations with these weights yields $0=1$.</p>
+<h2 id="7-what-inconsistency-looks-like-4035">7. What inconsistency looks like <a href="https://www.youtube.com/watch?v=5nsdoUfGpFE&amp;t=2435s">40:35</a></h2>
+<p>A simple inconsistent system in two unknowns is $x_1+2x_2=1$, $x_1+2x_2=4$. Subtracting the first equation from the second gives $0=3$. Over $\mathbb{R}$ the two equations describe two distinct parallel lines.</p>
+<p>It is tempting to conclude that a nonzero $z_i$ with $i\gt r$ always signals two parallel lines or planes among the given equations. That is false. The three lines $x_1=0$, $x_2=0$ and $x_1+x_2=1$ are pairwise non-parallel, and each pair meets in one point, but no point lies on all three. The certificate is $w=(-1,-1,1)$: it gives $wA=(0,0)$ and $wY=1$. The obstruction is a dependency among all three rows, not a relation between two of them. What a nonzero $z_i$ always signals is this: some linear combination of the left sides vanishes while the same combination of the right sides does not.</p>
+<p>The number $r$ also separates three situations over an infinite field. If some $z_i$ with $i\gt r$ is nonzero, there is no solution. If all vanish and $r=n$, there is exactly one solution, because there are no free unknowns. If all vanish and $r\lt n$, there are infinitely many. Over a finite field the last case gives finitely many, namely $|F|^{n-r}$, where $|F|$ is the number of elements of $F$.</p>
+<h2 id="8-uniqueness-why-the-echelon-form-is-canonical">8. Uniqueness: why the echelon form is canonical</h2>
+<p>Theorem 3.1 gives existence. Different orders of operations might still lead to different echelon matrices. They do not, and the proof shows more: an echelon matrix can be reconstructed from the solution set of its homogeneous system alone.</p>
+<p><strong>Theorem 8.1.</strong> Let $R,R'\in F^{m\times n}$ be row-reduced echelon matrices. If $RX=0$ and $R'X=0$ have the same solution set $K$, then $R=R'$.</p>
+<p><strong>Proof.</strong> Say that a nonzero vector <em>ends in position $j$</em> if its $j$th coordinate is nonzero and all later coordinates are zero. We show that the free columns of $R$ are exactly the positions $j$ in which some vector of $K$ ends.</p>
+<p>If $j$ is a free column, then $X^{(j)}$ of Theorem 5.1 lies in $K$. Its $j$th coordinate is $1$. Its other free coordinates are $0$. A pivot coordinate $k_i$ equals $-R_{ij}$, which is nonzero only if $j\gt k_i$. So $X^{(j)}$ ends in position $j$.</p>
+<p>Conversely, suppose $X\in K$ ends in a pivot position $k_i$. Equation $i$ reads $x_{k_i}=-\sum_{j}R_{ij}x_j$, summed over free columns $j\gt k_i$. All those $x_j$ are zero because $X$ ends at $k_i$. So $x_{k_i}=0$, a contradiction. Hence no vector of $K$ ends in a pivot position.</p>
+<p>The set of end positions depends only on $K$. So $R$ and $R'$ have the same free columns, hence the same pivot columns $k_1\lt\cdots\lt k_r$ and the same $r$. For each free column $j$, Theorem 5.1 says that exactly one element of $K$ has $x_j=1$ and all other free coordinates $0$. Computed from $R$ it has pivot coordinates $-R_{ij}$; computed from $R'$ it has $-R'_{ij}$. So $R_{ij}=R'_{ij}$ for $i\le r$ and $j$ free. The pivot columns of both matrices are fixed by $R_{ik_j}=\delta_{ij}$, and the rows after row $r$ are zero in both. Hence $R=R'$. $\square$</p>
+<p>The hinge is the notion of the end position: it recovers <em>which</em> columns are free from the set of solutions, with no reference to the matrix. The strict increase $k_1\lt\cdots\lt k_r$ and the condition that nothing precedes $k_i$ in row $i$ are what make a pivot position impossible as an end position.</p>
+<p><strong>Corollary 8.2.</strong> Each $A\in F^{m\times n}$ is row-equivalent to exactly one row-reduced echelon matrix. We call it <em>the</em> row-reduced echelon form of $A$, and the number $r$ of its nonzero rows depends only on $A$.</p>
+<p><strong>Proof.</strong> Existence is Theorem 3.1. If $A$ is row-equivalent to $R$ and to $R'$, then $RX=0$, $AX=0$ and $R'X=0$ have the same solutions, and Theorem 8.1 gives $R=R'$. $\square$</p>
+<p><strong>Corollary 8.3.</strong> For $A,B\in F^{m\times n}$, the matrices $A$ and $B$ are row-equivalent if and only if $AX=0$ and $BX=0$ have the same solutions.</p>
+<p><strong>Proof.</strong> One direction is the theorem of Chapter 1. For the other, let $R$ and $R'$ be the echelon forms of $A$ and $B$. Then $RX=0$ and $R'X=0$ have the same solutions, so $R=R'$ by Theorem 8.1. Hence $A$ and $B$ are row-equivalent to the same matrix, and so to each other. $\square$</p>
+<p>The same holds for consistent nonhomogeneous systems. Suppose $AX=Y$ and $BX=Z$, with $m$ equations each, have the same nonempty solution set. Fix a common solution $X_0$. By Theorem 6.1, $AH=0$ holds exactly when $X_0+H$ solves the first system, hence exactly when $BH=0$. Now compare the matrices $[A\mid Y]$ and $[B\mid Z]$. A vector $(X,t)$, with $X\in F^n$ and $t\in F$, satisfies $[A\mid Y](X,t)=0$ when $AX+tY=0$, that is, when $A(X+tX_0)=0$. This is equivalent to $B(X+tX_0)=0$, that is, to $[B\mid Z](X,t)=0$. By Corollary 8.3 the augmented matrices are row-equivalent. For inconsistent systems the statement fails: with one unknown, the pairs of equations $x_1=0$, $x_1=1$ and $0=1$, $0=0$ both have no solution, but the first coefficient matrix is nonzero and the second is zero.</p>
+<p>This answers the question of the opening. Two systems with the same number of equations and a common nonempty solution set have the same echelon form of their augmented matrices. The $24$ row orders of $R_0$ have the same solutions, and exactly one of them, $R$, is the echelon form.</p>
+<h2 id="9-boundaries">9. Boundaries</h2>
+<p><strong>The field matters.</strong> The matrix with rows $(1,1)$ and $(1,-1)$ has echelon form $I$ over $\mathbb{Q}$ and over $\mathbb{F}_3$. Over $\mathbb{F}_2$ we have $-1=1$, the two rows coincide, and the echelon form has rows $(1,1)$ and $(0,0)$. The number $r$ is therefore a property of the matrix together with its field. Enlarging the field does not change anything: if $A$ has entries in a subfield $K$ of $F$, the procedure computes in $K$, and by uniqueness the result is also the echelon form of $A$ over $F$.</p>
+<p><strong>Column operations are excluded.</strong> Interchanging columns changes which unknown is which, so the solution set of the new system is a rearrangement of the old one, not the same set.</p>
+<p><strong>Exact arithmetic is assumed.</strong> The procedure tests whether an entry is zero. In floating-point arithmetic a computed entry of size $10^{-17}$ may be an exact zero spoiled by rounding, or a small true value, and the two choices give different pivot columns. The theorems of this chapter are statements about exact field arithmetic.</p>
+<h2 id="10-executable-check">10. Executable check</h2>
+<p><a href="labs/ch02.py">The chapter laboratory</a> uses exact arithmetic over $\mathbb{Q}$ and over $\mathbb{F}_p$. It reduces $A$ by the Gauss–Jordan procedure, prints the nine operations, $R$, $P$ and the pivot columns $(1,3,5)$, and asserts $PA=R$. It checks that $R_0$ is row-reduced but not echelon, that the $24$ row orders of $R$ are row-reduced and have the same echelon form, and that exactly one of them is an echelon matrix. It checks the basic solutions, $Z=(2,0,1,0)$, the particular solution $(2,0,0,0,1)$, the certificate $w=(0,-1,-1,1)$, and the three-lines certificate. It applies 60 random chains of elementary operations to $A$ and obtains $R$ each time. For all $2\times2$ and $2\times3$ matrices over $\mathbb{F}_2$ and $\mathbb{F}_3$ it rebuilds the echelon matrix from the solution set alone, as in the proof of Theorem 8.1. These are finite checks; the general statements rest on the proofs above.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Proof.) Let $A\in F^{n\times n}$. Prove that $A$ is invertible, meaning that some $B\in F^{n\times n}$ satisfies $AB=BA=I$, if and only if the row-reduced echelon form of $A$ is $I$.</li>
+<li>(Computation.) Let $B$ be the rational matrix with rows $(1,2,-1,3)$, $(2,4,1,0)$ and $(3,6,0,3)$. Find its echelon form $R$ and an invertible $P$ with $PB=R$. Solve $BX=(1,5,6)$ completely, and decide whether $BX=(1,5,7)$ has a solution; if not, give a certificate $w$.</li>
+<li>(Classification.) List all $2\times2$ row-reduced echelon matrices over $\mathbb{F}_2$. Deduce the number of distinct solution sets of homogeneous systems of two equations in two unknowns over $\mathbb{F}_2$.</li>
+<li>(Assumption check.) Find the echelon form of the matrix with rows $(1,2)$ and $(2,1)$ over $\mathbb{Q}$ and over $\mathbb{F}_3$, and the corresponding solution sets of $AX=0$.</li>
+<li>(Counterexample.) Call a matrix a staircase matrix if it satisfies conditions 2 and 3 of Definition 2.1 and each leading entry is $1$, with zeros required only below each leading entry. Show that a matrix can be row-equivalent to two different staircase matrices, and say where the proof of Theorem 8.1 fails for them.</li>
+<li>(Interpretation.) Let $R$ be the echelon form of $A\in F^{m\times n}$, with pivot columns $k_1,\dots,k_r$, and write $a_j$ for column $j$ of $A$. Prove that $a_j=\sum_{i=1}^rR_{ij}a_{k_i}$ for every $j$. Apply this to column 4 of the running example.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>Suppose $A$ is invertible with inverse $B$. If $AX=0$, then $X=(BA)X=B(AX)=0$. So $AX=0$ has only the zero solution, and Theorem 5.2(b) says that $A$ is row-equivalent to $I$. Since $I$ is a row-reduced echelon matrix, it is the echelon form of $A$ by Corollary 8.2. Conversely, suppose the echelon form is $I$. Then there is a product $P$ of elementary matrices with $PA=I$. Each elementary matrix is invertible, so $P$ is invertible with some inverse $P^{-1}$. Multiplying $PA=I$ on the left by $P^{-1}$ gives $A=P^{-1}$. Therefore $AP=P^{-1}P=I$ and $PA=I$, so $P$ is an inverse of $A$.</p>
+</li>
+<li>
+<p>Apply $R_2\leftarrow R_2-2R_1$ and $R_3\leftarrow R_3-3R_1$: rows 2 and 3 become $(0,0,3,-6)$ and $(0,0,3,-6)$. Column 2 has no entry below row 1. In column 3 apply $R_2\leftarrow\frac13R_2$, giving $(0,0,1,-2)$, then $R_1\leftarrow R_1+R_2$, giving $(1,2,0,1)$, and $R_3\leftarrow R_3-3R_2$, giving zero. So $R$ has rows $(1,2,0,1)$, $(0,0,1,-2)$, $(0,0,0,0)$. The same operations on $I$ give $P$ with rows $(\frac13,\frac13,0)$, $(-\frac23,\frac13,0)$, $(-1,-1,1)$. For $Y=(1,5,6)$ we get $PY=(2,1,0)$. The third entry vanishes, so the system is consistent. The reduced equations are $x_1+2x_2+x_4=2$ and $x_3-2x_4=1$, so $X=(2,0,1,0)+x_2(-2,1,0,0)+x_4(-1,0,2,1)$ with $x_2,x_4\in\mathbb{Q}$. For $Y=(1,5,7)$ the third entry of $PY$ is $-1-5+7=1$, so there is no solution. The certificate is $w=(-1,-1,1)$: indeed $wB=-(1,2,-1,3)-(2,4,1,0)+(3,6,0,3)=0$ and $wY=1$.</p>
+</li>
+<li>
+<p>The number $r$ of nonzero rows is $0$, $1$ or $2$. If $r=0$, the matrix is zero. If $r=1$, the first row is nonzero with leading entry $1$ and the second row is zero. With $k_1=1$ the first row is $(1,a)$ with $a\in\{0,1\}$; with $k_1=2$ it is $(0,1)$. This gives three matrices, with first rows $(1,0)$, $(1,1)$ and $(0,1)$. If $r=2$, then $k_1=1$, $k_2=2$ and $R=I$. So there are five echelon matrices. By Theorem 8.1 different echelon matrices have different solution sets, and by Theorem 3.1 every $2\times2$ system has the solution set of one of them. So there are exactly five solution sets. They are all of $\mathbb{F}_2^2$ (zero matrix), the three two-element sets $\{0,(0,1)\}$, $\{0,(1,1)\}$, $\{0,(1,0)\}$, and $\{0\}$ (identity).</p>
+</li>
+<li>
+<p>Apply $R_2\leftarrow R_2-2R_1$; the second row becomes $(0,-3)$. Over $\mathbb{Q}$ scale it by $-\frac13$ to get $(0,1)$ and then clear: $R_1\leftarrow R_1-2R_2$ gives $(1,0)$. The echelon form is $I$, and $AX=0$ has only $X=0$. Over $\mathbb{F}_3$ we have $-3=0$, so the second row is zero and the echelon form has rows $(1,2)$ and $(0,0)$. The equation is $x_1+2x_2=0$, that is, $x_1=x_2$ in $\mathbb{F}_3$ because $-2=1$. The solutions are $(0,0)$, $(1,1)$ and $(2,2)$, which are $3^{2-1}=3$ in number.</p>
+</li>
+<li>
+<p>Let $S$ have rows $(1,2)$ and $(0,1)$ and let $I$ be the $2\times2$ identity, over any field. The operation $R_1\leftarrow R_1-2R_2$ takes $S$ to $I$. Both are staircase matrices in the sense of the exercise, and $S\neq I$ when $2\neq0$ in $F$. If $2=0$ in $F$, replace $(1,2)$ by $(1,1)$ and use $R_1\leftarrow R_1-R_2$. So a matrix can have two staircase forms. In the proof of Theorem 8.1, the free columns are still determined by the solution set, but the last step fails. It used that row $i$ contains no pivot unknown other than $x_{k_i}$, so that the entry $R_{ij}$ for free $j$ can be read off from one solution. Here there are no free columns at all, and the entries <em>above</em> the pivots, such as the $2$ in $S$, are not determined by any solution. They are exactly the entries that the clearing of whole columns forces to be zero.</p>
+</li>
+<li>
+<p>By Theorem 5.1, for each free column $j$ the vector $X^{(j)}$ solves $RX=0$, hence $AX=0$. Writing $AX^{(j)}$ as a combination of the columns of $A$ with weights given by the entries of $X^{(j)}$ gives $a_j-\sum_{i}R_{ij}a_{k_i}=0$, which is the claim for free $j$. If $j=k_s$ is a pivot column, then $R_{ik_s}=\delta_{is}$, so the right side is $a_{k_s}$. In the running example, column 4 of $R$ is $(3,4,0,0)$ and the pivot columns are $1,3,5$, so $a_4=3a_1+4a_3$. Directly, $a_1=(0,1,2,3)$ and $a_3=(0,1,1,2)$, and $3a_1+4a_3=(0,7,10,17)$, which is column 4 of $A$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, Chapter 1 (linear equations).</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., Springer, 2024, open access at https://linear.axler.net/, Chapter 3.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch02.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 2 laboratory: the row-reduced echelon form (RREF).
+
+Exact arithmetic over Q (fractions.Fraction) and over the prime fields
+F_p (class GF).  A matrix is a list of rows; no routine changes its
+input.  Elementary row operations are tuples:
+    (&#x27;swap&#x27;, r, s)       rows r and s are exchanged
+    (&#x27;scale&#x27;, r, c)      row r becomes c * row r, with c != 0
+    (&#x27;add&#x27;, r, s, c)     row r becomes row r + c * row s, with r != s
+Rows and columns are numbered from 0 in code and from 1 in the chapter.
+Checks: the running example, existence and uniqueness of the RREF, the
+solution sets of AX = 0 and AX = Y, the left-kernel certificate of
+inconsistency, and an exhaustive test of the uniqueness proof over F_2
+and F_3.
+&quot;&quot;&quot;
+from fractions import Fraction
+from itertools import permutations, product
+import random
+
+
+class GF:
+    &quot;&quot;&quot;An element of the prime field F_p = {0, 1, ..., p-1}.&quot;&quot;&quot;
+
+    def __init__(self, value, p):
+        self.p = p
+        self.v = value % p
+
+    def _lift(self, other):
+        return other if isinstance(other, GF) else GF(other, self.p)
+
+    def __add__(self, other):
+        return GF(self.v + self._lift(other).v, self.p)
+
+    def __sub__(self, other):
+        return GF(self.v - self._lift(other).v, self.p)
+
+    def __mul__(self, other):
+        return GF(self.v * self._lift(other).v, self.p)
+
+    def __truediv__(self, other):
+        other = self._lift(other)
+        assert other.v != 0, &#x27;division by zero in F_p&#x27;
+        return GF(self.v * pow(other.v, self.p - 2, self.p), self.p)
+
+    def __rtruediv__(self, other):
+        return self._lift(other) / self
+
+    def __neg__(self):
+        return GF(-self.v, self.p)
+
+    def __eq__(self, other):
+        return self.v == self._lift(other).v
+
+    def __hash__(self):
+        return hash((self.v, self.p))
+
+    def __repr__(self):
+        return str(self.v)
+
+
+def Q(rows):
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def Fp(rows, p):
+    return [[GF(x, p) for x in row] for row in rows]
+
+
+def one_of(A):
+    return A[0][0] * 0 + 1
+
+
+def identity(m, one):
+    zero = one - one
+    return [[one if i == j else zero for j in range(m)] for i in range(m)]
+
+
+def matmul(A, B):
+    return [[sum((A[i][k] * B[k][j] for k in range(1, len(B))),
+                 A[i][0] * B[0][j])
+             for j in range(len(B[0]))] for i in range(len(A))]
+
+
+def matvec(A, X):
+    return [sum((a * x for a, x in zip(row[1:], X[1:])), row[0] * X[0])
+            for row in A]
+
+
+def apply_op(op, A):
+    B = [row[:] for row in A]
+    if op[0] == &#x27;swap&#x27;:
+        _, r, s = op
+        B[r], B[s] = A[s][:], A[r][:]
+    elif op[0] == &#x27;scale&#x27;:
+        _, r, c = op
+        assert c != 0
+        B[r] = [c * x for x in A[r]]
+    else:
+        _, r, s, c = op
+        assert r != s
+        B[r] = [x + c * y for x, y in zip(A[r], A[s])]
+    return B
+
+
+def fmt_op(op):
+    if op[0] == &#x27;swap&#x27;:
+        return f&#x27;R{op[1] + 1} &lt;-&gt; R{op[2] + 1}&#x27;
+    if op[0] == &#x27;scale&#x27;:
+        return f&#x27;R{op[1] + 1} &lt;- ({op[2]}) R{op[1] + 1}&#x27;
+    return f&#x27;R{op[1] + 1} &lt;- R{op[1] + 1} + ({op[3]}) R{op[2] + 1}&#x27;
+
+
+def show(M):
+    return &#x27;[&#x27; + &#x27;; &#x27;.join(&#x27; &#x27;.join(str(x) for x in row)
+                           for row in M) + &#x27;]&#x27;
+
+
+def rref(A):
+    &quot;&quot;&quot;Gauss-Jordan elimination.  Returns (R, pivots, ops).
+
+    Columns are scanned left to right.  In column j, a nonzero entry at
+    or below the current row t is swapped up, scaled to 1, and cleared
+    from EVERY other row.  Then t grows by one.
+    &quot;&quot;&quot;
+    R = [row[:] for row in A]
+    m, n = len(R), len(R[0])
+    pivots, ops, t = [], [], 0
+    for j in range(n):
+        if t == m:
+            break
+        s = next((i for i in range(t, m) if R[i][j] != 0), None)
+        if s is None:
+            continue
+        if s != t:
+            ops.append((&#x27;swap&#x27;, t, s))
+            R = apply_op(ops[-1], R)
+        if R[t][j] != 1:
+            ops.append((&#x27;scale&#x27;, t, 1 / R[t][j]))
+            R = apply_op(ops[-1], R)
+        for i in range(m):
+            if i != t and R[i][j] != 0:
+                ops.append((&#x27;add&#x27;, i, t, -R[i][j]))
+                R = apply_op(ops[-1], R)
+        pivots.append(j)
+        t += 1
+    return R, pivots, ops
+
+
+def left_factor(ops, m, one):
+    &quot;&quot;&quot;P = E_k ... E_1 with PA = R: apply the operations to I_m.&quot;&quot;&quot;
+    P = identity(m, one)
+    for op in ops:
+        P = apply_op(op, P)
+    return P
+
+
+def lead(row):
+    return next((k for k, x in enumerate(row) if x != 0), None)
+
+
+def is_row_reduced(A):
+    for t, row in enumerate(A):
+        k = lead(row)
+        if k is None:
+            continue
+        if row[k] != 1:
+            return False
+        if any(A[i][k] != 0 for i in range(len(A)) if i != t):
+            return False
+    return True
+
+
+def is_rref(A):
+    &quot;&quot;&quot;Row-reduced, zero rows last, leading columns strictly increase.&quot;&quot;&quot;
+    if not is_row_reduced(A):
+        return False
+    leads = [lead(row) for row in A]
+    nz = [k for k in leads if k is not None]
+    return (leads[:len(nz)] == nz and sorted(set(nz)) == nz)
+
+
+def kernel_basis(R, pivots):
+    &quot;&quot;&quot;One vector per free column j: x_j = 1, other free x = 0,
+    x_{k_i} = -R[i][j].  This is the parametrization of Section 5.&quot;&quot;&quot;
+    n = len(R[0])
+    zero = R[0][0] - R[0][0]
+    free = [j for j in range(n) if j not in pivots]
+    basis = []
+    for j in free:
+        X = [zero] * n
+        X[j] = one_of(R)
+        for i, k in enumerate(pivots):
+            X[k] = -R[i][j]
+        basis.append(X)
+    return basis
+
+
+def solve(A, Y):
+    &quot;&quot;&quot;Return None if AX = Y is inconsistent, else (X0, kernel basis).&quot;&quot;&quot;
+    R, pivots, ops = rref(A)
+    P = left_factor(ops, len(A), one_of(A))
+    Z = matvec(P, Y)
+    r = len(pivots)
+    if any(z != 0 for z in Z[r:]):
+        return None
+    X0 = [R[0][0] - R[0][0]] * len(A[0])
+    for i, k in enumerate(pivots):
+        X0[k] = Z[i]
+    return X0, kernel_basis(R, pivots)
+
+
+def witness(A, Y):
+    &quot;&quot;&quot;A row vector w with wA = 0 and wY != 0, or None if consistent.&quot;&quot;&quot;
+    R, pivots, ops = rref(A)
+    P = left_factor(ops, len(A), one_of(A))
+    for w in P[len(pivots):]:
+        if sum((a * y for a, y in zip(w[1:], Y[1:])), w[0] * Y[0]) != 0:
+            return w
+    return None
+
+
+def one_based(cols):
+    return tuple(k + 1 for k in cols)
+
+
+# ---------------------------------------------------------------- 1
+# Running example (an original construction), 4 x 5 over Q.
+A = Q([[0, 0, 0, 0, 1],
+       [1, 2, 1, 7, 0],
+       [2, 4, 1, 10, 1],
+       [3, 6, 2, 17, 1]])
+R, pivots, ops = rref(A)
+P = left_factor(ops, 4, Fraction(1))
+R_expected = Q([[1, 2, 0, 3, 0], [0, 0, 1, 4, 0],
+                [0, 0, 0, 0, 1], [0, 0, 0, 0, 0]])
+assert R == R_expected and is_rref(R)
+assert matmul(P, A) == R
+assert pivots == [0, 2, 4]
+print(&#x27;operations:&#x27;, &#x27;; &#x27;.join(fmt_op(op) for op in ops))
+print(&#x27;R =&#x27;, show(R))
+print(&#x27;P =&#x27;, show(P))
+print(&#x27;pivot columns k =&#x27;, one_based(pivots), &#x27; r =&#x27;, len(pivots))
+
+# ---------------------------------------------------------------- 2
+# The row-reduced matrix reached without any interchange is NOT an
+# echelon matrix: its leading columns are (5, 1, 3).
+R0 = Q([[0, 0, 0, 0, 1], [1, 2, 0, 3, 0],
+        [0, 0, 1, 4, 0], [0, 0, 0, 0, 0]])
+assert is_row_reduced(R0) and not is_rref(R0)
+assert [lead(row) for row in R0] == [4, 0, 2, None]
+assert rref(R0)[0] == R and rref(A)[0] == rref(R0)[0]
+R1 = apply_op((&#x27;swap&#x27;, 0, 1), R0)
+R2 = apply_op((&#x27;swap&#x27;, 1, 2), R1)
+assert not is_rref(R1) and R2 == R
+# Non-examples of the definition.
+assert not is_row_reduced(Q([[1, 2], [0, 1]]))
+assert is_row_reduced(Q([[1, 2], [0, 0]]))
+assert not is_rref(Q([[0, 0, 0], [1, 0, 0]]))
+assert is_rref(Q([[0, 0], [0, 0]])) and is_rref(identity(3, Fraction(1)))
+print(&#x27;R0 leading columns (5, 1, 3): row-reduced, not echelon;&#x27;,
+      &#x27;two swaps give R&#x27;)
+
+# ---------------------------------------------------------------- 3
+# Homogeneous solutions and counting (Section 5).
+basis = kernel_basis(R, pivots)
+assert basis == Q([[-2, 1, 0, 0, 0], [-3, 0, -4, 1, 0]])
+Z4 = [Fraction(0)] * 4
+for a, b in product(range(-3, 4), repeat=2):
+    X = [a * u + b * v for u, v in zip(*basis)]
+    assert matvec(A, X) == Z4 and matvec(R0, X) == Z4
+print(&#x27;ker A = x2*(-2,1,0,0,0) + x4*(-3,0,-4,1,0); free columns (2, 4)&#x27;)
+assert len(A[0]) - len(pivots) == 2
+
+# ---------------------------------------------------------------- 4
+# Non-homogeneous systems (Section 7).
+Y = Q([[1, 2, 5, 7]])[0]
+Yb = Q([[1, 2, 5, 8]])[0]
+Z = matvec(P, Y)
+assert Z == Q([[2, 0, 1, 0]])[0]
+sol = solve(A, Y)
+assert sol is not None and sol[0] == Q([[2, 0, 0, 0, 1]])[0]
+assert matvec(A, sol[0]) == Y
+assert solve(A, Yb) is None
+w = witness(A, Yb)
+assert w == Q([[0, -1, -1, 1]])[0] and witness(A, Y) is None
+wA = [sum((w[i] * A[i][j] for i in range(1, 4)), w[0] * A[0][j])
+      for j in range(5)]
+assert wA == [0] * 5
+assert sum(wi * yi for wi, yi in zip(w, Yb)) == 1
+print(&#x27;Y = (1,2,5,7): Z = PY =&#x27;, [str(z) for z in Z],
+      &#x27;; X0 =&#x27;, [str(x) for x in sol[0]])
+print(&#x27;Y = (1,2,5,8): inconsistent; w =&#x27;, [str(x) for x in w],
+      &#x27; wA = 0, wY =&#x27;, sum(wi * yi for wi, yi in zip(w, Yb)))
+# Last r..m rows of P: every w with wA = 0 is a combination of them.
+assert all(sum((a * b for a, b in zip(P[3], col)), 0) == 0
+           for col in zip(*A))
+
+# Three lines in the plane, no two parallel, no common point.
+L = Q([[1, 0], [0, 1], [1, 1]])
+YL = Q([[0, 0, 1]])[0]
+assert solve(L, YL) is None
+wL = witness(L, YL)
+assert wL is not None
+assert [sum(wL[i] * L[i][j] for i in range(3)) for j in range(2)] == [0, 0]
+print(&#x27;lines x1=0, x2=0, x1+x2=1: witness w =&#x27;, [str(x) for x in wL],
+      &#x27;, wY =&#x27;, sum(a * b for a, b in zip(wL, YL)))
+# The two parallel lines of the text: x1+2x2 = 1 and x1+2x2 = 4.
+assert solve(Q([[1, 2], [1, 2]]), Q([[1, 4]])[0]) is None
+
+# ---------------------------------------------------------------- 5
+# Uniqueness: all row-reduced matrices row-equivalent to A.
+rows = [tuple(row) for row in R]
+perms = {tuple(p) for p in permutations(rows)}
+assert len(perms) == 24
+for p in perms:
+    M = [list(row) for row in p]
+    assert is_row_reduced(M) and rref(M)[0] == R
+assert sum(1 for p in perms if is_rref([list(r) for r in p])) == 1
+print(&#x27;row-reduced matrices that are row-equivalent to A (row&#x27;,
+      &#x27;orders of R):&#x27;, len(perms), &#x27;; of these in echelon form: 1&#x27;)
+
+# Random elementary operations never change the RREF.
+rng = random.Random(2)
+for _ in range(60):
+    M = [row[:] for row in A]
+    for _ in range(25):
+        kind = rng.choice([&#x27;swap&#x27;, &#x27;scale&#x27;, &#x27;add&#x27;])
+        r, s = rng.sample(range(4), 2)
+        c = Fraction(rng.choice([-3, -2, -1, 1, 2, 3]), rng.choice([1, 2]))
+        M = apply_op((kind, r, s) if kind == &#x27;swap&#x27; else
+                     (&#x27;scale&#x27;, r, c) if kind == &#x27;scale&#x27; else
+                     (&#x27;add&#x27;, r, s, c), M)
+    assert rref(M)[0] == R
+print(&#x27;60 random chains of 25 elementary operations: same RREF&#x27;)
+
+# A staircase matrix without the &quot;clear above&quot; rule is not unique.
+S1, S2 = Q([[1, 2], [0, 1]]), identity(2, Fraction(1))
+assert rref(S1)[0] == S2 and rref(S2)[0] == S2 and S1 != S2
+
+
+# ---------------------------------------------------------------- 6
+# Exhaustive test of the uniqueness proof over F_p.
+def kernel_bruteforce(A, p):
+    n = len(A[0])
+    return [x for x in product(range(p), repeat=n)
+            if all(sum(a * b for a, b in zip(row, x)) % p == 0
+                   for row in A)]
+
+
+def rref_from_kernel(kernel, m, n, p):
+    &quot;&quot;&quot;Rebuild the RREF from the solution set ALONE (proof of Theorem 8.1).
+
+    Column j is free iff some solution has its last nonzero coordinate
+    in position j.  For a free column j, X(j) is the solution with
+    x_j = 1 and every other free coordinate 0; then R[i][j] = -X(j)[k_i].
+    &quot;&quot;&quot;
+    free = sorted({max(k for k, c in enumerate(x) if c)
+                   for x in kernel if any(x)})
+    piv = [k for k in range(n) if k not in free]
+    R = [[0] * n for _ in range(m)]
+    for i, k in enumerate(piv):
+        R[i][k] = 1
+    for j in free:
+        xs = [x for x in kernel if x[j] == 1 and
+              all(x[q] == 0 for q in free if q != j)]
+        assert len(xs) == 1
+        for i, k in enumerate(piv):
+            R[i][j] = (-xs[0][k]) % p
+    return R
+
+
+def rref_ints(A, p):
+    Rp = rref(Fp(A, p))[0]
+    return [[x.v for x in row] for row in Rp]
+
+
+for p, m, n, expect in ((2, 2, 2, 5), (2, 2, 3, 15), (3, 2, 2, 6),
+                        (3, 2, 3, 27)):
+    classes = {}
+    for flat in product(range(p), repeat=m * n):
+        M = [list(flat[i * n:(i + 1) * n]) for i in range(m)]
+        ker = kernel_bruteforce(M, p)
+        Rm = rref_ints(M, p)
+        assert rref_from_kernel(ker, m, n, p) == Rm
+        classes.setdefault(frozenset(ker), set()).add(
+            tuple(map(tuple, Rm)))
+    assert all(len(v) == 1 for v in classes.values())
+    assert len(classes) == expect
+    print(f&#x27;{m}x{n} matrices over F_{p}: {p ** (m * n)} matrices,&#x27;,
+          f&#x27;{len(classes)} distinct RREFs, same kernel =&gt; same RREF&#x27;)
+
+# The running example reduced modulo 3: 3^(5-3) = 9 solutions of AX = 0.
+A3 = [[int(x) for x in row] for row in A]
+ker3 = kernel_bruteforce(A3, 3)
+assert len(ker3) == 9
+assert rref_ints(A3, 3) == [[int(x) % 3 for x in row] for row in R]
+assert rref_from_kernel(ker3, 4, 5, 3) == rref_ints(A3, 3)
+print(&#x27;A over F_3: |ker A| =&#x27;, len(ker3), &#x27;= 3^(n-r)&#x27;)
+
+# ---------------------------------------------------------------- 7
+# Field dependence of the RREF.
+M2 = [[1, 1], [1, -1]]
+assert rref(Q(M2))[0] == identity(2, Fraction(1))
+assert rref(Fp(M2, 3))[0] == identity(2, GF(1, 3))
+R2f = rref(Fp(M2, 2))[0]
+assert [[x.v for x in row] for row in R2f] == [[1, 1], [0, 0]]
+M3 = [[1, 2], [2, 1]]
+assert rref(Q(M3))[0] == identity(2, Fraction(1))
+R3f = rref(Fp(M3, 3))[0]
+assert [[x.v for x in row] for row in R3f] == [[1, 2], [0, 0]]
+print(&#x27;RREF of (1 1; 1 -1): I over Q and F_3, (1 1; 0 0) over F_2&#x27;)
+print(&#x27;RREF of (1 2; 2 1): I over Q, (1 2; 0 0) over F_3&#x27;)
+# Q -&gt; C: the same elimination steps are valid, so the RREF is the same.
+Cm = [[complex(x) for x in row] for row in A]
+Rc = rref([[x for x in row] for row in Cm])[0]
+assert [[complex(x) for x in row] for row in R] == Rc
+
+# Counting with m &lt; n (needs infinitely many scalars to be infinite).
+assert len(kernel_bruteforce([[1, 1]], 2)) == 2
+assert solve(Q([[1, 1, 1], [1, 1, 1]]), Q([[1, 2]])[0]) is None
+
+# ---------------------------------------------------------------- 8
+# Exercise checks.
+B = Q([[1, 2, -1, 3], [2, 4, 1, 0], [3, 6, 0, 3]])
+RB, pivB, opsB = rref(B)
+PB = left_factor(opsB, 3, Fraction(1))
+assert RB == Q([[1, 2, 0, 1], [0, 0, 1, -2], [0, 0, 0, 0]])
+assert matmul(PB, B) == RB and pivB == [0, 2]
+YB = Q([[1, 5, 6]])[0]
+solB = solve(B, YB)
+assert solB[0] == Q([[2, 0, 1, 0]])[0]
+assert solve(B, Q([[1, 5, 7]])[0]) is None
+print(&#x27;exercise 2: R =&#x27;, show(RB), &#x27; P =&#x27;, show(PB), &#x27; X0 =&#x27;,
+      [str(x) for x in solB[0]])
+# Exercise 6: column j of A equals sum_i R[i][j] * (column k_i of A).
+for j in range(5):
+    col = [A[i][j] for i in range(4)]
+    comb = [sum(R[i][j] * A[t][pivots[i]] for i in range(3))
+            for t in range(4)]
+    assert col == comb
+print(&#x27;column relation: a4 = 3 a1 + 4 a3 holds in A&#x27;)
+# Exercise 1: RREF(A) = I for square A iff A is invertible.
+Mi = Q([[2, 1], [5, 3]])
+assert rref(Mi)[0] == identity(2, Fraction(1))
+Ms = Q([[2, 1], [4, 2]])
+assert rref(Ms)[0] != identity(2, Fraction(1))
+print(&#x27;all checks passed&#x27;)
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch01.html">Previous: Linear systems as one matrix equation, and the operations that preserve its solutions</a><a rel="next" href="ch03.html">Next: Vector spaces and subspaces: the axioms that make linear combinations work</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

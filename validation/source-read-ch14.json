@@ -1,0 +1,47 @@
+{
+ "author": "author_a",
+ "chapter": "ch14",
+ "recordings": [
+  {
+   "position": 28,
+   "video_id": "0pgdc_igMNw",
+   "normalized_text_sha256": "01a7346d49001a7751c88026641d338c074c368fe2b2962cc21231f23e8c5871",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "Cayley-Hamilton theorem statement",
+    "proof by adjugate and coefficient comparison",
+    "4 by 4 example and minimal polynomial",
+    "algebraic and geometric multiplicity"
+   ],
+   "clarifications": [],
+   "original_constructions": [
+    "2 by 2 check",
+    "remainder method for powers"
+   ]
+  },
+  {
+   "position": 29,
+   "video_id": "z3langlkEHE",
+   "normalized_text_sha256": "51faa404340b896bbc1a023f26c8bf19559a65c5b149b7b124a988aa3064937c",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "diagonalization of the 4 by 4 matrix",
+    "eigenvalues of AB and BA",
+    "characteristic polynomials of AB and BA",
+    "minimal polynomials can differ",
+    "3 by 3 matrix diagonalizable over C only"
+   ],
+   "clarifications": [
+    "The spoken determinant argument with x^{-1} is replaced by block identities that divide by nothing"
+   ],
+   "original_constructions": [
+    "divisibility of m_AB into x m_BA",
+    "F_5 exercise"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+work/
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+*.mp4
+*.webm
+*.m4a
+*.wav
+*.part
+README.txt
+HANDOFF.md
+validation/report-checks.json
+validation/preview-*.png
+.ignore/

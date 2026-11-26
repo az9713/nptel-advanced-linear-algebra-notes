@@ -1,0 +1,12 @@
+{
+  "title": "Eigenvalues, eigenvectors, and the characteristic polynomial",
+  "lectures": [24, 25],
+  "objectives": [
+    "Define eigenvalues and eigenspaces and compute them",
+    "Prove the properties of the characteristic polynomial",
+    "Prove independence of eigenvectors and the multiplicity bound",
+    "Decide diagonalizability from eigenspace dimensions"
+  ],
+  "prerequisites": "Determinants, and Chapters 2, 7 and 9: row reduction, kernels and similarity.",
+  "source_scope": "The captions of Lectures 23 and 24 were read in full; the two matrices are read out in them, and the growth comparison, the added theorems and the exercises are original."
+}

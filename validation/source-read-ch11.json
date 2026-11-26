@@ -1,0 +1,46 @@
+{
+ "author": "author_a",
+ "chapter": "ch11",
+ "recordings": [
+  {
+   "position": 22,
+   "video_id": "Rq3ruFHFic4",
+   "normalized_text_sha256": "89c5e2d3eeceb174c2d05ec89998e6b0f69cbfe2ee48835d95425032d08c5fd5",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "is every basis of the dual a dual basis",
+    "evaluation functionals and the double dual isomorphism",
+    "transpose of a linear map and its linearity",
+    "example T(x1,x2)=(x1,0)"
+   ],
+   "clarifications": [],
+   "original_constructions": [
+    "running matrix"
+   ]
+  },
+  {
+   "position": 23,
+   "video_id": "3InyDigc3Vk",
+   "normalized_text_sha256": "15e7deb62980f7936c6020139fc7a66780fa4204b50e6a834be230d183ab57f7",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "null space of the transpose is the annihilator of the range",
+    "ranks of T and its transpose agree",
+    "range of the transpose is the annihilator of the null space",
+    "matrix of the transpose in dual bases"
+   ],
+   "clarifications": [
+    "Dimension formulas require finite dimension; the first identity does not"
+   ],
+   "original_constructions": [
+    "solvability criterion",
+    "adapted bases",
+    "exercises"
+   ]
+  }
+ ]
+}

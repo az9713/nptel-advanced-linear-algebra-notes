@@ -1,0 +1,12 @@
+{
+  "title": "Row-reduced echelon form: one canonical answer to every linear system",
+  "lectures": [4],
+  "objectives": [
+    "Compute the row-reduced echelon form and the matrix P with PA = R",
+    "Parametrize all solutions by the free unknowns",
+    "Decide consistency and certify inconsistency",
+    "Prove that the echelon form is unique and compare systems with it"
+  ],
+  "prerequisites": "Chapter 1: fields, elementary row operations, row equivalence.",
+  "source_scope": "The caption of Lecture 3 was read in full; the running example, the uniqueness proof, the certificates and the exercises are original."
+}

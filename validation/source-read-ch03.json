@@ -1,0 +1,52 @@
+{
+ "author": "author_a",
+ "chapter": "ch03",
+ "recordings": [
+  {
+   "position": 5,
+   "video_id": "aEF5PPbv8Oc",
+   "normalized_text_sha256": "6a7974725b5eaf82a653544366a3837be5af050ae0442d7ab55bb077dc8aa49f",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "vector space definition and ten axioms",
+    "F^n",
+    "field over subfield",
+    "functions on a set",
+    "polynomials of degree at most n"
+   ],
+   "clarifications": [
+    "R is not a vector space over C",
+    "polynomial functions versus coefficient tuples over finite fields"
+   ],
+   "original_constructions": [
+    "running matrix",
+    "missing-S4 structure"
+   ]
+  },
+  {
+   "position": 6,
+   "video_id": "BQ6bUhF4tPM",
+   "normalized_text_sha256": "cec627ba9262ce15ab02080c8c1c1c7154c71b8272759a9714f977397498e248",
+   "reading": "full sequential text read",
+   "visual": "not comprehensively reviewed",
+   "audio": "not comprehensively reviewed",
+   "topics": [
+    "subspace definition and one-step test",
+    "examples: zero space, planes, null space, symmetric matrices",
+    "linear combinations and span",
+    "intersection and union",
+    "sum of subspaces"
+   ],
+   "clarifications": [
+    "union criterion proved in both directions"
+   ],
+   "original_constructions": [
+    "finite-field covers",
+    "symmetric plus skew split",
+    "exercises"
+   ]
+  }
+ ]
+}

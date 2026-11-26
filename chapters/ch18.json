@@ -1,0 +1,15 @@
+{
+  "title": "Invariant direct sums and block-diagonal operators",
+  "lectures": [
+    36,
+    37
+  ],
+  "objectives": [
+    "Prove that invariant summands are detected by commuting projections",
+    "Write a diagonalizable operator in spectral form and compute polynomials of it",
+    "Express the spectral projections as Lagrange polynomials in the operator",
+    "Prove that a spectral form implies diagonalizability"
+  ],
+  "prerequisites": "Direct sums and projections (Chapter 17), eigenvalues and diagonalizability (Chapters 12, 13 and 16).",
+  "source_scope": "The captions of the two recordings (positions 36 and 37) were read in full. The running operator, the uniqueness and minimal-polynomial corollaries, boundary cases, laboratory and exercises are original."
+}

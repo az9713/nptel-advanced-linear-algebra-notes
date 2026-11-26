@@ -1,0 +1,49 @@
+{
+  "author": "author_b",
+  "chapter": "ch18",
+  "recordings": [
+    {
+      "position": 36,
+      "video_id": "FSrROxmVg0k",
+      "normalized_text_sha256": "aec25564a6fc1a6ff06aea0142e6e870f001f97aeb29370c2a8ebc23c07f6914",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "invariant summands and restrictions",
+        "block-diagonal matrix",
+        "commutation criterion",
+        "spectral form of a diagonalizable operator",
+        "polynomials of the operator",
+        "projections as Lagrange polynomials"
+      ],
+      "clarifications": [
+        "The commutation criterion needs no finite dimension"
+      ],
+      "original_constructions": [
+        "running operator",
+        "inverse and square root"
+      ]
+    },
+    {
+      "position": 37,
+      "video_id": "YmpfezqZGhU",
+      "normalized_text_sha256": "3acd6141ed4caf271a42bdd9bbfa6d95cc227fc326557734ebbff0a09fc208c8",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "summary of the spectral form",
+        "converse theorem: projections, eigenvalues, ranges equal eigenspaces, diagonalizability"
+      ],
+      "clarifications": [
+        "Distinct scalars and nonzero projections are both required; counterexamples given"
+      ],
+      "original_constructions": [
+        "uniqueness corollary",
+        "second example",
+        "exercises"
+      ]
+    }
+  ]
+}

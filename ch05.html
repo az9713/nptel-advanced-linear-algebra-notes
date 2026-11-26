@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Coordinates and change of ordered basis · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html" aria-current=page>05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html">15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>05. Coordinates and change of ordered basis</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=rA7m8jQKtQ4">Recording 9</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Compute coordinate matrices relative to an ordered basis</li><li>Build the change-of-basis matrix and apply it in the correct direction</li><li>Prove that the change-of-basis matrix is invertible and unique</li><li>Construct the ordered basis determined by an invertible matrix</li></ul>
+<p><strong>Prerequisites:</strong> Chapters 2 and 4: invertibility by row reduction, bases and dimension.</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch05.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-ordered-bases-and-coordinate-matrices-0025">1. Ordered bases and coordinate matrices 00:25</a></li><li><a href="#2-the-change-of-basis-theorem-0435">2. The change-of-basis theorem 04:35</a></li><li><a href="#3-the-running-example-worked-out">3. The running example worked out</a></li><li><a href="#4-composing-changes-of-basis">4. Composing changes of basis</a></li><li><a href="#5-example-in-mathplaceholder000156end-1657">5. Example in $F^3$ 16:57</a></li><li><a href="#6-every-invertible-matrix-is-a-change-of-basis-2521">6. Every invertible matrix is a change of basis 25:21</a></li><li><a href="#7-what-is-invariant-under-a-change-of-basis">7. What is invariant under a change of basis</a></li><li><a href="#8-executable-check">8. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Take the polynomial $p=2+3x+5x^2$ with rational coefficients. Its coefficients $(2,3,5)$ describe it relative to the monomials $1,x,x^2$. Suppose that we care about the behaviour of $p$ near $x=1$, for instance in a numerical method that expands about that point. Then the natural building blocks are $1$, $x-1$ and $(x-1)^2$, and</p>
+<p>$$
+p=10+13(x-1)+5(x-1)^2 .
+$$</p>
+<p>Check the constant term at $x=0$: $10-13+5=2$. The polynomial has not changed; only the list of numbers that records it has. This chapter finds the rule that converts one list into the other for any finite-dimensional vector space and any two bases. The rule is multiplication by an invertible matrix, and, conversely, every invertible matrix is such a rule. The polynomial $p$ and the two bases of this paragraph are the running example (an original construction).</p>
+<p>Throughout, $F$ is a field and $V$ is a finite-dimensional vector space over $F$ with $\dim V=n\ge1$. Matrices in $F^{n\times n}$ have entries in $F$, and $I$ is the identity matrix, with entries $\delta_{ij}$ ($1$ if $i=j$ and $0$ otherwise). A matrix $P$ is <em>invertible</em> if $PQ=QP=I$ for some matrix $Q$, written $P^{-1}$.</p>
+<h2 id="1-ordered-bases-and-coordinate-matrices-0025">1. Ordered bases and coordinate matrices <a href="https://www.youtube.com/watch?v=rA7m8jQKtQ4&amp;t=25s">00:25</a></h2>
+<p>An <em>ordered basis</em> $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ is a basis of $V$ listed in a definite order. By <a href="ch04.html">Chapter 4</a>, every $\alpha\in V$ has exactly one expression $\alpha=\sum_{i=1}^nx_i\alpha_i$ with $x_i\in F$. The column</p>
+<p>$$
+[\alpha]_{\mathcal{B}}=\begin{pmatrix}x_1\\ \vdots\\ x_n\end{pmatrix}\in F^n
+$$</p>
+<p>is the <em>coordinate matrix</em> of $\alpha$ relative to $\mathcal{B}$. The map $\alpha\mapsto[\alpha]_{\mathcal{B}}$ is a bijection from $V$ onto $F^n$, and it preserves linear combinations:</p>
+<p>$$
+[c\alpha+\beta]_{\mathcal{B}}=c[\alpha]_{\mathcal{B}}+[\beta]_{\mathcal{B}}\qquad(c\in F,\ \alpha,\beta\in V).
+$$</p>
+<p>Here $F^n$ is written as the space of columns. In particular $\alpha=\mathbf{0}$ exactly when $[\alpha]_{\mathcal{B}}=0$, and $[\alpha_j]_{\mathcal{B}}$ is the unit column $e_j$ with $1$ in position $j$ and $0$ elsewhere.</p>
+<p>The order matters. Exchanging $\alpha_1$ and $\alpha_2$ gives the same basis as a set but exchanges the first two coordinates of every vector.</p>
+<p>For the running example, with $\mathcal{B}=(1,x,x^2)$ we have $[p]_{\mathcal{B}}=(2,3,5)^{\mathsf T}$, where $\mathsf T$ denotes transpose, so that a row of numbers followed by $\mathsf T$ means the column with those entries. With $\mathcal{B}'=(1,x-1,(x-1)^2)$ we have $[p]_{\mathcal{B}'}=(10,13,5)^{\mathsf T}$.</p>
+<h2 id="2-the-change-of-basis-theorem-0435">2. The change-of-basis theorem <a href="https://www.youtube.com/watch?v=rA7m8jQKtQ4&amp;t=275s">04:35</a></h2>
+<p>Let $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ and $\mathcal{B}'=(\alpha_1',\dots,\alpha_n')$ be two ordered bases of $V$. Each new basis vector has coordinates in the old basis. So there are scalars $P_{ij}$ with</p>
+<p>$$
+\alpha_j'=\sum_{i=1}^nP_{ij}\alpha_i\qquad(j=1,\dots,n).\tag{2.1}
+$$</p>
+<p>The matrix $P=(P_{ij})$ has as its $j$th column the coordinate matrix $[\alpha_j']_{\mathcal{B}}$. Note the position of the indices: the sum runs over the <em>first</em> index of $P_{ij}$. We write $P=P_{\mathcal{B}\leftarrow\mathcal{B}'}$ and read it as "from $\mathcal{B}'$-coordinates to $\mathcal{B}$-coordinates".</p>
+<p><strong>Theorem 2.1.</strong> For every $\alpha\in V$,</p>
+<p>$$
+[\alpha]_{\mathcal{B}}=P\,[\alpha]_{\mathcal{B}'} .
+$$</p>
+<p>Moreover $P$ is invertible, and $[\alpha]_{\mathcal{B}'}=P^{-1}[\alpha]_{\mathcal{B}}$.</p>
+<p><strong>Proof.</strong> Let $[\alpha]_{\mathcal{B}'}=(x_1',\dots,x_n')^{\mathsf T}$. Substitute (2.1) into the expansion of $\alpha$ and exchange the order of the two finite sums:</p>
+<p>$$
+\alpha=\sum_{j=1}^nx_j'\alpha_j'=\sum_{j=1}^nx_j'\sum_{i=1}^nP_{ij}\alpha_i=\sum_{i=1}^n\Big(\sum_{j=1}^nP_{ij}x_j'\Big)\alpha_i .
+$$</p>
+<p>The coefficients of the $\alpha_i$ are unique, so the $i$th coordinate of $\alpha$ in $\mathcal{B}$ is $\sum_jP_{ij}x_j'$, which is entry $i$ of $P[\alpha]_{\mathcal{B}'}$. This proves the formula.</p>
+<p>For invertibility, suppose $PX'=0$ and let $\alpha=\sum_jx_j'\alpha_j'$, so $[\alpha]_{\mathcal{B}'}=X'$. By the formula $[\alpha]_{\mathcal{B}}=PX'=0$, so $\alpha=\mathbf{0}$, and then $X'=[\mathbf{0}]_{\mathcal{B}'}=0$. So $PX=0$ has only the zero solution. By <a href="ch02.html">Chapter 2</a>, a square matrix with this property is row-equivalent to $I$, and so it is a product of elementary matrices, hence invertible. Multiplying the formula on the left by $P^{-1}$ gives the last claim. $\square$</p>
+<p>The hinge is that invertibility needs no computation with $P$. It follows because both coordinate maps are bijections: a column killed by $P$ describes a vector that is zero in one basis, hence zero, hence zero in the other.</p>
+<p><strong>Uniqueness of $P$.</strong> Only one matrix satisfies $[\alpha]_{\mathcal{B}}=P[\alpha]_{\mathcal{B}'}$ for all $\alpha$: taking $\alpha=\alpha_j'$ gives $[\alpha_j']_{\mathcal{B}}=Pe_j$, the $j$th column of $P$.</p>
+<p>The direction of the formula is the most common source of error. The columns of $P$ express <em>new</em> vectors in the <em>old</em> basis, but $P$ converts <em>new</em> coordinates into <em>old</em> ones. To go from old to new, one needs $P^{-1}$.</p>
+<h2 id="3-the-running-example-worked-out">3. The running example worked out</h2>
+<p>The new basis is $\mathcal{B}'=(1,x-1,(x-1)^2)$ and the old one is $\mathcal{B}=(1,x,x^2)$. The columns of $P$ are the old coordinates of $1$, of $x-1=-1+x$, and of $(x-1)^2=1-2x+x^2$:</p>
+<p>$$
+P=\begin{pmatrix}1&amp;-1&amp;1\\0&amp;1&amp;-2\\0&amp;0&amp;1\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1&amp;1&amp;1\\0&amp;1&amp;2\\0&amp;0&amp;1\end{pmatrix}.
+$$</p>
+<p>One can check $P^{-1}$ column by column: it expresses $1$, $x=1+(x-1)$ and $x^2=1+2(x-1)+(x-1)^2$ in the new basis. Therefore</p>
+<p>$$
+[p]_{\mathcal{B}'}=P^{-1}\begin{pmatrix}2\\3\\5\end{pmatrix}=\begin{pmatrix}10\\13\\5\end{pmatrix},
+$$</p>
+<p>which is the expansion in the opening paragraph. Using $P$ instead of $P^{-1}$ gives $P(2,3,5)^{\mathsf T}=(4,-7,5)^{\mathsf T}$, which is wrong: it would claim $p=4-7(x-1)+5(x-1)^2$, whose value at $x=1$ is $4$, while $p(1)=10$.</p>
+<p>The new coordinates have a meaning: $10=p(1)$, $13=p'(1)$ and $5=p''(1)/2$, where $p'$ and $p''$ are the first and second derivatives. This is Taylor's formula for a quadratic polynomial.</p>
+<p><strong>A functional in new coordinates.</strong> Let $f(q)=q(1)$ be the value at $1$. In old coordinates $f(q)=aX$ with the row $a=(1,1,1)$. Since $X=PX'$, we get $f(q)=(aP)X'$. Here $aP=(1,0,0)$: in the basis centred at $1$, evaluation at $1$ reads off the first coordinate. Rows of coefficients transform by $P$ on the right, while columns of coordinates transform by $P^{-1}$ on the left. <a href="ch10.html">Chapter 10</a> makes this precise.</p>
+<h2 id="4-composing-changes-of-basis">4. Composing changes of basis</h2>
+<p>Let $\mathcal{B},\mathcal{B}',\mathcal{B}''$ be ordered bases, $P=P_{\mathcal{B}\leftarrow\mathcal{B}'}$ and $Q=P_{\mathcal{B}'\leftarrow\mathcal{B}''}$. Then for all $\alpha$,</p>
+<p>$$
+[\alpha]_{\mathcal{B}}=P[\alpha]_{\mathcal{B}'}=PQ[\alpha]_{\mathcal{B}''}.
+$$</p>
+<p>By uniqueness, $P_{\mathcal{B}\leftarrow\mathcal{B}''}=PQ$. In particular, taking $\mathcal{B}''=\mathcal{B}$ shows that $P_{\mathcal{B}'\leftarrow\mathcal{B}}=P^{-1}$, in agreement with Theorem 2.1. With $\mathcal{B}''=(1,x-2,(x-2)^2)$, the change from $\mathcal{B}'$ to $\mathcal{B}''$ is another shift by one, so $Q=P$, and the change from $\mathcal{B}$ to $\mathcal{B}''$ is</p>
+<p>$$
+P^2=\begin{pmatrix}1&amp;-2&amp;4\\0&amp;1&amp;-4\\0&amp;0&amp;1\end{pmatrix},
+$$</p>
+<p>whose columns are the coefficients of $1$, $x-2$ and $(x-2)^2=4-4x+x^2$.</p>
+<h2 id="5-example-in-mathplaceholder000156end-1657">5. Example in $F^3$ <a href="https://www.youtube.com/watch?v=rA7m8jQKtQ4&amp;t=1017s">16:57</a></h2>
+<p>Let $V=F^3$, let $\mathcal{E}=(e_1,e_2,e_3)$ be the standard basis, and let $\mathcal{B}'=\big((1,1,1),(1,1,0),(1,0,0)\big)$. Then $[(x,y,z)]_{\mathcal{E}}=(x,y,z)^{\mathsf T}$. The columns of $P=P_{\mathcal{E}\leftarrow\mathcal{B}'}$ are the standard coordinates of the new vectors, that is, the vectors themselves:</p>
+<p>$$
+P=\begin{pmatrix}1&amp;1&amp;1\\1&amp;1&amp;0\\1&amp;0&amp;0\end{pmatrix}.
+$$</p>
+<p>Solving $c_1(1,1,1)+c_2(1,1,0)+c_3(1,0,0)=(x,y,z)$ from the last coordinate upward gives $c_1=z$, $c_2=y-z$, $c_3=x-y$. So $[(x,y,z)]_{\mathcal{B}'}=(z,\,y-z,\,x-y)^{\mathsf T}$. Check the theorem:</p>
+<p>$$
+P\begin{pmatrix}z\\y-z\\x-y\end{pmatrix}=\begin{pmatrix}z+(y-z)+(x-y)\\ z+(y-z)\\ z\end{pmatrix}=\begin{pmatrix}x\\y\\z\end{pmatrix}.
+$$</p>
+<p>When neither basis is standard, write $M$ for the matrix whose columns are the standard coordinates of the vectors of $\mathcal{B}_1$, and $M'$ for that of $\mathcal{B}_2$. Then $P_{\mathcal{E}\leftarrow\mathcal{B}_1}=M$ and $P_{\mathcal{E}\leftarrow\mathcal{B}_2}=M'$, so by Section 4,</p>
+<p>$$
+P_{\mathcal{B}_1\leftarrow\mathcal{B}_2}=M^{-1}M'.
+$$</p>
+<p>In practice one does not invert $M$: row reducing the augmented matrix $[M\mid M']$ to $[I\mid P]$ performs left multiplication by $M^{-1}$ on both parts. For $\mathcal{B}_1=\big((1,1,0),(0,1,1),(1,0,1)\big)$ and $\mathcal{B}_2=\big((1,1,1),(0,1,1),(0,0,1)\big)$ over $\mathbb{Q}$ the result is</p>
+<p>$$
+P_{\mathcal{B}_1\leftarrow\mathcal{B}_2}=\begin{pmatrix}1/2&amp;0&amp;-1/2\\1/2&amp;1&amp;1/2\\1/2&amp;0&amp;1/2\end{pmatrix}.
+$$</p>
+<p>For $v=(4,-2,6)$ one finds $[v]_{\mathcal{B}_2}=(4,-6,8)^{\mathsf T}$ and $[v]_{\mathcal{B}_1}=(-2,0,6)^{\mathsf T}$, and the first row of $P$ gives $\tfrac12\cdot4-\tfrac12\cdot8=-2$. Over $\mathbb{F}_2$ the list $\mathcal{B}_1$ is not a basis, since its three vectors add to zero; the entries $1/2$ signal that the computation needs $2\neq0$.</p>
+<h2 id="6-every-invertible-matrix-is-a-change-of-basis-2521">6. Every invertible matrix is a change of basis <a href="https://www.youtube.com/watch?v=rA7m8jQKtQ4&amp;t=1521s">25:21</a></h2>
+<p>Theorem 2.1 produces an invertible matrix from two bases. The converse produces a second basis from one basis and an invertible matrix.</p>
+<p><strong>Theorem 6.1.</strong> Let $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ be an ordered basis of $V$ and $P\in F^{n\times n}$ invertible. There is exactly one ordered basis $\mathcal{B}'$ of $V$ with</p>
+<p>$$
+[\alpha]_{\mathcal{B}}=P[\alpha]_{\mathcal{B}'}\quad\text{for all }\alpha\in V.
+$$</p>
+<p>It is given by $\alpha_j'=\sum_iP_{ij}\alpha_i$.</p>
+<p><strong>Proof.</strong> <em>Uniqueness.</em> If $\mathcal{B}'$ satisfies the formula, then $[\alpha_j']_{\mathcal{B}}=Pe_j$, so $\alpha_j'=\sum_iP_{ij}\alpha_i$.</p>
+<p><em>Existence.</em> Define $\alpha_j'$ by this formula. Let $Q=P^{-1}$. For each $k$,</p>
+<p>$$
+\sum_{j=1}^nQ_{jk}\alpha_j'=\sum_{j=1}^nQ_{jk}\sum_{i=1}^nP_{ij}\alpha_i=\sum_{i=1}^n\Big(\sum_{j=1}^nP_{ij}Q_{jk}\Big)\alpha_i=\sum_{i=1}^n\delta_{ik}\alpha_i=\alpha_k.
+$$</p>
+<p>So every $\alpha_k$ lies in the span of $\alpha_1',\dots,\alpha_n'$, and these $n$ vectors span $V$. A spanning list of $n=\dim V$ vectors is a basis (<a href="ch04.html">Chapter 4</a>). Now Theorem 2.1 applies to $\mathcal{B}$ and $\mathcal{B}'$, and the matrix it produces has $j$th column $[\alpha_j']_{\mathcal{B}}=Pe_j$. So it is $P$. $\square$</p>
+<p>The hinge is the identity $PQ=I$, read as a statement about vectors: the entries of $Q$ are the weights that rebuild each old vector from the new ones.</p>
+<p><strong>Example.</strong> For the monomial basis and the invertible matrix</p>
+<p>$$
+P_c=\begin{pmatrix}1&amp;2&amp;0\\0&amp;1&amp;1\\1&amp;0&amp;1\end{pmatrix},\qquad P_c^{-1}=\frac13\begin{pmatrix}1&amp;-2&amp;2\\1&amp;1&amp;-1\\-1&amp;2&amp;1\end{pmatrix},
+$$</p>
+<p>the new basis is $(1+x^2,\;2+x,\;x+x^2)$, read from the columns, and $[p]_{\text{new}}=P_c^{-1}(2,3,5)^{\mathsf T}=(2,0,3)^{\mathsf T}$. Indeed $2(1+x^2)+0\cdot(2+x)+3(x+x^2)=2+3x+5x^2$.</p>
+<p><strong>Boundary.</strong> If $P$ is not invertible, the formula $\alpha_j'=\sum_iP_{ij}\alpha_i$ still defines vectors, but they are not a basis. For $P$ with both columns $(1,1)^{\mathsf T}$ we get $\alpha_1'=\alpha_2'=\alpha_1+\alpha_2$.</p>
+<p><strong>Counting.</strong> Theorems 2.1 and 6.1 say that, once one ordered basis is fixed, $\mathcal{B}'\mapsto P_{\mathcal{B}\leftarrow\mathcal{B}'}$ is a bijection from the set of ordered bases of $V$ onto the set of invertible $n\times n$ matrices. Over $\mathbb{F}_2$ with $n=2$ there are $6$ of each, and with $n=3$ there are $168$.</p>
+<h2 id="7-what-is-invariant-under-a-change-of-basis">7. What is invariant under a change of basis</h2>
+<p>A vector does not depend on a basis; its coordinates do. A statement about vectors must therefore give the same truth value in every basis. For example, a list $v_1,\dots,v_k$ is linearly independent if and only if the columns $[v_i]_{\mathcal{B}}$ are, for one and hence for every ordered basis $\mathcal{B}$, because the coordinate map is a linear bijection and the columns in two bases differ by multiplication by an invertible $P$. By contrast, statements such as "the first coordinate is zero" depend on the basis: $(x,y,z)$ has first standard coordinate $x$ and first $\mathcal{B}'$-coordinate $z$.</p>
+<h2 id="8-executable-check">8. Executable check</h2>
+<p><a href="labs/ch05.py">The chapter laboratory</a> computes with exact fractions. It builds $P$ and $P^{-1}$ for the running example, obtains $(10,13,5)$, shows that the wrong direction gives $(4,-7,5)$, and checks the Taylor identity at several points. It checks $P^2$ for the composition, the row $aP=(1,0,0)$, the example in $F^3$ over $\mathbb{Q}$ by both formulas, the converse example with $[p]=(2,0,3)$, the singular boundary case, and the counts of ordered bases over $\mathbb{F}_2$ and $\mathbb{F}_3$. The theorems are proved above; the laboratory checks instances.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) In $P_2(\mathbb{Q})$ find the change-of-basis matrix from $\mathcal{C}=(1,x+1,(x+1)^2)$ to $\mathcal{B}=(1,x,x^2)$ and use it to expand $p=2+3x+5x^2$ in powers of $x+1$.</li>
+<li>(Rotation.) In $\mathbb{R}^2$ let $\mathcal{B}'=\big((\cos\theta,\sin\theta),(-\sin\theta,\cos\theta)\big)$. Find $P_{\mathcal{E}\leftarrow\mathcal{B}'}$ and the $\mathcal{B}'$-coordinates of $(x,y)$.</li>
+<li>(Direction.) Let $\mathcal{B}$ be an ordered basis of $V$ and $\mathcal{B}'$ obtained from it by replacing $\alpha_1$ with $2\alpha_1$, where $2\neq0$ in $F$. How do the coordinates of a vector change? Explain the result in words.</li>
+<li>(Proof.) Prove that the ordered bases $\mathcal{B}$ and $\mathcal{B}'$ give $[\alpha]_{\mathcal{B}}=[\alpha]_{\mathcal{B}'}$ for every $\alpha$ if and only if $\mathcal{B}=\mathcal{B}'$.</li>
+<li>(Field dependence.) For which primes $p$ is $\big((1,1,0),(0,1,1),(1,0,1)\big)$ a basis of $\mathbb{F}_p^3$? For $p=3$, find the coordinates of $(1,0,0)$.</li>
+<li>(Counting.) Let $p$ be a prime. Count the invertible $2\times2$ matrices over $\mathbb{F}_p$ with the help of Theorem 6.1.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>The columns of $P=P_{\mathcal{B}\leftarrow\mathcal{C}}$ are the $\mathcal{B}$-coordinates of $1$, $1+x$, $1+2x+x^2$: rows $(1,1,1)$, $(0,1,2)$, $(0,0,1)$. The new coordinates are $X'=P^{-1}(2,3,5)^{\mathsf T}$, that is, the solution of $x_1'+x_2'+x_3'=2$, $x_2'+2x_3'=3$, $x_3'=5$. So $x_3'=5$, $x_2'=3-10=-7$, $x_1'=2+7-5=4$. Hence $p=4-7(x+1)+5(x+1)^2$. Check at $x=-1$: $p(-1)=2-3+5=4$.</p>
+</li>
+<li>
+<p>The columns of $P$ are the standard coordinates of the new vectors, so $P=\begin{pmatrix}\cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta\end{pmatrix}$. The product of this matrix with its transpose is $I$ because $\cos^2\theta+\sin^2\theta=1$, so $P^{-1}=P^{\mathsf T}$. Therefore $[(x,y)]_{\mathcal{B}'}=P^{\mathsf T}(x,y)^{\mathsf T}=(x\cos\theta+y\sin\theta,\;-x\sin\theta+y\cos\theta)^{\mathsf T}$. For $\theta=\pi/2$ this reads $(y,-x)$: the vector $(0,1)$ is the first new basis vector, as it should be.</p>
+</li>
+<li>
+<p>$P=P_{\mathcal{B}\leftarrow\mathcal{B}'}$ is diagonal with entries $2,1,\dots,1$, and $[\alpha]_{\mathcal{B}'}=P^{-1}[\alpha]_{\mathcal{B}}$ halves the first coordinate (multiplies it by $2^{-1}$) and keeps the others. In words: if a basis vector is made twice as long, half as much of it is needed to build the same vector. Coordinates change in the opposite way to the basis vectors.</p>
+</li>
+<li>
+<p>If $\mathcal{B}=\mathcal{B}'$ the coordinates are equal by definition. Conversely, suppose the coordinates agree for every $\alpha$. Take $\alpha=\alpha_j'$. Then $[\alpha_j']_{\mathcal{B}}=[\alpha_j']_{\mathcal{B}'}=e_j$, which says $\alpha_j'=\alpha_j$. In terms of the theorem, $P_{\mathcal{B}\leftarrow\mathcal{B}'}=I$ exactly for $\mathcal{B}=\mathcal{B}'$.</p>
+</li>
+<li>
+<p>A relation $a(1,1,0)+b(0,1,1)+c(1,0,1)=0$ gives $a+c=0$, $a+b=0$, $b+c=0$, hence $c=-a$, $b=-a$ and $-2a=0$. If $p$ is odd, $2\neq0$, so $a=b=c=0$ and the three vectors form a basis. If $p=2$, $a=b=c=1$ is a relation. So the list is a basis exactly for odd primes. For $p=3$ solve $a+c=1$, $a+b=0$, $b+c=0$. Then $b=-a$ and $c=-b=a$, so $2a=1$, and in $\mathbb{F}_3$ the inverse of $2$ is $2$. So $a=2$, $b=1$, $c=2$. Check: $2(1,1,0)+1(0,1,1)+2(1,0,1)=(4,3,3)=(1,0,0)$ in $\mathbb{F}_3$.</p>
+</li>
+<li>
+<p>By Theorems 2.1 and 6.1, with a fixed basis, invertible $2\times2$ matrices correspond one-to-one with ordered bases of $\mathbb{F}_p^2$. The first basis vector can be any nonzero vector: $p^2-1$ choices. The second must avoid the span of the first, which has $p$ elements: $p^2-p$ choices. Each such pair is linearly independent, hence a basis. So there are $(p^2-1)(p^2-p)$ invertible matrices. For $p=2$ this is $6$ and for $p=3$ it is $48$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, Chapter 2 (coordinates).</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., Springer, 2024, open access at https://linear.axler.net/, Chapter 3.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch05.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 5 laboratory: coordinates and change of ordered basis.
+
+Exact arithmetic over Q (fractions.Fraction) and brute force over F_p.
+A matrix is a list of rows.  A basis of F^n is given by the matrix M
+whose columns are its vectors, written in standard coordinates.  For the
+space of polynomials of degree at most 2 the monomial basis (1, x, x^2)
+plays the role of the standard basis.
+
+Convention (as in the chapter): P(B &lt;- B&#x27;) is the matrix with
+[v]_B = P(B &lt;- B&#x27;) [v]_B&#x27;, and its column j is [alpha&#x27;_j]_B.
+&quot;&quot;&quot;
+from fractions import Fraction
+from itertools import product
+
+
+def Q(rows):
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def identity(n):
+    return [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def transpose(A):
+    return [list(r) for r in zip(*A)]
+
+
+def matmul(A, B):
+    return [[sum(A[i][k] * B[k][j] for k in range(len(B)))
+             for j in range(len(B[0]))] for i in range(len(A))]
+
+
+def matvec(A, x):
+    return [sum(a * b for a, b in zip(row, x)) for row in A]
+
+
+def rref(A):
+    &quot;&quot;&quot;Return (R, pivot columns) for A over Q, by Gauss-Jordan.&quot;&quot;&quot;
+    R = [row[:] for row in A]
+    pivots, r = [], 0
+    for c in range(len(R[0])):
+        p = next((i for i in range(r, len(R)) if R[i][c] != 0), None)
+        if p is None:
+            continue
+        R[r], R[p] = R[p], R[r]
+        R[r] = [x / R[r][c] for x in R[r]]
+        for i in range(len(R)):
+            if i != r and R[i][c] != 0:
+                f = R[i][c]
+                R[i] = [x - f * y for x, y in zip(R[i], R[r])]
+        pivots.append(c)
+        r += 1
+        if r == len(R):
+            break
+    return R, pivots
+
+
+def rank(A):
+    return len(rref(A)[1])
+
+
+def inverse(A):
+    n = len(A)
+    aug = [row + identity(n)[i] for i, row in enumerate(A)]
+    R, piv = rref(aug)
+    if piv[:n] != list(range(n)) or len(piv) &lt; n:
+        raise ValueError(&#x27;matrix is singular&#x27;)
+    return [row[n:] for row in R]
+
+
+def coords(M, v):
+    &quot;&quot;&quot;Coordinates of the standard-coordinate vector v in basis M.&quot;&quot;&quot;
+    return matvec(inverse(M), v)
+
+
+def change_matrix(MB, MBp):
+    &quot;&quot;&quot;P(B &lt;- B&#x27;) = MB^(-1) MBp (columns are [alpha&#x27;_j]_B).&quot;&quot;&quot;
+    return matmul(inverse(MB), MBp)
+
+
+def change_matrix_rref(MB, MBp):
+    &quot;&quot;&quot;The same matrix by row reducing [MB | MBp] to [I | P].&quot;&quot;&quot;
+    n = len(MB)
+    aug = [a + b for a, b in zip(MB, MBp)]
+    R, piv = rref(aug)
+    assert piv[:n] == list(range(n))
+    return [row[n:] for row in R]
+
+
+def basis_from_P(MB, P):
+    &quot;&quot;&quot;New basis alpha&#x27;_j = sum_i P[i][j] alpha_i, as a matrix of columns.&quot;&quot;&quot;
+    return matmul(MB, P)
+
+
+def det_mod(A, p):
+    &quot;&quot;&quot;Determinant of a small integer matrix modulo p (Laplace).&quot;&quot;&quot;
+    if len(A) == 1:
+        return A[0][0] % p
+    total = 0
+    for j in range(len(A)):
+        minor = [r[:j] + r[j + 1:] for r in A[1:]]
+        total += (-1) ** j * A[0][j] * det_mod(minor, p)
+    return total % p
+
+
+def count_ordered_bases(n, p):
+    &quot;&quot;&quot;Number of ordered bases of F_p^n, by brute force.
+
+    A tuple of n vectors is a basis iff the matrix with those columns has
+    nonzero determinant mod p.
+    &quot;&quot;&quot;
+    vecs = list(product(range(p), repeat=n))
+    bases = 0
+    for tup in product(vecs, repeat=n):
+        cols = [list(v) for v in tup]
+        if det_mod(transpose(cols), p) != 0:
+            bases += 1
+    return bases
+
+
+def gl_order(n, q):
+    out = 1
+    for i in range(n):
+        out *= q ** n - q ** i
+    return out
+
+
+def show(M):
+    return [[str(x) for x in r] for r in M]
+
+
+def main():
+    # Running example: P_2(Q), B = (1, x, x^2), B&#x27; = (1, x-1, (x-1)^2).
+    MB = identity(3)
+    MBp = Q([[1, -1, 1], [0, 1, -2], [0, 0, 1]])
+    P = change_matrix(MB, MBp)
+    Pinv = inverse(P)
+    assert P == MBp
+    assert Pinv == Q([[1, 1, 1], [0, 1, 2], [0, 0, 1]])
+    X = [Fraction(2), Fraction(3), Fraction(5)]      # 2 + 3x + 5x^2
+    Xp = matvec(Pinv, X)
+    assert Xp == [10, 13, 5]                  # p(1), p&#x27;(1), p&#x27;&#x27;(1)/2
+    assert matvec(P, Xp) == X
+    wrong = matvec(P, X)                      # the direction error
+    assert wrong == [4, -7, 5] and wrong != Xp
+    print(&#x27;P =&#x27;, show(P))
+    print(&#x27;P^-1 =&#x27;, show(Pinv))
+    print(&#x27;X =&#x27;, [str(x) for x in X], &#x27; Xp =&#x27;, [str(x) for x in Xp])
+    print(&#x27;P X (wrong direction) =&#x27;, [str(x) for x in wrong])
+
+    # Taylor check: coefficients of p in powers of (x-1).
+    def p(t):
+        return 2 + 3 * t + 5 * t * t
+    for t in [Fraction(k, 3) for k in range(-4, 6)]:
+        s = t - 1
+        assert p(t) == Xp[0] + Xp[1] * s + Xp[2] * s * s
+
+    # Composition: B&#x27;&#x27; = (1, x-2, (x-2)^2).
+    MBpp = Q([[1, -2, 4], [0, 1, -4], [0, 0, 1]])
+    P2 = change_matrix(MB, MBpp)
+    P_bp_bpp = change_matrix(MBp, MBpp)
+    assert P_bp_bpp == P                      # shift by 1 again
+    assert matmul(P, P_bp_bpp) == P2 == matmul(P, P)
+    assert change_matrix(MBp, MB) == Pinv     # P(B&#x27;&lt;-B) = P(B&lt;-B&#x27;)^-1
+    print(&#x27;P^2 =&#x27;, show(P2))
+
+    # Linear functional f(p) = p(1): coordinate row a&#x27; = a P.
+    a = Q([[1, 1, 1]])
+    ap = matmul(a, P)
+    assert ap == Q([[1, 0, 0]])
+    print(&#x27;f = p(1): a =&#x27;, [str(x) for x in a[0]], &#x27; ap =&#x27;,
+          [str(x) for x in ap[0]])
+
+    # Second example in Q^3 with two non-standard bases.
+    B1 = Q([[1, 0, 1], [1, 1, 0], [0, 1, 1]])    # columns (1,1,0),(0,1,1),..
+    B2 = Q([[1, 0, 0], [1, 1, 0], [1, 1, 1]])    # (1,1,1),(0,1,1),(0,0,1)
+    P12 = change_matrix(B1, B2)
+    assert change_matrix_rref(B1, B2) == P12
+    v = [Fraction(4), Fraction(-2), Fraction(6)]
+    x1, x2 = coords(B1, v), coords(B2, v)
+    assert matvec(P12, x2) == x1 and matvec(inverse(P12), x1) == x2
+    assert matvec(B1, x1) == v and matvec(B2, x2) == v
+    print(&#x27;B1 columns:&#x27;, show(transpose(B1)))
+    print(&#x27;B2 columns:&#x27;, show(transpose(B2)))
+    print(&#x27;P(B1&lt;-B2) =&#x27;, show(P12))
+    print(&#x27;v =&#x27;, [str(x) for x in v], &#x27; [v]_B1 =&#x27;, [str(x) for x in x1],
+          &#x27; [v]_B2 =&#x27;, [str(x) for x in x2])
+    # In closed form, [(x, y, z)]_B2 = (x, y - x, z - y).
+    assert x2 == [4, -6, 8]
+    # Swapping the order of a basis permutes the coordinates.
+    swapped = [r[:] for r in B2]
+    for r in swapped:
+        r[0], r[1] = r[1], r[0]
+    assert coords(swapped, v) == [x2[1], x2[0], x2[2]]
+
+    # Converse: build B&#x27; from an invertible P (B = monomials).
+    Pc = Q([[1, 2, 0], [0, 1, 1], [1, 0, 1]])
+    Mnew = basis_from_P(MB, Pc)
+    assert transpose(Mnew) == Q([[1, 0, 1], [2, 1, 0], [0, 1, 1]])
+    assert rank(Mnew) == 3
+    Xc = matvec(inverse(Pc), X)
+    assert matvec(Pc, Xc) == X
+    print(&#x27;converse: P^-1 =&#x27;, show(inverse(Pc)), &#x27; [p]_B2 =&#x27;,
+          [str(x) for x in Xc])
+
+    # Boundary: a singular P gives dependent vectors, no basis.
+    Ps = Q([[1, 1], [1, 1]])
+    assert rank(basis_from_P(identity(2), Ps)) == 1
+    try:
+        inverse(Ps)
+        raise AssertionError(&#x27;singular matrix inverted&#x27;)
+    except ValueError:
+        pass
+    assert rank(Q([[1, 1, 0], [0, 0, 1], [0, 0, 1]])) == 2
+
+    # Ordered bases correspond to invertible matrices (counts).
+    for n, q in [(2, 2), (3, 2), (2, 3)]:
+        nb = count_ordered_bases(n, q)
+        assert nb == gl_order(n, q)
+        print(&#x27;ordered bases of F_%d^%d: %d&#x27; % (q, n, nb))
+    assert gl_order(2, 2) == 6 and gl_order(3, 2) == 168
+    assert gl_order(2, 3) == 48
+    print(&#x27;all checks passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch04.html">Previous: Linear independence, basis, and the invariance of dimension</a><a rel="next" href="ch06.html">Next: Row space and computations with subspaces</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>

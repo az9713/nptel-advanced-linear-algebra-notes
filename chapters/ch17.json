@@ -1,0 +1,15 @@
+{
+  "title": "Direct-sum decompositions and projections",
+  "lectures": [
+    34,
+    35
+  ],
+  "objectives": [
+    "Prove the equivalent criteria for independent subspaces",
+    "Construct the projection on one summand along another",
+    "Characterize direct-sum decompositions by families of projections",
+    "Read the block-diagonal form from invariant summands"
+  ],
+  "prerequisites": "Bases, dimension, linear operators and invariant subspaces (Chapters 3, 4, 7 and 15).",
+  "source_scope": "The captions of the two recordings (positions 34 and 35) were read in full. The plane projection example and the symmetric-matrix and eigenspace examples come from them; the running 3 by 3 operator, extra proofs, counterexamples, laboratory and exercises are original."
+}

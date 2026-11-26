@@ -1,0 +1,52 @@
+{
+  "author": "author_b",
+  "chapter": "ch17",
+  "recordings": [
+    {
+      "position": 34,
+      "video_id": "P5dUSimEXHk",
+      "normalized_text_sha256": "90106922efd4dc5e10c66ca3cfc4108bb9dc57f81862689cd002ed7778b58c41",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "independent subspaces",
+        "three equivalent conditions",
+        "direct sum",
+        "examples: coordinate lines, symmetric and skew matrices, eigenspaces",
+        "projections and V = range + null space",
+        "projection example in the plane"
+      ],
+      "clarifications": [
+        "Pairwise zero intersection does not give independence",
+        "The symmetric/skew split needs characteristic not 2"
+      ],
+      "original_constructions": [
+        "three-lines counterexample",
+        "dimension criterion"
+      ]
+    },
+    {
+      "position": 35,
+      "video_id": "HYudOaJ_gxE",
+      "normalized_text_sha256": "c34fd7ce2de8b3fa8702c815e7fb0b36c38fe820aa52241a7ccf3c2ede44d411",
+      "reading": "full sequential text read",
+      "visual": "not comprehensively reviewed",
+      "audio": "not comprehensively reviewed",
+      "topics": [
+        "matrix of a projection",
+        "projections of a direct sum and the converse",
+        "invariant summands and restrictions",
+        "block-diagonal matrix"
+      ],
+      "clarifications": [
+        "In the converse, idempotence follows from the other two identities"
+      ],
+      "original_constructions": [
+        "running operator",
+        "characteristic-2 counterexample",
+        "exercises"
+      ]
+    }
+  ]
+}

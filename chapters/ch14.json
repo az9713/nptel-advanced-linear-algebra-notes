@@ -1,0 +1,12 @@
+{
+  "title": "The Cayley-Hamilton theorem and the minimal polynomial in computation",
+  "lectures": [28, 29],
+  "objectives": [
+    "Prove the Cayley-Hamilton theorem through the adjugate",
+    "Compute powers and inverses from annihilating polynomials",
+    "Compare the spectra and minimal polynomials of AB and BA",
+    "Decide diagonalizability over different fields"
+  ],
+  "prerequisites": "Determinants and adjugates, and Chapters 12 and 13: characteristic and minimal polynomials.",
+  "source_scope": "The captions of Lectures 27 and 28 were read in full; the matrices of the main examples are read out in them, and the divisibility theorem for AB and BA, the field extensions and the exercises are original."
+}

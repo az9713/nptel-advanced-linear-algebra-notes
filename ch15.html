@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Independent study edition of NPTEL Advanced Linear Algebra, IIT Roorkee: complete proofs, original examples, solved exercises, and executable laboratories.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'">
+<title>Invariant subspaces, conductors, and triangulability · Advanced Linear Algebra</title>
+<link rel="stylesheet" href="assets/reader.css">
+<script src="assets/math-config.js" defer></script>
+<script src="assets/mathjax-tex-svg.js" defer></script>
+<script src="assets/reader.js" defer></script></head><body>
+<a class="skip" href="#main">Skip to main content</a><div class="shell">
+<aside><a class="brand" href="index.html">Advanced Linear Algebra</a>
+<p>Spaces, operators, decompositions<br>Independent NPTEL study edition</p>
+<button id="menu" type="button" aria-expanded="false" aria-controls="navigation">Contents</button>
+<nav id="navigation" aria-label="Book"><a href="index.html">Overview and chapter finder</a>
+<a href="source-map.html">Recordings and source map</a>
+<a href="study-guide.html">Study guide and dependency map</a>
+<a href="numerical-lab.html">Interactive numerical laboratory</a>
+<a href="references.html">References and evidence limits</a><a href="ch01.html">01. Linear systems as one matrix equation, and the operations that preserve its solutions</a><a href="ch02.html">02. Row-reduced echelon form: one canonical answer to every linear system</a><a href="ch03.html">03. Vector spaces and subspaces: the axioms that make linear combinations work</a><a href="ch04.html">04. Linear independence, basis, and the invariance of dimension</a><a href="ch05.html">05. Coordinates and change of ordered basis</a><a href="ch06.html">06. Row space and computations with subspaces</a><a href="ch07.html">07. Linear transformations, null space, range, and the rank-nullity theorem</a><a href="ch08.html">08. The algebra of linear transformations: sums, composition, invertibility, and isomorphism</a><a href="ch09.html">09. Matrix representation of linear transformations and similarity</a><a href="ch10.html">10. Linear functionals, dual spaces, and dual bases</a><a href="ch11.html">11. Annihilators, the double dual, and the transpose of a linear map</a><a href="ch12.html">12. Eigenvalues, eigenvectors, and the characteristic polynomial</a><a href="ch13.html">13. Diagonalizable operators and annihilating polynomials</a><a href="ch14.html">14. The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a href="ch15.html" aria-current=page>15. Invariant subspaces, conductors, and triangulability</a><a href="ch16.html">16. Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a><a href="ch17.html">17. Direct-sum decompositions and projections</a><a href="ch18.html">18. Invariant direct sums and block-diagonal operators</a><a href="ch19.html">19. The primary decomposition theorem</a><a href="ch20.html">20. Applications of primary decomposition: diagonalizable plus nilpotent parts</a><a href="ch21.html">21. Inner products, norms, and the Cauchy-Schwarz inequality</a><a href="ch22.html">22. Orthogonal projection, Gram-Schmidt, and best approximation</a><a href="ch23.html">23. Linear functionals and adjoint operators on inner product spaces</a><a href="ch24.html">24. Inner-product-space isomorphisms and unitary operators</a><a href="ch25.html">25. Normal operators and spectral resolution</a><a href="ch26.html">26. Singular value decomposition and forms on inner product spaces</a></nav></aside>
+<main id="main"><div class="eyebrow">NPTEL · IIT Roorkee · Premananda Bera</div>
+<h1>15. Invariant subspaces, conductors, and triangulability</h1>
+<p class="meta"><a href="https://www.youtube.com/watch?v=K-RIfSg3uWI">Recording 30</a>, <a href="https://www.youtube.com/watch?v=wTr4FJ6ogvM">Recording 31</a> · Expanded, independently developed exposition</p>
+<div class="objectives"><strong>What you will learn</strong><ul><li>Test invariance of a subspace and read the resulting block form</li><li>Relate the polynomials of a restriction to those of the operator</li><li>Compute conductors into invariant subspaces and prove their properties</li><li>Use the linear-conductor lemma and the flag form of triangularity</li></ul>
+<p><strong>Prerequisites:</strong> Bases, matrices of operators, eigenvalues, determinants, the minimal polynomial and the Cayley-Hamilton theorem (Chapters 4 to 14).</p></div>
+<div class="toolbar"><button id="solutions" type="button">Open solutions and code</button>
+<button id="print" type="button">Print / save PDF</button><button id="theme" type="button" aria-pressed="false">Use light theme</button>
+<a href="chapters/ch15.md">Editable chapter source</a></div><div class="toc"><strong>In this chapter</strong><ul><li><a href="#1-invariant-subspaces-0140">1. Invariant subspaces 01:40</a></li><li><a href="#2-first-examples-trivial-subspaces-kernel-range-and-polynomials-0314">2. First examples: trivial subspaces, kernel, range, and polynomials 03:14</a></li><li><a href="#3-commuting-operators-and-eigenspaces-0956">3. Commuting operators and eigenspaces 09:56</a></li><li><a href="#4-restriction-and-the-block-form-of-the-matrix-1604">4. Restriction and the block form of the matrix 16:04</a></li><li><a href="#5-what-the-blocks-say-about-the-two-polynomials-2347">5. What the blocks say about the two polynomials 23:47</a></li><li><a href="#6-an-operator-with-no-invariant-line-3054">6. An operator with no invariant line 30:54</a></li><li><a href="#7-the-conductor-of-a-vector-into-an-invariant-subspace-0143">7. The conductor of a vector into an invariant subspace 01:43</a></li><li><a href="#8-the-monic-generator-and-its-properties-1614">8. The monic generator and its properties 16:14</a></li><li><a href="#9-triangulable-operators-2254">9. Triangulable operators 22:54</a></li><li><a href="#10-the-linear-conductor-lemma-2549">10. The linear-conductor lemma 25:49</a></li><li><a href="#11-invariance-seen-from-the-dual-space">11. Invariance seen from the dual space</a></li><li><a href="#12-executable-check">12. Executable check</a></li><li><a href="#exercises">Exercises</a></li><li><a href="#references">References</a></li></ul></div>
+<article>
+<p>Let $T$ be the operator on $\mathbb{Q}^4$ whose matrix in the standard basis $(e_1,e_2,e_3,e_4)$ is</p>
+<p>$$A=\begin{pmatrix}2&amp;0&amp;1&amp;0\\-2&amp;4&amp;0&amp;1\\-3&amp;3&amp;0&amp;2\\-1&amp;1&amp;-1&amp;3\end{pmatrix}.$$</p>
+<p>This matrix is the running example of the chapter. It is an original construction. Its characteristic polynomial is $\det(xI-A)=(x-2)^3(x-3)$, as Section 5 shows without expanding the $4\times4$ determinant. The operator is not diagonalizable: the eigenvectors for $2$ and for $3$ span only a plane, so no basis of $\mathbb{Q}^4$ consists of eigenvectors. Most operators with repeated eigenvalues behave in this way or can. We therefore need a weaker simple form than a diagonal matrix.</p>
+<p>The idea is to look for subspaces that $T$ does not leave. If such a subspace $W$ exists, then part of the behaviour of $T$ can be studied inside $W$, where the dimension is smaller, and the matrix of $T$ acquires a block of zeros. A chain of such subspaces, one in each dimension, gives a triangular matrix. This chapter builds the two tools for finding the chain: invariant subspaces, and a polynomial called the conductor that measures how far a vector is from an invariant subspace.</p>
+<p><strong>Conventions.</strong> $F$ is a field, $V$ is a vector space over $F$, and $T\in\mathcal{L}(V)$ is a linear operator on $V$, that is, a linear map from $V$ to $V$. Finite dimension is stated where it is used. $F[x]$ is the ring of polynomials with coefficients in $F$. For $p=\sum_kp_kx^k\in F[x]$ we write $p(T)=\sum_kp_kT^k$, with $T^0=I$ the identity. Since powers of $T$ commute, $(pq)(T)=p(T)q(T)=q(T)p(T)$. When $\dim V=n$ is finite, the <em>minimal polynomial</em> $m_T$ is the monic polynomial of least degree with $m_T(T)=0$, and it divides every $p$ with $p(T)=0$ (<a href="ch13.html">Chapter 13</a>). The <em>characteristic polynomial</em> is $c_T(x)=\det(xI-T)$. A scalar $c\in F$ is an <em>eigenvalue</em> if $Tv=cv$ for some $v\neq0$; the <em>eigenspace</em> is $E_c=\ker(T-cI)$. The eigenvalues in $F$ are exactly the roots in $F$ of $c_T$, and also exactly the roots in $F$ of $m_T$ (<a href="ch12.html">Chapter 12</a>, <a href="ch14.html">Chapter 14</a>). The Cayley–Hamilton theorem says $c_T(T)=0$ (<a href="ch14.html">Chapter 14</a>). The same notation is used for a square matrix $M$, viewed as the operator $v\mapsto Mv$.</p>
+<h2 id="1-invariant-subspaces-0140">1. Invariant subspaces <a href="https://www.youtube.com/watch?v=K-RIfSg3uWI&amp;t=100s">01:40</a></h2>
+<p><strong>Definition 1.1.</strong> A subspace $W\subseteq V$ is <em>invariant under $T$</em>, or <em>$T$-invariant</em>, if $T\alpha\in W$ for every $\alpha\in W$. In set notation, $T(W)\subseteq W$.</p>
+<p>The definition asks only that $T$ send $W$ into $W$. It does not ask that $T$ fix any vector, and it does not ask that $T(W)$ equal $W$. The zero operator maps every subspace to $0$, so every subspace is invariant under it.</p>
+<p><strong>Lemma 1.2.</strong> Suppose $W=\operatorname{span}(w_1,\dots,w_k)$. Then $W$ is $T$-invariant if and only if $Tw_j\in W$ for each $j$.</p>
+<p><em>Proof.</em> If $W$ is invariant, each $Tw_j$ lies in $W$ because $w_j$ does. Conversely, a general vector of $W$ is $\alpha=\sum_ja_jw_j$, and $T\alpha=\sum_ja_jTw_j$ is a linear combination of vectors of $W$. $\square$</p>
+<p>The lemma turns an infinite condition into $k$ membership tests, each of which is a linear system. For the running example take $w_1=(1,1,0,0)$ and $w_2=(0,1,1,0)$ and let $W=\operatorname{span}(w_1,w_2)$. (Vectors are columns; we write them as tuples to save space.) Direct multiplication gives</p>
+<p>$$Aw_1=(2,2,0,0)=2w_1,\qquad Aw_2=(1,4,3,0)=w_1+3w_2.$$</p>
+<p>Both images lie in $W$, so $W$ is $T$-invariant. By contrast, $Ae_1=(2,-2,-3,-1)$ is not a multiple of $e_1$, so the line through $e_1$ is not invariant.</p>
+<h2 id="2-first-examples-trivial-subspaces-kernel-range-and-polynomials-0314">2. First examples: trivial subspaces, kernel, range, and polynomials <a href="https://www.youtube.com/watch?v=K-RIfSg3uWI&amp;t=194s">03:14</a></h2>
+<p>Four subspaces are invariant under every operator $T$.</p>
+<ul>
+<li>The zero subspace: $T0=0$.</li>
+<li>The whole space $V$: $T$ maps $V$ into $V$.</li>
+<li>The kernel $\ker T$: if $T\alpha=0$ then $T(T\alpha)=T0=0$, so $T\alpha\in\ker T$.</li>
+<li>The range $\operatorname{im}T$: if $\beta\in\operatorname{im}T$ then $T\beta$ is $T$ applied to a vector, hence lies in $\operatorname{im}T$.</li>
+</ul>
+<p>These can coincide with the first two. For an invertible operator, $\ker T=0$ and $\operatorname{im}T=V$, and they give nothing new. For the running example $\det A=24\neq0$, the value of $c_T$ at $0$, so more work is needed to find useful invariant subspaces.</p>
+<p><strong>Polynomials and the derivative.</strong> Let $V=F[x]$, which is infinite-dimensional, and let $D$ be the formal derivative, $D\big(\sum_ka_kx^k\big)=\sum_{k\ge1}ka_kx^{k-1}$. Let $P_n$ be the subspace of polynomials of degree at most $n$, including the zero polynomial. Differentiation never raises the degree, so $D(P_n)\subseteq P_n$. Each $P_n$ is invariant, and we get an infinite chain $P_0\subset P_1\subset P_2\subset\cdots$ of invariant subspaces.</p>
+<p>The invariance depends on the operator, not only on the subspace. Let $M$ be multiplication by $x$, so $Mp=xp$. Then $x^n\in P_n$ but $Mx^n=x^{n+1}\notin P_n$. So $P_n$ is not $M$-invariant.</p>
+<h2 id="3-commuting-operators-and-eigenspaces-0956">3. Commuting operators and eigenspaces <a href="https://www.youtube.com/watch?v=K-RIfSg3uWI&amp;t=596s">09:56</a></h2>
+<p><strong>Theorem 3.1.</strong> Let $T,U\in\mathcal{L}(V)$ with $TU=UT$. Then $\ker U$ and $\operatorname{im}U$ are $T$-invariant. No assumption on $\dim V$ is needed.</p>
+<p><em>Proof.</em> Let $\alpha\in\operatorname{im}U$, say $\alpha=U\beta$. Then $T\alpha=TU\beta=U(T\beta)$, which lies in $\operatorname{im}U$. Let $\alpha\in\ker U$. Then $U(T\alpha)=T(U\alpha)=T0=0$, so $T\alpha\in\ker U$. $\square$</p>
+<p>The hinge is the exchange $TU=UT$: it moves $T$ past $U$ so that the defining property of the subspace can be used. Without commutation the conclusion can fail. On $F^2$ let $T(a,b)=(0,a)$ and $U(a,b)=(a,0)$. Then $\operatorname{im}U$ is the first coordinate axis, and $T(1,0)=(0,1)$ leaves it.</p>
+<p><strong>Corollary 3.2.</strong> For every $p\in F[x]$, the subspaces $\ker p(T)$ and $\operatorname{im}p(T)$ are $T$-invariant. In particular every eigenspace $E_c$ is $T$-invariant.</p>
+<p><em>Proof.</em> $p(T)$ commutes with $T$, so Theorem 3.1 applies with $U=p(T)$. For $E_c$ take $p=x-c$. Directly: $\alpha\in E_c$ gives $T\alpha=c\alpha\in E_c$. $\square$</p>
+<p>A subspace of an eigenspace is also invariant, since each of its vectors is only rescaled. A line $\operatorname{span}(v)$ with $v\neq0$ is invariant exactly when $Tv=cv$ for some $c$, that is, exactly when $v$ is an eigenvector. So the invariant lines are the lines spanned by eigenvectors.</p>
+<p><strong>On the running example.</strong> Write $N=A-2I$. Row reduction gives $E_2=\ker N=\operatorname{span}(w_1)$ and $E_3=\ker(A-3I)=\operatorname{span}(1,2,1,0)$. Since $(1,2,1,0)=w_1+w_2$, the subspace of Section 1 is $W=E_2\oplus E_3$. Corollary 3.2 also supplies the kernels of the powers of $N$. They have dimensions $1,2,3$ for $N,N^2,N^3$, with $\ker N^2=\operatorname{span}(w_1,(0,0,1,1))$. So $A$ has more invariant subspaces than its eigenvectors alone show.</p>
+<p><strong>Sums and intersections.</strong> If $W_1$ and $W_2$ are $T$-invariant, then so are $W_1+W_2$ and $W_1\cap W_2$ (Exercise 2). A complement of an invariant subspace need not be invariant, and an invariant complement need not exist at all.</p>
+<h2 id="4-restriction-and-the-block-form-of-the-matrix-1604">4. Restriction and the block form of the matrix <a href="https://www.youtube.com/watch?v=K-RIfSg3uWI&amp;t=964s">16:04</a></h2>
+<p><strong>Definition 4.1.</strong> Let $W$ be $T$-invariant. The <em>restriction</em> of $T$ to $W$ is the map $T_W:W\to W$ with $T_W\alpha=T\alpha$.</p>
+<p>The restriction is a linear operator on $W$ precisely because the values $T\alpha$ lie in $W$. For a subspace that is not invariant, $T$ restricted to $W$ is still a linear map $W\to V$, but it is not an operator on $W$ and has no characteristic polynomial.</p>
+<p>Now let $\dim V=n$ and $\dim W=k$ with $1\le k&lt;n$. Choose an ordered basis $\mathcal{B}_W=(\alpha_1,\dots,\alpha_k)$ of $W$ and extend it to an ordered basis $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ of $V$ (<a href="ch04.html">Chapter 4</a>). We call such a basis <em>adapted</em> to $W$. Recall that column $j$ of $[T]_{\mathcal{B}}$ holds the coordinates of $T\alpha_j$.</p>
+<p><strong>Theorem 4.2.</strong> Let $\mathcal{B}$ be adapted to a subspace $W$ of dimension $k$. Then $W$ is $T$-invariant if and only if</p>
+<p>$$[T]_{\mathcal{B}}=\begin{pmatrix}B&amp;C\\0&amp;D\end{pmatrix},$$</p>
+<p>with $B\in F^{k\times k}$, $C\in F^{k\times(n-k)}$, $D\in F^{(n-k)\times(n-k)}$, and a zero block of size $(n-k)\times k$. In that case $B=[T_W]_{\mathcal{B}_W}$.</p>
+<p><em>Proof.</em> For $j\le k$, write $T\alpha_j=\sum_{i=1}^na_{ij}\alpha_i$. Because the coordinates in a basis are unique and $W=\operatorname{span}(\alpha_1,\dots,\alpha_k)$, the vector $T\alpha_j$ lies in $W$ if and only if $a_{ij}=0$ for every $i&gt;k$. By Lemma 1.2, invariance is the statement $T\alpha_j\in W$ for all $j\le k$, which is therefore the statement that the lower left block vanishes. When it holds, $T\alpha_j=\sum_{i\le k}a_{ij}\alpha_i$, so the entries $a_{ij}$ with $i,j\le k$ are the matrix of $T_W$. $\square$</p>
+<p>The columns $j&gt;k$ are unrestricted: $T\alpha_j$ may have components both in $W$, recorded in $C$, and along the added vectors, recorded in $D$. If in addition $\operatorname{span}(\alpha_{k+1},\dots,\alpha_n)$ is $T$-invariant, the same argument gives $C=0$, and the matrix is block diagonal.</p>
+<p><strong>On the running example.</strong> Extend $(w_1,w_2)$ by $w_3=(0,0,1,1)$ and $w_4=(0,0,0,1)$. Let $P$ have the columns $w_1,\dots,w_4$; it is lower triangular with ones on the diagonal, hence invertible. Computing $Aw_3=(1,1,2,2)$ and $Aw_4=(0,1,2,3)$ and solving for coordinates gives</p>
+<p>$$P^{-1}AP=\begin{pmatrix}2&amp;1&amp;1&amp;0\\0&amp;3&amp;0&amp;1\\0&amp;0&amp;2&amp;1\\0&amp;0&amp;0&amp;2\end{pmatrix},\qquad B=\begin{pmatrix}2&amp;1\\0&amp;3\end{pmatrix},\quad C=\begin{pmatrix}1&amp;0\\0&amp;1\end{pmatrix},\quad D=\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix}.$$</p>
+<p>For instance, the third column says $Aw_3=w_1+2w_3$, and indeed $(1,1,0,0)+(0,0,2,2)=(1,1,2,2)$.</p>
+<h2 id="5-what-the-blocks-say-about-the-two-polynomials-2347">5. What the blocks say about the two polynomials <a href="https://www.youtube.com/watch?v=K-RIfSg3uWI&amp;t=1427s">23:47</a></h2>
+<p><strong>Theorem 5.1.</strong> Let $\dim V$ be finite, let $W$ be a $T$-invariant subspace with $0\neq W\neq V$, and let $B$ and $D$ be the diagonal blocks of Theorem 4.2. Then</p>
+<ol>
+<li>$c_T(x)=\det(xI-B)\,\det(xI-D)$, so $c_{T_W}$ divides $c_T$;</li>
+<li>$m_{T_W}$ divides $m_T$, and $m_D$, the minimal polynomial of the matrix $D$, divides $m_T$;</li>
+<li>$m_T$ divides the product $m_{T_W}\,m_D$.</li>
+</ol>
+<p><em>Proof.</em> Let $M=[T]_{\mathcal{B}}$. For part 1, $xI-M$ is block upper triangular with diagonal blocks $xI-B$ and $xI-D$. The determinant of a block upper triangular matrix is the product of the determinants of the diagonal blocks: in the permutation expansion of the determinant, a nonzero term cannot send any of the first $k$ columns to a row below the $k$-th, so each contributing permutation permutes the first $k$ indices among themselves and the remaining indices among themselves, and the sum factors. Since $B$ represents $T_W$, the first factor is $c_{T_W}$.</p>
+<p>For part 2, block multiplication shows that a product of two block upper triangular matrices, with the same block sizes, is block upper triangular, and that its diagonal blocks are the products of the diagonal blocks. Hence $M^r$ has diagonal blocks $B^r$ and $D^r$ for every $r\ge0$. Taking linear combinations,</p>
+<p>$$p(M)=\begin{pmatrix}p(B)&amp;C_p\\0&amp;p(D)\end{pmatrix}\qquad(p\in F[x])$$</p>
+<p>for some matrix $C_p$. Take $p=m_T$. Then $p(M)=0$, so $p(B)=0$ and $p(D)=0$. A polynomial that annihilates $B$ is a multiple of $m_B=m_{T_W}$, and the same holds for $D$.</p>
+<p>For part 3, put $q=m_{T_W}$ and $s=m_D$. The displayed formula gives</p>
+<p>$$q(M)=\begin{pmatrix}0&amp;X\\0&amp;Z\end{pmatrix},\qquad s(M)=\begin{pmatrix}Y&amp;U\\0&amp;0\end{pmatrix}$$</p>
+<p>for some blocks $X,Z,Y,U$. In the product $q(M)\,s(M)$, every one of the four blocks is a sum of two products, and each product has a zero factor: the first column of $q(M)$ is zero and the second row of $s(M)$ is zero. So $(qs)(T)=0$, and $m_T$ divides $qs$. $\square$</p>
+<p>The hinge of part 2 is that the upper right block, however complicated, never feeds back into the diagonal blocks. That block does affect $m_T$. This is why part 3 gives only divisibility into the product, and why $m_T$ need not equal the least common multiple of $m_{T_W}$ and $m_D$.</p>
+<p>The matrix $D$ depends on the vectors chosen to extend the basis, but Theorem 5.1 holds for every choice.</p>
+<p><strong>On the running example.</strong> The block $B$ has the distinct eigenvalues $2,3$ and so $m_B=(x-2)(x-3)$. The block $D$ satisfies $D-2I\neq0$ and $(D-2I)^2=0$, so $m_D=(x-2)^2$. Part 1 gives $c_T=(x-2)(x-3)\cdot(x-2)^2=(x-2)^3(x-3)$, as claimed in the opening. Part 2 says $m_T$ is divisible by $(x-2)(x-3)$ and by $(x-2)^2$, hence by $(x-2)^2(x-3)$. Part 3 says it divides $(x-2)^3(x-3)$. Both possibilities pass these tests, so we compute: $(A-2I)^2(A-3I)$ is not zero (its first row is $(1,-1,1,-1)$). Therefore $m_T=(x-2)^3(x-3)$. The least common multiple $(x-2)^2(x-3)$ is a proper divisor of $m_T$, and the block $C$ is the reason.</p>
+<h2 id="6-an-operator-with-no-invariant-line-3054">6. An operator with no invariant line <a href="https://www.youtube.com/watch?v=K-RIfSg3uWI&amp;t=1854s">30:54</a></h2>
+<p>Not every operator has a nontrivial invariant subspace. Let $R$ be the operator on $\mathbb{R}^2$ with matrix $\begin{pmatrix}0&amp;-1\\1&amp;0\end{pmatrix}$, the rotation by a quarter turn.</p>
+<p><strong>Proposition 6.1.</strong> The only subspaces of $\mathbb{R}^2$ invariant under $R$ are $0$ and $\mathbb{R}^2$.</p>
+<p><em>Proof.</em> Both are invariant. Any other subspace $W$ has dimension $1$, say $W=\operatorname{span}(\beta)$ with $\beta\neq0$. If $W$ were invariant, then $R\beta\in W$, so $R\beta=c\beta$ for some $c\in\mathbb{R}$. Then $c$ would be an eigenvalue. But $c_R(x)=x^2+1$ has no real root. $\square$</p>
+<p>The field is the whole issue. The same matrix acting on $\mathbb{C}^2$ has the eigenvalues $i$ and $-i$. Since $R(1,-i)=(i,1)=i\,(1,-i)$ and $R(1,i)=(-i,1)=-i\,(1,i)$, the two lines $\operatorname{span}(1,-i)$ and $\operatorname{span}(1,i)$ are invariant. In general, an operator on a two-dimensional space has an invariant line if and only if its characteristic polynomial has a root in $F$, by the remark after Corollary 3.2.</p>
+<h2 id="7-the-conductor-of-a-vector-into-an-invariant-subspace-0143">7. The conductor of a vector into an invariant subspace <a href="https://www.youtube.com/watch?v=wTr4FJ6ogvM&amp;t=103s">01:43</a></h2>
+<p>A vector $v$ outside an invariant subspace $W$ can often be pushed into $W$ by applying a suitable polynomial in $T$. The collection of all such polynomials records the position of $v$ relative to $W$.</p>
+<p><strong>Definition 7.1.</strong> Let $W$ be a $T$-invariant subspace and $v\in V$. Put</p>
+<p>$$S_T(v;W)=\{g\in F[x]:\ g(T)v\in W\}.$$</p>
+<p><strong>The set is large.</strong> It contains the zero polynomial. If $\dim V$ is finite, it contains nonzero polynomials: $m_T(T)v=0\in W$, so $m_T\in S_T(v;W)$, and by Cayley–Hamilton $c_T\in S_T(v;W)$ as well.</p>
+<p><strong>Invariance passes to polynomials.</strong> If $T(W)\subseteq W$, then $T^2(W)=T(T(W))\subseteq T(W)\subseteq W$, and by induction $T^k(W)\subseteq W$ for every $k\ge0$. A subspace is closed under linear combinations, so $f(T)W\subseteq W$ for every $f\in F[x]$.</p>
+<p><strong>Definition 7.2.</strong> An <em>ideal</em> of $F[x]$ is a nonempty subset $J$ that is closed under addition and under multiplication by arbitrary polynomials: $g,h\in J$ and $f\in F[x]$ imply $g+h\in J$ and $fg\in J$.</p>
+<p>Since $F[x]$ is commutative, there is no distinction between left and right ideals. Taking $f$ constant shows that an ideal is a subspace of the vector space $F[x]$ over $F$.</p>
+<p><strong>Theorem 7.3.</strong> If $W$ is $T$-invariant, then $S_T(v;W)$ is an ideal of $F[x]$.</p>
+<p><em>Proof.</em> It contains $0$. If $g,h\in S_T(v;W)$, then $(g+h)(T)v=g(T)v+h(T)v\in W$ because $W$ is a subspace. If $g\in S_T(v;W)$ and $f\in F[x]$, then $(fg)(T)v=f(T)\big(g(T)v\big)$. The vector $g(T)v$ lies in $W$, and $f(T)$ maps $W$ into $W$. $\square$</p>
+<p>Invariance is used only in the last step, and it cannot be dropped. On $F^2$ let $T(a,b)=(0,a)$, let $W=\operatorname{span}(e_1)$, which is not invariant, and let $v=e_1$. Then $1\in S_T(v;W)$ because $v\in W$. But $x\cdot1=x$ is not, because $Tv=e_2\notin W$. The set is still a subspace of $F[x]$, but not an ideal.</p>
+<h2 id="8-the-monic-generator-and-its-properties-1614">8. The monic generator and its properties <a href="https://www.youtube.com/watch?v=wTr4FJ6ogvM&amp;t=974s">16:14</a></h2>
+<p><strong>Lemma 8.1.</strong> Every ideal $J\neq0$ of $F[x]$ contains exactly one monic polynomial $g$ of least degree, and $J$ consists of all multiples of $g$.</p>
+<p><em>Proof.</em> Among the nonzero elements of $J$ pick one of least degree and divide by its leading coefficient; the result $g$ is monic and still in $J$. For $h\in J$, the division algorithm gives $h=qg+r$ with $r=0$ or $\deg r&lt;\deg g$. Then $r=h-qg\in J$, so minimality forces $r=0$. If $g'$ is another monic element of least degree, then $g-g'\in J$ has smaller degree, so $g=g'$. $\square$</p>
+<p><strong>Definition 8.2.</strong> Suppose $S_T(v;W)\neq0$. Its monic generator is the <em>$T$-conductor of $v$ into $W$</em>. We denote it $g_W$ when $v$ is fixed. When $W=0$ it is called the <em>$T$-annihilator of $v$</em>.</p>
+<p>The word "conductor" is used for the polynomial. Some authors use it for the whole ideal.</p>
+<p><strong>Theorem 8.3.</strong> Let $\dim V$ be finite, let $W$ be $T$-invariant, and let $g_W$ be the conductor of $v$ into $W$.</p>
+<ol>
+<li>$g_W$ divides $m_T$, and hence divides $c_T$.</li>
+<li>$g_W=1$ if and only if $v\in W$.</li>
+<li>If $W_1\subseteq W_2$ are $T$-invariant, then $g_{W_2}$ divides $g_{W_1}$.</li>
+<li>$\deg g_W$ is the least $d\ge0$ with $T^dv\in W+\operatorname{span}(v,Tv,\dots,T^{d-1}v)$, and $\deg g_W\le\dim V-\dim W$.</li>
+</ol>
+<p><em>Proof.</em> (1) $m_T$ belongs to the ideal, so it is a multiple of $g_W$. Cayley–Hamilton says that $m_T$ divides $c_T$. (2) $g_W=1$ means $1\in S_T(v;W)$, that is, $v=1(T)v\in W$. (3) If $g(T)v\in W_1$ then $g(T)v\in W_2$, so $S_T(v;W_1)\subseteq S_T(v;W_2)$. In particular $g_{W_1}$ lies in the second ideal and is a multiple of its generator. (4) A monic polynomial $x^d-\sum_{i&lt;d}a_ix^i$ lies in $S_T(v;W)$ exactly when $T^dv-\sum_{i&lt;d}a_iT^iv\in W$. So the least degree of a monic member is the least $d$ in the statement. For the bound, let $d=\deg g_W$ and suppose $\sum_{i&lt;d}b_iT^iv\in W$. The polynomial $\sum_{i&lt;d}b_ix^i$ lies in the ideal and has degree below $d$, so it is zero. Hence $v,Tv,\dots,T^{d-1}v$ are linearly independent, and their span meets $W$ only in $0$. Therefore $d+\dim W\le\dim V$. $\square$</p>
+<p>Part 3 compares the two extreme cases. Taking $W_1=0$ and $W_2=V$ gives the largest and smallest conductors: the $T$-annihilator of $v$ at one end and $1$ at the other. Part 4 is an algorithm: test $d=0,1,2,\dots$, each test being one linear system.</p>
+<p><strong>On the running example.</strong> Take $v=e_4$. Then</p>
+<p>$$Ne_4=(0,1,2,1),\quad N^2e_4=(2,3,1,0)=2w_1+w_2,\quad N^3e_4=(1,2,1,0)=w_1+w_2,\quad N^4e_4=N^3e_4,$$</p>
+<p>where $N=A-2I$. The subspace $W$ consists of the vectors $(a,a+b,b,0)$, so $e_4\notin W$. A monic polynomial of degree $1$ can be written $(x-2)+t$ with $t\in\mathbb{Q}$, and it sends $e_4$ to $Ne_4+te_4=(0,1,2,1+t)$. Membership in $W$ would need $t=-1$, then $a=0$, then $b=1$ from the second coordinate and $b=2$ from the third. This is impossible. So no polynomial of degree at most $1$ works, and $N^2e_4\in W$ shows $g_W=(x-2)^2$. The degree $2$ equals the bound $4-2$.</p>
+<p>The same vector has conductor $(x-2)^2(x-3)$ into the line $\operatorname{span}(w_1)$ and $T$-annihilator $(x-2)^3(x-3)$. Along the chain $0\subset\operatorname{span}(w_1)\subset W\subset V$ the conductors are</p>
+<p>$$(x-2)^3(x-3),\qquad(x-2)^2(x-3),\qquad(x-2)^2,\qquad1,$$</p>
+<p>and each is divisible by the next, as part 3 requires.</p>
+<p><strong>Boundary: infinite dimension.</strong> For multiplication by $x$ on $F[x]$, with $W=0$ and $v=1$, we have $g(M)1=g$. This is zero only for $g=0$. So $S_M(1;0)=0$, and there is no conductor. The finite-dimensional hypothesis is what supplies a nonzero member.</p>
+<h2 id="9-triangulable-operators-2254">9. Triangulable operators <a href="https://www.youtube.com/watch?v=wTr4FJ6ogvM&amp;t=1374s">22:54</a></h2>
+<p>A square matrix $M=(a_{ij})$ is <em>upper triangular</em> if $a_{ij}=0$ whenever $i&gt;j$.</p>
+<p><strong>Definition 9.1.</strong> Let $\dim V=n$. The operator $T$ is <em>triangulable</em> (over $F$) if some ordered basis $\mathcal{B}$ of $V$ makes $[T]_{\mathcal{B}}$ upper triangular.</p>
+<p><strong>Proposition 9.2.</strong> Let $\mathcal{B}=(\alpha_1,\dots,\alpha_n)$ and $U_j=\operatorname{span}(\alpha_1,\dots,\alpha_j)$. The matrix $[T]_{\mathcal{B}}$ is upper triangular if and only if every $U_j$ is $T$-invariant.</p>
+<p><em>Proof.</em> Upper triangularity says that $T\alpha_j\in U_j$ for every $j$. If every $U_j$ is invariant, this holds since $\alpha_j\in U_j$. Conversely, suppose $T\alpha_i\in U_i$ for all $i$. For $i\le j$ we have $U_i\subseteq U_j$, so $T\alpha_i\in U_j$, and Lemma 1.2 shows that $U_j$ is invariant. $\square$</p>
+<p>So a triangularizing basis is the same thing as a chain of invariant subspaces $U_1\subset U_2\subset\cdots\subset U_n=V$ with $\dim U_j=j$, together with a choice of one new basis vector at each step. A necessary condition is visible at once. If $[T]_{\mathcal{B}}$ is upper triangular, then $c_T=\prod_j(x-a_{jj})$, a product of linear factors over $F$. The rotation of Section 6 has $c_R=x^2+1$, so it is not triangulable over $\mathbb{R}$. It is diagonalizable, hence triangulable, over $\mathbb{C}$.</p>
+<p>We say that a monic polynomial <em>splits over $F$</em> if it is a product $(x-c_1)^{r_1}\cdots(x-c_k)^{r_k}$ with $c_i\in F$ distinct and $r_i\ge1$. The converse of the necessary condition, in terms of $m_T$, is proved in <a href="ch16.html">Chapter 16</a>. Its engine is the next lemma.</p>
+<h2 id="10-the-linear-conductor-lemma-2549">10. The linear-conductor lemma <a href="https://www.youtube.com/watch?v=wTr4FJ6ogvM&amp;t=1549s">25:49</a></h2>
+<p>To extend a chain of invariant subspaces by one dimension, we need a vector $\alpha\notin W$ with $T\alpha\in W+\operatorname{span}(\alpha)$. In the language of conductors, we need $\alpha$ whose conductor into $W$ has degree one.</p>
+<p><strong>Lemma 10.1.</strong> Let $\dim V$ be finite and suppose $m_T=(x-c_1)^{r_1}\cdots(x-c_k)^{r_k}$ splits over $F$. Let $W$ be a $T$-invariant subspace with $W\neq V$. Then there exist $\alpha\notin W$ and an eigenvalue $c$ of $T$ with $(T-cI)\alpha\in W$.</p>
+<p><em>Proof.</em> Pick $\beta\notin W$ and let $g$ be the conductor of $\beta$ into $W$. By Theorem 8.3, $g$ divides $m_T$, so by unique factorization $g=(x-c_1)^{e_1}\cdots(x-c_k)^{e_k}$ with $0\le e_i\le r_i$. Since $\beta\notin W$, $g\neq1$, so some $e_j\ge1$. Write $g=(x-c_j)h$ and set $\alpha=h(T)\beta$. The polynomial $h$ is monic of degree $\deg g-1$, so it is not in $S_T(\beta;W)$, which means $\alpha=h(T)\beta\notin W$. And $(T-c_jI)\alpha=g(T)\beta\in W$. Finally $c_j$ is a root of $m_T$, hence an eigenvalue. $\square$</p>
+<p>The linear conductor belongs to the new vector $\alpha$, not to the vector $\beta$ with which we started. The conductor of $\alpha$ into $W$ is $x-c_j$, because $x-c_j$ lies in $S_T(\alpha;W)$ and the only monic polynomial of lower degree, $1$, does not lie in it, as $\alpha\notin W$. The hinge is the minimality of $g$, which guarantees that stopping one factor early leaves the vector outside $W$.</p>
+<p>The lemma does not say that $\alpha$ is an eigenvector. It says that $T\alpha=c\alpha+w$ with $w\in W$. It becomes an eigenvector when $W=0$.</p>
+<p><strong>On the running example.</strong> With $W$ as before and $\beta=e_4$, we found $g=(x-2)^2$. Here $c=2$ and $h=x-2$, so $\alpha=Ne_4=(0,1,2,1)$. Its fourth coordinate is nonzero, so $\alpha\notin W$, and $(A-2I)\alpha=N^2e_4=2w_1+w_2\in W$. The subspace $W+\operatorname{span}(\alpha)$ is therefore a three-dimensional invariant subspace.</p>
+<p><strong>Iterating.</strong> Start with $W=0$, apply the lemma, add the new vector, and repeat. Each stage produces an invariant subspace one dimension larger. For the running example one such run produces the basis</p>
+<p>$$(1,1,0,0),\quad(-3,-3,1,1),\quad(-1,-2,-3,-1),\quad(1,0,0,0),$$</p>
+<p>in which the matrix of $T$ has the rows $(2,1,0,0)$, $(0,2,1,0)$, $(0,0,2,1)$ and $(0,0,0,3)$. The diagonal lists $2$ three times and $3$ once, matching the exponents in $c_T$. The argument that this always works is written out in <a href="ch16.html">Chapter 16</a>.</p>
+<p><strong>Where the hypothesis binds.</strong> For the rotation $R$ on $\mathbb{R}^2$ and $W=0$, the lemma would produce a real eigenvector, and none exists. There $m_R=x^2+1$ does not split, and the conductor of every nonzero vector into $0$ is $x^2+1$.</p>
+<h2 id="11-invariance-seen-from-the-dual-space">11. Invariance seen from the dual space</h2>
+<p><a href="ch11.html">Chapter 11</a> introduced, for $T\in\mathcal{L}(V)$, the transpose $T^{\mathsf t}$ on the dual space $V^*$ by $T^{\mathsf t}f=f\circ T$, and the annihilator $W^0=\{f\in V^*: f(w)=0\text{ for all }w\in W\}$. With a basis and its dual basis, the matrix of $T^{\mathsf t}$ is the matrix transpose of the matrix of $T$. Invariance passes to annihilators.</p>
+<p><strong>Proposition 11.1.</strong> If $W$ is $T$-invariant, then $W^0$ is $T^{\mathsf t}$-invariant. If $\dim V$ is finite, the converse holds.</p>
+<p><em>Proof.</em> Let $f\in W^0$ and $w\in W$. Then $(T^{\mathsf t}f)(w)=f(Tw)=0$ because $Tw\in W$. So $T^{\mathsf t}f\in W^0$. For the converse, let $w\in W$. For every $f\in W^0$ we have $T^{\mathsf t}f\in W^0$, so $f(Tw)=(T^{\mathsf t}f)(w)=0$. In finite dimension, a vector annihilated by all of $W^0$ lies in $W$ (<a href="ch11.html">Chapter 11</a>). So $Tw\in W$. $\square$</p>
+<p>For the running example, $W^0$ is spanned by the row vectors $f_1=(1,-1,1,0)$ and $f_2=(0,0,0,1)$, and $T^{\mathsf t}$ sends a row vector $f$ to $fA$. We find $f_1A=(1,-1,1,1)=f_1+f_2$ and $f_2A=(-1,1,-1,3)=-f_1+3f_2$. Both lie in $W^0$. The matrix of $T^{\mathsf t}$ on $W^0$ in this basis is $\begin{pmatrix}1&amp;-1\\1&amp;3\end{pmatrix}$, with characteristic polynomial $x^2-4x+4=(x-2)^2$. This is the characteristic polynomial of the block $D$.</p>
+<h2 id="12-executable-check">12. Executable check</h2>
+<p><a href="labs/ch15.py">The chapter laboratory</a> uses exact rational arithmetic. It checks the invariance of $W$, the block form $P^{-1}AP$, the minimal-polynomial products of Section 5, the eigenspaces and the kernel dimensions, all four conductors of $e_4$, the lemma step $\alpha=Ne_4$, the triangular basis of Section 10, the annihilator computation of Section 11, the rotation example over $\mathbb{Q}$ (as the rational part of the real claim) and over $\mathbb{F}_5$ and $\mathbb{F}_2$, and the computations of the exercises. These are checks of particular matrices. The proofs above carry the general statements.</p>
+<h2 id="exercises">Exercises</h2>
+<ol>
+<li>(Computation.) For the running example, find the $T$-conductor of $e_4$ into the eigenspace $E_3=\operatorname{span}(1,2,1,0)$. Compare its degree with the bound of Theorem 8.3(4), and check the divisibility of part 3 against the conductor into $W$ and the $T$-annihilator of $e_4$.</li>
+<li>(Proof and counterexample.) Show that if $W_1$ and $W_2$ are $T$-invariant, then so are $W_1+W_2$ and $W_1\cap W_2$. Then show that the subspace $W$ of the running example has no $T$-invariant complement, that is, there is no invariant subspace $U$ with $\mathbb{Q}^4=W\oplus U$.</li>
+<li>(Classification.) Over a field $F$, find all invariant subspaces of each of the matrices $\begin{pmatrix}2&amp;0\\0&amp;3\end{pmatrix}$ (assume $2\neq3$ in $F$), $\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix}$ and $\begin{pmatrix}2&amp;0\\0&amp;2\end{pmatrix}$.</li>
+<li>(Field dependence.) Find all invariant subspaces of $\begin{pmatrix}0&amp;-1\\1&amp;0\end{pmatrix}$ acting on $\mathbb{F}_5^2$ and on $\mathbb{F}_2^2$, and decide in each case whether the operator is diagonalizable or only triangulable.</li>
+<li>(Infinite dimension.) Let $D$ be the derivative on $\mathbb{Q}[x]$. Find the $D$-conductor of $x^4$ into $P_1$. Then show that $\mathbb{Q}[x]$ has no nonzero finite-dimensional $D$-invariant subspace other than the $P_n$.</li>
+<li>(Proof.) Suppose $\dim V$ is finite and $V=W\oplus U$ with $W,U$ nonzero and both $T$-invariant. Show $c_T=c_{T_W}c_{T_U}$ and $m_T=\operatorname{lcm}(m_{T_W},m_{T_U})$. Show by an example that the second formula can fail when only $W$ is invariant.</li>
+</ol>
+<details>
+<summary>Fully worked solutions</summary>
+<ol>
+<li>
+<p>With $N=A-2I$ we have $e_4$, $Ne_4=(0,1,2,1)$, $N^2e_4=(2,3,1,0)$ and $N^3e_4=(1,2,1,0)$. The last vector spans $E_3$, so $(x-2)^3\in S_T(e_4;E_3)$. The conductor divides $(x-2)^3$, so it is $(x-2)^j$ with $j\le3$. None of $e_4$, $Ne_4=(0,1,2,1)$, $N^2e_4=(2,3,1,0)$ is a multiple of $(1,2,1,0)$, so $j$ is not $0$, $1$ or $2$. So the conductor is $(x-2)^3$, of degree $3=\dim V-\dim E_3$, which attains the bound. Since $E_3\subseteq W$, part 3 says that the conductor into $W$, namely $(x-2)^2$, divides $(x-2)^3$, which is true. Since $0\subseteq E_3$, the conductor $(x-2)^3$ divides the $T$-annihilator $(x-2)^3(x-3)$, also true.</p>
+</li>
+<li>
+<p>Let $\alpha=\alpha_1+\alpha_2$ with $\alpha_i\in W_i$. Then $T\alpha=T\alpha_1+T\alpha_2$ with $T\alpha_i\in W_i$, so $T\alpha\in W_1+W_2$. If $\alpha\in W_1\cap W_2$, then $T\alpha$ lies in $W_1$ and in $W_2$. For the second part, suppose $\mathbb{Q}^4=W\oplus U$ with $U$ invariant. Then $\dim U=2$. The restriction $T_U$ has a minimal polynomial that divides $m_T=(x-2)^3(x-3)$ by Theorem 5.1(2), and its degree is at least $1$ because $U\neq0$. So it has a root $c\in\{2,3\}$, and $T_U$ has an eigenvector $u\neq0$ in $U$. Then $u$ is an eigenvector of $T$, so $u\in E_2\cup E_3\subseteq W$. This contradicts $W\cap U=0$. So no invariant complement exists. In the language of Section 4, no choice of $w_3,w_4$ makes the block $C$ vanish.</p>
+</li>
+<li>
+<p>In every case $0$ and $F^2$ are invariant, and any other invariant subspace is a line spanned by an eigenvector. For $\operatorname{diag}(2,3)$ the eigenspaces are the two coordinate axes, so there are exactly four invariant subspaces: $0$, $\operatorname{span}(e_1)$, $\operatorname{span}(e_2)$, $F^2$. For $\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix}$, the only eigenvalue is $2$, and $M-2I$ sends $(a,b)$ to $(b,0)$, with kernel $\operatorname{span}(e_1)$. So there are exactly three: $0$, $\operatorname{span}(e_1)$, $F^2$. For $2I$ every vector is an eigenvector, so every subspace of $F^2$ is invariant: $0$, $F^2$, and all lines. The number of lines is $|F|+1$ for a finite field and infinite otherwise.</p>
+</li>
+<li>
+<p>The characteristic polynomial is $x^2+1$. Over $\mathbb{F}_5$ its roots are $2$ and $3$, since $4+1=5=0$ and $9+1=10=0$. The equation $(M-cI)(a,b)=0$ reads $-b=ca$ and $a=cb$. For $c=2$ this gives $b=-2a=3a$, the line through $(1,3)$; check $M(1,3)=(-3,1)=(2,1)=2(1,3)$. For $c=3$ it gives $b=2a$, the line through $(1,2)$; check $M(1,2)=(-2,1)=(3,1)=3(1,2)$. So there are four invariant subspaces, and $((1,3),(1,2))$ is a basis of eigenvectors: the operator is diagonalizable. Over $\mathbb{F}_2$ we have $x^2+1=(x+1)^2$ and the only eigenvalue is $1$. The matrix $M-I$ has rows $(1,1)$ and $(1,1)$ since $-1=1$, with kernel $\operatorname{span}(1,1)$. So the invariant subspaces are $0$, $\operatorname{span}(1,1)$, $\mathbb{F}_2^2$. The operator is not diagonalizable, but it is triangulable: in the basis $((1,1),(1,0))$ we have $M(1,1)=(1,1)$ and $M(1,0)=(0,1)=(1,1)+(1,0)$, so the matrix has rows $(1,1)$ and $(0,1)$.</p>
+</li>
+<li>
+<p>$D^2x^4=12x^2$ and $D^3x^4=24x$. Let $g$ be monic of degree $j\le2$ and let $x^b$ be the lowest power of $x$ that occurs in $g$, so $b\le2$. The terms $D^ix^4$ have the distinct degrees $4-i$, so $g(D)x^4$ has degree exactly $4-b\ge2$. So $g(D)x^4\notin P_1$. Since $D^3x^4=24x\in P_1$, the conductor is $x^3$. Now let $W\neq0$ be finite-dimensional and $D$-invariant, and let $n$ be the largest degree of a nonzero element of $W$; it exists because a basis of $W$ bounds all degrees. Pick $p\in W$ of degree $n$. The polynomials $p,Dp,\dots,D^np$ lie in $W$. Over $\mathbb{Q}$, $D^kp$ has degree exactly $n-k$, because the leading coefficient is multiplied by the nonzero integer $n(n-1)\cdots(n-k+1)$. Polynomials of degrees $n,n-1,\dots,0$ form a basis of $P_n$. So $P_n\subseteq W\subseteq P_n$. The zero subspace is the remaining case. Over a field of characteristic $p&gt;0$ the argument fails: the derivative of $x^p$ is $0$, so $\operatorname{span}(x^p)$ is invariant.</p>
+</li>
+<li>
+<p>Concatenate a basis of $W$ and a basis of $U$. Both subspaces are invariant, so by Theorem 4.2 applied twice the matrix is block diagonal with blocks $B=[T_W]$ and $E=[T_U]$. Then $\det(xI-M)=\det(xI-B)\det(xI-E)$, which is the first formula. For every polynomial $p$, $p(M)$ is block diagonal with blocks $p(B)$ and $p(E)$. So $p(M)=0$ if and only if $p(B)=0$ and $p(E)=0$, that is, if and only if $p$ is a common multiple of $m_B$ and $m_E$. The monic generator of the common multiples is the least common multiple. For the counterexample take $M=\begin{pmatrix}2&amp;1\\0&amp;2\end{pmatrix}$ and $W=\operatorname{span}(e_1)$. The diagonal blocks are both $(2)$, with least common multiple $x-2$. But $M-2I\neq0$ and $(M-2I)^2=0$, so $m_M=(x-2)^2$.</p>
+</li>
+</ol>
+</details>
+<h2 id="references">References</h2>
+<ul>
+<li>Kenneth Hoffman and Ray Kunze, <em>Linear Algebra</em>, 2nd ed., Prentice-Hall, 1971, the chapter on elementary canonical forms.</li>
+<li>Steven Roman, <em>Advanced Linear Algebra</em>, 3rd ed., Springer GTM 135, the chapters on modules over a principal ideal domain and on the structure of a linear operator.</li>
+<li>Sheldon Axler, <em>Linear Algebra Done Right</em>, 4th ed., open access at https://linear.axler.net/, the chapter on eigenvalues, eigenvectors, and invariant subspaces.</li>
+</ul><details class="lab"><summary>Executable chapter laboratory</summary>
+<p><a href="labs/ch15.py">Download the Python source</a>. Run in a fresh interpreter; see requirements.txt for dependencies.</p>
+<div class="codewrap"><button class="copybtn" type="button" aria-label="Copy laboratory source">Copy</button><pre><code class="language-python">&quot;&quot;&quot;Chapter 15 laboratory: transposes, invariant subspaces, conductors.
+
+Exact arithmetic over Q (fractions.Fraction).  A vector is a list of
+Fractions, a matrix is a list of rows, a polynomial is a list of
+coefficients with the constant term first (so [c0, c1, c2] is
+c0 + c1 x + c2 x^2).  Nothing is changed in place.
+
+Sections of the laboratory:
+  A. the transpose of a map: ker T^t = (im T)^0, im T^t = (ker T)^0,
+     rank T^t = rank T, and [T^t] = A^T in dual bases;
+  B. invariant subspaces and annihilators: W is T-invariant exactly
+     when W^0 is T^t-invariant;
+  C. the T-conductor S(v; W), computed by linear algebra;
+  D. the lemma (a conductor into an invariant proper subspace is a
+     linear polynomial when the minimal polynomial splits) and the
+     construction of a triangularizing basis from it;
+  E. the boundary: a rotation of Q^2 has no invariant line.
+&quot;&quot;&quot;
+from fractions import Fraction
+
+
+def Q(rows):
+    &quot;&quot;&quot;Matrix over Q from integer or Fraction entries.&quot;&quot;&quot;
+    return [[Fraction(x) for x in row] for row in rows]
+
+
+def vec(xs):
+    return [Fraction(x) for x in xs]
+
+
+def matmul(A, B):
+    return [[sum(a * b for a, b in zip(row, col)) for col in zip(*B)]
+            for row in A]
+
+
+def matvec(A, v):
+    return [sum(a * x for a, x in zip(row, v)) for row in A]
+
+
+def transpose(A):
+    return [list(col) for col in zip(*A)]
+
+
+def identity(n):
+    return [[Fraction(int(i == j)) for j in range(n)] for i in range(n)]
+
+
+def sub(A, B):
+    return [[a - b for a, b in zip(r, s)] for r, s in zip(A, B)]
+
+
+def scal(c, A):
+    return [[c * a for a in row] for row in A]
+
+
+def rref(A):
+    &quot;&quot;&quot;Reduced row echelon form and the list of pivot columns.&quot;&quot;&quot;
+    R = [row[:] for row in A]
+    pivots = []
+    r = 0
+    for c in range(len(R[0]) if R else 0):
+        p = next((i for i in range(r, len(R)) if R[i][c] != 0), None)
+        if p is None:
+            continue
+        R[r], R[p] = R[p], R[r]
+        R[r] = [x / R[r][c] for x in R[r]]
+        for i in range(len(R)):
+            if i != r and R[i][c] != 0:
+                f = R[i][c]
+                R[i] = [x - f * y for x, y in zip(R[i], R[r])]
+        pivots.append(c)
+        r += 1
+        if r == len(R):
+            break
+    return R, pivots
+
+
+def rank(A):
+    return len(rref(A)[1]) if A else 0
+
+
+def nullspace(A):
+    &quot;&quot;&quot;Basis of {x : A x = 0}, as a list of vectors.&quot;&quot;&quot;
+    n = len(A[0])
+    R, piv = rref(A)
+    basis = []
+    for f in (c for c in range(n) if c not in piv):
+        x = [Fraction(0)] * n
+        x[f] = Fraction(1)
+        for row, p in zip(R, piv):
+            x[p] = -row[f]
+        basis.append(x)
+    return basis
+
+
+def colspace(A):
+    &quot;&quot;&quot;Basis of the column space: the pivot columns of A.&quot;&quot;&quot;
+    _, piv = rref(A)
+    return [[row[c] for row in A] for c in piv]
+
+
+def in_span(vs, v):
+    &quot;&quot;&quot;Is v in span(vs)?  (vs may be empty.)&quot;&quot;&quot;
+    if not vs:
+        return all(x == 0 for x in v)
+    M = transpose(vs)
+    return rank(M) == rank([r + [x] for r, x in zip(M, v)])
+
+
+def indep(vs):
+    return rank(vs) == len(vs) if vs else True
+
+
+def invariant(A, W):
+    &quot;&quot;&quot;Is span(W) invariant under x -&gt; A x?&quot;&quot;&quot;
+    return all(in_span(W, matvec(A, w)) for w in W)
+
+
+def annihilator(W, n):
+    &quot;&quot;&quot;Basis of W^0 as row vectors g (g . w = 0 for all w in W).&quot;&quot;&quot;
+    return nullspace(W) if W else [vec(e) for e in identity(n)]
+
+
+def row_act(A, g):
+    &quot;&quot;&quot;T^t g in the dual basis: the row vector g A.&quot;&quot;&quot;
+    return [sum(g[i] * A[i][j] for i in range(len(g)))
+            for j in range(len(A[0]))]
+
+
+# ---- polynomials (constant term first) ---------------------------
+
+def ptrim(p):
+    p = p[:]
+    while p and p[-1] == 0:
+        p.pop()
+    return p
+
+
+def pmul(p, q):
+    out = [Fraction(0)] * (len(p) + len(q) - 1)
+    for i, a in enumerate(p):
+        for j, b in enumerate(q):
+            out[i + j] += a * b
+    return out
+
+
+def pdivmod(p, d):
+    p = ptrim(p)
+    d = ptrim(d)
+    q = [Fraction(0)] * max(len(p) - len(d) + 1, 1)
+    while len(p) &gt;= len(d) and p:
+        c = p[-1] / d[-1]
+        k = len(p) - len(d)
+        q[k] = c
+        for i, x in enumerate(d):
+            p[i + k] -= c * x
+        p = ptrim(p)
+    return ptrim(q), p
+
+
+def peval(p, x):
+    out = Fraction(0)
+    for c in reversed(p):
+        out = out * x + c
+    return out
+
+
+def pmat(p, A):
+    &quot;&quot;&quot;The matrix p(A) by Horner&#x27;s rule.&quot;&quot;&quot;
+    n = len(A)
+    out = [[Fraction(0)] * n for _ in range(n)]
+    for c in reversed(p):
+        out = matmul(out, A)
+        out = [[out[i][j] + (c if i == j else 0) for j in range(n)]
+               for i in range(n)]
+    return out
+
+
+def pshow(p):
+    p = ptrim(p)
+    terms = []
+    for k in reversed(range(len(p))):
+        c = p[k]
+        if c == 0:
+            continue
+        mono = &#x27;x&#x27; + (&#x27;^%d&#x27; % k if k &gt; 1 else &#x27;&#x27;) if k else &#x27;&#x27;
+        coef = &#x27;&#x27; if (c == 1 and k) else str(c)
+        if c == -1 and k:
+            coef = &#x27;-&#x27;
+        terms.append((coef + mono))
+    s = &#x27; + &#x27;.join(terms) if terms else &#x27;0&#x27;
+    return s.replace(&#x27;+ -&#x27;, &#x27;- &#x27;)
+
+
+def linear_factors(g, candidates):
+    &quot;&quot;&quot;Split g (monic) into linear factors (x - c); None if impossible.
+
+    Returns the list of roots with multiplicity, using the candidate
+    roots only.  A None answer means g does not split over the
+    candidates, which for rational roots of an integer-coefficient
+    polynomial is a proof once the candidates cover the divisors.
+    &quot;&quot;&quot;
+    roots = []
+    g = ptrim(g)
+    while len(g) &gt; 1:
+        c = next((c for c in candidates if peval(g, c) == 0), None)
+        if c is None:
+            return None
+        g, rem = pdivmod(g, [-c, Fraction(1)])
+        assert not rem
+        roots.append(c)
+    return roots
+
+
+# ---- conductors ----------------------------------------------------
+
+def krylov(A, v, k):
+    &quot;&quot;&quot;[v, Av, ..., A^k v].&quot;&quot;&quot;
+    out = [v]
+    for _ in range(k):
+        out.append(matvec(A, out[-1]))
+    return out
+
+
+def conductor(A, v, W):
+    &quot;&quot;&quot;Monic generator of S(v; W) = {g : g(A) v in span W}.
+
+    W is a list of vectors spanning a T-invariant subspace (maybe empty).
+    Search for the least d such that v, Av, ..., A^d v are dependent
+    modulo W.  Then the dependence is unique up to a scalar and its
+    coefficient on A^d v is not zero.
+    &quot;&quot;&quot;
+    n = len(A)
+    for d in range(0, n + 2):
+        K = krylov(A, v, d)
+        # relation: sum c_i K_i + sum w_j W_j = 0; unknowns c then w.
+        cols = K + list(W)
+        M = transpose(cols) if cols else [[]]
+        ns = nullspace(M)
+        rel = [x for x in ns if any(x[:d + 1])]
+        if rel:
+            assert len(rel) == 1
+            c = rel[0][:d + 1]
+            assert c[d] != 0
+            return [x / c[d] for x in c]
+    raise AssertionError(&#x27;no conductor found (W not invariant?)&#x27;)
+
+
+def triangularize(A, roots):
+    &quot;&quot;&quot;Basis alpha_1..alpha_n with T alpha_j in span(alpha_1..alpha_j).
+
+    The construction of the chapter: with W = span(alpha_1..alpha_{j-1})
+    pick beta not in W, factor its conductor g = (x - c) h, and put
+    alpha_j = h(T) beta.  Then (T - c) alpha_j lies in W.
+    &quot;&quot;&quot;
+    n = len(A)
+    basis = []
+    steps = []
+    while len(basis) &lt; n:
+        beta = next(vec(e) for e in identity(n)
+                    if not in_span(basis, vec(e)))
+        g = conductor(A, beta, basis)
+        fac = linear_factors(g, roots)
+        assert fac is not None
+        c = fac[0]
+        h, rem = pdivmod(g, [-c, Fraction(1)])
+        assert not rem
+        alpha = matvec(pmat(h, A), beta)
+        assert not in_span(basis, alpha)
+        shifted = matvec(sub(A, scal(c, identity(n))), alpha)
+        assert in_span(basis, shifted)
+        steps.append((beta, g, c, alpha))
+        basis.append(alpha)
+    return basis, steps
+
+
+def fmt(v):
+    return &#x27;(&#x27; + &#x27;, &#x27;.join(str(x) for x in v) + &#x27;)&#x27;
+
+
+def fmtM(A):
+    return &#x27;[&#x27; + &#x27;; &#x27;.join(&#x27; &#x27;.join(str(x) for x in r) for r in A) + &#x27;]&#x27;
+
+
+def lines_mod(m, p):
+    &quot;&quot;&quot;Invariant lines of the 2x2 matrix m = (a, b, c, d) over F_p.&quot;&quot;&quot;
+    a, b, c, d = m
+    found = []
+    for x, y in [(0, 1)] + [(1, t) for t in range(p)]:
+        tx, ty = a * x + b * y, c * x + d * y
+        if any((tx - s * x) % p == 0 and (ty - s * y) % p == 0
+               for s in range(p)):
+            found.append((x, y))
+    return found
+
+
+def main():
+    A = Q([[2, 0, 1, 0], [-2, 4, 0, 1], [-3, 3, 0, 2], [-1, 1, -1, 3]])
+    one = identity(4)
+    N, N3 = sub(A, scal(2, one)), sub(A, scal(3, one))
+    w1, w2 = vec([1, 1, 0, 0]), vec([0, 1, 1, 0])
+    W, e4, ev3 = [w1, w2], vec([0, 0, 0, 1]), vec([1, 2, 1, 0])
+    assert matvec(A, w1) == vec([2, 2, 0, 0])
+    assert matvec(A, w2) == vec([1, 4, 3, 0])
+    assert invariant(A, W) and not invariant(A, [vec([1, 0, 0, 0])])
+
+    # block form in the adapted basis w1, w2, w3, w4
+    P = Q([[1, 0, 0, 0], [1, 1, 0, 0], [0, 1, 1, 0], [0, 0, 1, 1]])
+    M = Q([[2, 1, 1, 0], [0, 3, 0, 1], [0, 0, 2, 1], [0, 0, 0, 2]])
+    assert matmul(A, P) == matmul(P, M) and rank(P) == 4
+    print(&#x27;block form P^-1 A P =&#x27;, fmtM(M))
+
+    N2 = matmul(N, N)
+    low = matmul(N2, N3)
+    assert low[0] == vec([1, -1, 1, -1])
+    assert matmul(N, low) == scal(0, one)
+    print(&#x27;(A-2I)^2(A-3I) first row&#x27;, fmt(low[0]), &#x27;; m_T=(x-2)^3(x-3)&#x27;)
+    assert [len(nullspace(X)) for X in (N, N2, matmul(N2, N))] == [1, 2, 3]
+    assert in_span(nullspace(N), w1) and in_span(nullspace(N3), ev3)
+    assert in_span(nullspace(N2), vec([0, 0, 1, 1]))
+
+    # conductors of e4 along 0 &lt; span(w1) &lt; W &lt; V
+    chain = [[], [w1], W, [vec(e) for e in one]]
+    got = [conductor(A, e4, U) for U in chain]
+    assert got == [[24, -44, 30, -9, 1], [-12, 16, -7, 1], [4, -4, 1], [1]]
+    for g in got:
+        print(&#x27;conductor of e4:&#x27;, pshow(g))
+    for big, small in zip(got, got[1:]):
+        assert not pdivmod(big, small)[1]
+    powers = krylov(N, e4, 4)
+    assert powers[1:] == [vec([0, 1, 2, 1]), vec([2, 3, 1, 0]), ev3, ev3]
+
+    # the lemma step and the triangular basis
+    alpha = powers[1]
+    assert not in_span(W, alpha) and in_span(W, matvec(N, alpha))
+    basis, _ = triangularize(A, vec([2, 3]))
+    assert basis == [w1, vec([-3, -3, 1, 1]), vec([-1, -2, -3, -1]),
+                     vec([1, 0, 0, 0])]
+    tri = Q([[2, 1, 0, 0], [0, 2, 1, 0], [0, 0, 2, 1], [0, 0, 0, 3]])
+    S = transpose(basis)
+    assert matmul(A, S) == matmul(S, tri)
+    print(&#x27;triangular basis&#x27;, &#x27; &#x27;.join(fmt(v) for v in basis))
+    print(&#x27;triangular matrix&#x27;, fmtM(tri))
+
+    # annihilator of W under the transpose
+    f1, f2 = vec([1, -1, 1, 0]), vec([0, 0, 0, 1])
+    assert all(sum(a * b for a, b in zip(f, w)) == 0
+               for f in (f1, f2) for w in W)
+    assert row_act(A, f1) == [a + b for a, b in zip(f1, f2)]
+    assert row_act(A, f2) == [-a + 3 * b for a, b in zip(f1, f2)]
+    print(&#x27;T^t on W^0: [1 -1; 1 3], char poly (x-2)^2&#x27;)
+
+    # rotation: no rational root; lines over F_5 and F_2
+    assert linear_factors(vec([1, 0, 1]), vec([1, -1])) is None
+    for p, expect in ((5, [(1, 2), (1, 3)]), (2, [(1, 1)])):
+        lines = lines_mod((0, -1, 1, 0), p)
+        assert lines == expect
+        print(&#x27;invariant lines of the rotation over F_%d:&#x27; % p, lines)
+
+    # exercise 1
+    g = conductor(A, e4, [ev3])
+    assert g == [-8, 12, -6, 1]
+    print(&#x27;conductor of e4 into E_3:&#x27;, pshow(g))
+    # exercise 3, checked over F_5 by exhaustion
+    assert lines_mod((2, 0, 0, 3), 5) == [(0, 1), (1, 0)]
+    assert lines_mod((2, 1, 0, 2), 5) == [(1, 0)]
+    assert len(lines_mod((2, 0, 0, 2), 5)) == 6
+    # exercise 5: derivative, coefficient lists with constant term first
+    q = [0, 0, 0, 0, 1]
+    degrees = []
+    for _ in range(3):
+        q = [k * q[k] for k in range(1, len(q))]
+        degrees.append(len(q) - 1)
+    assert degrees == [3, 2, 1] and q == [0, 24]
+    # exercise 6: only W invariant, m_T = (x-2)^2 is not lcm = x-2
+    J = sub(Q([[2, 1], [0, 2]]), scal(2, identity(2)))
+    assert rank(J) == 1 and rank(matmul(J, J)) == 0
+    print(&#x27;all checks passed&#x27;)
+
+
+if __name__ == &#x27;__main__&#x27;:
+    main()
+</code></pre></div></details></article><div class="footer"><a rel="prev" href="ch14.html">Previous: The Cayley-Hamilton theorem and the minimal polynomial in computation</a><a rel="next" href="ch16.html">Next: Applications of invariant subspaces: diagonalizability criteria and simultaneous triangulation</a></div>
+<p class="publication-note">Independent educational notes. Not an official NPTEL or IIT Roorkee publication, affiliation, or endorsement. Worked examples are original constructions unless stated.</p>
+</main></div></body></html>
