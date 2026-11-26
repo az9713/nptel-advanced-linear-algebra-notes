@@ -1,5 +1,5 @@
 edition: Advanced Linear Algebra
-phase: ready-for-publication
+phase: published-and-live-verified
 expected_chapters: 26
 expected_teaching_recordings: 60
 acquired_recordings_including_introduction: 61
@@ -9,3 +9,8 @@ repository_slug: nptel-advanced-linear-algebra-notes
 durable_plan: plan/outline.md
 notation: plan/notation.md
 review_brief: EDITOR_DOMAIN.md
+payload_release_commit: c6c02b065af0fcdca929a184d0c71993c1e4928e
+live_verified_payload_files: 228
+live_browser_cases: 62
+published_url: https://az9713.github.io/nptel-advanced-linear-algebra-notes/
+publication_evidence: validation/live-publication-checks.json

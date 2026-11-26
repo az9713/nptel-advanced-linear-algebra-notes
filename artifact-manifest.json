@@ -151,8 +151,8 @@
     },
     {
       "path": "BOOK-STATE.yaml",
-      "bytes": 462,
-      "sha256": "b2a8f33ed49cdec8a913f310d385579285e2bc6d14431efee31345337d2f785c",
+      "bytes": 728,
+      "sha256": "12d4a172f95fa34911f253a5ec509036643dd7aa21c35ae17e2ed5f7cf26ae0a",
       "purpose": "public reader, supporting content, asset, or rebuild input"
     },
     {
@@ -957,6 +957,12 @@
       "path": "validation/browser-checks.json",
       "bytes": 17491,
       "sha256": "ef83f52b638e20321fa295e8b05205c9a344117559e7373539ae278cb664ef76",
+      "purpose": "scoped production, review, or validation evidence"
+    },
+    {
+      "path": "validation/live-publication-checks.json",
+      "bytes": 84454,
+      "sha256": "296ca9a863469a968346d5f3156a1895e64dc5891926ada7e616cb8efb6a865b",
       "purpose": "scoped production, review, or validation evidence"
     },
     {
